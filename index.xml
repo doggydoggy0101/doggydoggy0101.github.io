@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ian&#39;s homepage</title>
+    <link>https://doggydoggy0101.github.io/</link>
+    <description>Recent content on Ian&#39;s homepage</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 19 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://doggydoggy0101.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Convex_optimization</title>
+      <link>https://doggydoggy0101.github.io/posts/convex_optimization/</link>
+      <pubDate>Fri, 19 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://doggydoggy0101.github.io/posts/convex_optimization/</guid>
+      
+        <description>test $$ Ax+b $$</description>
+      
+    </item>
+    
+  </channel>
+</rss>
