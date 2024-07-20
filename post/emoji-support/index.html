@@ -10,6 +10,8 @@
   <meta charset="utf-8" />
   <title>
     
+      
+        Emoji Support |
       Ian Chen
 
   </title>
@@ -18,7 +20,7 @@
   <meta name="author" content="Ian Chen" />
   <meta
     name="description"
-    content="Bang-Shien Chen / Ian Chen"
+    content="Guide to emoji usage in Hugo"
   />
   
   
@@ -80,10 +82,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
 
-  <link rel="canonical" href="https://doggydoggy0101.github.io/" />
+  <link rel="canonical" href="https://doggydoggy0101.github.io/post/emoji-support/" />
 
   
-  <link rel="alternate" type="application/rss+xml" href="/index.xml" title="homepage" />
   
   
   
@@ -113,31 +114,92 @@
   
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="homepage">
-  <meta name="twitter:description" content="Bang-Shien Chen / Ian Chen">
+  <meta name="twitter:title" content="Emoji Support">
+  <meta name="twitter:description" content="Guide to emoji usage in Hugo">
 
 
 
   
-  <meta property="og:url" content="https://doggydoggy0101.github.io/">
+  <meta property="og:url" content="https://doggydoggy0101.github.io/post/emoji-support/">
   <meta property="og:site_name" content="homepage">
-  <meta property="og:title" content="homepage">
-  <meta property="og:description" content="Bang-Shien Chen / Ian Chen">
+  <meta property="og:title" content="Emoji Support">
+  <meta property="og:description" content="Guide to emoji usage in Hugo">
   <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2019-03-05T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-03-05T00:00:00+00:00">
+    <meta property="article:tag" content="Emoji">
 
 
 
+  
+  
+  
   
   <script type="application/ld+json">
     {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      "name": "homepage",
-      "url": "https:\/\/doggydoggy0101.github.io\/",
-      "description": "Bang-Shien Chen \/ Ian Chen",
-      "thumbnailUrl": "https:\/\/doggydoggy0101.github.io\/",
-      "license": ""
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Emoji Support",
+        "headline": "Emoji Support",
+        "alternativeHeadline": "",
+        "description": "
+      Guide to emoji usage in Hugo
+
+
+    ",
+        "inLanguage": "en",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/doggydoggy0101.github.io\/post\/emoji-support\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Hugo Authors"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Hugo Authors"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Hugo Authors"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Hugo Authors"
+        },
+        "copyrightYear" : "2019",
+        "dateCreated": "2019-03-05T00:00:00.00Z",
+        "datePublished": "2019-03-05T00:00:00.00Z",
+        "dateModified": "2019-03-05T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Hugo Authors",
+            "url": "https://doggydoggy0101.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/doggydoggy0101.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+      ]
+
+    ,
+        "url" : "https:\/\/doggydoggy0101.github.io\/post\/emoji-support\/",
+        "wordCount" : "129",
+        "genre" : [ ],
+        "keywords" : [ 
+      
+      "emoji"
+
+    ]
     }
   </script>
 
@@ -163,9 +225,7 @@
       />
       
         <div class="sidebar__introduction-title">
-          <h1>
-            <a href="/">Welcome!</a>
-          </h1>
+          <a href="/">Welcome!</a>
         </div>
       
       <div class="sidebar__introduction-description">
@@ -277,8 +337,6 @@
             
             <a
               
-                class="nav__link--active"
-              
               href="/"
               
               title=""
@@ -339,196 +397,49 @@
       animated fadeInDown
     "
   >
+    
     <div class="post__content">
+      <h1>Emoji Support</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                
+                  5/3/2019
+                
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">One-minute read</span>
+          </li>
+        </ul>
+      <p>Emoji can be enabled in a Hugo project in a number of ways.</p>
+<p>The <a href="https://gohugo.io/functions/emojify/"><code>emojify</code></a> function can be called directly in templates or <a href="https://gohugo.io/templates/shortcode-templates/#inline-shortcodes">Inline Shortcodes</a>.</p>
+<p>To enable emoji globally, set <code>enableEmoji</code> to <code>true</code> in your site&rsquo;s <a href="https://gohugo.io/getting-started/configuration/">configuration</a> and then you can type emoji shorthand codes directly in content files; e.g.</p>
+<p><span class="nowrap"><span class="emojify">🙈</span> <code>:see_no_evil:</code></span>  <span class="nowrap"><span class="emojify">🙉</span> <code>:hear_no_evil:</code></span>  <span class="nowrap"><span class="emojify">🙊</span> <code>:speak_no_evil:</code></span></p>
+<br>
+<p>The <a href="http://www.emoji-cheat-sheet.com/">Emoji cheat sheet</a> is a useful reference for emoji shorthand codes.</p>
+<hr>
+<p><strong>N.B.</strong> The above steps enable Unicode Standard emoji characters and sequences in Hugo, however the rendering of these glyphs depends on the browser and the platform. To style the emoji you can either use a third party emoji font or a font stack; e.g.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">.emoji {
+</span></span><span class="line"><span class="cl">font-family: Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Segoe UI Symbol, Android Emoji, EmojiSymbols;
+</span></span><span class="line"><span class="cl">}</span></span></code></pre></div></div>
+    <div class="post__footer">
+      
+
+      
+        <span><a class="tag" href="/tags/emoji/">emoji</a></span>
+
+
       
     </div>
 
     
-  </div>
-
-  
-
-  
-  
-    <div
-      class="post 
-        animated fadeInDown
-      "
-    >
-      
-      <div class="post__content">
-        <h3><a href="/post/figure-shortcode/">THE FIGURE SHORTCODE</a></h3>
-        
-          <p>Hugo has figure shortcode built-in, so you can easily add figure captions or hyperlink rel attributes to images.</p>
-        
-        <a href="/post/figure-shortcode/">Read more</a></div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            
-              13/3/2021
-            
-
-          </span
-        >
-        
-
-        
-          <span><a class="tag" href="/tags/demo/">demo</a><a class="tag" href="/tags/shortcode/">shortcode</a></span>
-
-
-        
-      </div>
-    </div>
-  
-    <div
-      class="post 
-        animated fadeInDown
-      "
-    >
-      
-      <div class="post__content">
-        <h3><a href="/post/markdown-syntax/">MARKDOWN SYNTAX GUIDE</a></h3>
-        
-          <p>This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.</p>
-        
-        <a href="/post/markdown-syntax/">Read more</a></div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            
-              11/3/2019
-            
-
-          </span
-        >
-        
-          <span><a class="category" href="/categories/themes/">themes</a><a class="category" href="/categories/syntax/">syntax</a></span>
-
-
-        
-
-        
-          <span><a class="tag" href="/tags/markdown/">markdown</a><a class="tag" href="/tags/css/">css</a><a class="tag" href="/tags/html/">html</a></span>
-
-
-        
-      </div>
-    </div>
-  
-    <div
-      class="post 
-        animated fadeInDown
-      "
-    >
-      
-      <div class="post__content">
-        <h3><a href="/post/math-typesetting/">MATH TYPESETTING</a></h3>
-        
-          <p>Mathematical notation in a Hugo project can be enabled by using third party JavaScript libraries.</p>
-        
-        <a href="/post/math-typesetting/">Read more</a></div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            
-              8/3/2019
-            
-
-          </span
-        >
-        
-
-        
-      </div>
-    </div>
-  
-    <div
-      class="post 
-        animated fadeInDown
-      "
-    >
-      
-      <div class="post__content">
-        <h3><a href="/post/emoji-support/">EMOJI SUPPORT</a></h3>
-        
-          <p>Emoji can be enabled in a Hugo project in a number of ways.</p>
-        
-        <a href="/post/emoji-support/">Read more</a></div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            
-              5/3/2019
-            
-
-          </span
-        >
-        
-
-        
-          <span><a class="tag" href="/tags/emoji/">emoji</a></span>
-
-
-        
-      </div>
-    </div>
-  
-    <div
-      class="post 
-        animated fadeInDown
-      "
-    >
-      
-        <div class="post__thumbnail-wrapper">
-          <a href="/post/image-test/">
-            <img class="post__thumbnail" src="/images/landscape.jpg" alt="Thumbnail image" loading="lazy" />
-          </a>
-        </div>
-      
-      <div class="post__content">
-        <h3><a href="/post/image-test/">GUIDE TO THUMBNAILS IN HUGO</a></h3>
-        
-          <p>Thumbnails can be enabled easily by setting the thumbnail parameter in the frontmatter to an image such as &quot;images/landscape.</p>
-        
-        <a href="/post/image-test/">Read more</a></div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            
-              4/3/2019
-            
-
-          </span
-        >
-        
-
-        
-          <span><a class="tag" href="/tags/thumbnail/">thumbnail</a></span>
-
-
-        
-      </div>
-    </div>
-  
-  <div class="pagination">
-    
-
   </div>
 
       </main>
