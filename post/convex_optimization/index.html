@@ -1,0 +1,955 @@
+<!doctype html>
+<html
+  dir="ltr"
+  lang="en"
+  data-theme=""
+  
+    class="html theme--light"
+  
+><head>
+  <meta charset="utf-8" />
+  <title>
+    
+      
+        Convex optimization |
+      Ian Chen
+
+  </title>
+
+  <meta name="generator" content="Hugo 0.129.0"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="Ian Chen" />
+  <meta
+    name="description"
+    content="Notes on convex optimization"
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.3925fb4b6af87775475dd66e73fa8c2d2c6650e110af1892b64dec2ebfc30fa8.css"
+      integrity="sha256-OSX7S2r4d3VHXdZuc/qMLSxmUOEQrxiStk3sLr/DD6g="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.73ccfdf28df555e11009c13c20ced067af3cb021504cba43644c705930428b00.css"
+    integrity="sha256-c8z98o31VeEQCcE8IM7QZ688sCFQTLpDZExwWTBCiwA="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/fontawesome.min.137b1cf3cea9a8adb7884343a9a5ddddf4280f59153f74dc782fb7f7bf0d0519.css"
+    integrity="sha256-E3sc886pqK23iENDqaXd3fQoD1kVP3TceC&#43;3978NBRk="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/solid.min.e65dc5b48fb5f39b142360c57c3a215744c94e56c755c929cc3e88fe12aab4d3.css"
+    integrity="sha256-5l3FtI&#43;185sUI2DFfDohV0TJTlbHVckpzD6I/hKqtNM="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/regular.min.6f4f16d58da1c82c0c3a3436e021a3d39b4742f741192c546e73e947eacfd92f.css"
+    integrity="sha256-b08W1Y2hyCwMOjQ24CGj05tHQvdBGSxUbnPpR&#43;rP2S8="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/brands.min.e10425ad768bc98ff1fb272a0ac8420f9d1ba22f0612c08ff1010c95080ffe7e.css"
+    integrity="sha256-4QQlrXaLyY/x&#43;ycqCshCD50boi8GEsCP8QEMlQgP/n4="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://doggydoggy0101.github.io/post/convex_optimization/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.f9132794301a01ff16550ed66763482bd848f62243d278f5e550229a158bfd32.js"
+    integrity="sha256-&#43;RMnlDAaAf8WVQ7WZ2NIK9hI9iJD0nj15VAimhWL/TI="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.d6d329d93844b162e8bed1e915619625ca91687952177552b9b3e211014a2957.js"
+      integrity="sha256-1tMp2ThEsWLovtHpFWGWJcqRaHlSF3VSubPiEQFKKVc="
+      crossorigin="anonymous"
+    ></script>
+  
+
+  
+
+  
+
+
+  
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Convex optimization">
+  <meta name="twitter:description" content="Notes on convex optimization">
+
+
+
+  
+  <meta property="og:url" content="https://doggydoggy0101.github.io/post/convex_optimization/">
+  <meta property="og:site_name" content="homepage">
+  <meta property="og:title" content="Convex optimization">
+  <meta property="og:description" content="Notes on convex optimization">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-07-19T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-19T00:00:00+00:00">
+    <meta property="article:tag" content="Convex">
+    <meta property="article:tag" content="Optimization">
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Convex optimization",
+        "headline": "Convex optimization",
+        "alternativeHeadline": "",
+        "description": "
+      Notes on convex optimization
+
+
+    ",
+        "inLanguage": "en",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/doggydoggy0101.github.io\/post\/convex_optimization\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "copyrightYear" : "2024",
+        "dateCreated": "2024-07-19T00:00:00.00Z",
+        "datePublished": "2024-07-19T00:00:00.00Z",
+        "dateModified": "2024-07-19T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Ian Chen",
+            "url": "https://doggydoggy0101.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/doggydoggy0101.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+      ]
+
+    ,
+        "url" : "https:\/\/doggydoggy0101.github.io\/post\/convex_optimization\/",
+        "wordCount" : "2230",
+        "genre" : [ ],
+        "keywords" : [ 
+      
+      "convex"
+
+    
+      
+        ,
+
+      
+      "optimization"
+
+    ]
+    }
+  </script>
+
+
+</head>
+<body class="body">
+    <div class="wrapper">
+      <aside
+        
+          class="wrapper__sidebar"
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/profile.jpg"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">Welcome!</a>
+        </div>
+      
+      <div class="sidebar__introduction-description">
+        <p>Ian Chen / Bang-Shien Chen</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/doggydoggy0101/"
+            target="_blank"
+            rel="noopener me"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fa-brands fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://www.youtube.com/@doggydoggy0101"
+            target="_blank"
+            rel="noopener me"
+            aria-label="youtube"
+            title="youtube"
+          >
+            <i class="fa-brands fa-youtube fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://www.instagram.com/dgbs_cardician/"
+            target="_blank"
+            rel="noopener me"
+            aria-label="instagram"
+            title="instagram"
+          >
+            <i class="fa-brands fa-instagram fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Ian Chen
+        2024
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR&#43;zwDAROtph0PXGte6ia8heboACF9R5l/DiY&#43;WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous" /><script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js" integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8&#43;w2LAIftJEULZABrF9PPFv&#43;tVkH" crossorigin="anonymous"></script><script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+      integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB&#43;w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script></div>
+</aside>
+      <main
+        
+          class="wrapper__main"
+        
+      >
+        <header class="header"><div
+  class="
+    animated fadeInDown
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <nav class="nav">
+    <ul class="nav__list" id="navMenu">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/about/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+        
+
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+        
+
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/portfolio/"
+              
+              title=""
+              >Projects</a
+            >
+          </li>
+        
+
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/achievements/"
+              
+              title=""
+              >Achievements</a
+            >
+          </li>
+        
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+      
+    </ul>
+  </nav>
+</div>
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+    "
+  >
+    
+    <div class="post__content">
+      <h1>Convex Optimization</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                
+                  2024/7/19
+                
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">11-minute read</span>
+          </li>
+        </ul>
+      <h3>Table of Contents</h3>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#11-mathematical-optimization">1.1 Mathematical optimization</a>
+      <ul>
+        <li><a href="#111-applications-examples">1.1.1 Applications (examples)</a></li>
+      </ul>
+    </li>
+    <li><a href="#12-least-squares-and-linear-programming">1.2 Least squares and linear programming</a>
+      <ul>
+        <li><a href="#121-least-squares">1.2.1 Least squares</a></li>
+        <li><a href="#variations-chapter-6">Variations (Chapter 6)</a></li>
+        <li><a href="#122-linear-programming">1.2.2 Linear programming</a></li>
+      </ul>
+    </li>
+    <li><a href="#13-convex-optimization">1.3 Convex optimization</a>
+      <ul>
+        <li><a href="#131-solving-convex-optimization-problems">1.3.1 Solving convex optimization problems</a></li>
+      </ul>
+    </li>
+    <li><a href="#14-nonlinear-optimization">1.4 Nonlinear optimization</a>
+      <ul>
+        <li><a href="#141-local-optimization">1.4.1 Local optimization</a></li>
+        <li><a href="#142-global-optimization">1.4.2 Global optimization</a></li>
+        <li><a href="#143-role-of-convex-optimization-in-nonconvex-problems">1.4.3 Role of convex optimization in nonconvex problems</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#21-affine-and-convex-sets">2.1 Affine and convex sets</a>
+      <ul>
+        <li><a href="#211-lines-and-line-segments">2.1.1 Lines and line segments</a></li>
+        <li><a href="#212-affine-sets">2.1.2 Affine sets</a></li>
+        <li><a href="#214-convex-sets">2.1.4 Convex sets</a></li>
+        <li><a href="#215-cones">2.1.5 Cones</a></li>
+      </ul>
+    </li>
+    <li><a href="#22-some-important-examples">2.2 Some important examples</a>
+      <ul>
+        <li><a href="#221-hyperplane-and-halfspaces">2.2.1 Hyperplane and halfspaces</a></li>
+        <li><a href="#222-euclidean-balls-and-ellipsoids">2.2.2 Euclidean balls and ellipsoids</a></li>
+        <li><a href="#234-polyhedra">2.3.4 Polyhedra</a></li>
+        <li><a href="#225-the-positive-semidefinite-cone">2.2.5 The positive semidefinite cone</a></li>
+      </ul>
+    </li>
+    <li><a href="#23-operations-preserving-convexity">2.3 Operations preserving convexity</a>
+      <ul>
+        <li><a href="#231-intersection">2.3.1 Intersection</a></li>
+        <li><a href="#232-affine-functions">2.3.2 Affine functions</a></li>
+        <li><a href="#233-linear-fractional-and-perspective-functions">2.3.3 Linear-fractional and perspective functions</a></li>
+      </ul>
+    </li>
+    <li><a href="#24-generalized-inequalities">2.4 Generalized inequalities</a>
+      <ul>
+        <li><a href="#241-proper-cones-and-generalized-inequalities">2.4.1 Proper cones and generalized inequalities</a></li>
+        <li><a href="#242-minimum-and-minimal-elements">2.4.2 Minimum and minimal elements</a></li>
+      </ul>
+    </li>
+    <li><a href="#25-separating-and-supporting-hyperplanes">2.5 Separating and supporting hyperplanes</a>
+      <ul>
+        <li><a href="#251-separating-hyperplane-theorem">2.5.1 Separating hyperplane Theorem</a></li>
+        <li><a href="#252-supporting-hyperplanes">2.5.2 Supporting hyperplanes</a></li>
+      </ul>
+    </li>
+    <li><a href="#26-dual-cones-and-generalized-inequalities">2.6 Dual cones and generalized inequalities</a>
+      <ul>
+        <li><a href="#261-dual-cones">2.6.1 Dual cones</a></li>
+        <li><a href="#262-dual-generalized-inequalities">2.6.2 Dual generalized inequalities</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<p>S. Boyd, L. Vandenberghe, Convex optimization, Cambridge university press, 2004.</p>
+<h1 id="introduction">Introduction</h1>
+<p>An overview of mathematical optimization problem.</p>
+<h2 id="11-mathematical-optimization">1.1 Mathematical optimization</h2>
+<p>A (mathematical) optimization problem has the form:
+$$
+\begin{aligned}
+\min\ &amp;f_0(x)\\
+\text{s.t }&amp;f_i(x)\leq b_i,\ i=1,\dots,m.
+\end{aligned}\tag{1.1}
+$$</p>
+<ul>
+<li>\(x\in\mathbb{R}^n\): optimization variable</li>
+<li>\(f_0:\mathbb{R}^n\to\mathbb{R}\): objective function</li>
+<li>\(f_i:\mathbb{R}^n\to\mathbb{R}\): constraint function</li>
+</ul>
+<p>A vector \(x^*\) is called <em>optimal</em> or <em>solution</em> of Problem (1.1) if it has the smallest objective value.</p>
+<p>This book focus on <em>convex optimization</em> problems, where the objective and constraint functions are convex that satisfies:
+$$
+f_i(\alpha x+\beta y)\leq\alpha f_i(x)+\beta f_i(y)\tag{1.3}
+$$
+for all \(x,y\in\mathbb{R}^n\) and all \(\alpha,\beta\in\mathbb{R}\) with \(\alpha+\beta=1,\ \alpha,\beta\geq0\).</p>
+<h3 id="111-applications-examples">1.1.1 Applications (examples)</h3>
+<p><strong>Portfolio optimization</strong> seeks to find the best way to invest some capital in a set of \(n\) assets. The variable \(x_i\) represents the investment in the \(i\)-th asset; the objective might be a measure of the overall risk or variance of the portfolio return; the constraints might represent a limit on the budget, the requirement that investments are nonnegative, or a minimum acceptable value of expected return for the whole portfolio.</p>
+<p><strong>Device sizing</strong> is the task of choosing the width and length of each device in an electronic circuit in eletronic design. Here the variables represent the widths and lengths of the devices; the objective in a device sizing problem is the total power consumed by the circuit; the constraints represent limits on the device sizes, timing requirements, or limit on the total area of the circuit.</p>
+<p><strong>Data fiting</strong> is to find a model from a family of potential models that best fits some observed data and prior information. Here the variables are the parameters in the model; the objective function might be the error between the observed and predicted data, or a statistical measure of the parameters; the constraints can represent prior information or required limits on the parameters.</p>
+<h2 id="12-least-squares-and-linear-programming">1.2 Least squares and linear programming</h2>
+<p>Two subclasses of convex optimization: least-squares and linear programming.</p>
+<h3 id="121-least-squares">1.2.1 Least squares</h3>
+<p>A <em>least squares</em> (LS)is a non-constrained optimization problem with an objective which is a sum of squares of terms:
+$$
+\min\ f_0(x)=\|Ax-b\|^2-\sum_{i=1}^k(a_ix-b_i)^2,\tag{1.4}
+$$
+where \(A\in\mathbb{R}^{k\times n}\) (with \(k\geq n\)) and \(x\in\mathbb{R}^n\).</p>
+<ul>
+<li>closed-form solution: \(x^*=(A^\top A)^{-1}A^\top b\)</li>
+<li>time complexity: \(\mathcal{O}(n^2k)\)</li>
+</ul>
+<h3 id="variations-chapter-6">Variations (Chapter 6)</h3>
+<p><strong>Weighted least squares</strong> consider different weights for each measurement (unequal variance in statistic sense):
+$$\sum_{i=1}^kw_i(a_ix-b_i)^2.$$</p>
+<p><strong>Regulization</strong> trade-off between making the objective small while keeping \(x\) not to big (\(\rho&gt;0\)):
+$$
+\sum_{i=1}^k(a_ix-b_i)^2+\rho\sum_{i=1}^n x_i^2.
+$$</p>
+<h3 id="122-linear-programming">1.2.2 Linear programming</h3>
+<p><em>Linear programming</em> (LP) is a class of optimization problems that the objective and all constraints are linear:
+$$
+\begin{aligned}
+\min\ &amp;c^\top x\\
+\text{s.t. }&amp;a_i^\top x\leq b_i,\ i=1,\dots,m,
+\end{aligned}\tag{1.5}
+$$
+where \(c,a_1,\dots,a_m\in\mathbb{R}^n\) and \(b_1,\dots,b_m\in\mathbb{R}\). Some problems are not linear, but can be reformulated as linear programs by standard techniques.</p>
+<h2 id="13-convex-optimization">1.3 Convex optimization</h2>
+<p>A convex optimization problem is one of the form:
+$$
+\begin{aligned}
+\min\ &amp;f_0(x)\\
+\text{s.t. }&amp;f_i(x)\leq b_i,\ i=1,\dots,m,
+\end{aligned}\tag{1.8}
+$$</p>
+<p>where \(f_0,f_1,\dots,f_m:\mathbb{R}^n\to\mathbb{R}\) are convex functions, i.e., satisfies Equation (1.3).</p>
+<blockquote>
+<p>LS and LP are both special cases of convex optimization.</p>
+</blockquote>
+<h3 id="131-solving-convex-optimization-problems">1.3.1 Solving convex optimization problems</h3>
+<ul>
+<li>interior point methods (Chapter 11)</li>
+<li>second-order cone programming</li>
+<li>semidefinite programming</li>
+<li>geometric programming (Chapter 4)</li>
+</ul>
+<h2 id="14-nonlinear-optimization">1.4 Nonlinear optimization</h2>
+<p><em>Nonlinear optimization</em> (nonlinear programming) is an optimization problem when the objective or constraint are not linear, but not known to be convex.</p>
+<h3 id="141-local-optimization">1.4.1 Local optimization</h3>
+<p>Instead of seeking the optimal \(x\) that minimizes the objective over all feasible points, <em>local optimization</em> seeks a point that is only locally optimal, which means that it minimizes the objective function among feasible points in a local area, but is not guaranteed the optimal.</p>
+<ul>
+<li>pros: fast, handle large-scale problems, widely applicable</li>
+<li>cons: not globally optimal, requires initial guess</li>
+</ul>
+<h3 id="142-global-optimization">1.4.2 Global optimization</h3>
+<p><em>Global optimization</em> is used for problems with a small number of variables or the value of finding the global solution is high.</p>
+<ul>
+<li>pros: global optimal solution</li>
+<li>cons: problem size grows exponentially, large computation time</li>
+</ul>
+<h3 id="143-role-of-convex-optimization-in-nonconvex-problems">1.4.3 Role of convex optimization in nonconvex problems</h3>
+<p>Convex optimization also plays an important role in nonconvex problems.</p>
+<ul>
+<li>initialization for local optimization</li>
+<li>heuristics for nonconvex optimization</li>
+<li>bounds for global optimization (convex relaxation)</li>
+</ul>
+<h1 id="convex-sets">Convex sets</h1>
+<h2 id="21-affine-and-convex-sets">2.1 Affine and convex sets</h2>
+<p>An introduction of some useful sets.</p>
+<h3 id="211-lines-and-line-segments">2.1.1 Lines and line segments</h3>
+<p>Suppose \(x_1\neq x_2\) are two points in \(\mathbb{R}^n\),
+$$
+y=\theta x_1+(1-\theta)x_2
+$$
+is a line, line segment if \(\theta\in\mathbb{R}\), \(\theta\in[0,1]\), respectively.</p>
+<h3 id="212-affine-sets">2.1.2 Affine sets</h3>
+<p>A set \(C\subseteq\mathbb{R}^n\) is <em>affine</em> if for any \(x_1,x_2\in C\) and \(\theta\in\mathbb{R}\),
+$$
+\theta x_1+(1-\theta)x_2\in C.
+$$</p>
+<p>Affine combination:
+$$
+x=\theta_1x_1+\dots+\theta_kx_k,\ \theta_i\in\mathbb{R},\ \sum_{i=1}^k\theta_i=1
+$$</p>
+<blockquote>
+<p>Affine set contains every affine combination of its points.</p>
+</blockquote>
+<ul>
+<li>Ex. closed sets are not affine sets</li>
+<li>Ex. \(\mathbb{R}^2\) is an affine set</li>
+<li>Ex. \(\{x\mid Ax=b\}\) is an affine set</li>
+</ul>
+<blockquote>
+<p>\(x_1,x_2\in C,\ A(\theta x_1+(1-\theta)x_2)+b=\theta b+(1-\theta)b=b\implies\theta x_1+(1-\theta)x_2\in C\)</p>
+</blockquote>
+<p>Affine hull: the set of all affine combinations, denoted as \(\mathbf{aff}\ C\):
+$$
+\mathbf{aff}\ C=\{\theta_1x_1+\dots+\theta_kx_k\mid x_1,\dots,x_k\in C,\ \sum_{i=1}^k\theta_i=1\}
+$$</p>
+<blockquote>
+<p>Affine hull is the smallest affine set that contains \(C\).</p>
+</blockquote>
+<h3 id="214-convex-sets">2.1.4 Convex sets</h3>
+<p>A set \(C\subseteq\mathbb{R}^n\) is <em>convex</em> if for any \(x_1,x_2\in C\) and \(\theta\in[0,1]\),
+$$
+\theta x_1+(1-\theta)x_2\in C.
+$$</p>
+<p>Convex combination:
+$$
+x=\theta_1x_1+\dots+\theta_kx_k,\ \theta_i\in[0,1],\ \sum_{i=1}^k\theta_i=1
+$$</p>
+<blockquote>
+<p>Convex set contains every convex combination of its points.</p>
+</blockquote>
+<p>Convex hull: the set of all convex combinations, denoted as \(\mathbf{conv}\ C\):
+$$
+\mathbf{conv}\ C=\{\theta_1x_1+\dots+\theta_kx_k\mid x_1,\dots,x_k\in C,\ \sum_{i=1}^k\theta_i=1,\ \theta_i\geq0\}
+$$</p>
+<blockquote>
+<p>Convex hull is the smallest convex set that contains \(C\).</p>
+</blockquote>
+<h3 id="215-cones">2.1.5 Cones</h3>
+<p>A set \(C\) is called a <em>cone</em> or <em>nonnegative homogeneous</em> if for every \(x\in C\) and \(\theta\geq0\),
+$$
+\theta x\in C.
+$$</p>
+<blockquote>
+<p>A set \(C\) is a <em>convex cone</em> if for any \(x_1,x_2\in C\) and \(\theta_1,\theta_2\geq0\),
+$$ \theta_1x_1+\theta_2x_2\in C.$$</p>
+</blockquote>
+<p>Conic combination:
+$$
+x=\theta_1x_1+\dots+\theta_kx_k,\ \theta_i\geq0
+$$</p>
+<p>Conic set:
+$$
+x_1,x_2\in C,\ \theta_1,\theta_2\geq0\implies\theta_1x_1+\theta_2x_2\in C.
+$$</p>
+<blockquote>
+<p>Cone contains every conic combination of its points.</p>
+</blockquote>
+<p>Conic hull:
+$$
+\{\theta_1x_1+\dots+\theta_kx_k\mid x_i\in C,\ \theta_i\geq0,\ i=1,\dots,k\}
+$$</p>
+<blockquote>
+<p>Conic hull is the smallest cone that contains \(C\).</p>
+</blockquote>
+<h2 id="22-some-important-examples">2.2 Some important examples</h2>
+<ul>
+<li>The empty set \(\emptyset\), singleton \(\{x_0\}\), and the whole space \(\mathbb{R}^n\) are affine (hence convex) subsets of \(\mathbb{R}^n\).</li>
+<li>Any line is affine. If it passes zero, then it is a convex cone.</li>
+<li>A line segment is convex, but not affine unless it is singleton.</li>
+<li>A <em>ray</em>, \(\{x_0+\theta v\mid\theta\geq0, v\neq0\}\) is convex, but not affine. If \(x_0=0\), then it is a convex cone.</li>
+</ul>
+<h3 id="221-hyperplane-and-halfspaces">2.2.1 Hyperplane and halfspaces</h3>
+<p>A <em>hyperplane</em> is a set of the form:
+$$
+\{x\mid a^\top x=b\},
+$$
+where \(A\in\mathbb{R}^n,a\neq0\) and \(b\in\mathbb{R}\).</p>
+<blockquote>
+<p>Let \((n_x,n_y,n_z)^\top\) be the normal vector, with inner product:
+$$
+n_x(x-x_0)+n_y(y-y_0)+n_z(z-z_0)=0\implies a^\top x=n_xx_0+n_yy_0+n_zz_0=b
+$$</p>
+</blockquote>
+<p>A hyperplane divides \(\mathbb{R}^n\) into two <em>halfspaces</em>:
+$$
+\{x\mid a^\top x\geq b\},\  \{x\mid a^\top x\leq b\},\ a\in\mathbb{R}^n,a\neq0,b\in\mathbb{R}.
+$$</p>
+<h3 id="222-euclidean-balls-and-ellipsoids">2.2.2 Euclidean balls and ellipsoids</h3>
+<p>A <em>(Euclidean) ball</em> in \(\mathbb{R}^n\) has the form:
+$$
+B(x_c,r)=\{x\mid|x-x_c|_2\leq r\}=\{x_c+ru\mid|u|_2\leq1\}
+$$</p>
+<blockquote>
+<p>A Euclidean ball is a convex set.</p>
+</blockquote>
+<p>An <em>ellipsoid</em> in \(\mathbb{R}^n\) has the form:
+$$
+\mathcal{E}=\{x\mid(x-x_c)^TP^{-1}(x-x_c)\leq1\}=\{x_c+Au\mid|u|_2\leq1\}
+$$</p>
+<blockquote>
+<p>An ellipsoid is a convex set.</p>
+</blockquote>
+<h3 id="234-polyhedra">2.3.4 Polyhedra</h3>
+<p>A <em>polyhedra</em> is defined as the solution set of a finite number of linear equalities and inequalities:
+$$
+\mathcal{P}=\{x\mid \underbrace{a_j^Tx\leq b_j}_\text{inequality},j=1,\dots,m,\ \underbrace{c_j^Tx=d_j}_\text{equality},j=1,\dots,p\}=\{x\mid Ax\preceq b,\ Cx=d\},
+$$
+i.e., the intersection of a finite number of halfspaces(inequality) and hyperplanes(equality).</p>
+<h3 id="225-the-positive-semidefinite-cone">2.2.5 The positive semidefinite cone</h3>
+<ul>
+<li>\(\mathcal{S}^n=\{X\in\mathbb{R}^{n\times n}\mid X=X^T\}\) denote the \(n\times n\) symmetric matrix.</li>
+<li>\(\mathcal{S}^n_+=\{X\in\mathcal{S}^{n}\mid X\succeq0\}\) denote the \(n\times n\) symmetric positive semidefinite matrix.</li>
+<li>\(\mathcal{S}^n_{++}=\{X\in\mathbb{R}^{n\times n}\mid X\succ0\}\) denote the \(n\times n\) symmetric positive definite matrix.</li>
+</ul>
+<blockquote>
+<p>The set \(\mathcal{S}^n_+\) is a convex cone.</p>
+</blockquote>
+<h2 id="23-operations-preserving-convexity">2.3 Operations preserving convexity</h2>
+<p>Operations that preserve convexity of sets, or  can construct convex sets from others.</p>
+<h3 id="231-intersection">2.3.1 Intersection</h3>
+<ul>
+<li>If \(S_1,S_2\) are convex, then \(S_1\cap S_2\) is convex.</li>
+<li>If \(S_\alpha\) are convex, \(\alpha\in\mathcal{A}\), then \(\bigcap_{\alpha\in\mathcal{A}}S_\alpha\) is convex.</li>
+<li>A closed convex set \(S\) is the intersection of all halfspaces \(\mathcal{H}\) that contains it:
+$$
+S=\bigcap{\mathcal{H}\mid S\subseteq\mathcal{H}}
+$$</li>
+</ul>
+<h3 id="232-affine-functions">2.3.2 Affine functions</h3>
+<p>Recall the definition of affine functions \(f :\mathbb{R}^n\to\mathbb{R}^m,\ f(x)=Ax+b,\ A\in\mathbb{R}^{m\times n},b\in\mathbb{R}^m\).</p>
+<ul>
+<li>\(S\) is convex if and only if \(f(S)\) is convex.</li>
+<li>examples:
+<ul>
+<li><strong>scaling</strong> If \(S\subseteq\mathbb{R}^n\) is convex and \(\alpha\in\mathbb{R}\), then \(\alpha S=\{\alpha x\mid x\in S\}\) is convex.</li>
+<li><strong>translation</strong> If \(S\subseteq\mathbb{R}^n\) is convex and \(t\in\mathbb{R}^n\), then \(S+t=\{x+t\mid x\in S\}\) is convex.</li>
+<li><strong>projection</strong> If \(S\subseteq\mathbb{R}^m\times\mathbb{R}^n\) is convex, then \(P=\{x\mid(x,y)\in S\}\) is convex.</li>
+<li><strong>sum</strong> If \(S_1,S_2\) are convex, then \(S_1+S_2=\{x+y\mid x\in S_1,y\in S_2\}\) is convex.</li>
+<li><strong>Cartesian product</strong> If \(S_1,S_2\) are convex, then \(S_1\times S_2=\{(x,y)\mid x\in S_1,y\in S_2\}\) is convex.</li>
+</ul>
+</li>
+</ul>
+<h3 id="233-linear-fractional-and-perspective-functions">2.3.3 Linear-fractional and perspective functions</h3>
+<blockquote>
+<p>Linear-fractional is more general than affine but still preserves convexity.</p>
+</blockquote>
+<p>A <em>perspective function</em> is defined as \(P:\mathbb{R}^{n+1}\to\mathbb{R}^n,\ \mathbf{dom}\ P=\mathbb{R}^n\times\mathbb{R}_{++},\ P(z,t)=z/t\).</p>
+<p>The perspective function normalizes the vector along the last component (e.g., camera coordinate \(\to\)  pixel coordinate).</p>
+<ul>
+<li>If \(S\) is convex, then \(P(S)\) is convex.</li>
+</ul>
+<p>A <em>linear-fractional function</em> is defined as \(L:\mathbb{R}^n\to\mathbb{R}^m,\ \mathbf{dom}\ L=\{x\in\mathbb{R}^n\mid c^\top x+d&gt;0\},\ L(x)=\dfrac{Ax+b}{c^\top x+d}\).</p>
+<p>The linear-fractional (projective) function is formed by composing the perspective function with an affine function.</p>
+<blockquote>
+<p>suppose \(g:\mathbb{R}^n\to\mathbb{R}^{m+1}\) is affine given by \(g(x)=\begin{bmatrix}A\\c^\top\end{bmatrix}x+\begin{bmatrix}b\\d\end{bmatrix}\),
+construct the function \(f:\mathbb{R}^n\to\mathbb{R}^m\) given by \(f(x)=P\circ g(x)=\frac{(Ax+b)}{(c^Tx+d)}\).</p>
+</blockquote>
+<ul>
+<li>If \(S\) is convex, then \(L(S)\) is convex.</li>
+</ul>
+<h2 id="24-generalized-inequalities">2.4 Generalized inequalities</h2>
+<h3 id="241-proper-cones-and-generalized-inequalities">2.4.1 Proper cones and generalized inequalities</h3>
+<p>A cone \(K\subseteq\mathbb{R}^n\) is called a <em>proper cone</em> if it satisfies the following:</p>
+<ul>
+<li>\(K\) is convex.</li>
+<li>\(K\) is closed.</li>
+<li>\(K\) is solid (nonempty interior).</li>
+<li>\(K\) is pointed (contains no line).</li>
+</ul>
+<p>A proper cone \(K\) can be used to define <em>generalized inequality</em>, such as:</p>
+<ul>
+<li>partial order: \(x\preceq_Ky\iff y\succeq_K x\iff y-x\in K\)</li>
+<li>strict partial order: \(x\prec_Ky\iff y\succ_K x\iff y-x\in \mathbf{int}(K)\)</li>
+</ul>
+<p>Generalized inequality \(\preceq_K\) satisfies:</p>
+<ul>
+<li>preserved under addition: \(x\preceq_Ky\) and \(u\preceq_Kv\implies x+u\preceq_Ky+v\)</li>
+<li>transitive: \(x\preceq_Ky\) and \(y\preceq_Kz\implies x\preceq_Kz\)</li>
+<li>preserved under nonnegative scalar: \(x\preceq_Ky\) and \(\alpha\geq0\implies\alpha x\preceq_K\alpha y\)</li>
+<li>reflexive: \(x\preceq_Kx\)</li>
+<li>antisymmetric: \(x\preceq_Ky\) and \(y\preceq_Kx\implies x=y\)</li>
+<li>preserved under limits: \(x_i\preceq_Ky_i\) for \(x_i\to x,y_i\to y\) as \(i\to\infty\implies x\preceq_Ky\)</li>
+</ul>
+<p>Strict generalized inequality \(\prec_K\) satisfies:</p>
+<ul>
+<li>\(x\prec_Ky\implies x\preceq_Ky\)</li>
+<li>\(x\prec_Ky\) and \(u\preceq_Kv\implies x+u\prec_Ky+v\)</li>
+<li>\(x\prec_Ky\) and \(\alpha&gt;0\implies\alpha x\prec_K\alpha y\)</li>
+<li>\(x\nprec_Kx\)</li>
+<li>\(x\prec_Ky\implies\) for \(u,v\) small enough, \(x+u\preceq_Ky+v\)</li>
+</ul>
+<p>Examples of generalized inequality (\(\mathbb{R}^n_+\) and \(\mathcal{S}^n_+\) are proper cones):</p>
+<ul>
+<li>\(K=\mathbb{R}^n_+;\ x\preceq_{\mathbb{R}^n_+}y\iff y-x\in\mathbb{R}^n_+;\ y_i&gt;x_i,\ \forall y_i\) (each component)</li>
+<li>\(K=\mathcal{S}_+^n; x\preceq_{\mathcal{S}_+^n}y\iff y-x\in\mathcal{S}_+^n\); not linear ordering (discuss minimum, minimal)</li>
+</ul>
+<h3 id="242-minimum-and-minimal-elements">2.4.2 Minimum and minimal elements</h3>
+<p>An equality is said to be <em>linear ordering</em> if \(x,y\) are comparable, i.e., either \(x\leq y\) or \(x\geq y\).</p>
+<p>Most property of ordinary inequality holds for generalized inequality, however, <em>linear ordering</em> does not hold. We introduce <em>minimum/maximum</em> and <em>minimal/maximal</em> elements:</p>
+<ul>
+<li>\(x\in S\) is (unique) minimum if \(\forall y\in S,\ x\preceq_Ky\).</li>
+<li>\(x\in S\) is minimal if \(\forall y\in S,\ y\preceq_Kx\) only if \(y=x\).</li>
+<li>\(x\in S\) is (unique) maximum if \(\forall y\in S,\ x\succeq_Ky\).</li>
+<li>\(x\in S\) is maximal if \(\forall y\in S,\ y\succeq_Kx\) only if \(y=x\).</li>
+</ul>
+<p>set notations:</p>
+<ul>
+<li>\(x\in S\) is minimum if and only if \(S\subseteq x+K\).</li>
+<li>\(x\in S\) is minimal if and only if \((x-K)\cap S=\{x\}\).</li>
+</ul>
+<blockquote>
+<p>For \(K=\mathbb{R}_+\), minimal and minimum are the same.
+We show some examples for \(K=\mathbb{R}^2_+\):
+<figure><img src="../../images/convex_optimization/min.png"
+    alt="image" width="500">
+</figure>
+</p>
+</blockquote>
+<h2 id="25-separating-and-supporting-hyperplanes">2.5 Separating and supporting hyperplanes</h2>
+<h3 id="251-separating-hyperplane-theorem">2.5.1 Separating hyperplane Theorem</h3>
+<p>Suppose \(C\) and \(D\) are nonempty disjoint convex sets, i.e., \(C\cap D=\emptyset\). Then there exist \(a\neq0\) and \(b\) such that \(a^\top x\leq b\) forall \(x\in C\) and \(a^\top x\geq b\) forall \(x\in D\). In other words, the affine function \(a^\top x−b\) is nonpositive on \(C\) and nonnegative on \(D\). The hyperplane \(\{x\mid a^\top x=b\}\) is called a separating hyperplane for the sets \(C\) and \(D\).</p>
+<blockquote>
+<p>We skip the proof here, however, the idea is similar to SVM.
+<figure><img src="../../images/convex_optimization/separate.png"
+    alt="image" width="300">
+</figure>
+</p>
+</blockquote>
+<p>A separating hyperplane is called <em>strict separation</em> of the sets \(C\) and \(D\) if \(a^\top x&lt;b\) forall \(x\in C\) and \(a^\top x&gt;b\) forall \(x\in D\).</p>
+<blockquote>
+<p>Disjoint convex sets (even closed sets) need not be strictly separable.
+Ex. \(C=\{(x,y)\mid x\leq0\}\) and \(D=\{(x,y)\mid xy\geq1, x&gt;,y&gt;0\}\):
+<figure><img src="../../images/convex_optimization/separate_converse.png"
+    alt="image" width="320">
+</figure>
+</p>
+</blockquote>
+<p>The converse of the separating hyperplane theorem is not true.</p>
+<blockquote>
+<p>Ex. Hyperplane \(x=0\) separates \(C=D=\{0\}\), but \(C\) and \(D\) are not disjoint convex sets.</p>
+</blockquote>
+<p>However, we can add various conditions such that the converse of separating hyperplane is true. For example, any two convex sets \(C\) and \(D\), with at least one of which is open, are disjoint if and only if there exists a separating hyperplane.</p>
+<h3 id="252-supporting-hyperplanes">2.5.2 Supporting hyperplanes</h3>
+<p>Suppose \(C\subseteq\mathbb{R}^n\) and \(x_0\) is a point in its boundary \(\mathbf{bd}\ C\). If \(a\neq0\) satisfies \(a^\top x\leq a^\top x_0\) for all \(x\in C\), then the hyperplane \(\{x\mid a^\top x=b\}\) is called a <em>supporting hyperplane</em> to \(C\) at point \(x_0\).</p>
+<p>This is equivalent to saying that \(x_0\) and \(C\) is separated by the hyperplane \(\{x\mid a^\top x=a^\top x_0\}\).</p>
+<blockquote>
+<figure><img src="../../images/convex_optimization/support.png"
+    alt="image" width="240">
+</figure>
+
+</blockquote>
+<p><strong>Supporting hyperplane Theorem</strong>
+For any nonempty convex set \(C\) and \(x_0\in\mathbf{bd}\ C\), there exists a supporting hyperplane to \(C\) at \(x_0\).</p>
+<p><strong>Converse of supporting hyperplane Theorem</strong>
+If a set is closed, has nonempty interior, and has a supporting hyperplane at every boundary point, then it is convex.</p>
+<h2 id="26-dual-cones-and-generalized-inequalities">2.6 Dual cones and generalized inequalities</h2>
+<h3 id="261-dual-cones">2.6.1 Dual cones</h3>
+<ul>
+<li>cone \(K=\{x\mid\theta x\in K, \theta\geq0,x\in K\}\)</li>
+<li>dual cone \(K^*=\{y\mid x^\top y\geq0,\ \forall x\in K\}\)</li>
+</ul>
+<p>Dual cone is always convex, even when the original cone is not. Similar to dual problem is always convex, even when the primal problem is not. We list some examples:</p>
+<ul>
+<li>subspaces \(V\subseteq\mathbb{R}^n\) are cone \(\implies V^*=V^\perp=\{y\mid v^Ty=0,\ \forall v\in V\}\)</li>
+<li>\(K=\mathbb{R}_+^n\implies K^*=\mathbb{R}_+^n\)</li>
+</ul>
+<blockquote>
+<p>\(x^Ty\geq0,\ \forall x\succeq0\iff y\succeq0\)</p>
+</blockquote>
+<ul>
+<li>\(K=\mathcal{S}^n_+=\{X\in\mathcal{S}^n\mid z^TXz\geq0,\ z\in\mathbb{R}^n\}\implies K^*=\{Y\mid\text{tr}(XY)\geq0,\ X\in\mathcal{S}^n\}\)</li>
+</ul>
+<blockquote>
+<p>\(\text{tr}(XY)\geq0,\ \forall X\succeq0\iff Y\succeq0\)</p>
+</blockquote>
+<p>Properties:</p>
+<ul>
+<li>\(K^*\) is closed and convex</li>
+<li>\(K_1\subseteq K_2\implies K^*_2\subseteq K^*_1\)</li>
+<li>\(K\) has nonempty interior \(\implies K^*\) is pointed</li>
+<li>closure of \(K\) is pointed \(\implies K^*\) has nonempty interior</li>
+<li>\(K^{**}=\mathbf{cl}(\mathbf{conv}(K))\) (if \(K\) is convex, \(K^{**}=K\))</li>
+<li>\(K\) is a proper cone \(\implies K^*\) is a proper cone, i.e., \(K^{**}=K\)</li>
+</ul>
+<h3 id="262-dual-generalized-inequalities">2.6.2 Dual generalized inequalities</h3>
+<ul>
+<li>\(x\preceq_Ky\iff \lambda^Tx\leq\lambda^Ty,\ \forall \lambda\succeq_{K^*}0\)</li>
+<li>\(x\prec_Ky\iff \lambda^Tx&lt;\lambda^Ty,\ \forall \lambda\succeq_{K^*}0,\ \lambda\neq0\)</li>
+</ul>
+<p><strong>Dual characterization of minimum</strong> Recall that \(x\in S\) is (unique) minimum if \(\forall y\in S,\ x\preceq_Ky\).</p>
+<ul>
+<li>\(x\in S\) is minimum \(\iff\forall\lambda\succ_{K^*}0\), \(x\) is the unique minimizer of \(\lambda^Tz\) over \(z\in S\)</li>
+<li>\(\forall\lambda\succ_{K^*}0\), the hyperplane \(\{z\mid\lambda^T(z-x)=0\}\) is a strict supporting hyperplane to \(S\) at \(x\)</li>
+</ul>
+<p><strong>dual characterization of minimal</strong> Recall that \(x\in S\) is minimal if \(\forall y\in S,\ y\preceq_Kx\) only if \(y=x\).</p>
+<ul>
+<li>\(\lambda\succ_{K^*}0\) and \(x\) minimized \(\lambda^Tz\) over \(z\in S\implies x\) is minimal</li>
+</ul>
+<blockquote>
+<p>Converse is false, e.g., minimal but not minimizer.</p>
+</blockquote>
+</div>
+    <div class="post__footer">
+      
+
+      
+        <span><a class="tag" href="/tags/convex/">convex</a><a class="tag" href="/tags/optimization/">optimization</a></span>
+
+
+      
+    </div>
+
+    
+  </div>
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Ian Chen
+        2024
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR&#43;zwDAROtph0PXGte6ia8heboACF9R5l/DiY&#43;WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous" /><script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js" integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8&#43;w2LAIftJEULZABrF9PPFv&#43;tVkH" crossorigin="anonymous"></script><script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+      integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB&#43;w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script></body>
+</html>
