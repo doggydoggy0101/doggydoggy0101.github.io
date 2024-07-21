@@ -194,7 +194,7 @@
 
     ,
         "url" : "https:\/\/doggydoggy0101.github.io\/post\/convex_optimization\/",
-        "wordCount" : "2230",
+        "wordCount" : "2552",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -423,7 +423,7 @@
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">11-minute read</span>
+            <span class="post__meta-text">12-minute read</span>
           </li>
         </ul>
       <h3>Table of Contents</h3>
@@ -497,6 +497,20 @@
         <li><a href="#262-dual-generalized-inequalities">2.6.2 Dual generalized inequalities</a></li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
+    <li><a href="#31-basic-properties-and-examples">3.1 Basic properties and examples</a>
+      <ul>
+        <li><a href="#311-definition">3.1.1 Definition</a></li>
+        <li><a href="#312-extended-value-extension">3.1.2 Extended-value extension</a></li>
+        <li><a href="#313-first-order-conditions">3.1.3 First-order conditions</a></li>
+        <li><a href="#314-second-order-conditions">3.1.4 Second-order conditions</a></li>
+        <li><a href="#316-sublevel-sets">3.1.6 Sublevel sets</a></li>
+        <li><a href="#317-epigraph">3.1.7 Epigraph</a></li>
+      </ul>
+    </li>
+    <li><a href="#32-operations-that-preserve-convexity">3.2 Operations that preserve convexity</a></li>
   </ul>
 </nav>
 <p>S. Boyd, L. Vandenberghe, Convex optimization, Cambridge university press, 2004.</p>
@@ -874,14 +888,14 @@ If a set is closed, has nonempty interior, and has a supporting hyperplane at ev
 </ul>
 <p>Dual cone is always convex, even when the original cone is not. Similar to dual problem is always convex, even when the primal problem is not. We list some examples:</p>
 <ul>
-<li>subspaces \(V\subseteq\mathbb{R}^n\) are cone \(\implies V^*=V^\perp=\{y\mid v^Ty=0,\ \forall v\in V\}\)</li>
+<li>subspaces \(V\subseteq\mathbb{R}^n\) are cone \(\implies V^*=V^\perp=\{y\mid v^\top y=0,\ \forall v\in V\}\)</li>
 <li>\(K=\mathbb{R}_+^n\implies K^*=\mathbb{R}_+^n\)</li>
 </ul>
 <blockquote>
-<p>\(x^Ty\geq0,\ \forall x\succeq0\iff y\succeq0\)</p>
+<p>\(x^\top y\geq0,\ \forall x\succeq0\iff y\succeq0\)</p>
 </blockquote>
 <ul>
-<li>\(K=\mathcal{S}^n_+=\{X\in\mathcal{S}^n\mid z^TXz\geq0,\ z\in\mathbb{R}^n\}\implies K^*=\{Y\mid\text{tr}(XY)\geq0,\ X\in\mathcal{S}^n\}\)</li>
+<li>\(K=\mathcal{S}^n_+=\{X\in\mathcal{S}^n\mid z^\top Xz\geq0,\ z\in\mathbb{R}^n\}\implies K^*=\{Y\mid\text{tr}(XY)\geq0,\ X\in\mathcal{S}^n\}\)</li>
 </ul>
 <blockquote>
 <p>\(\text{tr}(XY)\geq0,\ \forall X\succeq0\iff Y\succeq0\)</p>
@@ -897,21 +911,77 @@ If a set is closed, has nonempty interior, and has a supporting hyperplane at ev
 </ul>
 <h3 id="262-dual-generalized-inequalities">2.6.2 Dual generalized inequalities</h3>
 <ul>
-<li>\(x\preceq_Ky\iff \lambda^Tx\leq\lambda^Ty,\ \forall \lambda\succeq_{K^*}0\)</li>
-<li>\(x\prec_Ky\iff \lambda^Tx&lt;\lambda^Ty,\ \forall \lambda\succeq_{K^*}0,\ \lambda\neq0\)</li>
+<li>\(x\preceq_Ky\iff \lambda^\top x\leq\lambda^\top y,\ \forall \lambda\succeq_{K^*}0\)</li>
+<li>\(x\prec_Ky\iff \lambda^\top x&lt;\lambda^\top y,\ \forall \lambda\succeq_{K^*}0,\ \lambda\neq0\)</li>
 </ul>
 <p><strong>Dual characterization of minimum</strong> Recall that \(x\in S\) is (unique) minimum if \(\forall y\in S,\ x\preceq_Ky\).</p>
 <ul>
-<li>\(x\in S\) is minimum \(\iff\forall\lambda\succ_{K^*}0\), \(x\) is the unique minimizer of \(\lambda^Tz\) over \(z\in S\)</li>
-<li>\(\forall\lambda\succ_{K^*}0\), the hyperplane \(\{z\mid\lambda^T(z-x)=0\}\) is a strict supporting hyperplane to \(S\) at \(x\)</li>
+<li>\(x\in S\) is minimum \(\iff\forall\lambda\succ_{K^*}0\), \(x\) is the unique minimizer of \(\lambda^\top z\) over \(z\in S\)</li>
+<li>\(\forall\lambda\succ_{K^*}0\), the hyperplane \(\{z\mid\lambda^\top(z-x)=0\}\) is a strict supporting hyperplane to \(S\) at \(x\)</li>
 </ul>
 <p><strong>dual characterization of minimal</strong> Recall that \(x\in S\) is minimal if \(\forall y\in S,\ y\preceq_Kx\) only if \(y=x\).</p>
 <ul>
-<li>\(\lambda\succ_{K^*}0\) and \(x\) minimized \(\lambda^Tz\) over \(z\in S\implies x\) is minimal</li>
+<li>\(\lambda\succ_{K^*}0\) and \(x\) minimized \(\lambda^\top z\) over \(z\in S\implies x\) is minimal</li>
 </ul>
 <blockquote>
 <p>Converse is false, e.g., minimal but not minimizer.</p>
 </blockquote>
+<h1 id="convex-functions">Convex functions</h1>
+<h2 id="31-basic-properties-and-examples">3.1 Basic properties and examples</h2>
+<h3 id="311-definition">3.1.1 Definition</h3>
+<p>A function \(f:\mathbb{R}^n\to\mathbb{R}\) is convex if \(\mathbf{dom}\ f\) is a convex set and if for all \(x,y\in\mathbf{dom}\ f\), and \(\theta\) with \(0\leq\theta\leq1\), we have
+$$
+f(\theta x+(1-\theta)y)\leq\theta f(x)+(1-\theta)f(y).\tag{3.1}
+$$</p>
+<blockquote>
+<p>Any line segment between two points lies above the graph.</p>
+</blockquote>
+<ul>
+<li>\(-f\) is concave <em>(we will only focus on convex properties in this note)</em></li>
+<li>affine is both convex and concave \(f(\theta x+(1-\theta)y)=\theta f(x)+(1-\theta)f(y)\)</li>
+</ul>
+<p>We list some examples of convex function:</p>
+<ul>
+<li>\(f(x)=a^\top x+b\)</li>
+<li>\(f(x)=\text{tr}(A^Tx)+b\)</li>
+<li>\(f(x)=\exp(x)\)</li>
+<li>\(f(x)=x\log(x)\)</li>
+<li>\(f(x) = 1/x,\ x&gt;0\)</li>
+<li>\(f(x)=\|x\|_p=(\sum_{i=1}^n|x_i|^p)^\frac{1}{p},\ p\geq1\)</li>
+</ul>
+<blockquote>
+<p>For all \(x\in\mathbf{dom}\ f,v\in\mathbb{R}^n,\ g(t)=f(x+tv)\) is convex if and only if \(f(x)\) is convex.</p>
+</blockquote>
+<h3 id="312-extended-value-extension">3.1.2 Extended-value extension</h3>
+<p>It is usually convenient to extend the feasible of a convex function to \(\mathbb{R}^n\), we define an <em>extended-value extension</em> that is also convex so that we do not need to explicitly describe the domain.
+$$
+\tilde{f}:\mathbb{R}^n\to\mathbb{R}\cup{\infty},\ \ \ \tilde{f}(x)=\begin{cases}f(x)&amp;x\in\mathbf{dom}\ f\\ \infty&amp;x\notin\mathbf{dom}\ f\end{cases}
+$$</p>
+<h3 id="313-first-order-conditions">3.1.3 First-order conditions</h3>
+<p>Suppose \(f\) is <em>differentiable</em>, then \(f\) is convex if and only if \(\mathbf{dom}\ f\) is convex and for all \(x,y\in\mathbf{dom}\ f\),
+$$
+f(y)\geq f(x)+\nabla f(x)^\top(y-x).\tag{3.2}
+$$</p>
+<blockquote>
+<p>Convex function always lies above the tangent line of any point.</p>
+</blockquote>
+<h3 id="314-second-order-conditions">3.1.4 Second-order conditions</h3>
+<p>Suppose \(f\) is <em>twice differentiable</em>, i.e., Hessian \(\nabla^2f\) exists, then \(f\) is convex if and only if \(\mathbf{dom}\ f\) is convex and for all \(x\in\mathbf{dom}\ f\), its Hessian is positive semidefinite:
+$$
+\nabla^2f(x)\succeq0.
+$$</p>
+<h3 id="316-sublevel-sets">3.1.6 Sublevel sets</h3>
+<p>The \(t\)-sublevel sets of a convex function \(f:\mathbb{R}^n\to\mathbb{R}\) is defined as \(C_t=\{x\in\mathbf{dom}\ f\mid f(x)\leq t\}\). Sublevel sets of a convex function are convex for any value \(t\).</p>
+<blockquote>
+<p>Special case of epigraph.
+<figure><img src="../../images/convex_optimization/sublevel.png"
+    alt="image" width="300">
+</figure>
+</p>
+</blockquote>
+<h3 id="317-epigraph">3.1.7 Epigraph</h3>
+<p>The graph of a function \(f:\mathbb{R}^n\to\mathbb{R}\) is defined as \(\{(x,f(x))\mid x\in\mathbf{dom}\ f\}\), which is a subset of \(\mathbb{R}^{n+1}\). The <em>epigraph</em> of a function \(f:\mathbb{R}^n\to\mathbb{R}\) is defined as \(\mathbf{epi}\ f=\{(x,t)\mid x\in\mathbf{dom}\ f,\ f(x)\leq t\}\subseteq\mathbb{R}^{n+1}\). A function is convex if and only if its epigraph is a convex set.</p>
+<h2 id="32-operations-that-preserve-convexity">3.2 Operations that preserve convexity</h2>
 </div>
     <div class="post__footer">
       
