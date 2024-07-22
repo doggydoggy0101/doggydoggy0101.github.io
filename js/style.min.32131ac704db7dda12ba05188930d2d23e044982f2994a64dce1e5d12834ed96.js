@@ -1,0 +1,1 @@
+window.getComputedStyle(document.documentElement).scrollBehavior!=="smooth"&&document.querySelectorAll('a[href^="#"]').forEach(e=>{const t=document.querySelector(e.getAttribute("href"));t&&e.addEventListener("click",e=>{t.scrollIntoView({behavior:"smooth"}),e.preventDefault()})})

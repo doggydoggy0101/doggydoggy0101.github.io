@@ -28,8 +28,8 @@
     
     <link
       rel="stylesheet"
-      href="/scss/main.min.3925fb4b6af87775475dd66e73fa8c2d2c6650e110af1892b64dec2ebfc30fa8.css"
-      integrity="sha256-OSX7S2r4d3VHXdZuc/qMLSxmUOEQrxiStk3sLr/DD6g="
+      href="/scss/main.min.46ce99227ad96288ea8cac05cea2f6ed492c30dae23a3f7afffc5a9fd6e512cc.css"
+      integrity="sha256-Rs6ZInrZYojqjKwFzqL27UksMNriOj96//xan9blEsw="
       crossorigin="anonymous"
       type="text/css"
     />
@@ -43,6 +43,16 @@
     crossorigin="anonymous"
     type="text/css"
   />
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/css/style.min.2ca58bfcc428fdc60cd47e7f2b6f07633a4e3d7ae2340bf1bc1ad1e324976388.css"
+      integrity="sha256-LKWL/MQo/cYM1H5/K28HYzpOPXriNAvxvBrR4ySXY4g="
+      crossorigin="anonymous"
+      media="screen"
+    />
   
   
   <link
@@ -104,7 +114,12 @@
       integrity="sha256-1tMp2ThEsWLovtHpFWGWJcqRaHlSF3VSubPiEQFKKVc="
       crossorigin="anonymous"
     ></script>
-  
+  <script
+      type="text/javascript"
+      src="/js/style.min.32131ac704db7dda12ba05188930d2d23e044982f2994a64dce1e5d12834ed96.js"
+      integrity="sha256-MhMaxwTbfdoSugUYiTDS0j4ESYLymUpk3OHl0Sg07ZY="
+      crossorigin="anonymous"
+    ></script>
 
   
 
@@ -406,6 +421,7 @@
     "
   >
     
+    
     <div class="post__content">
       <h1>Convex Optimization</h1>
       
@@ -426,134 +442,9 @@
             <span class="post__meta-text">18-minute read</span>
           </li>
         </ul>
-      <h3>Table of Contents</h3>
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#11-mathematical-optimization">1.1 Mathematical optimization</a>
-      <ul>
-        <li><a href="#111-applications-examples">1.1.1 Applications (examples)</a></li>
-      </ul>
-    </li>
-    <li><a href="#12-least-squares-and-linear-programming">1.2 Least squares and linear programming</a>
-      <ul>
-        <li><a href="#121-least-squares">1.2.1 Least squares</a></li>
-        <li><a href="#variations-chapter-6">Variations (Chapter 6)</a></li>
-        <li><a href="#122-linear-programming">1.2.2 Linear programming</a></li>
-      </ul>
-    </li>
-    <li><a href="#13-convex-optimization">1.3 Convex optimization</a>
-      <ul>
-        <li><a href="#131-solving-convex-optimization-problems">1.3.1 Solving convex optimization problems</a></li>
-      </ul>
-    </li>
-    <li><a href="#14-nonlinear-optimization">1.4 Nonlinear optimization</a>
-      <ul>
-        <li><a href="#141-local-optimization">1.4.1 Local optimization</a></li>
-        <li><a href="#142-global-optimization">1.4.2 Global optimization</a></li>
-        <li><a href="#143-role-of-convex-optimization-in-nonconvex-problems">1.4.3 Role of convex optimization in nonconvex problems</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul>
-    <li><a href="#21-affine-and-convex-sets">2.1 Affine and convex sets</a>
-      <ul>
-        <li><a href="#211-lines-and-line-segments">2.1.1 Lines and line segments</a></li>
-        <li><a href="#212-affine-sets">2.1.2 Affine sets</a></li>
-        <li><a href="#214-convex-sets">2.1.4 Convex sets</a></li>
-        <li><a href="#215-cones">2.1.5 Cones</a></li>
-      </ul>
-    </li>
-    <li><a href="#22-some-important-examples">2.2 Some important examples</a>
-      <ul>
-        <li><a href="#221-hyperplane-and-halfspaces">2.2.1 Hyperplane and halfspaces</a></li>
-        <li><a href="#222-euclidean-balls-and-ellipsoids">2.2.2 Euclidean balls and ellipsoids</a></li>
-        <li><a href="#234-polyhedra">2.3.4 Polyhedra</a></li>
-        <li><a href="#225-the-positive-semidefinite-cone">2.2.5 The positive semidefinite cone</a></li>
-      </ul>
-    </li>
-    <li><a href="#23-operations-preserving-convexity">2.3 Operations preserving convexity</a>
-      <ul>
-        <li><a href="#231-intersection">2.3.1 Intersection</a></li>
-        <li><a href="#232-affine-functions">2.3.2 Affine functions</a></li>
-        <li><a href="#233-linear-fractional-and-perspective-functions">2.3.3 Linear-fractional and perspective functions</a></li>
-      </ul>
-    </li>
-    <li><a href="#24-generalized-inequalities">2.4 Generalized inequalities</a>
-      <ul>
-        <li><a href="#241-proper-cones-and-generalized-inequalities">2.4.1 Proper cones and generalized inequalities</a></li>
-        <li><a href="#242-minimum-and-minimal-elements">2.4.2 Minimum and minimal elements</a></li>
-      </ul>
-    </li>
-    <li><a href="#25-separating-and-supporting-hyperplanes">2.5 Separating and supporting hyperplanes</a>
-      <ul>
-        <li><a href="#251-separating-hyperplane-theorem">2.5.1 Separating hyperplane Theorem</a></li>
-        <li><a href="#252-supporting-hyperplanes">2.5.2 Supporting hyperplanes</a></li>
-      </ul>
-    </li>
-    <li><a href="#26-dual-cones-and-generalized-inequalities">2.6 Dual cones and generalized inequalities</a>
-      <ul>
-        <li><a href="#261-dual-cones">2.6.1 Dual cones</a></li>
-        <li><a href="#262-dual-generalized-inequalities">2.6.2 Dual generalized inequalities</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul>
-    <li><a href="#31-basic-properties-and-examples">3.1 Basic properties and examples</a>
-      <ul>
-        <li><a href="#311-definition">3.1.1 Definition</a></li>
-        <li><a href="#312-extended-value-extension">3.1.2 Extended-value extension</a></li>
-        <li><a href="#313-first-order-conditions">3.1.3 First-order conditions</a></li>
-        <li><a href="#314-second-order-conditions">3.1.4 Second-order conditions</a></li>
-        <li><a href="#316-sublevel-sets">3.1.6 Sublevel sets</a></li>
-        <li><a href="#317-epigraph">3.1.7 Epigraph</a></li>
-      </ul>
-    </li>
-    <li><a href="#32-operations-that-preserve-convexity">3.2 Operations that preserve convexity</a>
-      <ul>
-        <li><a href="#324-composition">3.2.4 Composition</a></li>
-        <li><a href="#325-minimization">3.2.5 Minimization</a></li>
-        <li><a href="#326-perspective-of-a-function">3.2.6 Perspective of a function</a></li>
-      </ul>
-    </li>
-    <li><a href="#33-conjugate-function">3.3 Conjugate function</a>
-      <ul>
-        <li><a href="#331-definition-and-examples">3.3.1 Definition and examples</a></li>
-        <li><a href="#332-basic-properties">3.3.2 Basic properties</a></li>
-      </ul>
-    </li>
-    <li><a href="#34-quasiconvex-functions">3.4 Quasiconvex functions</a>
-      <ul>
-        <li><a href="#341-definition-and-examples">3.4.1 Definition and examples</a></li>
-        <li><a href="#342-basic-properties">3.4.2 Basic properties</a></li>
-        <li><a href="#343-differentiable-quasiconvex-fucntions">3.4.3 Differentiable quasiconvex fucntions</a></li>
-        <li><a href="#344-operations-that-preserve-quasiconvexity">3.4.4 Operations that preserve quasiconvexity</a></li>
-      </ul>
-    </li>
-    <li><a href="#35-log-convex-functions">3.5 Log-convex functions</a>
-      <ul>
-        <li><a href="#351-definition">3.5.1 Definition</a></li>
-        <li><a href="#352-properties">3.5.2 Properties</a></li>
-      </ul>
-    </li>
-    <li><a href="#36-convexity-with-respect-to-generalized-inequalities">3.6 Convexity with respect to generalized inequalities</a>
-      <ul>
-        <li><a href="#361-monotonicity-with-respect-to-generalized-inequality">3.6.1 Monotonicity with respect to generalized inequality</a></li>
-        <li><a href="#362-convexity-with-respect-to-a-generalized-inequality">3.6.2 Convexity with respect to a generalized inequality</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul>
-    <li><a href="#41-optimization-problems">4.1 Optimization problems</a>
-      <ul>
-        <li><a href="#411-basic-terminology">4.1.1 Basic terminology</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-<p>S. Boyd, L. Vandenberghe, Convex optimization, Cambridge university press, 2004.</p>
+      <div class="container">
+          <div class="post_content_text">
+            <p>S. Boyd, L. Vandenberghe, Convex optimization, Cambridge university press, 2004.</p>
 <h1 id="introduction">Introduction</h1>
 <p>An overview of mathematical optimization problem.</p>
 <h2 id="11-mathematical-optimization">1.1 Mathematical optimization</h2>
@@ -1214,8 +1105,23 @@ with variable \(z\), i.e., \(x\) miminizes \(f_0\) over a neighborhood.</p>
 <blockquote>
 <p>When proving most optimal conditions, only binding constraints are required to be differentiable, while non-binding ones are only required to be continuous. This textbook assumes all constraints are differentiable in Sec 5.5.3.</p>
 </blockquote>
-</div>
+
+          </div>
+          <div class="post_toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#convex-sets">Convex sets</a></li>
+    <li><a href="#convex-functions">Convex functions</a></li>
+    <li><a href="#convex-optimization-problems">Convex optimization problems</a></li>
+  </ul>
+</nav>
+          </div>
+        </div></div>
+    
+
     <div class="post__footer">
+      
       
 
       
@@ -1227,6 +1133,7 @@ with variable \(z\), i.e., \(x\) miminizes \(f_0\) over a neighborhood.</p>
 
     
   </div>
+
 
       </main>
     </div><footer class="footer footer__base">
