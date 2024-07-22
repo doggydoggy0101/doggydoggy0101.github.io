@@ -194,7 +194,7 @@
 
     ,
         "url" : "https:\/\/doggydoggy0101.github.io\/post\/convex_optimization\/",
-        "wordCount" : "2552",
+        "wordCount" : "3742",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -423,7 +423,7 @@
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">12-minute read</span>
+            <span class="post__meta-text">18-minute read</span>
           </li>
         </ul>
       <h3>Table of Contents</h3>
@@ -510,7 +510,47 @@
         <li><a href="#317-epigraph">3.1.7 Epigraph</a></li>
       </ul>
     </li>
-    <li><a href="#32-operations-that-preserve-convexity">3.2 Operations that preserve convexity</a></li>
+    <li><a href="#32-operations-that-preserve-convexity">3.2 Operations that preserve convexity</a>
+      <ul>
+        <li><a href="#324-composition">3.2.4 Composition</a></li>
+        <li><a href="#325-minimization">3.2.5 Minimization</a></li>
+        <li><a href="#326-perspective-of-a-function">3.2.6 Perspective of a function</a></li>
+      </ul>
+    </li>
+    <li><a href="#33-conjugate-function">3.3 Conjugate function</a>
+      <ul>
+        <li><a href="#331-definition-and-examples">3.3.1 Definition and examples</a></li>
+        <li><a href="#332-basic-properties">3.3.2 Basic properties</a></li>
+      </ul>
+    </li>
+    <li><a href="#34-quasiconvex-functions">3.4 Quasiconvex functions</a>
+      <ul>
+        <li><a href="#341-definition-and-examples">3.4.1 Definition and examples</a></li>
+        <li><a href="#342-basic-properties">3.4.2 Basic properties</a></li>
+        <li><a href="#343-differentiable-quasiconvex-fucntions">3.4.3 Differentiable quasiconvex fucntions</a></li>
+        <li><a href="#344-operations-that-preserve-quasiconvexity">3.4.4 Operations that preserve quasiconvexity</a></li>
+      </ul>
+    </li>
+    <li><a href="#35-log-convex-functions">3.5 Log-convex functions</a>
+      <ul>
+        <li><a href="#351-definition">3.5.1 Definition</a></li>
+        <li><a href="#352-properties">3.5.2 Properties</a></li>
+      </ul>
+    </li>
+    <li><a href="#36-convexity-with-respect-to-generalized-inequalities">3.6 Convexity with respect to generalized inequalities</a>
+      <ul>
+        <li><a href="#361-monotonicity-with-respect-to-generalized-inequality">3.6.1 Monotonicity with respect to generalized inequality</a></li>
+        <li><a href="#362-convexity-with-respect-to-a-generalized-inequality">3.6.2 Convexity with respect to a generalized inequality</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#41-optimization-problems">4.1 Optimization problems</a>
+      <ul>
+        <li><a href="#411-basic-terminology">4.1.1 Basic terminology</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 <p>S. Boyd, L. Vandenberghe, Convex optimization, Cambridge university press, 2004.</p>
@@ -542,7 +582,7 @@ for all \(x,y\in\mathbb{R}^n\) and all \(\alpha,\beta\in\mathbb{R}\) with \(\alp
 <h2 id="12-least-squares-and-linear-programming">1.2 Least squares and linear programming</h2>
 <p>Two subclasses of convex optimization: least-squares and linear programming.</p>
 <h3 id="121-least-squares">1.2.1 Least squares</h3>
-<p>A <em>least squares</em> (LS)is a non-constrained optimization problem with an objective which is a sum of squares of terms:
+<p>A <em>least squares</em> (LS) is a non-constrained optimization problem with an objective which is a sum of squares of terms:
 $$
 \min\ f_0(x)=\|Ax-b\|^2-\sum_{i=1}^k(a_ix-b_i)^2,\tag{1.4}
 $$
@@ -835,47 +875,32 @@ construct the function \(f:\mathbb{R}^n\to\mathbb{R}^m\) given by \(f(x)=P\circ 
 <li>\(x\in S\) is minimum if and only if \(S\subseteq x+K\).</li>
 <li>\(x\in S\) is minimal if and only if \((x-K)\cap S=\{x\}\).</li>
 </ul>
-<blockquote>
-<p>For \(K=\mathbb{R}_+\), minimal and minimum are the same.
-We show some examples for \(K=\mathbb{R}^2_+\):
+<p>For \(K=\mathbb{R}_+\), minimal and minimum are the same. We show some examples for \(K=\mathbb{R}^2_+\):
 <figure><img src="../../images/convex_optimization/min.png"
     alt="image" width="500">
 </figure>
 </p>
-</blockquote>
 <h2 id="25-separating-and-supporting-hyperplanes">2.5 Separating and supporting hyperplanes</h2>
 <h3 id="251-separating-hyperplane-theorem">2.5.1 Separating hyperplane Theorem</h3>
-<p>Suppose \(C\) and \(D\) are nonempty disjoint convex sets, i.e., \(C\cap D=\emptyset\). Then there exist \(a\neq0\) and \(b\) such that \(a^\top x\leq b\) forall \(x\in C\) and \(a^\top x\geq b\) forall \(x\in D\). In other words, the affine function \(a^\top x−b\) is nonpositive on \(C\) and nonnegative on \(D\). The hyperplane \(\{x\mid a^\top x=b\}\) is called a separating hyperplane for the sets \(C\) and \(D\).</p>
-<blockquote>
-<p>We skip the proof here, however, the idea is similar to SVM.
+<p>Suppose \(C\) and \(D\) are nonempty disjoint convex sets, i.e., \(C\cap D=\emptyset\). Then there exist \(a\neq0\) and \(b\) such that \(a^\top x\leq b\) forall \(x\in C\) and \(a^\top x\geq b\) forall \(x\in D\). In other words, the affine function \(a^\top x−b\) is nonpositive on \(C\) and nonnegative on \(D\). The hyperplane \(\{x\mid a^\top x=b\}\) is called a separating hyperplane for the sets \(C\) and \(D\).
 <figure><img src="../../images/convex_optimization/separate.png"
     alt="image" width="300">
 </figure>
 </p>
-</blockquote>
-<p>A separating hyperplane is called <em>strict separation</em> of the sets \(C\) and \(D\) if \(a^\top x&lt;b\) forall \(x\in C\) and \(a^\top x&gt;b\) forall \(x\in D\).</p>
-<blockquote>
-<p>Disjoint convex sets (even closed sets) need not be strictly separable.
-Ex. \(C=\{(x,y)\mid x\leq0\}\) and \(D=\{(x,y)\mid xy\geq1, x&gt;,y&gt;0\}\):
+<p>A separating hyperplane is called <em>strict separation</em> of the sets \(C\) and \(D\) if \(a^\top x&lt;b\) forall \(x\in C\) and \(a^\top x&gt;b\) for all \(x\in D\). Disjoint convex sets (even closed sets) need not be strictly separable. For example, \(C=\{(x,y)\mid x\leq0\}\) and \(D=\{(x,y)\mid xy\geq1, x&gt;,y&gt;0\}\):
 <figure><img src="../../images/convex_optimization/separate_converse.png"
     alt="image" width="320">
 </figure>
 </p>
-</blockquote>
-<p>The converse of the separating hyperplane theorem is not true.</p>
-<blockquote>
-<p>Ex. Hyperplane \(x=0\) separates \(C=D=\{0\}\), but \(C\) and \(D\) are not disjoint convex sets.</p>
-</blockquote>
+<p>The converse of the separating hyperplane theorem is not true. For example, hyperplane \(x=0\) separates \(C=D=\{0\}\), but \(C\) and \(D\) are not disjoint convex sets.</p>
 <p>However, we can add various conditions such that the converse of separating hyperplane is true. For example, any two convex sets \(C\) and \(D\), with at least one of which is open, are disjoint if and only if there exists a separating hyperplane.</p>
 <h3 id="252-supporting-hyperplanes">2.5.2 Supporting hyperplanes</h3>
 <p>Suppose \(C\subseteq\mathbb{R}^n\) and \(x_0\) is a point in its boundary \(\mathbf{bd}\ C\). If \(a\neq0\) satisfies \(a^\top x\leq a^\top x_0\) for all \(x\in C\), then the hyperplane \(\{x\mid a^\top x=b\}\) is called a <em>supporting hyperplane</em> to \(C\) at point \(x_0\).</p>
-<p>This is equivalent to saying that \(x_0\) and \(C\) is separated by the hyperplane \(\{x\mid a^\top x=a^\top x_0\}\).</p>
-<blockquote>
+<p>This is equivalent to saying that \(x_0\) and \(C\) is separated by the hyperplane \(\{x\mid a^\top x=a^\top x_0\}\).
 <figure><img src="../../images/convex_optimization/support.png"
     alt="image" width="240">
 </figure>
-
-</blockquote>
+</p>
 <p><strong>Supporting hyperplane Theorem</strong>
 For any nonempty convex set \(C\) and \(x_0\in\mathbf{bd}\ C\), there exists a supporting hyperplane to \(C\) at \(x_0\).</p>
 <p><strong>Converse of supporting hyperplane Theorem</strong>
@@ -971,17 +996,224 @@ $$
 \nabla^2f(x)\succeq0.
 $$</p>
 <h3 id="316-sublevel-sets">3.1.6 Sublevel sets</h3>
-<p>The \(t\)-sublevel sets of a convex function \(f:\mathbb{R}^n\to\mathbb{R}\) is defined as \(C_t=\{x\in\mathbf{dom}\ f\mid f(x)\leq t\}\). Sublevel sets of a convex function are convex for any value \(t\).</p>
-<blockquote>
-<p>Special case of epigraph.
+<p>The \(t\)-sublevel sets of a convex function \(f:\mathbb{R}^n\to\mathbb{R}\) is defined as \(S_t=\{x\in\mathbf{dom}\ f\mid f(x)\leq t\}\). Sublevel sets of a convex function are convex for any value \(t\).
 <figure><img src="../../images/convex_optimization/sublevel.png"
-    alt="image" width="300">
+    alt="image" width="240">
 </figure>
 </p>
-</blockquote>
 <h3 id="317-epigraph">3.1.7 Epigraph</h3>
 <p>The graph of a function \(f:\mathbb{R}^n\to\mathbb{R}\) is defined as \(\{(x,f(x))\mid x\in\mathbf{dom}\ f\}\), which is a subset of \(\mathbb{R}^{n+1}\). The <em>epigraph</em> of a function \(f:\mathbb{R}^n\to\mathbb{R}\) is defined as \(\mathbf{epi}\ f=\{(x,t)\mid x\in\mathbf{dom}\ f,\ f(x)\leq t\}\subseteq\mathbb{R}^{n+1}\). A function is convex if and only if its epigraph is a convex set.</p>
 <h2 id="32-operations-that-preserve-convexity">3.2 Operations that preserve convexity</h2>
+<p>Operations that preserve convexity of functions, allow us to construct new convex functions.</p>
+<ul>
+<li>\(f\) is convex\(\implies\alpha f(x),\ \alpha\geq0\)  is convex</li>
+<li>\(f_i\) are convex\(\implies\sum f_i(x)\) is convex</li>
+<li>\(f_i\) are convex, \(w_i\) are nonnegative\(\implies\sum w_i f_i(x)\) is convex</li>
+<li>\(f\) is convex, \(g\) is affine \(\implies f(g(x))\) is convex</li>
+<li>\(f_i\) are convex\(\implies\max(f_1(x),\dots,f_n(x))\)  is convex</li>
+<li>\(f(x,y)\) is convex, \(y\in\mathcal{A}\implies\sup_{y\in\mathcal{A}}f(x,y)\) is convex</li>
+</ul>
+<blockquote>
+<p>Prove by epigraph.</p>
+</blockquote>
+<h3 id="324-composition">3.2.4 Composition</h3>
+<p>Suppose \(g:\mathbb{R}^n\to\mathbb{R}^k,\ h:\mathbb{R}^k\to\mathbb{R}\), the compostion \(f=h\circ g:\mathbb{R}^n\to\mathbb{R}\) is defined by
+$$
+f(x)=h(g(x))\ ;\ \ \mathbf{dom}\ f=\{x\in\mathbf{dom}\ g\mid g(x)\in\mathbf{dom}\ h\}.
+$$</p>
+<p><strong>scalar composition</strong> (\(k=1\))</p>
+<p>$$
+f^{\prime\prime}(x)=h^{\prime\prime}(g(x))\underbrace{[g^\prime(x)]^2}_{\geq0}+g^{\prime\prime}(x)h^\prime(g(x)).\tag{3.9}
+$$</p>
+<blockquote>
+<p>In order to make \(f\) convex, we need \(f^{\prime\prime}\geq0\) (second-order conditions). By \((3.9)\), we need \(h^{\prime\prime}\geq0\) and both \(h^\prime,g^{\prime\prime}\geq0\) or \(\leq0\).</p>
+</blockquote>
+<ul>
+<li>\(f\) is convex if \(h\) is convex (\(h^{\prime\prime}\geq0\)) and nondecreasing, and \(g\) is convex (\(g^{\prime\prime},h^\prime\geq0\))</li>
+<li>\(f\) is convex if \(h\) is convex (\(h^{\prime\prime}\geq0\)) and nonincreasing, and \(g\) is concave (\(g^{\prime\prime},h^\prime\leq0\))</li>
+</ul>
+<p><strong>vector composition</strong> (\(k\geq1\))</p>
+<p>$$
+f^{\prime\prime}(x)=g^\prime(x)^T\nabla^2h(g(x))g^\prime(x)+\nabla h(g(x))^Tg^{\prime\prime}(x).\tag{3.15}
+$$</p>
+<ul>
+<li>\(f\) is convex if \(h\) is convex, \(h\) is nondecreasing in each argument, and \(g_i\) are convex</li>
+<li>\(f\) is convex if \(h\) is convex, \(h\) is nonincreasing in each argument, and \(g_i\) are concave</li>
+</ul>
+<h3 id="325-minimization">3.2.5 Minimization</h3>
+<p>We have seen that maximum or supremum of convex functions is convex. We now consider a speical form of minimization
+$$
+g(x)=\inf_{y\in C}f(x,y)\tag{3.16}
+$$
+is convex if \(g(x)&gt;-\infty\) for all \(x\).</p>
+<h3 id="326-perspective-of-a-function">3.2.6 Perspective of a function</h3>
+<p>If \(f:\mathbb{R}^n\to\mathbb{R}\), then the <em>perspective</em> of \(f\) is the function \(g:\mathbb{R}^{n+1}\to\mathbb{R}\) defined by
+$$
+g(x,t)=tf(x/t)\ ;\ \ \mathbf{dom}\ g=\{(x,t)\mid x/t\in\mathbf{dom} f,\ t&gt;0\}.
+$$</p>
+<p>If \(f\) is convex, then \(g\) is convex. We give a short prrof using epigraph and the perspective function of \(\mathbb{R}^{n+1}\) (Sec 2.3.3). For \(t&gt;0\), we have
+$$
+\begin{aligned}
+(x,t,s)\in\mathbf{epi}\ g&amp;\iff tf(x/t)\leq s\\
+&amp;\iff f(x/t)\leq s/t\\
+&amp;\iff(x/t, s/t)\in\mathbf{epi}\ f
+\end{aligned}
+$$
+Since \(f\) is convex\(\iff\mathbf{epi}\ f\) is convex, we have \(g\) is convex\(\iff\mathbf{epi}\ g\) is convex.</p>
+<h2 id="33-conjugate-function">3.3 Conjugate function</h2>
+<h3 id="331-definition-and-examples">3.3.1 Definition and examples</h3>
+<p>Let \(f:\mathbb{R}^n\to\mathbb{R}\), then \(f^*:\mathbb{R}^n\to\mathbb{R}\) is the <em>conjugate</em> of \(f\) defined by
+$$
+f^*(y)=\sup_{x\in\mathbf{dom}\ f}\big(y^\top x-f(x)\big).\tag{3.18}
+$$</p>
+<p>We immediately see that \(f^*\) is convex since it is the supremum of affine function of \(y\), whether \(f\) is convex or not. For example given an affine function \(f(x)=ax+b\),
+$$
+f^*(y)=\sup_{x\in\mathbb{R}}\big(yx-(ax+b)\big)=\sup_{x\in\mathbb{R}}\big((y-a)x-b\big)=\begin{cases}-b&amp;\text{if }y=a\\\infty&amp;\text{if }y\neq a\end{cases}
+$$</p>
+<p>For 1-dimensional case, conjugate function tries to find the maximum distance between \(yx\) and \(f(x)\). A nice demonstration can be found here: <a href="https://youtu.be/zkesU2jMkCg">Fenchel conjugate function demo</a>.
+<figure><img src="../../images/convex_optimization/conjugate.png"
+    alt="image" width="280">
+</figure>
+</p>
+<h3 id="332-basic-properties">3.3.2 Basic properties</h3>
+<p><strong>Fenchel’s inequality</strong> By \((3.18)\), we obtain the <em>Fenchel&rsquo;s inequality</em>
+$$
+f(x)+f^*(y)\geq y^\top x.
+$$</p>
+<p><strong>Conjugate of the conjugate</strong> If \(f\) is convex and closed, i.e., \(\mathbf{epi}\ f\) is a closed convex set, then \(f^{**}=f\), i.e., the conjugate of conjugate of \(f\) is \(f\) itself.</p>
+<p><strong>Differetiable functions</strong> If \(f\) is differentiable, then the conjugate of \(f\) is also called the <em>Legendre transform</em> of \(f\). Suppose \(f\) is convex and differetiable, the maximizer \(x^*\) must satisfy the first-order condition. Take the derivatives if \(y^\top x^*-f(x^*)\) to zero, we get \(y=\nabla f(x^*)\). Therefore, if \(y=\nabla f(x)\), we have a closed-form to compute the conjugate function
+$$
+f^*(y)=\nabla f(x)^\top x-f(x).
+$$</p>
+<h2 id="34-quasiconvex-functions">3.4 Quasiconvex functions</h2>
+<h3 id="341-definition-and-examples">3.4.1 Definition and examples</h3>
+<p>A function \(f:\mathbb{R}^n\to\mathbb{R}\) is called <em>quasiconvex</em> if all its sublevel sets are convex.
+<figure><img src="../../images/convex_optimization/quasiconvex.png"
+    alt="image" width="640">
+</figure>
+</p>
+<h3 id="342-basic-properties">3.4.2 Basic properties</h3>
+<p>We could also characterize quasiconvexity like the definition of convex function: A function \(f\) is quasiconvex if \(\mathbf{dom}\ f\) is convex and if for all \(x,y\in\mathbf{dom}\ f\), and \(\theta\) with \(0\leq\theta\leq1\), we have
+$$
+f(\theta x+(1-\theta)y)\leq\max\{f(x),f(y)\}.\tag{3.19}
+$$</p>
+<blockquote>
+<p>Points between the line segmant cannot be larger than the \(\max\{f(x),f(y)\}\)-level.</p>
+</blockquote>
+<h3 id="343-differentiable-quasiconvex-fucntions">3.4.3 Differentiable quasiconvex fucntions</h3>
+<p><strong>First-order conditions</strong> Suppose \(f:\mathbb{R}^n\to\mathbb{R}\) is differentiable, then \(f\) is quasiconvex if and only if \(\mathbf{dom}\ f\) is convex and for all \(x,y\in\mathbf{dom}\ f\),
+$$
+f(y)\leq f(x)\implies\nabla f(x)^\top(y-x)\leq0.\tag{3.20}
+$$</p>
+<p><strong>Second-order conditions</strong> Suppose \(f:\mathbb{R}^n\to\mathbb{R}\) is twice differentiable. If \(f\) is quasiconvex, then if \(\mathbf{dom}\ f\) is convex and all \(y\in\mathbb{R}^n\), we have
+$$
+y^\top\nabla f(x)=0\implies y^\top\nabla^2f(x)y\geq0.\tag{3.21}
+$$</p>
+<h3 id="344-operations-that-preserve-quasiconvexity">3.4.4 Operations that preserve quasiconvexity</h3>
+<ul>
+<li>\(f_i\) are quasiconvex\(\implies\max(f_1(x),\dots f_k(x))\) is quasiconvex</li>
+<li>\(f_i\) are quasiconvex,  \(w_i\) are nonnegative\(\implies\max(w_1f_1(x),\dots w_kf_k(x))\) is quasiconvex</li>
+<li>\(g:\mathbb{R}^n\to\mathbb{R}\) is quasiconvex, \(h:\mathbb{R}\to\mathbb{R}\) is nondecreasing\(\implies f=h\circ g\) is quasiconvex</li>
+<li>\(f\) is quasiconvex, \(y\in C\implies g(x)=\inf_{y\in C}f(x,y)\) is quasiconvex</li>
+<li>sum of quasiconvex functions is not necessary quasiconvex</li>
+</ul>
+<h2 id="35-log-convex-functions">3.5 Log-convex functions</h2>
+<h3 id="351-definition">3.5.1 Definition</h3>
+<p>A function \(f:\mathbb{R}^n\to\mathbb{R}\) is log-convex if \(f(x)&gt;0\) for all \(x\in\mathbf{dom}\ f\) and \(\log\ f\) is convex. We also write log-convexity like the definition of convex function: a function \(f:\mathbb{R}^n\to\mathbb{R}\) with convex domain and \(f(x)&gt;0\) for all \(x\in\mathbf{dom}\ f\) is log-convex if and only if for all \(x,y\in\mathbf{dom}\ f\) and \(0\leq\theta\leq1\),
+$$
+f(\theta x+(1-\theta)y)\leq f(x)^\theta f(y)^{(1-\theta)}.
+$$</p>
+<blockquote>
+<p>$$\log f(\theta x+(1-\theta)y)\leq\theta\log f(x)+(1-\theta)\log f(y).$$</p>
+</blockquote>
+<h3 id="352-properties">3.5.2 Properties</h3>
+<p><strong>Second-order conditions</strong> \(f\) is log-convex if and only if for all \(x\in\mathbf{dom}\ f\),
+$$
+f(x)\nabla^2f(x)\succeq\nabla f(x)\nabla f(x)^\top.
+$$</p>
+<h2 id="36-convexity-with-respect-to-generalized-inequalities">3.6 Convexity with respect to generalized inequalities</h2>
+<p>Suppose that \(K\subseteq\mathbb{R}^n\) is a proper cone with associated generalized inequality \(\succeq_K\).</p>
+<h3 id="361-monotonicity-with-respect-to-generalized-inequality">3.6.1 Monotonicity with respect to generalized inequality</h3>
+<ul>
+<li>\(f:\mathbb{R}^n\to\mathbb{R}\) is \(K\)-nondecreasing if \(x\preceq_Ky\implies f(x)\leq f(y)\)</li>
+<li>\(f:\mathbb{R}^n\to\mathbb{R}\) is \(K\)-nonincreasing if \(x\succeq_Ky\implies f(x)\geq f(y)\)</li>
+<li>\(f:\mathbb{R}^n\to\mathbb{R}\) is \(K\)-increasing if \(x\preceq_Ky,x\neq y\implies f(x)&lt;f(y)\)</li>
+<li>\(f:\mathbb{R}^n\to\mathbb{R}\) is \(K\)-decreasing if \(x\succeq_Ky,x\neq y\implies f(x)&gt;f(y)\)</li>
+</ul>
+<p><strong>Gradient conditions for monotoncity</strong> Recall that a differentialbe function \(f:\mathbb{R}\to\mathbb{R}\) with convex domain is nondecreasing if and only if \(f^\prime(x)\geq0\) for all \(x\in\mathbf{dom}\ f\). This can also be extended to generalized inequalities:</p>
+<ul>
+<li>\(\nabla f(x)\succeq_{K^*}0\iff f\) is \(K\)-nondecreasing</li>
+<li>\(\nabla f(x)\preceq_{K^*}0\iff f\) is \(K\)-nonincreasing</li>
+<li>\(\nabla f(x)\succ_{K^*}0\implies f\) is \(K\)-increasing</li>
+<li>\(\nabla f(x)\prec_{K^*}0\implies f\) is \(K\)-decreasing</li>
+</ul>
+<h3 id="362-convexity-with-respect-to-a-generalized-inequality">3.6.2 Convexity with respect to a generalized inequality</h3>
+<p>A function \(f:\mathbb{R}^n\to\mathbb{R}^m\) is \(K\)-convex if for all \(x,y\in\mathbf{dom}\ f\) and \(0\leq\theta\leq1\),
+$$
+f(\theta x+(1-\theta)y)\preceq_K\theta f(x)+(1-\theta)f(y).
+$$</p>
+<p><strong>First-order conditions</strong> A differentiable function \(f\) is \(K\)-convex if and only if its domain is convex and for \(x,y\in\mathbf{dom}\ f\),
+$$
+f(y)\succeq_Kf(x)+Df(x)(y-x).
+$$</p>
+<blockquote>
+<p>These definitions reduce to ordinary convexity when \(m=1\) and \(K=\mathbb{R}_+\).</p>
+</blockquote>
+<h1 id="convex-optimization-problems">Convex optimization problems</h1>
+<h2 id="41-optimization-problems">4.1 Optimization problems</h2>
+<h3 id="411-basic-terminology">4.1.1 Basic terminology</h3>
+<p>We use the notation
+$$
+\begin{aligned}
+\min_{x\in\mathbb{R}^n}\ &amp;f_0(x)\\
+\text{s.t. }\ &amp;f_i(x)\leq0,\ i=1,\dots,m\\
+&amp;h_i(x)=0,\ i=1,\dots,p
+\end{aligned}\tag{4.1}
+$$
+to describe the problem of finding an \(x\) that minimized \(f_0(x)\) with some constraints. We call</p>
+<ul>
+<li>\(x\in\mathbb{R}\) the <em>optimization variable</em></li>
+<li>\(f_0:\mathbb{R}^n\to\mathbb{R}\) the <em>objective function</em></li>
+<li>\(f_i:\mathbb{R}^n\to\mathbb{R}\) the <em>equality constraints</em></li>
+<li>\(h_i:\mathbb{R}^n\to\mathbb{R}\) the <em>ineuality constraints</em></li>
+</ul>
+<blockquote>
+<p>We say the problem is <em>unconstrained</em> if there is no constraints in Problem \((4.1)\).</p>
+</blockquote>
+<p>The <em>domain</em> of Problem \((4.1)\) is defined as
+$$
+\mathcal{D}=\bigcap_{i=0}^m\mathbf{dom}\ f_i\cap\bigcap_{i=1}^p\mathbf{dom}\ h_i.
+$$</p>
+<p>A point \(x\in\mathcal{D}\) is <em>feasible</em> if it satisfies all constraints. Problem \((4.1)\) is said to be feasible if there exists at least one feasible point. The set of feasible points is called the <em>feasible set</em>. The <em>optimal value</em> \(p^*\) of Problem \((4.1)\) is defined as
+$$
+p^*=\inf\{f_0(x)\mid f_i(x)\leq0,i=1,\dots,m,\ h_i(x)=0,i=1,\dots,p\}.
+$$</p>
+<p>We say \(x^*\) is an <em>optimal point</em> if \(f_0(x^*)=p^*\). The set of all optimal points is called the <em>optimal set</em>, denoted as
+$$
+X_\text{opt}=\{x\mid f_i(x)\leq0,\ i=1,\dots,m,\ h_i(x)=0,i=1,\dots,p,\ f_0(x)=p^*\}.
+$$</p>
+<p>A feasible point \(x\) with \(f_0(x)\leq p^*+\epsilon\) is called <em>\(\epsilon\)-suboptimal</em>. A feasible point \(x\) is <em>locally optimal</em> if there exists an \(R&gt;0\) such that \(x\) solves
+$$
+\begin{aligned}
+\min_{x\in\mathbb{R}^n}\ &amp;f_0(z)\\
+\text{s.t. }\  &amp;f_i(z)\leq0,\ i=1,\dots,m\\
+&amp;h_i(z)=0,\ i=1,\dots,p\\
+&amp;\|z-x\|_2\leq R
+\end{aligned}
+$$
+with variable \(z\), i.e., \(x\) miminizes \(f_0\) over a neighborhood.</p>
+<blockquote>
+<p>Normally, optimal means <em>global optimal</em>.</p>
+</blockquote>
+<p>We say the \(i\)-th constraint \(f_i(x)\leq0\) is</p>
+<ul>
+<li><em>active/binding</em> if \(f_i(x)=0\) (at the boundary of feasible set)</li>
+<li><em>inactive/non-binding</em> if \(f_i(x)&lt;0\) (interior of the feasible set)</li>
+<li><em>redundant</em> if it does not affect the feasible set</li>
+</ul>
+<blockquote>
+<p>When proving most optimal conditions, only binding constraints are required to be differentiable, while non-binding ones are only required to be continuous. This textbook assumes all constraints are differentiable in Sec 5.5.3.</p>
+</blockquote>
 </div>
     <div class="post__footer">
       
