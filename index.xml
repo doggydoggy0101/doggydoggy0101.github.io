@@ -8,6 +8,17 @@
     <language>en</language>
     <lastBuildDate>Tue, 23 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://doggydoggy0101.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Gauss-Newton</title>
+      <link>https://doggydoggy0101.github.io/post/gauss_newton/</link>
+      <pubDate>Tue, 23 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://doggydoggy0101.github.io/post/gauss_newton/</guid>
+      
+        <description>Notes on Gauss-Newton method</description>
+      
+    </item>
+    
+    <item>
       <title>Gradient descent &amp; Newton&#39;s method</title>
       <link>https://doggydoggy0101.github.io/post/gradient_descent_and_newton_method/</link>
       <pubDate>Tue, 23 Jul 2024 00:00:00 +0000</pubDate>

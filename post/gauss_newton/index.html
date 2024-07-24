@@ -11,7 +11,7 @@
   <title>
     
       
-        Posts |
+        Gauss-Newton |
       Ian Chen
 
   </title>
@@ -20,7 +20,7 @@
   <meta name="author" content="Ian Chen" />
   <meta
     name="description"
-    content="Ian Chen / Bang-Shien Chen"
+    content="Notes on Gauss-Newton method"
   />
   
   
@@ -92,10 +92,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
 
-  <link rel="canonical" href="https://doggydoggy0101.github.io/post/" />
+  <link rel="canonical" href="https://doggydoggy0101.github.io/post/gauss_newton/" />
 
   
-  <link rel="alternate" type="application/rss+xml" href="/post/index.xml" title="homepage" />
   
   
   
@@ -130,23 +129,103 @@
   
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Posts">
-  <meta name="twitter:description" content="Ian Chen / Bang-Shien Chen">
+  <meta name="twitter:title" content="Gauss-Newton">
+  <meta name="twitter:description" content="Notes on Gauss-Newton method">
 
 
 
   
-  <meta property="og:url" content="https://doggydoggy0101.github.io/post/">
+  <meta property="og:url" content="https://doggydoggy0101.github.io/post/gauss_newton/">
   <meta property="og:site_name" content="homepage">
-  <meta property="og:title" content="Posts">
-  <meta property="og:description" content="Ian Chen / Bang-Shien Chen">
+  <meta property="og:title" content="Gauss-Newton">
+  <meta property="og:description" content="Notes on Gauss-Newton method">
   <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-07-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-23T00:00:00+00:00">
+    <meta property="article:tag" content="Numercial">
+    <meta property="article:tag" content="Optimization">
 
 
 
   
   
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Gauss-Newton",
+        "headline": "Gauss-Newton",
+        "alternativeHeadline": "",
+        "description": "
+      Notes on Gauss-Newton method
+
+
+    ",
+        "inLanguage": "en",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/doggydoggy0101.github.io\/post\/gauss_newton\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "copyrightYear" : "2024",
+        "dateCreated": "2024-07-23T00:00:00.00Z",
+        "datePublished": "2024-07-23T00:00:00.00Z",
+        "dateModified": "2024-07-23T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Ian Chen",
+            "url": "https://doggydoggy0101.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/doggydoggy0101.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+      ]
+
+    ,
+        "url" : "https:\/\/doggydoggy0101.github.io\/post\/gauss_newton\/",
+        "wordCount" : "358",
+        "genre" : [ ],
+        "keywords" : [ 
+      
+      "numercial"
+
+    
+      
+        ,
+
+      
+      "optimization"
+
+    ]
+    }
+  </script>
+
 
 </head>
 <body class="body">
@@ -337,58 +416,118 @@
 </div>
 </header>
   <div
-    class="archive 
+    class="post 
       animated fadeInDown
     "
   >
     
-      <div class="archive__heading">2024</div>
+    
+    <div class="post__content">
+      <h1>Gauss-Newton</h1>
       
-        <ul class="archive__list">
-          <li class="archive__list-item">
-            <a class="archive__list-title" href="/post/gradient_descent_and_newton_method/" title="Gradient descent &amp; Newton&#39;s method">Gradient descent &amp; Newton&#39;s method</a>
-            <div class="archive__list-date">
-              
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
                 
                   2024/7/23
                 
 
               
-            </div>
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">2-minute read</span>
           </li>
         </ul>
-      
-        <ul class="archive__list">
-          <li class="archive__list-item">
-            <a class="archive__list-title" href="/post/gauss_newton/" title="Gauss-Newton">Gauss-Newton</a>
-            <div class="archive__list-date">
-              
-                
-                  2024/7/23
-                
+      <div class="container">
+          <div class="post_content_text">
+            <p>This note gives a brief introduction to Gauss–Newton algorithm. It it use to solve non-linear least squares. One can simply use <a href="https://doggydoggy0101.github.io/post/gradient_descent_and_newton_method/">gradient descent or Newton&rsquo;s method</a> to solve it, however, gradient descent is a first-order approximation that typically converges slower than the second-order approximation Newton&rsquo;s method, while Newton&rsquo;s method requires to compute Hessian that can be challenging to compute. The advantage of Gauss-Newton is that it is a second-order approximation algorithm without the need of computing Hessian.</p>
+<p>We consider the unconstrained least squares with \(m\) residuals \(f_i:\mathbb{R}^n\to\mathbb{R}\) with \(m\geq n\) and the objective \(f:\mathbb{R}^n\to\mathbb{R}^m\) as follows:
+$$
+\min_{x\in\mathbb{R}^n}\frac{1}{2}\sum_{i=1}^mf_i(x)^2=\frac{1}{2}\|f(x)\|^2_2.\tag{1}
+$$</p>
+<h3 id="gauss-newton">Gauss-Newton</h3>
+<p>For least squares, we assume that there is an increment \(\Delta x\) such that \(f(x+\Delta x)\) lowers the objective. Therefore, instead of solving the Problem \((1)\), we minimize the following problem:
+$$
+\min_{x\in\mathbb{R}^n}\frac{1}{2}\|f(x+\Delta x)\|^2_2.\tag{2}
+$$</p>
+<p>We first write the first-order Taylor approximation of \(f(x+\Delta x)\),
+$$
+f(x+\Delta x)\approx f(x)+J(x)(x+\Delta x-x)=f(x)+J(x)\Delta x,
+$$
+where \(J(x)\) is the \(m\times n\) Jacobian matrix:
+$$
+J(x)=\begin{pmatrix}
+\frac{\partial f_1(x)}{\partial x_1}&amp;\cdots&amp;\frac{\partial f_1(x)}{\partial x_n}\\
+\vdots&amp;\ddots&amp;\vdots\\
+\frac{\partial f_m(x)}{\partial x_1}&amp;\cdots&amp;\frac{\partial f_m(x)}{\partial x_n}
+\end{pmatrix}.
+$$</p>
+<p>Next, we expand the objective of Problem \((2)\),
+$$
+\begin{aligned}
+\frac{1}{2}\|f(x+\Delta x)\|^2_2&amp;\approx\frac{1}{2}\|f(x)+J(x)\Delta x\|^2_2\\
+&amp;=\frac{1}{2}(f(x)+J(x)\Delta x)^\top(f(x)+J(x)\Delta x)\\
+&amp;=\frac{1}{2}(f(x)^\top f(x)+2\Delta x^\top J(x)^\top f(x) + \Delta x^\top J(x)^\top J(x)\Delta x).
+\end{aligned}
+$$</p>
+<p>By setting the derivative of \(\Delta x\) to zero, we get
+$$
+J(x)^\top f(x)+J(x)^\top J(x)\Delta x=0,\\[8pt]
+\implies \Delta x=-(J(x)^\top J(x))^{-1}J(x)^\top f(x),
+$$
+which leaves us just a linear equation to solve. We write it as an iterative process:
+$$
+x_{k+1}=x_k-(J(x)^\top J(x))^{-1}J(x)^\top f(x).
+$$</p>
+<blockquote>
+<p>The \(m\geq n\) assumption is necessary because otherwise \(J(x)^\top J(x)\) will not be invertible.</p>
+</blockquote>
+<h3 id="comparison-with-newtons-method">Comparison with Newton&rsquo;s method</h3>
+<p>If we solve the problem by <a href="https://doggydoggy0101.github.io/post/gradient_descent_and_newton_method/">Newton&rsquo;s method</a>, we would use the second-order approximation of the objective of Problem \(1\):
+$$
+F(x)=\frac{1}{2}\|f(x)\|^2_2\approx F(x_k)+\bar{J}(x_k)(x-x_k)+\frac{1}{2}(x-x_k)^\top \bar{H}(x)(x-x_k),
+$$
+where \(\bar{J}(x)\) and \(\bar{H}(x)\) is the Jacobian and Hessian of \(F(x)\), respectively. By setting the derivative to zero, we get
+$$
+\bar{J}(x_k)x+\bar{H}(x_k)(x-x_k)=0,\\[8pt]
+\implies x_{k+1}=-\bar{H}(x_k)^{-1}\bar{J}(x_k).
+$$
+Compared to Gauss-Newton, we have
+$$
+\bar{J}(x)=\frac{\partial}{\partial x}F(x)=\frac{\partial}{\partial x}f(x)^\top f(x)=2J(x)^\top f(x),\\[8pt]
+\bar{H}(x)\approx J(x)^\top J(x).
+$$
+That is, we approximate the Hessian of Newton&rsquo;s method by the Jacobian of \(f(x)\). Thereby, we say Gauss-Newton is a second-order approximation without the need computing the Hessian.</p>
 
-              
-            </div>
-          </li>
-        </ul>
-      
-        <ul class="archive__list">
-          <li class="archive__list-item">
-            <a class="archive__list-title" href="/post/convex_optimization/" title="Convex optimization">Convex optimization</a>
-            <div class="archive__list-date">
-              
-                
-                  2024/7/19
-                
+          </div>
+          <div class="post_toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li></li>
+  </ul>
+</nav>
+          </div>
+        </div></div>
+    
 
-              
-            </div>
-          </li>
-        </ul>
+    <div class="post__footer">
       
+      
+
+      
+        <span><a class="tag" href="/tags/numercial/">numercial</a><a class="tag" href="/tags/optimization/">optimization</a></span>
+
+
+      
+    </div>
 
     
   </div>
+
 
       </main>
     </div><footer class="footer footer__base">
