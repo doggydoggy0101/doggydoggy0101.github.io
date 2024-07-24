@@ -209,7 +209,7 @@
 
     ,
         "url" : "https:\/\/doggydoggy0101.github.io\/post\/gauss_newton\/",
-        "wordCount" : "358",
+        "wordCount" : "356",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -487,7 +487,7 @@ $$</p>
 <p>The \(m\geq n\) assumption is necessary because otherwise \(J(x)^\top J(x)\) will not be invertible.</p>
 </blockquote>
 <h3 id="comparison-with-newtons-method">Comparison with Newton&rsquo;s method</h3>
-<p>If we solve the problem by <a href="https://doggydoggy0101.github.io/post/gradient_descent_and_newton_method/">Newton&rsquo;s method</a>, we would use the second-order approximation of the objective of Problem \(1\):
+<p>If we solve the problem by <a href="https://doggydoggy0101.github.io/post/gradient_descent_and_newton_method/">Newton&rsquo;s method</a>, we would use the second-order approximation of the objective of Problem \((1)\):
 $$
 F(x)=\frac{1}{2}\|f(x)\|^2_2\approx F(x_k)+\bar{J}(x_k)(x-x_k)+\frac{1}{2}(x-x_k)^\top \bar{H}(x)(x-x_k),
 $$
@@ -498,10 +498,10 @@ $$
 $$
 Compared to Gauss-Newton, we have
 $$
-\bar{J}(x)=\frac{\partial}{\partial x}F(x)=\frac{\partial}{\partial x}f(x)^\top f(x)=2J(x)^\top f(x),\\[8pt]
+\bar{J}(x)=\frac{\partial}{\partial x}F(x)=\frac{\partial}{\partial x}\frac{1}{2}f(x)^\top f(x)=J(x)^\top f(x),\\[8pt]
 \bar{H}(x)\approx J(x)^\top J(x).
 $$
-That is, we approximate the Hessian of Newton&rsquo;s method by the Jacobian of \(f(x)\). Thereby, we say Gauss-Newton is a second-order approximation without the need computing the Hessian.</p>
+That is, we approximate the Hessian of Newton&rsquo;s method by the Jacobian of \(f(x)\). Thereby, we say Gauss-Newton is a second-order approximation with an approximated Hessian.</p>
 
           </div>
           <div class="post_toc">
