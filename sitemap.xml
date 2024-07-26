@@ -3,10 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://doggydoggy0101.github.io/</loc>
-    <lastmod>2024-07-24T00:00:00+00:00</lastmod>
+    <lastmod>2024-07-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://doggydoggy0101.github.io/tags/convex/</loc>
+    <lastmod>2024-07-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://doggydoggy0101.github.io/tags/index/</loc>
-    <lastmod>2024-07-24T00:00:00+00:00</lastmod>
+    <lastmod>2024-07-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://doggydoggy0101.github.io/tags/optimization/</loc>
+    <lastmod>2024-07-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://doggydoggy0101.github.io/post/</loc>
+    <lastmod>2024-07-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://doggydoggy0101.github.io/tags/qcqp/</loc>
+    <lastmod>2024-07-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://doggydoggy0101.github.io/post/qcqp_to_sdp/</loc>
+    <lastmod>2024-07-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://doggydoggy0101.github.io/tags/sdp/</loc>
+    <lastmod>2024-07-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://doggydoggy0101.github.io/tags/</loc>
+    <lastmod>2024-07-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://doggydoggy0101.github.io/tags/lie-theory/</loc>
     <lastmod>2024-07-24T00:00:00+00:00</lastmod>
@@ -14,13 +35,7 @@
     <loc>https://doggydoggy0101.github.io/post/lie_theory_in_robotics/</loc>
     <lastmod>2024-07-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://doggydoggy0101.github.io/post/</loc>
-    <lastmod>2024-07-24T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://doggydoggy0101.github.io/tags/robotics/</loc>
-    <lastmod>2024-07-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://doggydoggy0101.github.io/tags/</loc>
     <lastmod>2024-07-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://doggydoggy0101.github.io/post/gauss_newton/</loc>
@@ -32,17 +47,11 @@
     <loc>https://doggydoggy0101.github.io/tags/numercial/</loc>
     <lastmod>2024-07-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://doggydoggy0101.github.io/tags/optimization/</loc>
-    <lastmod>2024-07-23T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://doggydoggy0101.github.io/about/</loc>
     <lastmod>2024-07-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://doggydoggy0101.github.io/achievements/</loc>
     <lastmod>2024-07-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://doggydoggy0101.github.io/tags/convex/</loc>
-    <lastmod>2024-07-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://doggydoggy0101.github.io/post/convex_optimization_ch3/</loc>
     <lastmod>2024-07-11T00:00:00+00:00</lastmod>

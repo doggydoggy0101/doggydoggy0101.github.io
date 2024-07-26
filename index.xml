@@ -6,7 +6,18 @@
     <description>Recent content on homepage</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 24 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://doggydoggy0101.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 26 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://doggydoggy0101.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>QCQP to SDP</title>
+      <link>https://doggydoggy0101.github.io/post/qcqp_to_sdp/</link>
+      <pubDate>Fri, 26 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://doggydoggy0101.github.io/post/qcqp_to_sdp/</guid>
+      
+        <description>A note on qcqp to sdp</description>
+      
+    </item>
+    
     <item>
       <title>Lie theory in Robotics</title>
       <link>https://doggydoggy0101.github.io/post/lie_theory_in_robotics/</link>
