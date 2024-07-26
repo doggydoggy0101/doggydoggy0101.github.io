@@ -41,13 +41,24 @@
     </item>
     
     <item>
-      <title>Convex optimization</title>
-      <link>https://doggydoggy0101.github.io/post/convex_optimization/</link>
-      <pubDate>Fri, 19 Jul 2024 00:00:00 +0000</pubDate>
+      <title>Convex functions</title>
+      <link>https://doggydoggy0101.github.io/post/convex_optimization_ch3/</link>
+      <pubDate>Thu, 11 Jul 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://doggydoggy0101.github.io/post/convex_optimization/</guid>
+      <guid>https://doggydoggy0101.github.io/post/convex_optimization_ch3/</guid>
       
-        <description>Notes on convex optimization</description>
+        <description>Convex optimization chapter 3</description>
+      
+    </item>
+    
+    <item>
+      <title>Convex sets</title>
+      <link>https://doggydoggy0101.github.io/post/convex_optimization_ch2/</link>
+      <pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://doggydoggy0101.github.io/post/convex_optimization_ch2/</guid>
+      
+        <description>Convex optimization chapter 2</description>
       
     </item>
     
