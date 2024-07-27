@@ -8,11 +8,33 @@
     <language>en</language>
     <lastBuildDate>Sat, 27 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://doggydoggy0101.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Convex</title>
+      <link>https://doggydoggy0101.github.io/tags/convex/</link>
+      <pubDate>Sat, 27 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://doggydoggy0101.github.io/tags/convex/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
       <title>Index</title>
       <link>https://doggydoggy0101.github.io/tags/index/</link>
       <pubDate>Sat, 27 Jul 2024 00:00:00 +0000</pubDate>
       
       <guid>https://doggydoggy0101.github.io/tags/index/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Optimization</title>
+      <link>https://doggydoggy0101.github.io/tags/optimization/</link>
+      <pubDate>Sat, 27 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://doggydoggy0101.github.io/tags/optimization/</guid>
       
         <description></description>
       
@@ -30,44 +52,22 @@
     </item>
     
     <item>
+      <title>Qp</title>
+      <link>https://doggydoggy0101.github.io/tags/qp/</link>
+      <pubDate>Sat, 27 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://doggydoggy0101.github.io/tags/qp/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+    <item>
       <title>Robotics</title>
       <link>https://doggydoggy0101.github.io/tags/robotics/</link>
       <pubDate>Sat, 27 Jul 2024 00:00:00 +0000</pubDate>
       
       <guid>https://doggydoggy0101.github.io/tags/robotics/</guid>
-      
-        <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Convex</title>
-      <link>https://doggydoggy0101.github.io/tags/convex/</link>
-      <pubDate>Fri, 26 Jul 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://doggydoggy0101.github.io/tags/convex/</guid>
-      
-        <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Optimization</title>
-      <link>https://doggydoggy0101.github.io/tags/optimization/</link>
-      <pubDate>Fri, 26 Jul 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://doggydoggy0101.github.io/tags/optimization/</guid>
-      
-        <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Qcqp</title>
-      <link>https://doggydoggy0101.github.io/tags/qcqp/</link>
-      <pubDate>Fri, 26 Jul 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://doggydoggy0101.github.io/tags/qcqp/</guid>
       
         <description></description>
       

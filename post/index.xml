@@ -19,6 +19,17 @@
     </item>
     
     <item>
+      <title>QP closed-form</title>
+      <link>https://doggydoggy0101.github.io/post/closed_form_qp/</link>
+      <pubDate>Sat, 27 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://doggydoggy0101.github.io/post/closed_form_qp/</guid>
+      
+        <description>Closed-form solutions for QP</description>
+      
+    </item>
+    
+    <item>
       <title>QCQP to SDP</title>
       <link>https://doggydoggy0101.github.io/post/qcqp_to_sdp/</link>
       <pubDate>Fri, 26 Jul 2024 00:00:00 +0000</pubDate>

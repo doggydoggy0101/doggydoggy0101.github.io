@@ -10,6 +10,8 @@
   <meta charset="utf-8" />
   <title>
     
+      
+        QP closed-form |
       Ian Chen
 
   </title>
@@ -18,7 +20,7 @@
   <meta name="author" content="Ian Chen" />
   <meta
     name="description"
-    content="Ian Chen / Bang-Shien Chen"
+    content="Closed-form solutions for QP"
   />
   
   
@@ -90,10 +92,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
 
-  <link rel="canonical" href="https://doggydoggy0101.github.io/" />
+  <link rel="canonical" href="https://doggydoggy0101.github.io/post/closed_form_qp/" />
 
   
-  <link rel="alternate" type="application/rss+xml" href="/index.xml" title="homepage" />
   
   
   
@@ -128,31 +129,108 @@
   
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="homepage">
-  <meta name="twitter:description" content="Ian Chen / Bang-Shien Chen">
+  <meta name="twitter:title" content="QP closed-form">
+  <meta name="twitter:description" content="Closed-form solutions for QP">
 
 
 
   
-  <meta property="og:url" content="https://doggydoggy0101.github.io/">
+  <meta property="og:url" content="https://doggydoggy0101.github.io/post/closed_form_qp/">
   <meta property="og:site_name" content="homepage">
-  <meta property="og:title" content="homepage">
-  <meta property="og:description" content="Ian Chen / Bang-Shien Chen">
+  <meta property="og:title" content="QP closed-form">
+  <meta property="og:description" content="Closed-form solutions for QP">
   <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-07-27T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-27T00:00:00+00:00">
+    <meta property="article:tag" content="Convex">
+    <meta property="article:tag" content="Optimization">
+    <meta property="article:tag" content="Qp">
 
 
 
+  
+  
+  
   
   <script type="application/ld+json">
     {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      "name": "homepage",
-      "url": "https:\/\/doggydoggy0101.github.io\/",
-      "description": "Ian Chen \/ Bang-Shien Chen",
-      "thumbnailUrl": "https:\/\/doggydoggy0101.github.io\/",
-      "license": ""
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "QP closed-form",
+        "headline": "QP closed-form",
+        "alternativeHeadline": "",
+        "description": "
+      Closed-form solutions for QP
+
+
+    ",
+        "inLanguage": "en",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/doggydoggy0101.github.io\/post\/closed_form_qp\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "copyrightYear" : "2024",
+        "dateCreated": "2024-07-27T00:00:00.00Z",
+        "datePublished": "2024-07-27T00:00:00.00Z",
+        "dateModified": "2024-07-27T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Ian Chen",
+            "url": "https://doggydoggy0101.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/doggydoggy0101.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+      ]
+
+    ,
+        "url" : "https:\/\/doggydoggy0101.github.io\/post\/closed_form_qp\/",
+        "wordCount" : "184",
+        "genre" : [ ],
+        "keywords" : [ 
+      
+      "convex"
+
+    
+      
+        ,
+
+      
+      "optimization"
+
+    
+      
+        ,
+
+      
+      "qp"
+
+    ]
     }
   </script>
 
@@ -178,9 +256,7 @@
       />
       
         <div class="sidebar__introduction-title">
-          <h1>
-            <a href="/">Welcome!</a>
-          </h1>
+          <a href="/">Welcome!</a>
         </div>
       
       <div class="sidebar__introduction-description">
@@ -292,8 +368,6 @@
             
             <a
               
-                class="nav__link--active"
-              
               href="/"
               
               title=""
@@ -354,327 +428,86 @@
       animated fadeInDown
     "
   >
+    
+    
     <div class="post__content">
+      <h1>QP Closed-Form</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                
+                  2024/7/27
+                
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">One-minute read</span>
+          </li>
+        </ul>
+      <div class="container_space">
+          
+          <div class="post_content_text_space">
+            <p>We present a few special cases of quadratic program (QP) that has closed-form solutions.</p>
+<h3 id="qp-with-single-equality-constraint">QP with single equality constraint</h3>
+<p>Consider a convex QP with only one equality constraint
+$$
+\begin{aligned}
+\min\ &amp;\frac{1}{2}x^\top Px+q^\top x+r\\
+\text{s.t. }&amp;a^\top x=b
+\end{aligned}\tag{1}
+$$
+where \(P\) is positive definite (invertible, for later use). We first write the Lagrangian of Problem \((1)\)
+$$
+\mathcal{L}(x,\lambda)=\frac{1}{2}x^\top Px+q^\top x+r + \lambda(a^\top x-b)
+$$</p>
+<p>Since the program is convex, the optimal solution satisfies the KKT conditions (1) first-order condition \(Px^*+q+\lambda^*a^\top\) and (2) primal feasibility \(a^\top x^*=b\), which we write it into matrix form as
+$$
+\begin{bmatrix}P&amp;a\\a^\top&amp;0\end{bmatrix}\begin{bmatrix}x^*\\\lambda^*\end{bmatrix}=\begin{bmatrix}-q\\b\end{bmatrix}
+\implies\begin{bmatrix}x^*\\\lambda^*\end{bmatrix}=\begin{bmatrix}P&amp;a\\a^\top&amp;0\end{bmatrix}^{-1}\begin{bmatrix}-q\\b\end{bmatrix}.
+$$</p>
+<blockquote>
+<p>This is also known as the KKT matrix <a href="/post/closed_form_qp/#BV04">[1]</a>.</p>
+</blockquote>
+<p>Since \(P\) is invertible, denote the Schur complement of block \(P\) by \(s=-a^\top Pa\), and the block inversion
+$$
+\begin{bmatrix}P&amp;a\\a^\top&amp;0\end{bmatrix}^{-1}=\begin{bmatrix}P^{-1}+P^{-1}as^{-1}a^\top p^{-1}&amp;-P^{-1}as^{-1}\\-s^{-1}a^\top P^{-1}&amp;s^{-1}\end{bmatrix},
+$$
+and therefore we get the closed-forms
+$$
+x^*=-P^{-1}q+\frac{a^\top P^{-1}q+b}{a^\top P^{-1}a}P^{-1}a\\[8pt]
+\lambda^*=-\frac{a^\top P^{-1}q+b}{a^\top P^{-1}a}
+$$</p>
+<blockquote>
+<p>We point out that since \(P\) has a special structure here, one can follow Matlab&rsquo;s <a href="https://www.mathworks.com/help/matlab/ref/mldivide.html">mldivide</a> to use LU or Cholesky solver for solving \(P^{-1}a\) and \(P^{-1}q\) fast.</p>
+</blockquote>
+<h2 id="reference">Reference</h2>
+<p><a id="BV04">[1]</a>
+S. Boyd, L. Vandenberghe, Convex optimization, Cambridge university press, 2004.</p>
+
+          </div>
+        </div></div>
+    
+
+    <div class="post__footer">
+      
+      
+
+      
+        <span><a class="tag" href="/tags/convex/">convex</a><a class="tag" href="/tags/optimization/">optimization</a><a class="tag" href="/tags/qp/">qp</a></span>
+
+
       
     </div>
 
     
   </div>
 
-  
-
-  
-  
-    <div
-      class="post 
-        animated fadeInDown
-      "
-    >
-      
-      <div class="post__content">
-        <h3><a href="/post/point_cloud_registration/">POINT CLOUD REGISTRATION</a></h3>
-        
-          <p>Point cloud registration is a well-knowned problem in robotics and computer vision.</p>
-        
-        <a href="/post/point_cloud_registration/">Read more</a></div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            
-              2024/7/27
-            
-
-          </span
-        >
-        
-
-        
-          <span><a class="tag" href="/tags/point-cloud-registration/">point cloud registration</a><a class="tag" href="/tags/robotics/">robotics</a></span>
-
-
-        
-      </div>
-    </div>
-  
-    <div
-      class="post 
-        animated fadeInDown
-      "
-    >
-      
-      <div class="post__content">
-        <h3><a href="/post/closed_form_qp/">QP CLOSED-FORM</a></h3>
-        
-          <p>We present a few special cases of quadratic program (QP) that has closed-form solutions.</p>
-        
-        <a href="/post/closed_form_qp/">Read more</a></div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            
-              2024/7/27
-            
-
-          </span
-        >
-        
-
-        
-          <span><a class="tag" href="/tags/convex/">convex</a><a class="tag" href="/tags/optimization/">optimization</a><a class="tag" href="/tags/qp/">qp</a></span>
-
-
-        
-      </div>
-    </div>
-  
-    <div
-      class="post 
-        animated fadeInDown
-      "
-    >
-      
-      <div class="post__content">
-        <h3><a href="/post/qcqp_to_sdp/">QCQP TO SDP</a></h3>
-        
-          <p>In this note, we look at how to relax a non-convex quadratically constrained quadratic program (QCQP) to a convex semidefinite program (SDP).</p>
-        
-        <a href="/post/qcqp_to_sdp/">Read more</a></div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            
-              2024/7/26
-            
-
-          </span
-        >
-        
-
-        
-          <span><a class="tag" href="/tags/convex/">convex</a><a class="tag" href="/tags/optimization/">optimization</a><a class="tag" href="/tags/qp/">qp</a><a class="tag" href="/tags/sdp/">sdp</a></span>
-
-
-        
-      </div>
-    </div>
-  
-    <div
-      class="post 
-        animated fadeInDown
-      "
-    >
-      
-      <div class="post__content">
-        <h3><a href="/post/semidefinite_programming/">SEMIDEFINITE PROGRAM</a></h3>
-        
-          <p>This is a brief introduction to semidefinite program (SDP). SDPs are like linear programs (LP), but instead with positive semidefinite matrices as variable.</p>
-        
-        <a href="/post/semidefinite_programming/">Read more</a></div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            
-              2024/7/25
-            
-
-          </span
-        >
-        
-
-        
-          <span><a class="tag" href="/tags/convex/">convex</a><a class="tag" href="/tags/optimization/">optimization</a><a class="tag" href="/tags/sdp/">sdp</a></span>
-
-
-        
-      </div>
-    </div>
-  
-    <div
-      class="post 
-        animated fadeInDown
-      "
-    >
-      
-      <div class="post__content">
-        <h3><a href="/post/lie_theory_in_robotics/">LIE THEORY IN ROBOTICS</a></h3>
-        
-          <p>In robotics, we often occur groups such as (\text{SO}(2)), quaternions, (\text{SO}(3)), and (\text{SE}(3)).</p>
-        
-        <a href="/post/lie_theory_in_robotics/">Read more</a></div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            
-              2024/7/24
-            
-
-          </span
-        >
-        
-
-        
-          <span><a class="tag" href="/tags/lie-theory/">Lie theory</a><a class="tag" href="/tags/robotics/">robotics</a></span>
-
-
-        
-      </div>
-    </div>
-  
-    <div
-      class="post 
-        animated fadeInDown
-      "
-    >
-      
-      <div class="post__content">
-        <h3><a href="/post/gauss_newton/">GAUSS-NEWTON</a></h3>
-        
-          <p>The Gauss–Newton algorithm is use to solve non-linear least squares problems.</p>
-        
-        <a href="/post/gauss_newton/">Read more</a></div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            
-              2024/7/23
-            
-
-          </span
-        >
-        
-
-        
-          <span><a class="tag" href="/tags/numercial/">numercial</a><a class="tag" href="/tags/optimization/">optimization</a></span>
-
-
-        
-      </div>
-    </div>
-  
-    <div
-      class="post 
-        animated fadeInDown
-      "
-    >
-      
-      <div class="post__content">
-        <h3><a href="/post/gradient_descent_and_newton_method/">GRADIENT DESCENT &amp; NEWTON&#39;S METHOD</a></h3>
-        
-          <p>Both Gradient descent and Newton’s method are some of the most well-known techniques for solving non-linear problems.</p>
-        
-        <a href="/post/gradient_descent_and_newton_method/">Read more</a></div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            
-              2024/7/23
-            
-
-          </span
-        >
-        
-
-        
-          <span><a class="tag" href="/tags/numercial/">numercial</a><a class="tag" href="/tags/optimization/">optimization</a></span>
-
-
-        
-      </div>
-    </div>
-  
-    <div
-      class="post 
-        animated fadeInDown
-      "
-    >
-      
-      <div class="post__content">
-        <h3><a href="/post/convex_optimization_ch3/">CONVEX FUNCTIONS</a></h3>
-        
-          <p>This is a note about Convex functions – chapther 3 of Convex optimization by Boyd.</p>
-        
-        <a href="/post/convex_optimization_ch3/">Read more</a></div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            
-              2024/7/11
-            
-
-          </span
-        >
-        
-
-        
-          <span><a class="tag" href="/tags/convex/">convex</a><a class="tag" href="/tags/optimization/">optimization</a></span>
-
-
-        
-      </div>
-    </div>
-  
-    <div
-      class="post 
-        animated fadeInDown
-      "
-    >
-      
-      <div class="post__content">
-        <h3><a href="/post/convex_optimization_ch2/">CONVEX SETS</a></h3>
-        
-          <p>This is a note about Convex sets – chapther 2 of Convex optimization by Boyd.</p>
-        
-        <a href="/post/convex_optimization_ch2/">Read more</a></div>
-
-      
-      <div class="post__footer">
-        <em class="fas fa-calendar-day"></em>
-        <span class="post__footer-date"
-          >
-            
-              2024/7/10
-            
-
-          </span
-        >
-        
-
-        
-          <span><a class="tag" href="/tags/convex/">convex</a><a class="tag" href="/tags/optimization/">optimization</a></span>
-
-
-        
-      </div>
-    </div>
-  
-  <div class="pagination">
-    
-
-  </div>
 
       </main>
     </div><footer class="footer footer__base">
