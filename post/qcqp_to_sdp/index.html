@@ -211,7 +211,7 @@
 
     ,
         "url" : "https:\/\/doggydoggy0101.github.io\/post\/qcqp_to_sdp\/",
-        "wordCount" : "65",
+        "wordCount" : "362",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -455,15 +455,80 @@
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">One-minute read</span>
+            <span class="post__meta-text">2-minute read</span>
           </li>
         </ul>
       <div class="container_space">
           
           <div class="post_content_text_space">
-            <p>In this note, we look at how to relax a non-convex quadratically constrained quadratic program  (QCQP) to a convex semidefinite program (SDP). This is also known as Shor&rsquo;s semidefinite relaxation <a href="/post/qcqp_to_sdp/#S87">[1]</a>. Consider a QCQP:</p>
-<p>$$</p>
-<p>$$</p>
+            <p>In this note, we look at how to relax a non-convex quadratically constrained quadratic program  (QCQP) to a convex <a href="https://doggydoggy0101.github.io/post/semidefinite_programming/">semidefinite program</a> (SDP). This is also known as Shor&rsquo;s semidefinite relaxation <a href="/post/qcqp_to_sdp/#S87">[1]</a>. Consider the QCQP:</p>
+<p>$$
+\begin{aligned}
+\min_{x\in\mathbb{R}^n}\ &amp;x^\top Cx\\
+\text{s.t. }&amp;x^\top A_ix=b_i,\ i=1,\dots,m
+\end{aligned}\tag{1}
+$$
+where \(C,A_i\) are symmetric but not neccesarily semidefinite (non-convex).</p>
+<h3 id="lagrange-dual-problem">Lagrange dual problem</h3>
+<p>Consider the Lagrangian of Problem \((1)\),
+$$
+\begin{aligned}
+\mathcal{L}(x,\lambda)&amp;=x^\top Cx-\sum_{i=1}^m\lambda_i(x^\top A_ix-b_i)\\
+&amp;=x^\top \Big(C-\sum_{i=1}^m\lambda_iA_i\Big)x+\sum_{i=1}^m\lambda_ib_i
+\end{aligned}
+$$</p>
+<blockquote>
+<p>We add a minus in front of the Lagrange multiplier to make \(b_i\) positive, won&rsquo;t matter.</p>
+</blockquote>
+<p>The dual function is
+$$
+g(\lambda)=\min_x\ \mathcal{L}(x,\lambda)=
+\begin{cases}
+\sum_{i=1}^n\lambda_ib_i&amp;\text{if }C-\sum_{i=1}^n\lambda_iA_i \succeq0\\
+-\infty&amp;\text{otherwise}
+\end{cases}
+$$</p>
+<p>Therefore (write \(\lambda\) as \(y\)) the Lagrange dual problem is</p>
+<p>$$
+\begin{aligned}
+\max_y\ &amp;\sum_{i=1}^nb^\top y\\
+\text{s.t. }&amp;\sum_{i=1}^ny_iA_i \preceq C
+\end{aligned}\tag{2}
+$$</p>
+<p>If \(x\) is the only solution that satisfies \(x^\top \Big(C-\sum_{i=1}^my_iA_i\Big)x=0\), then it is the optimal solution. Therefore, we derive a <em>dual optimality certifier</em> where we first solve the dual problem for \(y^*\), and if \(\text{nullity}\Big(C-\sum_{i=1}^my^*_iA_i\Big)=1\), then \(y^*\) is the optimal solution of the dual problem and \(x^*\in\text{null}\Big(C-\sum_{i=1}^my^*_iA_i\Big)\) is the optimal solution of Problem \((1)\).</p>
+<h3 id="rank-constrained-semidefinite-relaxation">Rank-constrained semidefinite relaxation</h3>
+<p>We first denote a new variable \(Z=xx^\top\), where \(Z\succeq0\) and \(\text{rank}(Z)=1\).</p>
+<blockquote>
+<p>Note that \(x^\top Mx=\text{tr}(Mxx^\top)\).</p>
+</blockquote>
+<p>We see immediately that Problem \((1)\) is equivalent to a rank-constrained SDP
+$$
+\begin{aligned}
+\min_{Z\in\mathbb{S}^n}\ &amp;\text{tr}(CZ)\\
+\text{s.t. }&amp;\text{tr}(A_iZ)=b_i,\ i=1,\dots,m\\
+&amp;Z\succeq0\\
+&amp;\text{rank}(Z)=1
+\end{aligned}
+$$</p>
+<p>This problem is non-convex due to the rank-constraint (and also it is equivalent to the non-convex orignial problem). However, we can simply drop the rank-constraint and form a convex SDP
+$$
+\begin{aligned}
+\min_{Z\in\mathbb{S}^n}\ &amp;\text{tr}(CZ)\\
+\text{s.t. }&amp;\text{tr}(A_iZ)=b_i,\ i=1,\dots,m\\
+&amp;Z\succeq0
+\end{aligned}\tag{3}
+$$</p>
+<blockquote>
+<p>Recall from <a href="https://doggydoggy0101.github.io/post/semidefinite_programming/">semidefinite program</a> that we can introduce slack variables to deal with inequalites.</p>
+</blockquote>
+<p>We now have a <em>sufficient condition</em> for the tightness of relaxation: If \(\text{rank}(Z^*)=1\), then \(Z^*=x^*{x^*}^\top\) and \(x^*\) is the optimal solution of Problem \((1)\).</p>
+<h3 id="dual-of-dual-bidual">Dual of dual (Bidual)</h3>
+<p>The <a href="https://doggydoggy0101.github.io/post/semidefinite_programming/">dual SDP</a> of Problem \((3)\) is just Problem \((2)\). If strong duality of SDP holds, we have the weak duality relation:
+$$
+f_{(2)}(y^*)=f_{(3)}(Z^*)\leq f_{(1)}(x^*).
+$$</p>
+<h3 id="point-cloud-registration-example">Point cloud registration example</h3>
+<p><span style="color:#999999">to be complete</span></p>
 <h2 id="reference">Reference</h2>
 <p><a id="S87">[1]</a>
 Shor, N. Z. (1987). Quadratic optimization problems. Soviet Journal of Computer and Systems Sciences, 25, 1-11.</p>
