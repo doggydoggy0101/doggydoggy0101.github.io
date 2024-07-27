@@ -209,7 +209,7 @@
 
     ,
         "url" : "https:\/\/doggydoggy0101.github.io\/post\/point_cloud_registration\/",
-        "wordCount" : "564",
+        "wordCount" : "1032",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -439,7 +439,7 @@
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">3-minute read</span>
+            <span class="post__meta-text">5-minute read</span>
           </li>
         </ul>
       <div class="container_space">
@@ -479,31 +479,31 @@ $$
 &amp;=x^\top Mx
 \end{aligned}
 $$
-where \(x\) is transformed from \(X\) by vectorizing \(R\), concating \(t\), then apply homogeneous coordinate. We denote the transformation as \(\text{vec}(\cdot)\) for notation simplicity:
+where \(x\) is transformed from \(X\) by vectorizing \(R\), concating \(t\), then apply homogeneous coordinate. We say \(x\) is the vectorize of \(X\):
 $$
-\text{vec}:\mathbb{R}^{4\times4}\to\mathbb{R}^{13}\ ;\ \ \begin{pmatrix}
+\begin{pmatrix}
 X_{1:3,1}&amp;X_{1:3,2}&amp;X_{1:3,3}&amp;X_{1:3,4}\\
-*&amp;*&amp;*&amp;*\end{pmatrix}\mapsto\begin{pmatrix}
+*&amp;*&amp;*&amp;*\end{pmatrix}_{4\times4}\xrightarrow{\text{vectorize}}\begin{pmatrix}
 X_{1:3,1}\\
 X_{1:3,2}\\
 X_{1:3,3}\\
-X_{1:3,4}\\1\end{pmatrix}
+X_{1:3,4}\\1\end{pmatrix}_{13\times1}
 $$</p>
 <blockquote>
 <p>$$
-X=\begin{pmatrix}R&amp;t\\0^\top&amp;1\end{pmatrix}\implies\text{vec}(X)=\begin{pmatrix}
+\begin{pmatrix}R&amp;t\\0^\top&amp;1\end{pmatrix}_{4\times4}\xrightarrow{\text{vectorize}}\begin{pmatrix}
 R^{(1)}\\
 R^{(2)}\\
 R^{(3)}\\
-t\\1\end{pmatrix}
+t\\1\end{pmatrix}_{13\times1}
 $$</p>
 </blockquote>
 <p>That is, Problem \((1)\) can be written as an equivalent (non-convex) quadratic program:
 $$
 \begin{aligned}
-\min_{x\in\mathbb{R}^{13}}&amp;x^\top Mx\\
-\text{s.t. }&amp;R\in\text{SO}(3)\\
-&amp;e_{13}^\top x=1
+\min\ &amp;x^\top Mx\\
+\text{s.t. }&amp;e_{13}^\top x=1\\
+&amp;x\in S=\{x\in\mathbb{R}^{13}\mid R\in\text{SO}(3)\}
 \end{aligned}\tag{2}
 $$</p>
 <h1 id="solving-non-convex-qp">Solving non-convex QP</h1>
@@ -511,10 +511,70 @@ $$</p>
 <p>This idea is simple but actually quite practical and can be found in various literature, we just relaxation the \(\text{SO}(3)\) constraints.
 $$
 \begin{aligned}
+\min\ &amp;x^\top Mx\\
+\text{s.t. }&amp;e_{13}^\top x=1
+\end{aligned}
+$$
+This is now a quadratic program with only one linear equality constraint that has a <a href="https://doggydoggy0101.github.io/post/closed_form_qp/">closed-form</a> solution
+$$
+x^*=\frac{M^{-1}e_{13}}{e_{13}^\top M^{-1}e_{13}}.
+$$</p>
+<p>If we de-vectorize \(x^*\), we get \(\bar{R}\in\mathbb{R}^{3\times3}\) and \(\bar{t}\in\mathbb{R}^3\), that is, \(\bar{R}\) is not feasible and \(t^*=\bar{t}\) is the optimal translation. We then project \(\bar{R}\) to the nearest rotation matrix by singular value decomposition
+$$
+R^*=U\text{diag}([1,1,\det(UV^\top)])V^\top\ ;\ \ \bar{R}=U\Sigma V^\top.\tag{3}
+$$</p>
+<blockquote>
+<p>This is also known as the orghogonal Procrustes problem <a href="/post/point_cloud_registration/#S66">[4]</a>.</p>
+</blockquote>
+<h3 id="semidefinite-relaxation">Semidefinite relaxation</h3>
+<p>We first write Problem \((2)\) to an equivalent non-convex quadratically constrained quadratic program (QCQP). The \(\text{SO}(3)\) constraint can be written as multiple (non-convex) quadratic constraints <a href="/post/point_cloud_registration/#BG17">[5]</a>. The linear equality constraint in Problem \((2)\) can also be written quadratically, and now becomes a QCQP
+$$
+\begin{aligned}
 \min_{x\in\mathbb{R}^{13}}&amp;x^\top Mx\\
-&amp;e_{13}^\top x=1
+\text{s.t. }&amp;x^\top A_ix=0,\ i=1,\dots,m\\
+&amp;x^\top E_{13}x=1
 \end{aligned}
 $$</p>
+<p>Recall that we can relax <a href="https://doggydoggy0101.github.io/post/qcqp_to_sdp/">non-convex QCQP to convex SDP</a>, which leaves us a convex SDP
+$$
+\begin{aligned}
+\min_{Z\in\mathbb{S}^{13}}\ &amp;\text{tr}(MZ)\\
+\text{s.t. }&amp;\text{tr}(A_iZ)=0,\ i=1,\dots,m\\
+&amp;\text{tr}(E_{13}Z)=1\\
+&amp;X\succeq0
+\end{aligned}
+$$
+and also a <em>sufficient condition</em> of the tightness of relaxaiton: If \(\text{rank}(Z^*)=1\), then \(Z^*=x^*{x^*}^\top\) and \(x^*\) is the optimal solution of Problem \((2)\).</p>
+<blockquote>
+<p>Note that the Lagrange dual problem approach will not work here due to the fact that the matrix we are checking nullity will have rows full of zeros. This is because there is no constraint to translation, which causes us unable to find the nullspace of such matrix. Briales and Gonzalez-Jimenez <a href="/post/point_cloud_registration/#BG17">[5]</a> uses the Lagrange dual approach, but they are solving the rotation estimation problem only.</p>
+</blockquote>
+<h3 id="riemannian-gradient-descent">Riemannian gradient descent</h3>
+<p>The variable \(X\in\text{SE}(3)\) is also a manifold, thereby we can use manifold optimization techniques <a href="/post/point_cloud_registration/#B23">[6]</a>, for example, Riemannian gradient descent. The idea is simple, we find a smoothing function \(\bar{f}\) for the objective of Problem \((2)\) that has some gradient to project it onto the tangent space of \(X\). We immediately have the smoothing function</p>
+<p>$$
+f:S\to\mathbb{R}\implies \bar{f}:\mathbb{R}^{13}\to\mathbb{R}\ ;\ \ \nabla\bar{f}(x)=2Mx.
+$$</p>
+<p>Since we are now optimizing along the \(\text{SE}(3)\) manifold, the equality constraint in Problem \((2)\) is redundant. The Euclidean gradient of \(\bar{f}(X)\) is just the de-vectorized \(\nabla\bar{f}(x)\). We then find the Riemannian gradient by \(\text{SE}(3)\)&rsquo;s projection</p>
+<p>$$
+\text{grad }f(X)=\text{Proj}_{X}(\nabla\bar{f}(X))=\begin{pmatrix}R_X\frac{R_{X}^\top R_{\nabla\bar{f}(X)}-R_{\nabla\bar{f}(X)}^\top R_X}{2}&amp;t_{\nabla\bar{f}(X)}\\0^\top&amp;1\end{pmatrix},
+$$
+where \(X=\begin{pmatrix}R_x&amp;t_X\\0^\top&amp;1\end{pmatrix}\) and \(\nabla\bar{f}(X)=\begin{pmatrix}R_{\nabla\bar{f}(X)}&amp;t_{\nabla\bar{f}(X)}\\0^\top&amp;0\end{pmatrix}\).</p>
+<p>We use the retraction
+$$
+\text{R}_X(v)=\begin{pmatrix}U\text{diag}([1,1,\det(UV^\top)])V^\top&amp;t_X+t_v\\0^\top&amp;1\end{pmatrix},
+$$
+where \(X=\begin{pmatrix}R_x&amp;t_X\\0^\top&amp;1\end{pmatrix},v=\begin{pmatrix}R_v&amp;t_v\\0^\top&amp;0\end{pmatrix}\) and \((R_X+R_v)=U\Sigma V^\top\).</p>
+<blockquote>
+<p>The upper right block is the polar retraction of \(\text{SO}(3)\), which is equivalent to Equation \((3)\).</p>
+</blockquote>
+<p>Finally, update \(X\) by Riemannian gradiet descent
+$$
+X_{k+1}=\text{R}_{X_k}(-\alpha_k\text{grad}f(X_k)),
+$$
+where \(\alpha_k\) is the step length.</p>
+<h3 id="lie-theory">Lie theory</h3>
+<p><span style="color:#999999">to be complete</span></p>
+<h3 id="comparison">Comparison</h3>
+<p><span style="color:#999999">to be complete</span></p>
 <h2 id="reference">Reference</h2>
 <p><a id="H87">[1]</a>
 Horn, B. K. (1987). Closed-form solution of absolute orientation using unit quaternions. Josa a, 4(4), 629-642.</p>
@@ -522,6 +582,12 @@ Horn, B. K. (1987). Closed-form solution of absolute orientation using unit quat
 Carlone, L., Tron, R., Daniilidis, K., &amp; Dellaert, F. (2015, May). Initialization techniques for 3D SLAM: A survey on rotation estimation and its use in pose graph optimization. In 2015 IEEE international conference on robotics and automation (ICRA) (pp. 4597-4604). IEEE.</p>
 <p><a id="YSC20">[3]</a>
 Yang, H., Shi, J., &amp; Carlone, L. (2020). Teaser: Fast and certifiable point cloud registration. IEEE Transactions on Robotics, 37(2), 314-333.</p>
+<p><a id="S66">[4]</a>
+Schönemann, P. H. (1966). A generalized solution of the orthogonal procrustes problem. Psychometrika, 31(1), 1-10.</p>
+<p><a id="BG17">[5]</a>
+Briales, J., &amp; Gonzalez-Jimenez, J. (2017). Convex global 3d registration with lagrangian duality. In Proceedings of the IEEE conference on computer vision and pattern recognition (pp. 4960-4969).</p>
+<p><a id="B23">[6]</a>
+Boumal, N. (2023). An introduction to optimization on smooth manifolds. Cambridge University Press.</p>
 
           </div>
         </div></div>
