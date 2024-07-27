@@ -3,18 +3,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://doggydoggy0101.github.io/</loc>
-    <lastmod>2024-07-26T00:00:00+00:00</lastmod>
+    <lastmod>2024-07-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://doggydoggy0101.github.io/tags/index/</loc>
+    <lastmod>2024-07-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://doggydoggy0101.github.io/post/point_cloud_registration/</loc>
+    <lastmod>2024-07-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://doggydoggy0101.github.io/tags/point-cloud-registration/</loc>
+    <lastmod>2024-07-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://doggydoggy0101.github.io/post/</loc>
+    <lastmod>2024-07-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://doggydoggy0101.github.io/tags/robotics/</loc>
+    <lastmod>2024-07-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://doggydoggy0101.github.io/tags/</loc>
+    <lastmod>2024-07-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://doggydoggy0101.github.io/tags/convex/</loc>
     <lastmod>2024-07-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://doggydoggy0101.github.io/tags/index/</loc>
-    <lastmod>2024-07-26T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://doggydoggy0101.github.io/tags/optimization/</loc>
-    <lastmod>2024-07-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://doggydoggy0101.github.io/post/</loc>
     <lastmod>2024-07-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://doggydoggy0101.github.io/tags/qcqp/</loc>
@@ -26,9 +38,6 @@
     <loc>https://doggydoggy0101.github.io/tags/sdp/</loc>
     <lastmod>2024-07-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://doggydoggy0101.github.io/tags/</loc>
-    <lastmod>2024-07-26T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://doggydoggy0101.github.io/post/semidefinite_programming/</loc>
     <lastmod>2024-07-25T00:00:00+00:00</lastmod>
   </url><url>
@@ -36,9 +45,6 @@
     <lastmod>2024-07-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://doggydoggy0101.github.io/post/lie_theory_in_robotics/</loc>
-    <lastmod>2024-07-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://doggydoggy0101.github.io/tags/robotics/</loc>
     <lastmod>2024-07-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://doggydoggy0101.github.io/post/gauss_newton/</loc>

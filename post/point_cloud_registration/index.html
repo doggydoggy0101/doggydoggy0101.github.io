@@ -11,7 +11,7 @@
   <title>
     
       
-        Posts |
+        Point cloud registration |
       Ian Chen
 
   </title>
@@ -20,7 +20,7 @@
   <meta name="author" content="Ian Chen" />
   <meta
     name="description"
-    content="Ian Chen / Bang-Shien Chen"
+    content="A note on point cloud registration"
   />
   
   
@@ -92,10 +92,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
 
-  <link rel="canonical" href="https://doggydoggy0101.github.io/post/" />
+  <link rel="canonical" href="https://doggydoggy0101.github.io/post/point_cloud_registration/" />
 
   
-  <link rel="alternate" type="application/rss+xml" href="/post/index.xml" title="homepage" />
   
   
   
@@ -130,23 +129,103 @@
   
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Posts">
-  <meta name="twitter:description" content="Ian Chen / Bang-Shien Chen">
+  <meta name="twitter:title" content="Point cloud registration">
+  <meta name="twitter:description" content="A note on point cloud registration">
 
 
 
   
-  <meta property="og:url" content="https://doggydoggy0101.github.io/post/">
+  <meta property="og:url" content="https://doggydoggy0101.github.io/post/point_cloud_registration/">
   <meta property="og:site_name" content="homepage">
-  <meta property="og:title" content="Posts">
-  <meta property="og:description" content="Ian Chen / Bang-Shien Chen">
+  <meta property="og:title" content="Point cloud registration">
+  <meta property="og:description" content="A note on point cloud registration">
   <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-07-27T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-27T00:00:00+00:00">
+    <meta property="article:tag" content="Point Cloud Registration">
+    <meta property="article:tag" content="Robotics">
 
 
 
   
   
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Point cloud registration",
+        "headline": "Point cloud registration",
+        "alternativeHeadline": "",
+        "description": "
+      A note on point cloud registration
+
+
+    ",
+        "inLanguage": "en",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/doggydoggy0101.github.io\/post\/point_cloud_registration\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "copyrightYear" : "2024",
+        "dateCreated": "2024-07-27T00:00:00.00Z",
+        "datePublished": "2024-07-27T00:00:00.00Z",
+        "dateModified": "2024-07-27T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Ian Chen",
+            "url": "https://doggydoggy0101.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/doggydoggy0101.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+      ]
+
+    ,
+        "url" : "https:\/\/doggydoggy0101.github.io\/post\/point_cloud_registration\/",
+        "wordCount" : "564",
+        "genre" : [ ],
+        "keywords" : [ 
+      
+      "point cloud registration"
+
+    
+      
+        ,
+
+      
+      "robotics"
+
+    ]
+    }
+  </script>
+
 
 </head>
 <body class="body">
@@ -337,128 +416,131 @@
 </div>
 </header>
   <div
-    class="archive 
+    class="post 
       animated fadeInDown
     "
   >
     
-      <div class="archive__heading">2024</div>
+    
+    <div class="post__content">
+      <h1>Point Cloud Registration</h1>
       
-        <ul class="archive__list">
-          <li class="archive__list-item">
-            <a class="archive__list-title" href="/post/point_cloud_registration/" title="Point cloud registration">Point cloud registration</a>
-            <div class="archive__list-date">
-              
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
                 
                   2024/7/27
                 
 
               
-            </div>
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">3-minute read</span>
           </li>
         </ul>
-      
-        <ul class="archive__list">
-          <li class="archive__list-item">
-            <a class="archive__list-title" href="/post/qcqp_to_sdp/" title="QCQP to SDP">QCQP to SDP</a>
-            <div class="archive__list-date">
-              
-                
-                  2024/7/26
-                
+      <div class="container_space">
+          
+          <div class="post_content_text_space">
+            <p>Point cloud registration is a well-knowned problem in robotics and computer vision. Suppose that we have two sets of 3D point clouds, we want to find a spactial transformation between the two point clouds, for example, a rotation matrix or a translation vector.</p>
+<figure><img src="../../images/point_cloud_registration/bunny.png"
+    alt="image" width="540"><figcaption>
+      <p>Standford bunny dataset.</p>
+    </figcaption>
+</figure>
 
-              
-            </div>
-          </li>
-        </ul>
-      
-        <ul class="archive__list">
-          <li class="archive__list-item">
-            <a class="archive__list-title" href="/post/semidefinite_programming/" title="Semidefinite program">Semidefinite program</a>
-            <div class="archive__list-date">
-              
-                
-                  2024/7/25
-                
+<p>Here is a quick example, the left figures are the input data, and we are using the darker red and blue points, while the lighter points are only for visualization purpose. Both blue and red point clouds has 100 points with 80 percent of them are ouliters. What we are trying to do here is to align the darker blue points onto the darker red points, where there are a lot of mis-information.</p>
+<h1 id="problem-statement">Problem statement</h1>
+<p>Lets write it into equations. Again, suppose that we two sets of 3D point clouds \(\{a_i\}_{i=1}^n\) and \(\{b_i\}_{i=1}^n\) , we multiply a rotation \(R\in\text{SO}(3)\) onto \(a_i\), and add a translation \(t\in\mathbb{R}^3\) onto it, then idealy equals \(b_i\)</p>
+<p>$$
+b_i\approx Ra_i+t+\varepsilon_i,
+$$
+where \(\varepsilon_i\sim\mathcal{N}(0,\sigma_i^2I_3)\) follows the isotropic Gaussian distribution. One can simply apply least squares, or equivalently, the maximum likelihood of normal distribution is a least squares problem, we get the objective of point cloud registration</p>
+<p>$$
+\min_{R\in\text{SO(3)},t\in\mathbb{R}^3}\sum_{i=1}^n\frac{1}{\sigma_i^2}\|b_i-(Ra_i+t)\|^2
+\iff
+\min_{X\in\text{SE}(3)}\sum_{i=1}^n\frac{1}{\sigma_i^2}\|\bar{b}_i-X\bar{a}_i\|^2,\tag{1}
+$$
+where \(\bar{a}_i,\bar{b}_i\) are homogeneous coordinates.</p>
+<blockquote>
+<p>Horn <a href="/post/point_cloud_registration/#H87">[1]</a> proposed a <em>closed-form</em> solution for Problem \((1)\) by decoupling the problem to rotation and translation sub-problems (and also assume that there is no noise in the model). Decouple approaches <a href="/post/point_cloud_registration/#CTD15">[2]</a>  typically first solves the rotation estimation problem by omitting the translation, and after we get a estimated rotation, the original problem becomes the translation estimation that is a linear least squares. In this case, translation depends heavily on how well the rotation is estimated, and the rotation are often poorly estimated since it omits translation information entirely. Yang <a href="/post/point_cloud_registration/#YSC20">[3]</a> constructed <em>Translation Invariant Measurements</em> for the rotation estimation problem, results in better estimation but increases the measurement number complexity up to \(\mathcal{O}(n^2)\).</p>
+</blockquote>
+<p>In this note, we focus on approaches that directly solves Problem \((1)\), that is, we directly deal with the variable \(X\in\text{SE}(3)\). <a href="https://en.wikipedia.org/wiki/Point-set_registration">Wiki</a> also has a comprehensive survey on point cloud registration solvers, I highly recommened you read it.</p>
+<h3 id="quadratic-program">Quadratic program</h3>
+<p>We first rewrite the objective of Problem \((1)\) to quadratic form:
+$$
+\begin{aligned}
+\sum_{i=1}^n\|b_i-Ra_i-t\|^2&amp;=\sum_{i=1}^n(Ra_i+t-b_i)^\top(Ra_i+t-b_i)\\
+&amp;=\sum_{i=1}^nx^\top\underbrace{\begin{bmatrix}a_i^\top\otimes I_3&amp;I_3&amp;-b_i^\top\end{bmatrix}^\top \begin{bmatrix}a_i^\top\otimes I_3&amp;I_3&amp;-b_i^\top\end{bmatrix}}_{M_i}x\\
+&amp;=x^\top\Big(\sum_{i=1}^nM_i\Big)x\\
+&amp;=x^\top Mx
+\end{aligned}
+$$
+where \(x\) is transformed from \(X\) by vectorizing \(R\), concating \(t\), then apply homogeneous coordinate. We denote the transformation as \(\text{vec}(\cdot)\) for notation simplicity:
+$$
+\text{vec}:\mathbb{R}^{4\times4}\to\mathbb{R}^{13}\ ;\ \ \begin{pmatrix}
+X_{1:3,1}&amp;X_{1:3,2}&amp;X_{1:3,3}&amp;X_{1:3,4}\\
+*&amp;*&amp;*&amp;*\end{pmatrix}\mapsto\begin{pmatrix}
+X_{1:3,1}\\
+X_{1:3,2}\\
+X_{1:3,3}\\
+X_{1:3,4}\\1\end{pmatrix}
+$$</p>
+<blockquote>
+<p>$$
+X=\begin{pmatrix}R&amp;t\\0^\top&amp;1\end{pmatrix}\implies\text{vec}(X)=\begin{pmatrix}
+R^{(1)}\\
+R^{(2)}\\
+R^{(3)}\\
+t\\1\end{pmatrix}
+$$</p>
+</blockquote>
+<p>That is, Problem \((1)\) can be written as an equivalent (non-convex) quadratic program:
+$$
+\begin{aligned}
+\min_{x\in\mathbb{R}^{13}}&amp;x^\top Mx\\
+\text{s.t. }&amp;R\in\text{SO}(3)\\
+&amp;e_{13}^\top x=1
+\end{aligned}\tag{2}
+$$</p>
+<h1 id="solving-non-convex-qp">Solving non-convex QP</h1>
+<h3 id="linear-relaxation">Linear relaxation</h3>
+<p>This idea is simple but actually quite practical and can be found in various literature, we just relaxation the \(\text{SO}(3)\) constraints.
+$$
+\begin{aligned}
+\min_{x\in\mathbb{R}^{13}}&amp;x^\top Mx\\
+&amp;e_{13}^\top x=1
+\end{aligned}
+$$</p>
+<h2 id="reference">Reference</h2>
+<p><a id="H87">[1]</a>
+Horn, B. K. (1987). Closed-form solution of absolute orientation using unit quaternions. Josa a, 4(4), 629-642.</p>
+<p><a id="CTD15">[2]</a>
+Carlone, L., Tron, R., Daniilidis, K., &amp; Dellaert, F. (2015, May). Initialization techniques for 3D SLAM: A survey on rotation estimation and its use in pose graph optimization. In 2015 IEEE international conference on robotics and automation (ICRA) (pp. 4597-4604). IEEE.</p>
+<p><a id="YSC20">[3]</a>
+Yang, H., Shi, J., &amp; Carlone, L. (2020). Teaser: Fast and certifiable point cloud registration. IEEE Transactions on Robotics, 37(2), 314-333.</p>
 
-              
-            </div>
-          </li>
-        </ul>
-      
-        <ul class="archive__list">
-          <li class="archive__list-item">
-            <a class="archive__list-title" href="/post/lie_theory_in_robotics/" title="Lie theory in Robotics">Lie theory in Robotics</a>
-            <div class="archive__list-date">
-              
-                
-                  2024/7/24
-                
+          </div>
+        </div></div>
+    
 
-              
-            </div>
-          </li>
-        </ul>
+    <div class="post__footer">
       
-        <ul class="archive__list">
-          <li class="archive__list-item">
-            <a class="archive__list-title" href="/post/gradient_descent_and_newton_method/" title="Gradient descent &amp; Newton&#39;s method">Gradient descent &amp; Newton&#39;s method</a>
-            <div class="archive__list-date">
-              
-                
-                  2024/7/23
-                
+      
 
-              
-            </div>
-          </li>
-        </ul>
       
-        <ul class="archive__list">
-          <li class="archive__list-item">
-            <a class="archive__list-title" href="/post/gauss_newton/" title="Gauss-Newton">Gauss-Newton</a>
-            <div class="archive__list-date">
-              
-                
-                  2024/7/23
-                
+        <span><a class="tag" href="/tags/point-cloud-registration/">point cloud registration</a><a class="tag" href="/tags/robotics/">robotics</a></span>
 
-              
-            </div>
-          </li>
-        </ul>
-      
-        <ul class="archive__list">
-          <li class="archive__list-item">
-            <a class="archive__list-title" href="/post/convex_optimization_ch3/" title="Convex functions">Convex functions</a>
-            <div class="archive__list-date">
-              
-                
-                  2024/7/11
-                
 
-              
-            </div>
-          </li>
-        </ul>
       
-        <ul class="archive__list">
-          <li class="archive__list-item">
-            <a class="archive__list-title" href="/post/convex_optimization_ch2/" title="Convex sets">Convex sets</a>
-            <div class="archive__list-date">
-              
-                
-                  2024/7/10
-                
-
-              
-            </div>
-          </li>
-        </ul>
-      
+    </div>
 
     
   </div>
+
 
       </main>
     </div><footer class="footer footer__base">
