@@ -11,7 +11,7 @@
   <title>
     
       
-        Sdp |
+        Semidefinite program |
       Ian Chen
 
   </title>
@@ -20,7 +20,7 @@
   <meta name="author" content="Ian Chen" />
   <meta
     name="description"
-    content="Ian Chen / Bang-Shien Chen"
+    content="A note semidefinite programming"
   />
   
   
@@ -92,10 +92,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
 
-  <link rel="canonical" href="https://doggydoggy0101.github.io/tags/sdp/" />
+  <link rel="canonical" href="https://doggydoggy0101.github.io/post/semidefinite_programming/" />
 
   
-  <link rel="alternate" type="application/rss+xml" href="/tags/sdp/index.xml" title="homepage" />
   
   
   
@@ -130,23 +129,111 @@
   
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Sdp">
-  <meta name="twitter:description" content="Ian Chen / Bang-Shien Chen">
+  <meta name="twitter:title" content="Semidefinite program">
+  <meta name="twitter:description" content="A note semidefinite programming">
 
 
 
   
-  <meta property="og:url" content="https://doggydoggy0101.github.io/tags/sdp/">
+  <meta property="og:url" content="https://doggydoggy0101.github.io/post/semidefinite_programming/">
   <meta property="og:site_name" content="homepage">
-  <meta property="og:title" content="Sdp">
-  <meta property="og:description" content="Ian Chen / Bang-Shien Chen">
+  <meta property="og:title" content="Semidefinite program">
+  <meta property="og:description" content="A note semidefinite programming">
   <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-07-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-25T00:00:00+00:00">
+    <meta property="article:tag" content="Convex">
+    <meta property="article:tag" content="Optimization">
+    <meta property="article:tag" content="Sdp">
 
 
 
   
   
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Semidefinite program",
+        "headline": "Semidefinite program",
+        "alternativeHeadline": "",
+        "description": "
+      A note semidefinite programming
+
+
+    ",
+        "inLanguage": "en",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/doggydoggy0101.github.io\/post\/semidefinite_programming\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "copyrightYear" : "2024",
+        "dateCreated": "2024-07-25T00:00:00.00Z",
+        "datePublished": "2024-07-25T00:00:00.00Z",
+        "dateModified": "2024-07-25T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Ian Chen",
+            "url": "https://doggydoggy0101.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/doggydoggy0101.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+      ]
+
+    ,
+        "url" : "https:\/\/doggydoggy0101.github.io\/post\/semidefinite_programming\/",
+        "wordCount" : "270",
+        "genre" : [ ],
+        "keywords" : [ 
+      
+      "convex"
+
+    
+      
+        ,
+
+      
+      "optimization"
+
+    
+      
+        ,
+
+      
+      "sdp"
+
+    ]
+    }
+  </script>
+
 
 </head>
 <body class="body">
@@ -337,44 +424,115 @@
 </div>
 </header>
   <div
-    class="archive 
+    class="post 
       animated fadeInDown
     "
   >
     
-      <div class="archive__heading">2024</div>
+    
+    <div class="post__content">
+      <h1>Semidefinite Program</h1>
       
-        <ul class="archive__list">
-          <li class="archive__list-item">
-            <a class="archive__list-title" href="/post/qcqp_to_sdp/" title="QCQP to SDP">QCQP to SDP</a>
-            <div class="archive__list-date">
-              
-                
-                  2024/7/26
-                
-
-              
-            </div>
-          </li>
-        </ul>
-      
-        <ul class="archive__list">
-          <li class="archive__list-item">
-            <a class="archive__list-title" href="/post/semidefinite_programming/" title="Semidefinite program">Semidefinite program</a>
-            <div class="archive__list-date">
-              
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
                 
                   2024/7/25
                 
 
               
-            </div>
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">2-minute read</span>
           </li>
         </ul>
+      <div class="container_space">
+          
+          <div class="post_content_text_space">
+            <p>This is a brief introduction to semidefinite program (SDP). SDPs are like linear programs (LP), but instead with positive semidefinite matrices as variable. I will suggest one learn the basic concepts of LP before going on. Analogously to linear programming, the <em>standard form</em> of SDP is given as</p>
+<p>$$
+\begin{aligned}
+\min_{X\in\mathbb{S}^n}\ &amp;\langle C,X\rangle\\
+\text{s.t. }\ &amp;\langle A_i,X\rangle=b_i,\ i=1,\dots,n\\
+&amp;X\succeq0
+\end{aligned}\tag{1}
+$$</p>
+<blockquote>
+<p>Note that \(\langle C,X\rangle=\text{tr}(C^\top X)\), SDP are sometimes written as
+$$
+\begin{aligned}
+\min_{X\in\mathbb{S}^n}\ &amp;\text{tr}(C^\top X)\\
+\text{s.t. }\ &amp;\text{tr}(A_i^\top X)=b_i,\ i=1,\dots,n\\
+&amp;X\succeq0
+\end{aligned}
+$$</p>
+</blockquote>
+<p>Similar to LP, if we have inequality constraints in Problem \((1)\), we can add <em>slack variables</em> to form an equivalent SDP with equality constraints only.</p>
+<h3 id="dual-sdp">Dual SDP</h3>
+<p>Consider the Lagrangian of Problem \((1)\),</p>
+<p>$$
+\begin{aligned}
+\mathcal{L}(X,\lambda)&amp;=\langle C,X\rangle-\sum_{i=1}^n\lambda_i(\langle A_i,X\rangle-b_i)\\
+&amp;=\langle C,X\rangle-\sum_{i=1}^n\lambda_i\langle A,X\rangle_i+\sum_{i=1}^n\lambda_ib_i
+\end{aligned}
+$$</p>
+<blockquote>
+<p>We add a minus in front of the Lagrange multiplier to make \(b_i\) positive, won&rsquo;t matter.</p>
+</blockquote>
+<p>The dual function is</p>
+<p>$$
+g(\lambda)=\min_X\ \mathcal{L}(X,\lambda)=
+\begin{cases}
+\sum_{i=1}^n\lambda_ib_i&amp; C-\sum_{i=1}^n\lambda_iA_i \succeq0\\
+-\infty&amp;\text{otherwise}
+\end{cases}
+$$</p>
+<p>Therefore (write \(\lambda\) as \(y\)) the Lagrange dual problem is</p>
+<p>$$
+\begin{aligned}
+\max_y\ &amp;\sum_{i=1}^nb^\top y\\
+\text{s.t. }&amp;\sum_{i=1}^ny_iA_i \preceq C
+\end{aligned}\tag{2}
+$$</p>
+<p><strong>Weak duality</strong> Let \(X\) and \(y\) be a feasible solution of Problem \((1)\) and Problem \((2)\), respectively, then
+$$
+b^\top y\leq\langle C,X\rangle.
+$$</p>
+<p><strong>Strong duality</strong> Let \(X^*\) and \(y^*\) be the optimal solution of Problem \((1)\) and Problem \((2)\), respectively. If both problems are strictly feasible, i.e., \(X\succ0\) and \(\sum_{i=1}^ny_iA_i \prec C\), then
+$$
+b^\top y^*=\langle C,X^*\rangle.
+$$</p>
+<blockquote>
+<p>Strictly feasible implies feasible set has interior point, which is also the <em>Slater&rsquo;s condition</em>.</p>
+</blockquote>
+<h3 id="interior-point-method">Interior point method</h3>
+<p><span style="color:#999999">to be continue</span></p>
+<h2 id="reference">Reference</h2>
+<!-- <a id="VB96">[1]</a>  -->
+<p>[1] Vandenberghe, L., &amp; Boyd, S. (1996). Semidefinite programming. SIAM review, 38(1), 49-95.</p>
+
+          </div>
+        </div></div>
+    
+
+    <div class="post__footer">
       
+      
+
+      
+        <span><a class="tag" href="/tags/convex/">convex</a><a class="tag" href="/tags/optimization/">optimization</a><a class="tag" href="/tags/sdp/">sdp</a></span>
+
+
+      
+    </div>
 
     
   </div>
+
 
       </main>
     </div><footer class="footer footer__base">
