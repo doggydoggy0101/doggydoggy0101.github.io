@@ -41,13 +41,13 @@
     </item>
     
     <item>
-      <title>Semidefinite program</title>
+      <title>Semidefinite programming</title>
       <link>https://doggydoggy0101.github.io/post/semidefinite_programming/</link>
       <pubDate>Thu, 25 Jul 2024 00:00:00 +0000</pubDate>
       
       <guid>https://doggydoggy0101.github.io/post/semidefinite_programming/</guid>
       
-        <description>A note semidefinite programming</description>
+        <description>A note of semidefinite programming</description>
       
     </item>
     
@@ -103,6 +103,17 @@
       <guid>https://doggydoggy0101.github.io/achievements/</guid>
       
         <description>achievements</description>
+      
+    </item>
+    
+    <item>
+      <title>Linear programming</title>
+      <link>https://doggydoggy0101.github.io/post/linear_programming/</link>
+      <pubDate>Mon, 15 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://doggydoggy0101.github.io/post/linear_programming/</guid>
+      
+        <description>A note of linear programming</description>
       
     </item>
     
