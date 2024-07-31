@@ -6,7 +6,18 @@
     <description>Recent content in Lie Theory on homepage</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 24 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://doggydoggy0101.github.io/tags/lie-theory/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 29 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://doggydoggy0101.github.io/tags/lie-theory/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Riemannian and Lie theory comparison</title>
+      <link>https://doggydoggy0101.github.io/post/riemannian_lie_compare/</link>
+      <pubDate>Mon, 29 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://doggydoggy0101.github.io/post/riemannian_lie_compare/</guid>
+      
+        <description>A comparison between Riemannian and Lie thoery</description>
+      
+    </item>
+    
     <item>
       <title>Lie theory in Robotics</title>
       <link>https://doggydoggy0101.github.io/post/lie_theory_in_robotics/</link>

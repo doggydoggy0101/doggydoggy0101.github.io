@@ -11,7 +11,7 @@
   <title>
     
       
-        Index |
+        Riemannian and Lie theory comparison |
       Ian Chen
 
   </title>
@@ -20,7 +20,7 @@
   <meta name="author" content="Ian Chen" />
   <meta
     name="description"
-    content="Ian Chen / Bang-Shien Chen"
+    content="A comparison between Riemannian and Lie thoery"
   />
   
   
@@ -92,10 +92,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
 
-  <link rel="canonical" href="https://doggydoggy0101.github.io/tags/index/" />
+  <link rel="canonical" href="https://doggydoggy0101.github.io/post/riemannian_lie_compare/" />
 
   
-  <link rel="alternate" type="application/rss+xml" href="/tags/index/index.xml" title="homepage" />
   
   
   
@@ -130,23 +129,111 @@
   
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Index">
-  <meta name="twitter:description" content="Ian Chen / Bang-Shien Chen">
+  <meta name="twitter:title" content="Riemannian and Lie theory comparison">
+  <meta name="twitter:description" content="A comparison between Riemannian and Lie thoery">
 
 
 
   
-  <meta property="og:url" content="https://doggydoggy0101.github.io/tags/index/">
+  <meta property="og:url" content="https://doggydoggy0101.github.io/post/riemannian_lie_compare/">
   <meta property="og:site_name" content="homepage">
-  <meta property="og:title" content="Index">
-  <meta property="og:description" content="Ian Chen / Bang-Shien Chen">
+  <meta property="og:title" content="Riemannian and Lie theory comparison">
+  <meta property="og:description" content="A comparison between Riemannian and Lie thoery">
   <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-07-29T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-29T00:00:00+00:00">
+    <meta property="article:tag" content="Lie Theory">
+    <meta property="article:tag" content="Manifold">
+    <meta property="article:tag" content="Robotics">
 
 
 
   
   
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Riemannian and Lie theory comparison",
+        "headline": "Riemannian and Lie theory comparison",
+        "alternativeHeadline": "",
+        "description": "
+      A comparison between Riemannian and Lie thoery
+
+
+    ",
+        "inLanguage": "en",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/doggydoggy0101.github.io\/post\/riemannian_lie_compare\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "copyrightYear" : "2024",
+        "dateCreated": "2024-07-29T00:00:00.00Z",
+        "datePublished": "2024-07-29T00:00:00.00Z",
+        "dateModified": "2024-07-29T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Ian Chen",
+            "url": "https://doggydoggy0101.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/doggydoggy0101.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+      ]
+
+    ,
+        "url" : "https:\/\/doggydoggy0101.github.io\/post\/riemannian_lie_compare\/",
+        "wordCount" : "396",
+        "genre" : [ ],
+        "keywords" : [ 
+      
+      "Lie theory"
+
+    
+      
+        ,
+
+      
+      "manifold"
+
+    
+      
+        ,
+
+      
+      "robotics"
+
+    ]
+    }
+  </script>
+
 
 </head>
 <body class="body">
@@ -337,30 +424,183 @@
 </div>
 </header>
   <div
-    class="archive 
+    class="post 
       animated fadeInDown
     "
   >
     
-      <div class="archive__heading">2024</div>
+    
+    <div class="post__content">
+      <h1>Riemannian and Lie Theory Comparison</h1>
       
-        <ul class="archive__list">
-          <li class="archive__list-item">
-            <a class="archive__list-title" href="/post/" title="Posts">Posts</a>
-            <div class="archive__list-date">
-              
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
                 
                   2024/7/29
                 
 
               
-            </div>
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">2-minute read</span>
           </li>
         </ul>
+      <div class="container_space">
+          
+          <div class="post_content_text_space">
+            <p>Commonly groups we occur in robotics, e.g., \(\text{SO}(3)\) and \(\text{SE}(3)\), are manifolds. One can manipulate derivatives by Riemannian manifold structures, however, one can also manipulate derivatives by <a href="https://doggydoggy0101.github.io/post/lie_theory_in_robotics/">Lie theory</a>, due to the fact that these manifolds are also groups, i.e., they are <em>Lie groups</em>. In this note, we give a simple example of constructing gradients using Riemannian manifold structure and Lie theory, respectively.</p>
+<h3 id="problem-statement">Problem statement</h3>
+<p>Consider a simple problem, the Wahba problem with only one measurement
+$$
+\min\ f(X)=\|b-Xa\|^2\ ;\ \ X\in\text{SO}(3),\tag{1}
+$$
+where
+$$
+X=\begin{pmatrix}r_{11}&amp;r_{12}&amp;r_{12}\\r_{21}&amp;r_{22}&amp;r_{22}\\r_{31}&amp;r_{32}&amp;r_{32}\end{pmatrix},\ a=\begin{pmatrix}a_1\\a_2\\a_3\end{pmatrix},\ b=\begin{pmatrix}b_1\\b_2\\b_3\end{pmatrix}.
+$$</p>
+<p>We suppose the initial guess \(X=I_3\) for simplicity, that is,
+$$
+X_0=\begin{pmatrix}1&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;0&amp;1\end{pmatrix}.
+$$</p>
+<h3 id="riemannian-approach">Riemannian approach</h3>
+<p>We first rewrite Problem \((1)\) to an eqivalent <a href="https://doggydoggy0101.github.io/post/point_cloud_registration/">quadratic form</a> by vectorizing \(X\)
+$$
+\|b-Xa\|^2\iff x^\top M x,
+$$
+where
+$$
+M=\begin{pmatrix}
+a_1^2&amp;0&amp;0&amp;a_1a_2&amp;0&amp;0&amp;a_1a_3&amp;0&amp;0&amp;-a_1b_1\\
+0&amp;a_1^2&amp;0&amp;0&amp;a_1a_2&amp;0&amp;0&amp;a_1a_3&amp;0&amp;-a_1b_2\\
+0&amp;0&amp;a_1^2&amp;0&amp;0&amp;a_1a_2&amp;0&amp;0&amp;a_1a_3&amp;-a_1b_3\\
+a_1a_2&amp;0&amp;0&amp;a_2^2&amp;0&amp;0&amp;a_2a_3&amp;0&amp;0&amp;-a_2b_1\\
+0&amp;a_1a_2&amp;0&amp;0&amp;a_2^2&amp;0&amp;0&amp;a_2a_3&amp;0&amp;-a_2b_2\\
+0&amp;0&amp;a_1a_2&amp;0&amp;0&amp;a_2^2&amp;0&amp;0&amp;a_2a_3&amp;-a_2b_3\\
+a_1a_3&amp;0&amp;0&amp;a_2a_3&amp;0&amp;0&amp;a_3^2&amp;0&amp;0&amp;-a_3b_1\\
+0&amp;a_1a_3&amp;0&amp;0&amp;a_2a_3&amp;0&amp;0&amp;a_3^2&amp;0&amp;-a_3b_2\\
+0&amp;0&amp;a_1a_3&amp;0&amp;0&amp;a_2a_3&amp;0&amp;0&amp;a_3^2&amp;-a_3b_3\\
+-a_1b_1&amp;-a_1b_2&amp;-a_1b_3&amp;-a_2b_1&amp;-a_2b_2&amp;-a_2b_3&amp;-a_3b_1&amp;-a_3b_2&amp;-a_3b_3&amp;b^\top b
+\end{pmatrix},\ x=
+\begin{pmatrix}r_{11}\\r_{21}\\r_{31}\\r_{12}\\r_{22}\\r_{32}\\r_{13}\\r_{23}\\r_{33}\\1\end{pmatrix}.
+$$</p>
+<p>We write the relation again
+$$
+f:\text{SO}(3)\to\mathbb{R}\ ;\ \ f(X)=\|b-Xa\|^2\iff f:\{x\in\mathbb{R}^{10}\mid R\in\text{SO}(3)\}\to\mathbb{R}\ ;\ \ f(x)=x^\top Mx.
+$$</p>
+<blockquote>
+<p>We use the same function notation \(f\) because they are all most the same but with differect input shape only.</p>
+</blockquote>
+<p>The idea of Riemannian manifold optimization is to find a smoothing function \(\bar{f}\) for \(f\) that has some gradient to project it onto the tangent space of \(X\). We immediately have the smoothing function</p>
+<p>$$
+\bar{f}:\mathbb{R}^{10}\to\mathbb{R}\ ;\ \ \bar{f}(x)=x^\top Mx\ ;\ \ \nabla\bar{f}(x)=2Mx.
+$$</p>
+<p>Therefore, the Euclidean gradient is
+$$
+\nabla\bar{f}(x_0)=2Mx_0=2
+\begin{pmatrix}
+a_1^2-a_1b_1\\a_1a_2-a_1b_2\\a_1a_3-a_1b_3\\
+a_1a_2-a_2b_1\\a_2^2-a_2b_2\\a_2a_3-a_2b_3\\
+a_1a_3-a_3b_1\\a_2a_3-a_3b_2\\a_3^2-a_3b_3\\
+b^\top b-a^\top b
+\end{pmatrix}
+$$</p>
+<blockquote>
+<p>We don&rsquo;t care the gradient of the last element.</p>
+</blockquote>
+<p>The Euclidean gradient of the original problem is obtained by de-vectorizing \(\nabla\bar{f}(x)\)
+$$
+\nabla\bar{f}(X_0)=2
+\begin{pmatrix}
+a_1^2-a_1b_1&amp;a_1a_2-a_2b_1&amp;a_1a_3-a_3b_1\\
+a_1a_2-a_1b_2&amp;a_2^2-a_2b_2&amp;a_2a_3-a_3b_2\\
+a_1a_3-a_1b_3&amp;a_2a_3-a_2b_3&amp;a_3^2-a_3b_3
+\end{pmatrix}
+$$</p>
+<p>Recall the projection of special orthogonal groups is
+$$
+\text{Proj}_X(U)=X\frac{X^\top U-U^\top X}{2}
+$$</p>
+<p>Thus the Riemannian gradient is
+$$
+\text{grad }f(X_0)=\text{Proj}_{X_0}(\nabla\bar{f}(X))=
+\begin{pmatrix}
+0&amp;a_1b_2-a_2b_1&amp;a_1b_3-a_3b_1\\
+a_2b_1-a_1b_2&amp;0&amp;a_2b_3-a_3b_2\\
+a_3b_1-a_1b_3&amp;a_3b_2-a_2b_3&amp;0
+\end{pmatrix}\tag{2}
+$$</p>
+<h3 id="lie-theory-approach">Lie theory approach</h3>
+<p>We first denote additional notations for Problem \((1)\) as follows
+$$
+f(X)=\|b-Xa\|^2=r(X)^2\ ;\ \ r(X)=\|b-Xa\|.
+$$</p>
+<p>The gradient defined by Lie theory is
+$$
+\begin{aligned}
+\frac{\partial f(X)}{\partial X}&amp;=2\frac{\partial r(X)}{\partial X}r(X)\\
+&amp;=2\|b-Xa\|\frac{\partial\|b-Xa\|}{\partial X}\\
+&amp;=2\|b-Xa\|\frac{\frac{\partial b-Xa}{\partial X}(b-Xa)}{\|b-Xa\|}\\[8pt]
+&amp;=2X[a]_\times(b-Xa)
+\end{aligned}
+$$</p>
+<p>Therefore the gradient at \(X_0\) defined by Lie theory is
+$$
+2I_3[a]_\times(b-I_3a)=2
+\begin{pmatrix}
+0&amp;-a_3&amp;a_2\\a_3&amp;0&amp;-a_1\\-a_2&amp;a_1&amp;0
+\end{pmatrix}
+\begin{pmatrix}
+b_1-a_1\\b_2-a_2\\b_3-a_3
+\end{pmatrix}=2
+\begin{pmatrix}
+a_2b_3-a_3b_2\\a_3b_1-a_1b_3\\a_1b_2-a_2b_1
+\end{pmatrix}:=l
+$$</p>
+<p>Convert it back to the tangent space
+$$
+\text{grad }f(X_0)=I_3[l]_\times=2
+\begin{pmatrix}
+0&amp;a_2b_1-a_1b_2&amp;a_3b_1-a_1b_3\\a_1b_2-a_2b_1&amp;0&amp;a_3b_2-a_2b_3\\a_1b_3-a_3b_1&amp;a_2b_3-a_3b_2&amp;0
+\end{pmatrix}\tag{3}
+$$</p>
+<h3 id="comparison">Comparison</h3>
+<p>Now if we compare Equation \((2)\) and Equation \((3)\) side by side,
+$$
+\begin{pmatrix}
+0&amp;a_1b_2-a_2b_1&amp;a_1b_3-a_3b_1\\
+a_2b_1-a_1b_2&amp;0&amp;a_2b_3-a_3b_2\\
+a_3b_1-a_1b_3&amp;a_3b_2-a_2b_3&amp;0
+\end{pmatrix}\tag{2}
+$$</p>
+<p>$$
+2\begin{pmatrix}
+0&amp;a_2b_1-a_1b_2&amp;a_3b_1-a_1b_3\\a_1b_2-a_2b_1&amp;0&amp;a_3b_2-a_2b_3\\a_1b_3-a_3b_1&amp;a_2b_3-a_3b_2&amp;0
+\end{pmatrix}\tag{3}
+$$</p>
+
+          </div>
+        </div></div>
+    
+
+    <div class="post__footer">
       
+      
+
+      
+        <span><a class="tag" href="/tags/lie-theory/">Lie theory</a><a class="tag" href="/tags/manifold/">manifold</a><a class="tag" href="/tags/robotics/">robotics</a></span>
+
+
+      
+    </div>
 
     
   </div>
+
 
       </main>
     </div><footer class="footer footer__base">
