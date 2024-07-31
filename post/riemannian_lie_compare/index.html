@@ -210,7 +210,7 @@
 
     ,
         "url" : "https:\/\/doggydoggy0101.github.io\/post\/riemannian_lie_compare\/",
-        "wordCount" : "396",
+        "wordCount" : "511",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -447,7 +447,7 @@
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">2-minute read</span>
+            <span class="post__meta-text">3-minute read</span>
           </li>
         </ul>
       <div class="container_space">
@@ -539,33 +539,35 @@ $$</p>
 $$
 f(X)=\|b-Xa\|^2=r(X)^2\ ;\ \ r(X)=\|b-Xa\|.
 $$</p>
-<p>The gradient defined by Lie theory is
+<p>The gradient defined by <a href="https://doggydoggy0101.github.io/post/lie_theory_in_robotics/">Lie theory</a> is
 $$
 \begin{aligned}
 \frac{\partial f(X)}{\partial X}&amp;=2\frac{\partial r(X)}{\partial X}r(X)\\
-&amp;=2\|b-Xa\|\frac{\partial\|b-Xa\|}{\partial X}\\
-&amp;=2\|b-Xa\|\frac{\frac{\partial b-Xa}{\partial X}(b-Xa)}{\|b-Xa\|}\\[8pt]
-&amp;=2X[a]_\times(b-Xa)
+&amp;=2\frac{\partial\|b-Xa\|}{\partial X}\|b-Xa\|\\
+&amp;=2\frac{(\frac{\partial b-Xa}{\partial X})^\top(b-Xa)}{\|b-Xa\|}\|b-Xa\|\\[8pt]
+&amp;=2[a]_\times^\top X^\top(b-Xa)
 \end{aligned}
 $$</p>
 <p>Therefore the gradient at \(X_0\) defined by Lie theory is
 $$
-2I_3[a]_\times(b-I_3a)=2
+2_3[a]_\times^\top I_3(b-I_3a)=2
 \begin{pmatrix}
-0&amp;-a_3&amp;a_2\\a_3&amp;0&amp;-a_1\\-a_2&amp;a_1&amp;0
+0&amp;a_3&amp;-a_2\\-a_3&amp;0&amp;a_1\\a_2&amp;-a_1&amp;0
 \end{pmatrix}
 \begin{pmatrix}
 b_1-a_1\\b_2-a_2\\b_3-a_3
 \end{pmatrix}=2
 \begin{pmatrix}
-a_2b_3-a_3b_2\\a_3b_1-a_1b_3\\a_1b_2-a_2b_1
+a_3b_2-a_2b_3\\a_1b_3-a_3b_1\\a_2b_1-a_1b_2
 \end{pmatrix}:=l
 $$</p>
 <p>Convert it back to the tangent space
 $$
 \text{grad }f(X_0)=I_3[l]_\times=2
 \begin{pmatrix}
-0&amp;a_2b_1-a_1b_2&amp;a_3b_1-a_1b_3\\a_1b_2-a_2b_1&amp;0&amp;a_3b_2-a_2b_3\\a_1b_3-a_3b_1&amp;a_2b_3-a_3b_2&amp;0
+0&amp;a_1b_2-a_2b_1&amp;a_1b_3-a_3b_1\\
+a_2b_1-a_1b_2&amp;0&amp;a_2b_3-a_3b_2\\
+a_3b_1-a_1b_3&amp;a_3b_2-a_2b_3&amp;0
 \end{pmatrix}\tag{3}
 $$</p>
 <h3 id="comparison">Comparison</h3>
@@ -579,9 +581,32 @@ a_3b_1-a_1b_3&amp;a_3b_2-a_2b_3&amp;0
 $$</p>
 <p>$$
 2\begin{pmatrix}
-0&amp;a_2b_1-a_1b_2&amp;a_3b_1-a_1b_3\\a_1b_2-a_2b_1&amp;0&amp;a_3b_2-a_2b_3\\a_1b_3-a_3b_1&amp;a_2b_3-a_3b_2&amp;0
+0&amp;a_1b_2-a_2b_1&amp;a_1b_3-a_3b_1\\
+a_2b_1-a_1b_2&amp;0&amp;a_2b_3-a_3b_2\\
+a_3b_1-a_1b_3&amp;a_3b_2-a_2b_3&amp;0
 \end{pmatrix}\tag{3}
 $$</p>
+<p>The gradient defined by Riemannian manifold structure and Lie theory only differs by a scalar multiplication.</p>
+<h3 id="numerical-examples">Numerical examples</h3>
+<p>Sample code can be found <a href="https://github.com/doggydoggy0101/math_project/tree/main/riemannian_and_lie_compare">here</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">a: <span class="o">[</span>0.92947474 0.74578588 0.58093557<span class="o">]</span>
+</span></span><span class="line"><span class="cl">b: <span class="o">[</span> 0.07961108  0.12796614 -1.31715327<span class="o">]</span>
+</span></span></code></pre></div><p>Set initial guess \(X_0=I_3\),</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gradient defined by Riemannian manifold structure:
+</span></span><span class="line"><span class="cl"> <span class="o">[[</span> 0.          0.05956848 -1.27050959<span class="o">]</span>
+</span></span><span class="line"><span class="cl"> <span class="o">[</span>-0.05956848  0.         -1.0566544 <span class="o">]</span>
+</span></span><span class="line"><span class="cl"> <span class="o">[</span> 1.27050959  1.0566544   0.        <span class="o">]]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">gradient defined by Lie theory:
+</span></span><span class="line"><span class="cl"> <span class="o">[[</span> 0.          0.11913696 -2.54101919<span class="o">]</span>
+</span></span><span class="line"><span class="cl"> <span class="o">[</span>-0.11913696  0.         -2.11330879<span class="o">]</span>
+</span></span><span class="line"><span class="cl"> <span class="o">[</span> 2.54101919  2.11330879  0.        <span class="o">]]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> ratio:
+</span></span><span class="line"><span class="cl"> <span class="o">[[</span>nan  2.  2.<span class="o">]</span>
+</span></span><span class="line"><span class="cl"> <span class="o">[</span> 2. nan  2.<span class="o">]</span>
+</span></span><span class="line"><span class="cl"> <span class="o">[</span> 2.  2. nan<span class="o">]]</span>
+</span></span></code></pre></div><p>The ratio is always 2 in numerical experiments, even with random initial guess and multiple point clouds. Verified Equation \((2)\) that \(a_1b_2-a_2b_1=0.92947474\times0.12796614 - 0.74578588\times0.07961108=0.059568475349753194\).</p>
 
           </div>
         </div></div>
