@@ -210,7 +210,7 @@
 
     ,
         "url" : "https:\/\/doggydoggy0101.github.io\/post\/linear_programming\/",
-        "wordCount" : "354",
+        "wordCount" : "487",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -447,7 +447,7 @@
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">2-minute read</span>
+            <span class="post__meta-text">3-minute read</span>
           </li>
         </ul>
       <div class="container_space">
@@ -552,6 +552,24 @@ $$
 \end{aligned}\tag{5}
 $$</p>
 </blockquote>
+<h3 id="complementary-slackness">Complementary slackness</h3>
+<p><strong>Complementary slackness Theorem</strong> Suppose \(x^*\) and \(y^*\) are feasible solutions of Problem \((3)\) and Problem \((4)\), respectively. Then \(x^*\) and \(y^*\) are optimal solutions if and only if
+$$
+\begin{cases}
+u_ix_i^*=0,&amp;\forall\ i=1,\dots,n\\
+v_jx_j^*=0,&amp;\forall\ j=1,\dots,m
+\end{cases}
+$$
+Note that the objective and constraint functions are convex, recall the KKT sufficient conditions for Problem \((3)\).
+$$
+\begin{aligned}
+&amp;c-A^\top \lambda-\nu=0&amp;\text{(stationary)}\\
+&amp; Ax^*\geq b,\ x^*\geq0&amp;\text{(primal feasibility)}\\
+&amp;\lambda\geq0,\ \nu\geq0&amp;\text{(dual feasibility)}\\
+&amp;\lambda_i(b-Ax^*_i)=0,\ \nu_ix^*_i=0,\ i=1,\dots,n&amp;\text{(complementary slackness)}
+\end{aligned}
+$$</p>
+<p>Since \(x^*\) and \(y^*=\lambda\) are feasible solutions, it follows from the Lagrange dual problem that stationary condition, primal feasibility, and dual feasibility holds. Take \(u_i=\nu_i\) and \(v_i=b-Ax^*_i\), then complementary slackness also holds. By the KKT conditions, \(x^*\) is an optimal solution of Problem \((3)\). One can verify that \(y^*\) is an optimal solution of Problem \((4)\) by the same procedure.</p>
 <h3 id="simplex-method">Simplex method</h3>
 <blockquote>
 <p>Simplex method was invented by George Dantzig.</p>
