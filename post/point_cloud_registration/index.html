@@ -573,7 +573,7 @@ where \(\alpha_k\) is the step length.</p>
 <h3 id="lie-theory">Lie theory</h3>
 <p>Another way to obtain Riemannian gradient is by leveraging <a href="https://doggydoggy0101.github.io/post/lie_theory_in_robotics/">Lie theory</a>, which is the more common way in robotics. \(\text{SE}(3)\) or \(\text{SO}(3)\) are not only manifolds, but also groups, which are <em>Lie groups</em>. Every Lie group has an exact equivalent <em>Lie algebra</em> (tangent space at identity), which is a vector space. Thereby, we can define derivatives on such vector space to manipulate calculus. Recall the Jacobian of norm function and the Jacobian of <a href="https://doggydoggy0101.github.io/post/lie_theory_in_robotics/">group actions</a> of \(\text{SE}(3)\):</p>
 <p>$$
-J^{\|g(X)\|}_{g(X)}=\frac{\partial\|g(X)\|}{\partial g(X)}=\frac{J_{g}(X)^\top g(X)}{\|g(X)\|}\ ;\ \ J_g(X)=\frac{\partial g(X)}{\partial X}\\[8pt]
+J^{\|g(X)\|}_{X}=\frac{\partial\|g(X)\|}{\partial X}=\frac{J_{g}(X)^\top g(X)}{\|g(X)\|}\ ;\ \ J_g(X)=\frac{\partial g(X)}{\partial X}\\[8pt]
 J^{X\cdot p}_X=\frac{\partial Xp}{\partial X}=\begin{bmatrix}R&amp;-R[p]_\times\end{bmatrix}\ ;\ \ X=\begin{pmatrix}R&amp;t\\0^\top&amp;1\end{pmatrix}\in\text{SE}(3)
 $$</p>
 <blockquote>
