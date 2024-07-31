@@ -19,6 +19,17 @@
     </item>
     
     <item>
+      <title>Linear programming</title>
+      <link>https://doggydoggy0101.github.io/post/linear_programming/</link>
+      <pubDate>Sun, 28 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://doggydoggy0101.github.io/post/linear_programming/</guid>
+      
+        <description>A note of linear programming</description>
+      
+    </item>
+    
+    <item>
       <title>Point cloud registration</title>
       <link>https://doggydoggy0101.github.io/post/point_cloud_registration/</link>
       <pubDate>Sat, 27 Jul 2024 00:00:00 +0000</pubDate>
@@ -92,17 +103,6 @@
       <guid>https://doggydoggy0101.github.io/post/gradient_descent_and_newton_method/</guid>
       
         <description>Notes on gradient descent and Newton&#39;s method</description>
-      
-    </item>
-    
-    <item>
-      <title>Linear programming</title>
-      <link>https://doggydoggy0101.github.io/post/linear_programming/</link>
-      <pubDate>Mon, 15 Jul 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://doggydoggy0101.github.io/post/linear_programming/</guid>
-      
-        <description>A note of linear programming</description>
       
     </item>
     
