@@ -210,7 +210,7 @@
 
     ,
         "url" : "https:\/\/doggydoggy0101.github.io\/post\/riemannian_lie_compare\/",
-        "wordCount" : "511",
+        "wordCount" : "655",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -447,7 +447,7 @@
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">3-minute read</span>
+            <span class="post__meta-text">4-minute read</span>
           </li>
         </ul>
       <div class="container_space">
@@ -525,9 +525,15 @@ $$</p>
 $$
 \text{Proj}_X(U)=X\frac{X^\top U-U^\top X}{2}
 $$</p>
+<blockquote>
+<p><span style="color:#FF0000">We use the projection mulitplied by 2 to match Lie theory&rsquo;s gradient:
+$$
+\text{Proj}_X(U)=X(X^\top U-U^\top X)
+$$</span></p>
+</blockquote>
 <p>Thus the Riemannian gradient is
 $$
-\text{grad }f(X_0)=\text{Proj}_{X_0}(\nabla\bar{f}(X))=
+\text{grad }f(X_0)=\text{Proj}_{X_0}(\nabla\bar{f}(X))=2
 \begin{pmatrix}
 0&amp;a_1b_2-a_2b_1&amp;a_1b_3-a_3b_1\\
 a_2b_1-a_1b_2&amp;0&amp;a_2b_3-a_3b_2\\
@@ -570,43 +576,46 @@ a_2b_1-a_1b_2&amp;0&amp;a_2b_3-a_3b_2\\
 a_3b_1-a_1b_3&amp;a_3b_2-a_2b_3&amp;0
 \end{pmatrix}\tag{3}
 $$</p>
-<h3 id="comparison">Comparison</h3>
-<p>Now if we compare Equation \((2)\) and Equation \((3)\) side by side,
-$$
-\begin{pmatrix}
-0&amp;a_1b_2-a_2b_1&amp;a_1b_3-a_3b_1\\
-a_2b_1-a_1b_2&amp;0&amp;a_2b_3-a_3b_2\\
-a_3b_1-a_1b_3&amp;a_3b_2-a_2b_3&amp;0
-\end{pmatrix}\tag{2}
-$$</p>
-<p>$$
-2\begin{pmatrix}
-0&amp;a_1b_2-a_2b_1&amp;a_1b_3-a_3b_1\\
-a_2b_1-a_1b_2&amp;0&amp;a_2b_3-a_3b_2\\
-a_3b_1-a_1b_3&amp;a_3b_2-a_2b_3&amp;0
-\end{pmatrix}\tag{3}
-$$</p>
-<p>The gradient defined by Riemannian manifold structure and Lie theory only differs by a scalar multiplication.</p>
-<h3 id="numerical-examples">Numerical examples</h3>
+<p>We see immediately that Equation \((2)\) and Equation \((3)\) are identical, i.e., the gradient defined by Riemannian manifold structure (up to a scalar 2) and Lie theory are the same.</p>
+<h1 id="numerical-examples">Numerical examples</h1>
 <p>Sample code can be found <a href="https://github.com/doggydoggy0101/math_project/tree/main/riemannian_and_lie_compare">here</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">a: <span class="o">[</span>0.92947474 0.74578588 0.58093557<span class="o">]</span>
-</span></span><span class="line"><span class="cl">b: <span class="o">[</span> 0.07961108  0.12796614 -1.31715327<span class="o">]</span>
+<h3 id="special-orthogonal-group-wahba-problem">Special orthogonal group (Wahba problem)</h3>
+<p>Given 2 3D point that differs by some rotation,</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">a: <span class="o">[</span>1. 2. 3.<span class="o">]</span>
+</span></span><span class="line"><span class="cl">b: <span class="o">[</span>-0.97104865  1.97120561 -3.02843407<span class="o">]</span>
 </span></span></code></pre></div><p>Set initial guess \(X_0=I_3\),</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gradient defined by Riemannian manifold structure:
-</span></span><span class="line"><span class="cl"> <span class="o">[[</span> 0.          0.05956848 -1.27050959<span class="o">]</span>
-</span></span><span class="line"><span class="cl"> <span class="o">[</span>-0.05956848  0.         -1.0566544 <span class="o">]</span>
-</span></span><span class="line"><span class="cl"> <span class="o">[</span> 1.27050959  1.0566544   0.        <span class="o">]]</span>
+</span></span><span class="line"><span class="cl"> <span class="o">[[</span>  0.           7.82660583  -0.23057624<span class="o">]</span>
+</span></span><span class="line"><span class="cl"> <span class="o">[</span> -7.82660583   0.         -23.94096999<span class="o">]</span>
+</span></span><span class="line"><span class="cl"> <span class="o">[</span>  0.23057624  23.94096999   0.        <span class="o">]]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">gradient defined by Lie theory:
-</span></span><span class="line"><span class="cl"> <span class="o">[[</span> 0.          0.11913696 -2.54101919<span class="o">]</span>
-</span></span><span class="line"><span class="cl"> <span class="o">[</span>-0.11913696  0.         -2.11330879<span class="o">]</span>
-</span></span><span class="line"><span class="cl"> <span class="o">[</span> 2.54101919  2.11330879  0.        <span class="o">]]</span>
+</span></span><span class="line"><span class="cl"> <span class="o">[[</span>  0.           7.82660583  -0.23057624<span class="o">]</span>
+</span></span><span class="line"><span class="cl"> <span class="o">[</span> -7.82660583   0.         -23.94096999<span class="o">]</span>
+</span></span><span class="line"><span class="cl"> <span class="o">[</span>  0.23057624  23.94096999   0.        <span class="o">]]</span>
+</span></span></code></pre></div><p>The two gradients are identical in numerical experiments, even with random initial guess and multiple points. Verified Equation \((2)\) and Equation \((3)\) that
+$$
+\begin{aligned}
+2(a_1b_2-a_2b_1)&amp;=(1\times1.97120561-2\times-0.97104865)=7.82660582\\
+2(a_1b_3-a_3b_1)&amp;=(1\times-3.02843407-3\times-0.97104865)=-0.23057624\\
+2(a_2b_3-a_3b_2)&amp;=(2\times-3.02843407-3\times-1.97120561)=-23.94096994
+\end{aligned}
+$$</p>
+<h3 id="special-euclidean-group-point-cloud-registration">Special Euclidean group (point cloud registration)</h3>
+<p>Given 2 \(n\) points of 3D point cloud, random rotation and translation, and random initial guess,</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gradient defined by Riemannian manifold structure:
+</span></span><span class="line"><span class="cl"> <span class="o">[[</span>-129.18527829   -4.8927901  -116.16634065  126.18953233<span class="o">]</span>
+</span></span><span class="line"><span class="cl"> <span class="o">[</span>  31.36032243  -97.52342836   11.83295836 -280.70397327<span class="o">]</span>
+</span></span><span class="line"><span class="cl"> <span class="o">[</span>  -0.82265493  146.21842695   23.50938512  390.58394176<span class="o">]</span>
+</span></span><span class="line"><span class="cl"> <span class="o">[</span>   0.            0.            0.            0.        <span class="o">]]</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"> ratio:
-</span></span><span class="line"><span class="cl"> <span class="o">[[</span>nan  2.  2.<span class="o">]</span>
-</span></span><span class="line"><span class="cl"> <span class="o">[</span> 2. nan  2.<span class="o">]</span>
-</span></span><span class="line"><span class="cl"> <span class="o">[</span> 2.  2. nan<span class="o">]]</span>
-</span></span></code></pre></div><p>The ratio is always 2 in numerical experiments, even with random initial guess and multiple point clouds. Verified Equation \((2)\) that \(a_1b_2-a_2b_1=0.92947474\times0.12796614 - 0.74578588\times0.07961108=0.059568475349753194\).</p>
+</span></span><span class="line"><span class="cl">gradient defined by Lie theory:
+</span></span><span class="line"><span class="cl"> <span class="o">[[</span>-129.18527829   -4.8927901  -116.16634065  126.18953233<span class="o">]</span>
+</span></span><span class="line"><span class="cl"> <span class="o">[</span>  31.36032243  -97.52342836   11.83295836 -280.70397327<span class="o">]</span>
+</span></span><span class="line"><span class="cl"> <span class="o">[</span>  -0.82265493  146.21842695   23.50938512  390.58394176<span class="o">]</span>
+</span></span><span class="line"><span class="cl"> <span class="o">[</span>   0.            0.            0.            0.        <span class="o">]]</span>
+</span></span></code></pre></div><p>the gradient defined by Riemannian manifold structure and Lie theory are also identical in this case.</p>
+<p><strong>Need further verification</strong> We conclude that when we can find a smoothing function with Euclidean gradient by simply relax the feasible manifold space to Euclidean space, and also we can define the gradient by Lie theory, then the two gradients are the same.</p>
 
           </div>
         </div></div>
