@@ -209,7 +209,7 @@
 
     ,
         "url" : "https:\/\/doggydoggy0101.github.io\/post\/point_cloud_registration\/",
-        "wordCount" : "1247",
+        "wordCount" : "1284",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -439,7 +439,7 @@
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">6-minute read</span>
+            <span class="post__meta-text">7-minute read</span>
           </li>
         </ul>
       <div class="container_space">
@@ -554,7 +554,7 @@ f:S\to\mathbb{R}\implies \bar{f}:\mathbb{R}^{13}\to\mathbb{R}\ ;\ \ \nabla\bar{f
 $$</p>
 <p>Since we are now optimizing along the \(\text{SE}(3)\) manifold, the equality constraint in Problem \((2)\) is redundant. The Euclidean gradient of \(\bar{f}(X)\) is just the de-vectorized \(\nabla\bar{f}(x)\). We then find the Riemannian gradient by \(\text{SE}(3)\)&rsquo;s projection</p>
 <p>$$
-\text{grad }f(X)=\text{Proj}_{X}(\nabla\bar{f}(X))=\begin{pmatrix}R_X\frac{R_{X}^\top R_{\nabla\bar{f}(X)}-R_{\nabla\bar{f}(X)}^\top R_X}{2}&amp;t_{\nabla\bar{f}(X)}\\0^\top&amp;1\end{pmatrix},
+\text{grad }f(X)=\text{Proj}_{X}(\nabla\bar{f}(X))=\begin{pmatrix}R_XR_{X}^\top R_{\nabla\bar{f}(X)}-R_{\nabla\bar{f}(X)}^\top R_X&amp;t_{\nabla\bar{f}(X)}\\0^\top&amp;1\end{pmatrix},
 $$
 where \(X=\begin{pmatrix}R_x&amp;t_X\\0^\top&amp;1\end{pmatrix}\) and \(\nabla\bar{f}(X)=\begin{pmatrix}R_{\nabla\bar{f}(X)}&amp;t_{\nabla\bar{f}(X)}\\0^\top&amp;0\end{pmatrix}\).</p>
 <p>We use the retraction
@@ -602,6 +602,9 @@ J_{r_i}=\frac{\partial\|\bar{b}_i-X\bar{a}_i\|}{\partial X}
 =\frac{J_X^{(\bar{b}_i-X\bar{a}_i)\top}(\bar{b}_i-X\bar{a}_i)}{\|\bar{b}_i-X\bar{a}_i|}
 =\frac{\begin{bmatrix}-R&amp;R[a_i]_\times\end{bmatrix}^\top(b_i-Ra_i-t)}{\|b_i-Ra_i-t\|}.
 $$</p>
+<blockquote>
+<p>Note that the denominators can be cancelled out with \(r(X)\).</p>
+</blockquote>
 <p>We now have a Lie algebra \((J_f)^\wedge\in T_X{\text{SE}(3)}\), by Equation \((9)\) in <a href="/post/point_cloud_registration/#SDA18">[7]</a>,
 $$
 (J_f)^\wedge = X^{-1}\text{grad }f(X)\implies\text{grad }f(X)=X(J_f)^\wedge.
@@ -609,11 +612,14 @@ $$</p>
 <blockquote>
 <p>We use right-Jacobians, the gradient belongs to local tangent space.</p>
 </blockquote>
-<p>Again, we update \(X\) by Riemannian gradiet descent
+<p>Again, we update \(X\) by Riemannian gradient descent
 $$
 X_{k+1}=\text{R}_{X_k}(-\alpha_k\text{grad}f(X_k)),
 $$
 where \(\alpha_k\) is the step length.</p>
+<blockquote>
+<p><span style="color:#FF0000">The gradient defined by Lie theory is identical to the gradient defined by Riemannian manifold structure. Please refer to </span> <a href="https://doggydoggy0101.github.io/post/riemannian_lie_compare/">Riemannian and Lie thoery comparison</a> <span style="color:#FF0000">for more details.</span></p>
+</blockquote>
 <h1 id="comparison">Comparison</h1>
 <p><figure><img src="../../images/point_cloud_registration/registration.png"
     alt="image" width="840"><figcaption>
