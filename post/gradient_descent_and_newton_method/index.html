@@ -445,7 +445,7 @@
       <div class="container_space">
           
           <div class="post_content_text_space">
-            <p>Both Gradient descent and Newton&rsquo;s method are some of the most well-known techniques for solving non-linear problems. If the problem is linear, one can simply use linear programming techniques such as simplex method. As for non-linear programming, gradient descent and Newton&rsquo;s method tries to find the <em>linear</em> and <em>quadratic</em> approximation of the non-linear objective function, respectively.</p>
+            <p>Both Gradient descent and Newton&rsquo;s method are some of the most well-known techniques for solving non-linear problems. If the problem is <a href="https://doggydoggy0101.github.io/post/linear_programming/">linear</a>, one can simply use linear programming techniques such as simplex method. As for non-linear programming, gradient descent and Newton&rsquo;s method tries to find the <em>linear</em> and <em>quadratic</em> approximation of the non-linear objective function, respectively.</p>
 <p>We consider the unconstrained problem with objective \(f:\mathbb{R}^n\to\mathbb{R}\) as follows:
 $$
 \min_{x\in\mathbb{R}^n} f(x).
@@ -500,7 +500,7 @@ $$</p>
 </figure>
 
 <p>If we recall the other interpretation of gradient descent, it depends on \(\alpha_k\) to get a good quadratic approximation while Newton&rsquo;s method often has a good quadratic approximation.</p>
-<h1 id="high-order-method">High-order method</h1>
+<h3 id="high-order-method">High-order method</h3>
 <p>One may ask (at least for me), what happens if we add a proximal term to the Newton&rsquo;s method? This is exactly the <em>Cubic regularization of Newton method</em>, where we consider the second-order Taylor approximation with a cubic regularization term:
 $$
 f(x)\approx f(x_k)+\nabla f(x_k)(x-x_k)+\frac{1}{2}(x-x_k)^\top\nabla^2 f(x_k)(x-x_k)+\frac{L}{6}\|x-x_k\|^3.
