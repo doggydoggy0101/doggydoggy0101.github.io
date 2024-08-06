@@ -210,7 +210,7 @@
 
     ,
         "url" : "https:\/\/doggydoggy0101.github.io\/post\/riemannian_lie_compare\/",
-        "wordCount" : "655",
+        "wordCount" : "658",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -454,7 +454,7 @@
           
           <div class="post_content_text_space">
             <p>Commonly groups we occur in robotics, e.g., \(\text{SO}(3)\) and \(\text{SE}(3)\), are manifolds. One can manipulate derivatives by Riemannian manifold structures, however, one can also manipulate derivatives by <a href="https://doggydoggy0101.github.io/post/lie_theory_in_robotics/">Lie theory</a>, due to the fact that these manifolds are also groups, i.e., they are <em>Lie groups</em>. In this note, we give a simple example of constructing gradients using Riemannian manifold structure and Lie theory, respectively.</p>
-<h3 id="problem-statement">Problem statement</h3>
+<h1 id="a-simple-example">A simple example</h1>
 <p>Consider a simple problem, the Wahba problem with only one measurement
 $$
 \min\ f(X)=\|b-Xa\|^2\ ;\ \ X\in\text{SO}(3),\tag{1}
@@ -577,6 +577,8 @@ a_3b_1-a_1b_3&amp;a_3b_2-a_2b_3&amp;0
 \end{pmatrix}\tag{3}
 $$</p>
 <p>We see immediately that Equation \((2)\) and Equation \((3)\) are identical, i.e., the gradient defined by Riemannian manifold structure (up to a scalar 2) and Lie theory are the same.</p>
+<h1 id="mathematical-details">Mathematical details</h1>
+<p><span style="color:#999999">to be complete</span></p>
 <h1 id="numerical-examples">Numerical examples</h1>
 <p>Sample code can be found <a href="https://github.com/doggydoggy0101/math_project/tree/main/riemannian_and_lie_compare">here</a>.</p>
 <h3 id="special-orthogonal-group-wahba-problem">Special orthogonal group (Wahba problem)</h3>
@@ -615,7 +617,7 @@ $$</p>
 </span></span><span class="line"><span class="cl"> <span class="o">[</span>  -0.82265493  146.21842695   23.50938512  390.58394176<span class="o">]</span>
 </span></span><span class="line"><span class="cl"> <span class="o">[</span>   0.            0.            0.            0.        <span class="o">]]</span>
 </span></span></code></pre></div><p>the gradient defined by Riemannian manifold structure and Lie theory are also identical in this case.</p>
-<p><strong>Need further verification</strong> We conclude that when we can find a smoothing function with Euclidean gradient by simply relax the feasible manifold space to Euclidean space, and also we can define the gradient by Lie theory, then the two gradients are the same.</p>
+<p><span style="color:#FF0000">We conclude that when we can find a smoothing function with Euclidean gradient by simply relax the feasible manifold space to Euclidean space, and also we can define the gradient by Lie theory, then the two gradients are the same.</span></p>
 
           </div>
         </div></div>
