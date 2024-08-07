@@ -1,0 +1,591 @@
+<!doctype html>
+<html
+  dir="ltr"
+  lang="en"
+  data-theme=""
+  
+    class="html theme--light"
+  
+><head>
+  <meta charset="utf-8" />
+  <title>
+    
+      
+        Uncertainty in Computer Vision |
+      Ian Chen
+
+  </title>
+
+  <meta name="generator" content="Hugo 0.129.0"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="Ian Chen" />
+  <meta
+    name="description"
+    content="A note on uncertainty for computer vision"
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.113bf066b0da36b88dadd560ed4e8f413f0ebd05eac87fe4b972942ce80a5ff4.css"
+      integrity="sha256-ETvwZrDaNriNrdVg7U6PQT8OvQXqyH/kuXKULOgKX/Q="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.73ccfdf28df555e11009c13c20ced067af3cb021504cba43644c705930428b00.css"
+    integrity="sha256-c8z98o31VeEQCcE8IM7QZ688sCFQTLpDZExwWTBCiwA="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/css/style.min.62dcc3dccfe960087277bb67cea84a0d4ae9ddcc1b0428bfd2eeecd1ec256ce6.css"
+      integrity="sha256-YtzD3M/pYAhyd7tnzqhKDUrp3cwbBCi/0u7s0ewlbOY="
+      crossorigin="anonymous"
+      media="screen"
+    />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/fontawesome.min.137b1cf3cea9a8adb7884343a9a5ddddf4280f59153f74dc782fb7f7bf0d0519.css"
+    integrity="sha256-E3sc886pqK23iENDqaXd3fQoD1kVP3TceC&#43;3978NBRk="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/solid.min.e65dc5b48fb5f39b142360c57c3a215744c94e56c755c929cc3e88fe12aab4d3.css"
+    integrity="sha256-5l3FtI&#43;185sUI2DFfDohV0TJTlbHVckpzD6I/hKqtNM="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/regular.min.6f4f16d58da1c82c0c3a3436e021a3d39b4742f741192c546e73e947eacfd92f.css"
+    integrity="sha256-b08W1Y2hyCwMOjQ24CGj05tHQvdBGSxUbnPpR&#43;rP2S8="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/brands.min.e10425ad768bc98ff1fb272a0ac8420f9d1ba22f0612c08ff1010c95080ffe7e.css"
+    integrity="sha256-4QQlrXaLyY/x&#43;ycqCshCD50boi8GEsCP8QEMlQgP/n4="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://doggydoggy0101.github.io/post/uncertainty_in_computer_vision/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.f9132794301a01ff16550ed66763482bd848f62243d278f5e550229a158bfd32.js"
+    integrity="sha256-&#43;RMnlDAaAf8WVQ7WZ2NIK9hI9iJD0nj15VAimhWL/TI="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.d6d329d93844b162e8bed1e915619625ca91687952177552b9b3e211014a2957.js"
+      integrity="sha256-1tMp2ThEsWLovtHpFWGWJcqRaHlSF3VSubPiEQFKKVc="
+      crossorigin="anonymous"
+    ></script>
+  <script
+      type="text/javascript"
+      src="/js/style.min.32131ac704db7dda12ba05188930d2d23e044982f2994a64dce1e5d12834ed96.js"
+      integrity="sha256-MhMaxwTbfdoSugUYiTDS0j4ESYLymUpk3OHl0Sg07ZY="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  
+
+
+  
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Uncertainty in Computer Vision">
+  <meta name="twitter:description" content="A note on uncertainty for computer vision">
+
+
+
+  
+  <meta property="og:url" content="https://doggydoggy0101.github.io/post/uncertainty_in_computer_vision/">
+  <meta property="og:site_name" content="homepage">
+  <meta property="og:title" content="Uncertainty in Computer Vision">
+  <meta property="og:description" content="A note on uncertainty for computer vision">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-08-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-08-06T00:00:00+00:00">
+    <meta property="article:tag" content="Loss Design">
+    <meta property="article:tag" content="Computer Vision">
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Uncertainty in Computer Vision",
+        "headline": "Uncertainty in Computer Vision",
+        "alternativeHeadline": "",
+        "description": "
+      A note on uncertainty for computer vision
+
+
+    ",
+        "inLanguage": "en",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/doggydoggy0101.github.io\/post\/uncertainty_in_computer_vision\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Ian Chen"
+        },
+        "copyrightYear" : "2024",
+        "dateCreated": "2024-08-06T00:00:00.00Z",
+        "datePublished": "2024-08-06T00:00:00.00Z",
+        "dateModified": "2024-08-06T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Ian Chen",
+            "url": "https://doggydoggy0101.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/doggydoggy0101.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+      ]
+
+    ,
+        "url" : "https:\/\/doggydoggy0101.github.io\/post\/uncertainty_in_computer_vision\/",
+        "wordCount" : "955",
+        "genre" : [ ],
+        "keywords" : [ 
+      
+      "loss design"
+
+    
+      
+        ,
+
+      
+      "computer vision"
+
+    ]
+    }
+  </script>
+
+
+</head>
+<body class="body">
+    <div class="wrapper">
+      <aside
+        
+          class="wrapper__sidebar"
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/profile.jpg"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">Welcome!</a>
+        </div>
+      
+      <div class="sidebar__introduction-description">
+        <p>Ian Chen / Bang-Shien Chen</p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/doggydoggy0101/"
+            target="_blank"
+            rel="noopener me"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fa-brands fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://www.youtube.com/@doggydoggy0101"
+            target="_blank"
+            rel="noopener me"
+            aria-label="youtube"
+            title="youtube"
+          >
+            <i class="fa-brands fa-youtube fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://www.instagram.com/dgbs_cardician/"
+            target="_blank"
+            rel="noopener me"
+            aria-label="instagram"
+            title="instagram"
+          >
+            <i class="fa-brands fa-instagram fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Ian Chen
+        2024
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR&#43;zwDAROtph0PXGte6ia8heboACF9R5l/DiY&#43;WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous" /><script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js" integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8&#43;w2LAIftJEULZABrF9PPFv&#43;tVkH" crossorigin="anonymous"></script><script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+      integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB&#43;w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script></div>
+</aside>
+      <main
+        
+          class="wrapper__main"
+        
+      >
+        <header class="header"><div
+  class="
+    animated fadeInDown
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <nav class="nav">
+    <ul class="nav__list" id="navMenu">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/home/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+        
+
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/"
+              
+              title=""
+              >Blog</a
+            >
+          </li>
+        
+
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/portfolio/"
+              
+              title=""
+              >Projects</a
+            >
+          </li>
+        
+
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/achievements/"
+              
+              title=""
+              >Achievements</a
+            >
+          </li>
+        
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+      
+    </ul>
+  </nav>
+</div>
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+    "
+  >
+    
+    
+    <div class="post__content">
+      <h1>Uncertainty in Computer Vision</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                
+                  2024/8/6
+                
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">5-minute read</span>
+          </li>
+        </ul>
+      <div class="container_space">
+          
+          <div class="post_content_text_space">
+            <p>This is an uncertainty interpretation for designing weights between loss functions in neural network models. In 2017, Kendall proposed one of the most well-known ideas for neural network based models in computer vision <a href="/post/uncertainty_in_computer_vision/#KG17">[1]</a>, <a href="/post/uncertainty_in_computer_vision/#KC17">[2]</a>, <a href="/post/uncertainty_in_computer_vision/#KGC18">[3]</a>. We can describe model uncertainties, which results in weighting between loss functions. In this note, I will not go into the details in computer vision, but focus on how to derive the uncertainties into the weights, which I think is a general idea that can be adapted to most neural networks models, not neccesarily have to be in the field of computer vision.</p>
+<h1 id="paper-notes">Paper notes</h1>
+<p>We give a brief (very simple) summarize of <a href="/post/uncertainty_in_computer_vision/#KG17">[1]</a>, please refer to the original paper for more mathematical details. However, I do not think this part is very important, since they are only concepts, not things we can actually do in reality. We will discuss about the implementation details in the next section.</p>
+<p>There are two major types of uncertainty one can model:</p>
+<ul>
+<li><strong>epistemic uncertainty</strong> model noise, can be explained away given enough data</li>
+<li><strong>aleatoric uncertainty</strong> data noise</li>
+</ul>
+<h3 id="epistemic-uncertainty">Epistemic uncertainty</h3>
+<p>We suppose the model parameters follow a Gaussian distribution \(W\sim\mathcal{N}(0,I)\). Such a model is referred as a Bayesian neural network (BNN). We do not go into the details, however, the maximum likelihood is given by
+$$
+\mathcal{L}(\theta)=\frac{1}{N}\sum_{i=1}^N\frac{1}{2\sigma^2}\|y_i-f^{\hat{W}_i}(x_i)\|^2+\frac{1}{2}\log\sigma^2\tag{1}
+$$
+where \(\sigma\) is the model&rsquo;s noise parameter (and \(\hat{W}_i\sim q_\theta(W)\) is some probability distribution of the model parameters).</p>
+<h3 id="aleatoric-uncertainty">Aleatoric uncertainty</h3>
+<p>We suppose the data follows a Gaussian distribution, and again, the maximum likelihood is given by
+$$
+\mathcal{L}_\text{NN}(\theta)=\frac{1}{N}\sum_{i=1}^N\frac{1}{2\sigma(x_i)^2}\|y_i-f(x_i)\|^2+\frac{1}{2}\log\sigma(x_i)^2\tag{2}
+$$
+where \(\sigma(x_i)\) is the data&rsquo;s noise parameter.</p>
+<h3 id="combining-aleatoric-uncertainty-and-epistemic-uncertainty">Combining Aleatoric uncertainty and Epistemic uncertainty</h3>
+<p>We suppose our model outputs both predictive mean as well as predictive variance:
+$$
+[\hat{y},\hat{\sigma}^2] = f^{\hat{W}}(x)
+$$
+then together, the maximum likelihood is
+$$
+\mathcal{L}_\text{BNN}(\theta)=\frac{1}{D}\sum_{i=1}^N\frac{1}{2\hat{\sigma}_i^2}\|y_i-\hat{y}_i\|^2+\frac{1}{2}\log\hat{\sigma}_i^2\tag{3}
+$$</p>
+<blockquote>
+<p>\(D\) is the dimension of predictive mean, could be less than \(N\), e.g., drop out or weight decay.</p>
+</blockquote>
+<h1 id="my-understanding">My understanding</h1>
+<p>If we look at Equation \((1)\), \((2)\), and \((3)\) together, they are all maximum likelihood estimation (MLE) of Gaussian distribution with different subject. The paper <a href="/post/uncertainty_in_computer_vision/#KG17">[1]</a> writes epistemic uncertainty and aleatoric uncertainty more complicated with additional parameters/probability models. However, in reality, the only thing we use (or tend to use) is Gaussian distribution. Thereby, I do not think epistemic uncertainty nor aleatoric uncertainty is important during implementation, Equation \((3)\) (MLE of Gaussian distribution) is the only thing we need.</p>
+<p>In terms of neural networks, in order to use Equation \((3)\), we learn additional variance output \(\hat{\sigma}\), while \(\hat{y}\) is just the original model output. Assume \(D=N\),
+$$
+\begin{aligned}
+&amp;\underbrace{y_i=f(x_i)}_\text{normal NN}\\
+&amp;\underbrace{\mathcal{L}=\frac{1}{N}\sum_{i=1}^N\|y_i-f(x_i)\|^2}_\text{normal loss}
+\end{aligned}\ \ \implies
+\ \ \begin{aligned}
+&amp;\underbrace{\hat{y}_i,\hat{\sigma}_i=\bar{f}(x_i)}_\text{new NN}\ ;\ \ \hat{y}_i=f(x_i)\\
+&amp;\underbrace{\bar{\mathcal{L}}=\frac{1}{N}\sum_{i=1}^N\frac{1}{2\hat{\sigma}_i^2}\|y_i-f(x_i)\|^2+\frac{1}{2}\log\hat{\sigma}_i^2}_\text{new loss}
+\end{aligned}
+$$</p>
+<p><span style="color:#FF0000">We are learning some addtional variance parameter \(\sigma\) from the NN model to adjust the loss function. </span> We next look at how to derive Equation \((3)\) when everything (model and data) is assumed Gaussian distributed.</p>
+<h3 id="maximum-likelihood">Maximum likelihood</h3>
+<p>Assume \(y\sim\mathcal{N}(\hat{y},\hat{\sigma})\), the likelihood function is
+$$
+\Big(\frac{1}{\sqrt{2\pi\hat{\sigma}_i^{2}}}\Big)^N \exp\Big(-\sum_{i=1}^N\frac{1}{2\hat{\sigma}_i^{2}}(y_i-\hat{y}_i)^2\Big)
+$$
+The log likelihood is
+$$
+-\frac{N}{2}\log(2\pi)-\frac{N}{2}\log(\hat{\sigma}_i^{2})-\sum_{i=1}^N \frac{1}{2\hat{\sigma}_i^2}(y_i-\hat{y}_i)^2
+$$
+Multiply the log likelihood by \(1/N\), then maximizing the log likelihood is equivalent to minimizing
+$$
+\frac{1}{N}\sum_{i=1}^N \frac{1}{2\hat{\sigma}_i^2}\|y_i-\hat{y}_i\|^2+\frac{1}{2}\log(\hat{\sigma}_i^{2})
+$$
+We get our new loss function. Let \(s_i=\log(\hat{\sigma}_i^2)\), we further write the new loss as
+$$
+\mathcal{L}=\frac{1}{N}\sum_{i=1}^N \frac{1}{2}\exp(-s_i)\|y_i-\hat{y}_i\|^2+\frac{1}{2}s_i\tag{4}
+$$</p>
+<blockquote>
+<p>Equation \((4)\) is more numerically stable while training a neural network.</p>
+</blockquote>
+<p>We can noww write the relation again,</p>
+<p>$$
+\begin{aligned}
+&amp;\underbrace{y_i=f(x_i)}_\text{normal NN}\\
+&amp;\underbrace{\mathcal{L}=\frac{1}{N}\sum_{i=1}^N\|y_i-f(x_i)\|^2}_\text{normal loss}
+\end{aligned}\ \ \implies
+\ \ \begin{aligned}
+&amp;\underbrace{\hat{y}_i,s_i=\bar{f}(x_i)}_\text{new NN}\ ;\ \ \hat{y}_i=f(x_i)\\
+&amp;\underbrace{\bar{\mathcal{L}}=\frac{1}{N}\sum_{i=1}^N\frac{1}{2}\exp(-s_i)\|y_i-f(x_i)\|^2+\frac{1}{2}s_i}_\text{new loss}
+\end{aligned}
+$$</p>
+<p><span style="color:#FF0000">We are now learning some addtional log variance parameter \(s\) from the NN model to adjust the loss function.</span> Another interpretation is that we multiply the original loss function by some weigth with an additional regularization term.</p>
+<h1 id="multi-task-using-uncertainty">Multi-Task using Uncertainty</h1>
+<p>Up to this point, we discussed about learning the uncertainty by \(s\), which also kind of served as a regularization term. In addition, \(s\) can also be served as the weight balancing between multiple loss functions. This is introduced in <a href="/post/uncertainty_in_computer_vision/#KC17">[2]</a>, while <a href="/post/uncertainty_in_computer_vision/#KGC18">[3]</a> gives an example of learning camera pose. We use the example to demonstrate the idea: Suppose we are learning the rotation and translation part of camera pose by different loss functions \(\mathcal{L}_R\) and \(\mathcal{L}_t\). The loss function together with uncertainty is
+$$
+\mathcal{L}=\mathcal{L}_R\exp(-s_R)+s_R + \mathcal{L}_t\exp(-s_t)+s_t\tag{5}
+$$</p>
+<blockquote>
+<p>Note that a model with multiple uncertainties to learn is not exactly, but approximates Equation \((5)\), both in regression and classification case. Please refer to <a href="/post/uncertainty_in_computer_vision/#KC17">[2]</a> for more details.</p>
+</blockquote>
+<p>That is, when there are multiple loss functions, learning uncertainties is also learning some weight to balance between loss functions. For example, in <a href="/post/uncertainty_in_computer_vision/#KGC18">[3]</a>, \(s_R\) is initialized as -3 for learning quaternions (rotation representation) and \(s_t\) is initialized as 0 for learning translation. In other words, if you construct your loss function with weights by Equation \((5)\), you could say you are learning the model&rsquo;s uncertaintly. Brilliant!</p>
+<h2 id="reference">Reference</h2>
+<p><a id="KG17">[1]</a>
+Kendall, A., &amp; Gal, Y. (2017). What uncertainties do we need in bayesian deep learning for computer vision?. Advances in neural information processing systems, 30.</p>
+<p><a id="KC17">[2]</a>
+Kendall, A., &amp; Cipolla, R. (2017). Geometric loss functions for camera pose regression with deep learning. In Proceedings of the IEEE conference on computer vision and pattern recognition (pp. 5974-5983).</p>
+<p><a id="KGC18">[3]</a>
+Kendall, A., Gal, Y., &amp; Cipolla, R. (2018). Multi-task learning using uncertainty to weigh losses for scene geometry and semantics. In Proceedings of the IEEE conference on computer vision and pattern recognition (pp. 7482-7491).</p>
+<p><a id="JGJ99">[4]</a>
+Jordan, M. I., Ghahramani, Z., Jaakkola, T. S., &amp; Saul, L. K. (1999). An introduction to variational methods for graphical models. Machine learning, 37, 183-233.</p>
+<p>[5] Brahmbhatt, S., Gu, J., Kim, K., Hays, J., &amp; Kautz, J. (2018). Geometry-aware learning of maps for camera localization. In Proceedings of the IEEE conference on computer vision and pattern recognition (pp. 2616-2625).</p>
+
+          </div>
+        </div></div>
+    
+
+    <div class="post__footer">
+      
+      
+
+      
+        <span><a class="tag" href="/tags/loss-design/">loss design</a><a class="tag" href="/tags/computer-vision/">computer vision</a></span>
+
+
+      
+    </div>
+
+    
+  </div>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Ian Chen
+        2024
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR&#43;zwDAROtph0PXGte6ia8heboACF9R5l/DiY&#43;WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous" /><script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js" integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8&#43;w2LAIftJEULZABrF9PPFv&#43;tVkH" crossorigin="anonymous"></script><script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+      integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB&#43;w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script></body>
+</html>
