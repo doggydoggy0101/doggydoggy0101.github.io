@@ -490,7 +490,7 @@ $$
 &amp;\underbrace{\bar{\mathcal{L}}=\frac{1}{N}\sum_{i=1}^N\frac{1}{2\hat{\sigma}_i^2}\|y_i-f(x_i)\|^2+\frac{1}{2}\log\hat{\sigma}_i^2}_\text{new loss}
 \end{aligned}
 $$</p>
-<p><span style="color:#FF0000">We are learning some addtional variance parameter \(\sigma\) from the NN model to adjust the loss function. </span> We next look at how to derive Equation \((3)\) when everything (model and data) is assumed Gaussian distributed.</p>
+<p><span style="color:#FF0000">We are learning some additional variance parameter \(\sigma\) from the NN model to adjust the loss function. </span> We next look at how to derive Equation \((3)\) when everything (model and data) is assumed Gaussian distributed.</p>
 <h3 id="maximum-likelihood">Maximum likelihood</h3>
 <p>Assume \(y\sim\mathcal{N}(\hat{y},\hat{\sigma})\), the likelihood function is
 $$
@@ -511,7 +511,7 @@ $$</p>
 <blockquote>
 <p>Equation \((4)\) is more numerically stable while training a neural network.</p>
 </blockquote>
-<p>We can noww write the relation again,</p>
+<p>We can now write the relation again,</p>
 <p>$$
 \begin{aligned}
 &amp;\underbrace{y_i=f(x_i)}_\text{normal NN}\\
@@ -522,7 +522,7 @@ $$</p>
 &amp;\underbrace{\bar{\mathcal{L}}=\frac{1}{N}\sum_{i=1}^N\frac{1}{2}\exp(-s_i)\|y_i-f(x_i)\|^2+\frac{1}{2}s_i}_\text{new loss}
 \end{aligned}
 $$</p>
-<p><span style="color:#FF0000">We are now learning some addtional log variance parameter \(s\) from the NN model to adjust the loss function.</span> Another interpretation is that we multiply the original loss function by some weigth with an additional regularization term.</p>
+<p><span style="color:#FF0000">We are now learning some additional log variance parameter \(s\) from the NN model to adjust the loss function.</span> Another interpretation is that we multiply the original loss function by some weight with an additional regularization term.</p>
 <h1 id="multi-task-using-uncertainty">Multi-Task using Uncertainty</h1>
 <p>Up to this point, we discussed about learning the uncertainty by \(s\), which also kind of served as a regularization term. In addition, \(s\) can also be served as the weight balancing between multiple loss functions. This is introduced in <a href="/post/uncertainty_in_computer_vision/#KC17">[2]</a>, while <a href="/post/uncertainty_in_computer_vision/#KGC18">[3]</a> gives an example of learning camera pose. We use the example to demonstrate the idea: Suppose we are learning the rotation and translation part of camera pose by different loss functions \(\mathcal{L}_R\) and \(\mathcal{L}_t\). The loss function together with uncertainty is
 $$
