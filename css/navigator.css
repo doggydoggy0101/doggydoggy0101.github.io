@@ -1,0 +1,25 @@
+/* Navigator styling */
+.navigator {
+    padding: 20px;
+    border-bottom: 0.2mm solid #eaecee; /* Add vertical line */
+}
+.navigator ul {
+    display: flex;
+    justify-content: flex-start;
+    list-style: none;
+}
+
+.navigator ul li {
+    margin-right: 32px;
+}
+
+.navigator ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+.navigator ul li a:hover {
+    color: #808b96 ;
+    text-decoration: underline;
+}

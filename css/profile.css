@@ -1,0 +1,49 @@
+/* Profile styling */
+.profile {
+    width: 33%;
+    height: 100%;
+    position: fixed; /* Fix profile sidebar on screen */
+    border-right: 0.2mm solid #eaecee; /* Add vertical line */
+}
+
+.profile-container { 
+    /* Horizontal and vertical centering */
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.profile-img {
+    width: 150px;
+    border-radius: 50%;
+    margin-bottom: 45px;
+}
+
+.profile h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.profile p {
+    color: #555555;
+    font-size: 16px;
+    margin-bottom: 45px;
+}
+
+.profile-icons a {
+    margin: 0 15px;
+}
+
+.profile-icons img {
+    width: 36px;
+    height: 36px;
+    opacity: 0.72;
+}
+
+.profile-icons img:hover {
+    transform: scale(110%);
+}

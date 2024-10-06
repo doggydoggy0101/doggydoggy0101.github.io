@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+}
+
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+
+.content {
+    margin-left: 33%; 
+    width: 67%;
+    overflow-y: auto; /* Ensures scrolling for the main content */
+    height: 100vh; /* Ensures full height for scrolling */
+    padding-left: 14px;
+}
+
+
+article {
+    font-size: 16px;
+    height: 100%;
+    position: relative;
+    padding: 40px 5% 0px 5%;
+}
+
+
+
+/* Markdown */
+h1 {
+    font-size: 48;
+}
+
+@font-face {
+    font-family: "Latin Modern Math";
+    /* src: url("../docs/font/latinmodern-math.otf"); */
+    src: url("../docs/font/latinmodern-math.otf");
+}
+
+.katex { 
+    font-size: 112%;
+    font-family: "Latin Modern Math", sans-serif;
+}
+
+
+
+
+
+/* Adjustments for small screens */
+@media (max-width: 1280px) {
+
+    .profile {
+        display: none;
+    }
+
+    .content {
+        margin-left: 0%; 
+        width: 100%;
+    }
+}
