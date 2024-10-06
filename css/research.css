@@ -30,9 +30,22 @@ article {
     font-size: 16px;
     height: 100%;
     position: relative;
-    padding: 40px 5% 0px 5%;
+    padding: 40px 10% 0px 10%;
 }
 
+article h1 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+article ol {
+    list-style: decima;
+    margin-bottom: 20px;
+}
+
+article ol li {
+    margin-bottom: 16px;
+}
 
 
 /* Adjustments for small screens */
