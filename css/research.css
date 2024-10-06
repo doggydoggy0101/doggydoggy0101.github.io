@@ -19,7 +19,7 @@ body {
 
 .content {
     margin-left: 33%; 
-    width: 67%;
+    width: 100%;
     overflow-y: auto; /* Ensures scrolling for the main content */
     height: 100vh; /* Ensures full height for scrolling */
     padding-left: 14px;
@@ -30,7 +30,7 @@ article {
     font-size: 16px;
     height: 100%;
     position: relative;
-    padding: 40px 10% 0px 10%;
+    padding: 120px 10% 0px 10%;
 }
 
 article h1 {

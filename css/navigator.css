@@ -1,7 +1,12 @@
 /* Navigator styling */
 .navigator {
     padding: 20px;
+    height: 64px;
+    width: 100%;
     border-bottom: 0.2mm solid #eaecee; /* Add vertical line */
+    position: fixed;
+    background-color: #FFFFFF;  /* prevent overlapping */
+    z-index: 9999;
 }
 .navigator ul {
     display: flex;
