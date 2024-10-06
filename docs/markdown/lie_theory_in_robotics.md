@@ -240,20 +240,20 @@ $$
 Since we have plus and minus operators to express *vector increments* $\boldsymbol{\tau}$, we can define right Jacobians by vector space derivatives,
 
 $$
-\frac{{}^\mathcal{X}Df(\mathcal{X})}{D\mathcal{X}}=\lim_{\boldsymbol{\tau}\to\mathbf{0}}\frac{f(\mathcal{X}\oplus\boldsymbol{\tau})\ominus f(\mathcal{X})}{\boldsymbol{\tau}}\in\mathbb{R}^{n\times m},
+\frac{ ^\mathcal{X}Df(\mathcal{X})}{D\mathcal{X}}=\lim_{\boldsymbol{\tau}\to\mathbf{0}}\frac{f(\mathcal{X}\oplus\boldsymbol{\tau})\ominus f(\mathcal{X})}{\boldsymbol{\tau}}\in\mathbb{R}^{n\times m},
 $$
 where$f:\mathcal{M\to N}$ is a function acting on manifolds, $m$ and $n$ are the DoF of $\mathcal{M}$ and $\mathcal{N}$, respectively. 
 Simarlarly, left Jacobians can be defined by
 
 $$
-\frac{{}^\mathcal{E}Df(\mathcal{X})}{D\mathcal{X}}=\lim_{\boldsymbol{\tau}\to\mathbf{0}}\frac{f(\boldsymbol{\tau}\oplus\mathcal{X})\ominus f(\mathcal{X})}{\boldsymbol{\tau}}\in\mathbb{R}^{n\times m}.
+\frac{ ^\mathcal{E}Df(\mathcal{X})}{D\mathcal{X}}=\lim_{\boldsymbol{\tau}\to\mathbf{0}}\frac{f(\boldsymbol{\tau}\oplus\mathcal{X})\ominus f(\mathcal{X})}{\boldsymbol{\tau}}\in\mathbb{R}^{n\times m}.
 $$
 
 For instance, we have a function $f:\text{SO}(3)\to\mathbb{R}^3;\ f(\mathbf{R})=\mathbf{Rp}$, that is, a rotation $\mathbf{R}$ acts on a 3D point $\mathbf{p}$, 
 
 $$
 \begin{aligned}
-\frac{{}^\mathbf{R}D\mathbf{Rp}}{D\mathbf{R}}&=\lim_{\boldsymbol{\theta}\to\mathbf{0}}\frac{(\mathbf{R}\oplus\boldsymbol{\theta})\ominus\mathbf{Rp}}{\boldsymbol{\theta}}\\
+\frac{ ^\mathbf{R}D\mathbf{Rp}}{D\mathbf{R}}&=\lim_{\boldsymbol{\theta}\to\mathbf{0}}\frac{(\mathbf{R}\oplus\boldsymbol{\theta})\ominus\mathbf{Rp}}{\boldsymbol{\theta}}\\
 &=\lim_{\boldsymbol{\theta}\to\mathbf{0}}\frac{\mathbf{R}\text{Exp}(\boldsymbol{\theta})\mathbf{p-Rp}}{\boldsymbol{\theta}}\\
 &=\lim_{\boldsymbol{\theta}\to\mathbf{0}}\frac{\mathbf{R(I+[\boldsymbol{\theta}]_\times)p-Rp}}{\boldsymbol{\theta}}\\
 &=\lim_{\boldsymbol{\theta}\to\mathbf{0}}\frac{\mathbf{R[\boldsymbol{\theta}]_\times p}}{\boldsymbol{\theta}}
@@ -269,7 +269,7 @@ $$
 We consider only right Jacobians in the following section, however, one can obtain the left Jacobian by the following relation:
 
 $$
-\frac{{}^\mathcal{E}Df(\mathcal{X})}{D\mathcal{X}}=\mathbf{Ad}_{f(\mathcal{X})}\frac{{}^\mathcal{X}Df(\mathcal{X})}{D\mathcal{X}}\mathbf{Ad}_\mathcal{X}^{-1}.
+\frac{ ^\mathcal{E}Df(\mathcal{X})}{D\mathcal{X}}=\mathbf{Ad}_{f(\mathcal{X})}\frac{ ^\mathcal{X}Df(\mathcal{X})}{D\mathcal{X}}\mathbf{Ad}_\mathcal{X}^{-1}.
 $$
 
 We denote the right Jacobian as $\mathbf{J}^{f(\mathcal{X})}_\mathcal{X}$, and introduce some properties of Jacobians.
