@@ -120,11 +120,6 @@ article h1 {
     margin-bottom: 200px;
 }
 
-.research h2 {
-    font-size: 28px;
-    margin-bottom: 12px;
-}
-
 .research ol {
     list-style: decima;
     margin-bottom: 20px;
@@ -142,7 +137,28 @@ article h1 {
     color: #3498db ;
 }
 
+.research-headers {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 
+    font-size: 20px;
+    color: #808b96;
+    margin: 32px 0 16px 0;
+}
+
+.research-headers:before, .research-headers:after {
+    content: '';
+    border-top: 1px solid #808b96;
+    margin: 0 20px 0 0;
+    flex: 1 0 20px;
+}
+
+.research-headers:after {
+    margin: 0 0 0 20px;
+}
 
 
 /* Adjustments for small screens */
