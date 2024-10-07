@@ -48,6 +48,14 @@ article ol li {
     margin-bottom: 16px;
 }
 
+article ol li a {
+    color: #2874a6 ;
+}
+
+article ol li a:hover {
+    color: #3498db ;
+}
+
 
 /* Adjustments for small screens */
 @media (max-width: 1280px) {
