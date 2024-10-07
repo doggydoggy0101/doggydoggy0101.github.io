@@ -71,34 +71,74 @@ article h1 {
 
 #sec_blog {
     padding-top: 80px;
+    padding-bottom: 20px;
 }
 
 .blog {
     text-align: left;
-}
-
-.blog h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
+    padding-left: 20%;
 }
 
 .blog ul {
+    list-style: none;
     margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 1px solid #abb2b9;
+    position: relative;
 }
+
+.blog ul h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.blog ul h2::before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #566573;
+    left: -4px;
+    transform: translateY(9px);
+}
+
 .blog ul li {
     margin-bottom: 8px;
 }
 
 .blog ul li a {
-    font-size: 16px;
+    font-size: 18px;
     text-decoration: none;
     color: #566573;
+    padding-left: 4px;
+}
+
+
+.blog ul li a::before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 2px;
+    background-color: #abb2b9;
+    left: -1px;
+    transform: translateY(12px);
+}
+
+.blog ul li a {
+    box-shadow: inset 0 0 0 0 #5dade2;
+    color: #808b96 ;
+    padding: 0 .25rem;
+    margin: 0 -.25rem;
+    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
 }
 
 .blog ul li a:hover {
-    color: #808b96 ;
-    text-decoration: underline;
+    color: #fff;
+    box-shadow: inset 800px 0 0 0 #5dade2;
 }
+
 
 
 #sec_projects {

@@ -40,10 +40,10 @@
         <!-- Navigator -->
         <nav class="navigator">
             <ul>
-                <li><a href="#top">Home</a></li>
-                <li><a href="#sec_blog">Blog</a></li>
-                <li><a href="#sec_projects">Projects</a></li>
-                <li><a href="#sec_research">Research</a></li>
+                <li><a href="#top" data-replace="Home"><span>Home</span></a></li>
+                <li><a href="#sec_blog" data-replace="Blog"><span>Blog</span></a></li>
+                <li><a href="#sec_projects" data-replace="Projects"><span>Projects</span></a></li>
+                <li><a href="#sec_research" data-replace="Research"><span>Research</span></a></li>
             </ul>
         </nav>
         
@@ -94,20 +94,24 @@
             <h1 id="sec_blog">blog</h1>
             <div class="blog">
 
-                <h2>Numerical methods</h2>
+                
                 <ul>
-                    <li><a href="post/gradient_descent_and_newton_method.html">Gradient descent & Newton's method</a></li>
-                    <li><a href="post/gauss_newton.html">Gauss-Newton</a></li>
+                    <li><h2>Numerical methods</h2></li>
+                    <li><div class="blog-container"><a href="post/gradient_descent_and_newton_method.html" data-replace="Gradient descent & Newton's method">
+                        <span>Gradient descent & Newton's method</span></a></div></li>
+                    <li><div class="blog-container"><a href="post/gauss_newton.html" data-replace="Gauss-Newton">
+                        <span>Gauss-Newton</span></a></div></li>
+
                 </ul>
 
-                <h2>Machine learning</h2>
                 <ul>
+                    <li><h2>Machine learning</h2></li>
                     <li><a href="post/linear_regression.html">Linear regression</a></li>
                     <li><a href="post/support_vector_machine.html">Support vector machine</a></li>
                 </ul>
-
-                <h2>Optimization</h2>
+      
                 <ul>
+                    <li><h2>Optimization</h2></li>
                     <li><a href="post/convex_optimization_preliminaries.html">Convex optimization preliminaries</a></li>
                     <li><a href="post/convex_homogenization.html">Homogenization for convex sets</a></li>
                     <li><a href="post/linear_programming.html">Linear program</a></li>
@@ -118,8 +122,8 @@
                     <li><a href="post/qcqp_to_sdp.html">QCQP to SDP</a></li>
                 </ul>
 
-                <h2>Robotics</h2>
                 <ul>
+                    <li><h2>Robotics</h2></li>
                     <li><a href="post/point_cloud_registration.html">Point cloud registration</a></li>
                     <li><a href="post/pose_graph_optimization.html">Pose graph optimization</a></li>
                     <li><a href="post/lie_theory_in_robotics.html">Lie theory in Robotics</a></li>
@@ -127,8 +131,8 @@
                     <li><a href="post/motion_planning.html">Motion planning</a></li>
                 </ul>
 
-                <h2>Computer vision</h2>
                 <ul>
+                    <li><h2>Computer vision</h2></li>
                     <li><a href="post/uncertainty_in_computer_vision.html">Uncertainty in Computer vision</a></li>
                 </ul>
 
