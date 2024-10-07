@@ -84,11 +84,16 @@ article p.about-me-paragraph {
 
 
 
+
 /* Adjustments for small screens */
 @media (max-width: 1280px) {
 
     .profile {
         display: none;
+    }
+
+    .profile-vertical {
+        display: block;
     }
 
     .content {

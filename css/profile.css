@@ -47,3 +47,30 @@
 .profile-icons img:hover {
     transform: scale(110%);
 }
+
+/* vertical */
+
+.profile-vertical-img {
+    width: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.profile-vertical-icons a {
+    margin: 0 15px;
+}
+
+.profile-vertical-icons img {
+    width: 36px;
+    height: 36px;
+    opacity: 0.72;
+    margin: 16px 0 32px 0;
+}
+
+.profile-vertical-icons img:hover {
+    transform: scale(110%);
+}
+
+.profile-vertical {
+    display: none;
+}
