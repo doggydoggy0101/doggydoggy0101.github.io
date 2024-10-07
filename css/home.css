@@ -24,7 +24,6 @@ body {
 .content {
     margin-left: 33%; 
     width: 100%;
-    padding-left: 14px;
 }
 
 
@@ -35,7 +34,7 @@ article {
     font-size: 16px;
     height: 100%;
     position: relative;
-    padding: 120px 5% 80px 5%;
+    padding: 120px 10% 80px 10%;
 }
 
 article h2 {
