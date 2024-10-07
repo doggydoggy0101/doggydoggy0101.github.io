@@ -37,35 +37,21 @@ article {
     padding: 120px 10% 80px 10%;
 }
 
-article h2 {
+article h1 {
     font-size: 32px;
     margin-bottom: 20px;
 }
 
-article h2.about-me-header {
+.about-me-header {
     margin-bottom: 40px;
 }
 
-article p.about-me-paragraph {
+.about-me-paragraph {
     /* font-size: 16px; */
     line-height: 2;
     margin-bottom: 40px;
 }
 
-/* Youtube video */
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    height: 0;
-}
-.video-container iframe {
-    position: absolute;
-    top: -22%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding: 13.5% 24%;
-}
 
 .album {
     columns: 360px;
@@ -79,6 +65,81 @@ article p.about-me-paragraph {
 
 .album .img:hover {
     transform: scale(102%);
+}
+
+
+
+#sec_blog {
+    padding-top: 80px;
+}
+
+.blog {
+    text-align: left;
+}
+
+.blog h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.blog ul {
+    margin-bottom: 24px;
+}
+.blog ul li {
+    margin-bottom: 8px;
+}
+
+.blog ul li a {
+    font-size: 16px;
+    text-decoration: none;
+    color: #566573;
+}
+
+.blog ul li a:hover {
+    color: #808b96 ;
+    text-decoration: underline;
+}
+
+
+#sec_projects {
+    padding-top: 80px;
+}
+
+.projects {
+    margin-bottom: 800px;
+}
+
+
+
+#sec_research {
+    padding-top: 80px;
+}
+
+.research {
+    text-align: left;
+    margin-bottom: 200px;
+}
+
+.research h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.research ol {
+    list-style: decima;
+    margin-bottom: 20px;
+}
+
+.research ol li {
+    margin-bottom: 16px;
+}
+
+.research ol li a {
+    color: #2874a6 ;
+}
+
+.research ol li a:hover {
+    color: #3498db ;
 }
 
 

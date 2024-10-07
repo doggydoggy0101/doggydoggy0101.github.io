@@ -11,8 +11,9 @@
 
     <link rel="stylesheet" href="css/profile.css">
     <link rel="stylesheet" href="css/navigator.css">
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="lightbox2/dist/css/lightbox.css">
+
 </head>
 
 <body>
@@ -39,16 +40,16 @@
         <!-- Navigator -->
         <nav class="navigator">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="research.html">Research</a></li>
+                <li><a href="#top">Home</a></li>
+                <li><a href="#sec_blog">Blog</a></li>
+                <li><a href="#sec_projects">Projects</a></li>
+                <li><a href="#sec_research">Research</a></li>
             </ul>
         </nav>
         
 
         <!-- Article Content -->
-        <article class="about-me">
+        <article>
 
             <div class="profile-vertical">
                 <img src="docs/images/profile.jpg" alt="Profile Picture" class="profile-vertical-img">
@@ -60,15 +61,14 @@
                 </div>
             </div>
 
-
-            <h2 class="about-me-header">about me</h2>
+            <h1 class="about-me-header">about me</h1>
             <p class="about-me-paragraph">
                 Hi! I am currently a master student at the Department of Mathematics, National Taiwan Normal University. 
                 My research interests are mainly in optimization and robotics, and I write blogs about tools and concepts 
                 I frequently use. Feel free to check them out, and I hope you find them helpful!
             </p>
 
-            <h2>portfolio</h2>
+            <h1>portfolio</h1>
             <div class="album">
                 <a href="docs/images/gallery/l1.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/l1.jpg"></a>
                 <a href="docs/images/gallery/l2.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/l2.jpg"></a>
@@ -88,6 +88,103 @@
                 <a href="docs/images/gallery/r4.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/r4.jpg"></a>
                 <a href="docs/images/gallery/r5.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/r5.jpg"></a>
                 <a href="docs/images/gallery/r6.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/r6.jpg"></a>
+            </div>
+
+
+            <h1 id="sec_blog">blog</h1>
+            <div class="blog">
+
+                <h2>Numerical methods</h2>
+                <ul>
+                    <li><a href="post/gradient_descent_and_newton_method.html">Gradient descent & Newton's method</a></li>
+                    <li><a href="post/gauss_newton.html">Gauss-Newton</a></li>
+                </ul>
+
+                <h2>Machine learning</h2>
+                <ul>
+                    <li><a href="post/linear_regression.html">Linear regression</a></li>
+                    <li><a href="post/support_vector_machine.html">Support vector machine</a></li>
+                </ul>
+
+                <h2>Optimization</h2>
+                <ul>
+                    <li><a href="post/convex_optimization_preliminaries.html">Convex optimization preliminaries</a></li>
+                    <li><a href="post/convex_homogenization.html">Homogenization for convex sets</a></li>
+                    <li><a href="post/linear_programming.html">Linear program</a></li>
+                    <li><a href="post/semidefinite_programming.html">Semidefinite program</a></li>
+                    <li><a href="post/quadratic_programming.html">Quadratic program</a></li>
+                    <li><a href="post/qp_closed_form.html">QP closed-form</a></li>
+                    <li><a href="post/qp_to_cqp.html">QP to SOCP</a></li>
+                    <li><a href="post/qcqp_to_sdp.html">QCQP to SDP</a></li>
+                </ul>
+
+                <h2>Robotics</h2>
+                <ul>
+                    <li><a href="post/point_cloud_registration.html">Point cloud registration</a></li>
+                    <li><a href="post/pose_graph_optimization.html">Pose graph optimization</a></li>
+                    <li><a href="post/lie_theory_in_robotics.html">Lie theory in Robotics</a></li>
+                    <li><a href="post/riemannian_lie_compare.html">Riemannian and Lie theory comparison</a></li>
+                    <li><a href="post/motion_planning.html">Motion planning</a></li>
+                </ul>
+
+                <h2>Computer vision</h2>
+                <ul>
+                    <li><a href="post/uncertainty_in_computer_vision.html">Uncertainty in Computer vision</a></li>
+                </ul>
+
+            </div>
+
+
+
+            <h1 id="sec_projects">projects</h1>
+            <div class="projects">
+                <p>To be done...</p>
+            </div>
+
+
+            <h1 id="sec_research">research</h1>
+            <div class="research">
+                <h2>Publication</h2>
+                <ol>
+                    <li><strong>Chen, B. S.</strong>, Lin, Y. K., Chen, J. Y., Huang, C. W., Chern, J. L., & Sun, C. C. (2024). 
+                        <i>FracGM: A Fast Fractional Programming Technique for Geman-McClure Robust Estimator</i>,
+                        submitted to IEEE Robotics and Automation Letters. (paper) (<a href="https://arxiv.org/abs/2409.13978">preprint</a>) (<a href="https://github.com/StephLin/FracGM">code</a>)</li>
+                </ol>
+
+                <h2>Awards</h2>
+                <ol>
+                    <li>
+                        <strong>NCTS Research Abroad Program</strong>
+                        A research abroad program financially supported by the Mathematics Division of 
+                        National Center of Theoretical Sciences, worked with Prof. Shuzhong Zhang at the 
+                        University of Minnesota. <i>(Jun 2024 - Aug 2024)</i>
+                    </li>
+                    <li>
+                        <strong>Taiwan-Japan Joint Workshop, Presentation Award</strong>
+                        Out of 40 speakers in the 14th Taiwan-Japan Joint Workshop for Young Scholars in 
+                        Applied Mathematics. <i>(Feb 2024)</i>
+                    </li>
+                    <li>
+                        <strong>IBM Qiskit Hackathon Taiwan, 1st prize</strong>
+                        Out of 12 teams in the final round of the Quantum Computing Hackathon.
+                        <i>(Jul 2022)</i>
+                    </li>
+                    <li>
+                        <strong>Taiwan-Japan Joint Workshop, Presentation Award</strong>
+                        Out of 42 speakers in the 12th Taiwan-Japan Joint Workshop for Young Scholars in 
+                        Applied Mathematics. <i>(Feb 2024)</i>
+                    </li>
+                </ol>
+
+                <h2>Presentations</h2>
+                <ol>
+                    <li>14th Taiwan-Japan Joint Workshop for Young Scholars in Applied Mathematics, Meiji University, Tokyo, Feb 27-29, 2024.</li>
+                    <li>Workshop on Advances in Continuous Optimization 2023, The University of Tokyo, Tokyo, Japan, Jul 24-25, 2023.</li>
+                    <li>2022 Summer school on Quantum Computer, Asia University, Taipei, Taiwan, August 21 - Sep 24, 2022.</li>
+                    <li>Seminar on Quantum Theory and Computation, National Taiwan Normal University, Taipei, Taiwan, Apr 26 - May 24, 2022.</li>
+                    <li>12th Taiwan-Japan Joint Workshop for Young Scholars in Applied Mathematics, (virtual), Feb 28 - Mar 1, 2022.</li>
+                </ol>
+
             </div>
 
         </article>
