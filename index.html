@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/profile.css">
     <link rel="stylesheet" href="css/navigator.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="lightbox2/dist/css/lightbox.css">
 </head>
 
 <body>
@@ -54,28 +55,38 @@
 
             <h2>portfolio</h2>
             <div class="album">
-                <img class="img" src="docs/images/gallery/l1.jpg">
-                <img class="img" src="docs/images/gallery/l2.jpg">
-                <img class="img" src="docs/images/gallery/l3.jpg">
-                <img class="img" src="docs/images/gallery/l4.jpg">
-                <img class="img" src="docs/images/gallery/l5.jpg">
-                <img class="img" src="docs/images/gallery/c1.jpg">
-                <img class="img" src="docs/images/gallery/c2.jpg">
-                <img class="img" src="docs/images/gallery/c3.jpg">
-                <img class="img" src="docs/images/gallery/c4.jpg">
-                <img class="img" src="docs/images/gallery/c5.jpg">
-                <img class="img" src="docs/images/gallery/r1.jpg">
-                <img class="img" src="docs/images/gallery/r2.jpg">
-                <img class="img" src="docs/images/gallery/r3.jpg">
-                <img class="img" src="docs/images/gallery/r4.jpg">
-                <img class="img" src="docs/images/gallery/r5.jpg">
-                <img class="img" src="docs/images/gallery/r6.jpg">
+                <a href="docs/images/gallery/l1.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/l1.jpg"></a>
+                <a href="docs/images/gallery/l2.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/l2.jpg"></a>
+                <a href="docs/images/gallery/l3.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/l3.jpg"></a>
+                <a href="docs/images/gallery/l4.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/l4.jpg"></a>
+                <a href="docs/images/gallery/l5.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/l5.jpg"></a>
 
+                <a href="docs/images/gallery/c1.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/c1.jpg"></a>
+                <a href="docs/images/gallery/c2.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/c2.jpg"></a>
+                <a href="docs/images/gallery/c3.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/c3.jpg"></a>
+                <a href="docs/images/gallery/c4.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/c4.jpg"></a>
+                <a href="docs/images/gallery/c5.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/c5.jpg"></a>
+
+                <a href="docs/images/gallery/r1.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/r1.jpg"></a>
+                <a href="docs/images/gallery/r2.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/r2.jpg"></a>
+                <a href="docs/images/gallery/r3.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/r3.jpg"></a>
+                <a href="docs/images/gallery/r4.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/r4.jpg"></a>
+                <a href="docs/images/gallery/r5.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/r5.jpg"></a>
+                <a href="docs/images/gallery/r6.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/r6.jpg"></a>
             </div>
 
         </article>
     </div>
 </div>
+
+    <script src="lightbox2/dist/js/lightbox-plus-jquery.js"></script>
+    <script>
+        lightbox.option({
+          'positionFromTop': 64,
+          'wrapAround': true,
+          'showImageNumberLabel': false,
+        })
+    </script>
 
 </body>
 </html>
