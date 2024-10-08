@@ -45,7 +45,7 @@
     left: 0;
 }
 .navigator ul li a::before {
-    background-color: #5dade2;
+    background-color: #2874a6;
     height: 2px;
     bottom: 0;
     transform-origin: 100% 50%;
@@ -59,7 +59,7 @@
     transform-origin: 100% 50%;
     transform: translate3d(200%, 0, 0);
     transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
-    color: #5dade2;
+    color: #2874a6;
 }
   
 .navigator ul li a:hover::before {

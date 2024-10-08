@@ -54,7 +54,7 @@ article h1 {
 
 
 .album {
-    columns: 360px;
+    columns: 240px;
 }
 
 .album .img {
@@ -79,7 +79,7 @@ article h1 {
 .blog {
     text-align: left;
     min-height: 100vh;
-    columns: 360px;
+    columns: 300px;
 }
 
 .blog ul {
