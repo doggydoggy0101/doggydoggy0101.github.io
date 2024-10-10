@@ -15,6 +15,11 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="lightbox2/dist/css/lightbox.css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script> 
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.13/dist/lenis.css">
     <script defer src="js/scroll.js"></script>
 
 </head>
@@ -73,30 +78,22 @@
 
             <h1>portfolio</h1>
             <div class="album"> <!-- https://imagecompressor.com/ -->
-                <a href="docs/images/gallery/l1.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/l1-min.jpg"></a>
-                <a href="docs/images/gallery/l2.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/l2-min.jpg"></a>
-                <a href="docs/images/gallery/l3.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/l3-min.jpg"></a>
-                <a href="docs/images/gallery/l4.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/l4-min.jpg"></a>
-                <a href="docs/images/gallery/l5.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/l5-min.jpg"></a>
-
-                <a href="docs/images/gallery/c1.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/c1-min.jpg"></a>
-                <a href="docs/images/gallery/c2.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/c2-min.jpg"></a>
-                <a href="docs/images/gallery/c3.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/c3-min.jpg"></a>
-                <a href="docs/images/gallery/c4.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/c4-min.jpg"></a>
-                <a href="docs/images/gallery/c5.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/c5-min.jpg"></a>
-
-                <a href="docs/images/gallery/r1.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/r1-min.jpg"></a>
-                <a href="docs/images/gallery/r2.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/r2-min.jpg"></a>
-                <a href="docs/images/gallery/r3.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/r3-min.jpg"></a>
-                <a href="docs/images/gallery/r4.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/r4-min.jpg"></a>
-                <a href="docs/images/gallery/r5.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/r5-min.jpg"></a>
-                <a href="docs/images/gallery/r6.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/r6-min.jpg"></a>
+                <a href="docs/images/gallery/1.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min1.jpg"></a>
+                <a href="docs/images/gallery/2.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min2.jpg"></a>
+                <a href="docs/images/gallery/3.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min3.jpg"></a>
+                <a href="docs/images/gallery/4.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min4.jpg"></a>
+                <a href="docs/images/gallery/5.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min5.jpg"></a>
+                <a href="docs/images/gallery/6.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min6.jpg"></a>
+                <a href="docs/images/gallery/7.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min7.jpg"></a>
+                <a href="docs/images/gallery/8.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min8.jpg"></a>
+                <a href="docs/images/gallery/9.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min9.jpg"></a>
+                <a href="docs/images/gallery/10.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min10.jpg"></a>
             </div>
             
 
 
             <h1 id="sec_blog">blog</h1>
-            <div class="blog hidden">
+            <div class="blog">
 
                 <ul>
                     <li><h2>Numerical methods</h2></li>
@@ -149,7 +146,7 @@
 
 
             <h1 id="sec_research">research</h1>
-            <div class="research hidden">
+            <div class="research">
                 <p class="research-headers"><span>Publication</span></p>
                 <ol>
                     <li><strong>Chen, B. S.</strong>, Lin, Y. K., Chen, J. Y., Huang, C. W., Chern, J. L., & Sun, C. C. (2024). 
@@ -158,7 +155,7 @@
                 </ol>
             </div>
 
-            <div class="research hidden">
+            <div class="research">
                 <p class="research-headers"><span>Awards</span></p>
                 <ol>
                     <li>
@@ -185,7 +182,7 @@
                 </ol>
             </div>
 
-            <div class="research hidden">
+            <div class="research">
                 <p class="research-headers"><span>Presentations</span></p>
                 <ol>
                     <li>14th Taiwan-Japan Joint Workshop for Young Scholars in Applied Mathematics, Meiji University, Tokyo, Feb 27-29, 2024.</li>

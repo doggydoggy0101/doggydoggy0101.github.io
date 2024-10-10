@@ -80,6 +80,9 @@ article h1 {
     text-align: left;
     min-height: 100vh;
     columns: 320px;
+    position: relative;
+    left: -200px;
+    opacity: 0;
 }
 
 .blog ul {
@@ -145,22 +148,6 @@ article h1 {
 }
 
 
-/* animation */
-.blog.hidden {
-    opacity: 0;
-    filter: blur(10px);
-    transform: translateX(-100%);
-    transition: all 1s cubic-bezier(0,.62,.4,1.22);
-}
-
-.blog.show {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateX(0%);
-}
-
-
-
 
 #sec_projects {
     padding-top: 80px;
@@ -172,13 +159,16 @@ article h1 {
 
 
 
+
 #sec_research {
     padding-top: 80px;
 }
 
 .research {
     text-align: left;
-    /* margin-bottom: 80px; */
+    position: relative;
+    top: 60px;
+    opacity: 0;
 }
 
 .research ol {
@@ -221,17 +211,8 @@ article h1 {
     margin: 0 0 0 20px;
 }
 
-/* animation */
-.research.hidden {
-    opacity: 0;
-    transform: translateY(20%);
-    transition: all 1s cubic-bezier(.27,.63,.64,.9);
-}
 
-.research.show {
-    opacity: 1;
-    transform: translateY(0%);
-}
+
 
 footer {
     margin-bottom: 20vh;
