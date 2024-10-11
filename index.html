@@ -71,129 +71,135 @@
                 </div>
             </div>
 
-            <h1 class="about-me-header">about me</h1>
-            <p class="about-me-paragraph">
-                Hi! I am currently a master student at the Department of Mathematics, National Taiwan Normal University. 
-                My research interests are mainly in optimization and robotics, and I write blogs about tools and concepts 
-                I frequently use. Feel free to check them out, and I hope you find them helpful!
-            </p>
+            <div class="sec-container">
+                <h1 class="sec-header about-me-header">about me</h1>
+                <p class="about-me-paragraph">
+                    Hi! I am currently a master student at the Department of Mathematics, National Taiwan Normal University. 
+                    My research interests are mainly in optimization and robotics, and I write blogs about tools and concepts 
+                    I frequently use. Feel free to check them out, and I hope you find them helpful!
+                </p>
 
-            <h1>portfolio</h1>
-            <div class="album"> <!-- https://imagecompressor.com/ -->
-                <a href="docs/images/gallery/1.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min1.jpg"></a>
-                <a href="docs/images/gallery/2.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min2.jpg"></a>
-                <a href="docs/images/gallery/3.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min3.jpg"></a>
-                <a href="docs/images/gallery/4.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min4.jpg"></a>
-                <a href="docs/images/gallery/5.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min5.jpg"></a>
-                <a href="docs/images/gallery/6.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min6.jpg"></a>
-                <a href="docs/images/gallery/7.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min7.jpg"></a>
-                <a href="docs/images/gallery/8.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min8.jpg"></a>
-                <a href="docs/images/gallery/9.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min9.jpg"></a>
-                <a href="docs/images/gallery/10.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min10.jpg"></a>
+                <h1 class="sec-header">portfolio</h1>
+                <div class="album"> <!-- resolution: 60/40 -->
+                    <a href="docs/images/gallery/1.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min1.jpg"></a>
+                    <a href="docs/images/gallery/2.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min2.jpg"></a>
+                    <a href="docs/images/gallery/3.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min3.jpg"></a>
+                    <a href="docs/images/gallery/4.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min4.jpg"></a>
+                    <a href="docs/images/gallery/5.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min5.jpg"></a>
+                    <a href="docs/images/gallery/6.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min6.jpg"></a>
+                    <a href="docs/images/gallery/7.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min7.jpg"></a>
+                    <a href="docs/images/gallery/8.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min8.jpg"></a>
+                    <a href="docs/images/gallery/9.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min9.jpg"></a>
+                    <a href="docs/images/gallery/10.jpg" data-lightbox="gallery"><img class="img" src="docs/images/gallery/compress/min10.jpg"></a>
+                </div>
             </div>
+
             
 
+            <div class="sec-container">
+                <h1 id="sec_blog" class="sec-header">blog</h1>
+                <div class="blog-container">
+                    <div class="blog">
+                        <ul>
+                            <li><h2>Numerical methods</h2></li>
+                            <li><a href="post/gradient_descent_and_newton_method.html">Gradient descent & Newton's method</a></li>
+                            <li><a href="post/gauss_newton.html">Gauss-Newton</a></li>
+                        </ul>
 
-            <h1 id="sec_blog">blog</h1>
-            <div class="blog">
+                        <ul>
+                            <li><h2>Machine learning</h2></li>
+                            <li><a href="post/linear_regression.html">Linear regression</a></li>
+                            <li><a href="post/support_vector_machine.html">Support vector machine</a></li>
+                        </ul>
+        
+                        <ul>
+                            <li><h2>Optimization</h2></li>
+                            <li><a href="post/convex_optimization_preliminaries.html">Convex optimization preliminaries</a></li>
+                            <li><a href="post/convex_homogenization.html">Homogenization for convex sets</a></li>
+                            <li><a href="post/linear_programming.html">Linear program</a></li>
+                            <li><a href="post/semidefinite_programming.html">Semidefinite program</a></li>
+                            <li><a href="post/quadratic_programming.html">Quadratic program</a></li>
+                            <li><a href="post/qp_closed_form.html">QP closed-form</a></li>
+                            <li><a href="post/qp_to_cqp.html">QP to SOCP</a></li>
+                            <li><a href="post/qcqp_to_sdp.html">QCQP to SDP</a></li>
+                        </ul>
 
-                <ul>
-                    <li><h2>Numerical methods</h2></li>
-                    <li><div class="blog-container"><a href="post/gradient_descent_and_newton_method.html" data-replace="Gradient descent & Newton's method">
-                        <span>Gradient descent & Newton's method</span></a></div></li>
-                    <li><div class="blog-container"><a href="post/gauss_newton.html" data-replace="Gauss-Newton">
-                        <span>Gauss-Newton</span></a></div></li>
-                </ul>
+                        <ul>
+                            <li><h2>Robotics</h2></li>
+                            <li><a href="post/point_cloud_registration.html">Point cloud registration</a></li>
+                            <li><a href="post/pose_graph_optimization.html">Pose graph optimization</a></li>
+                            <li><a href="post/lie_theory_in_robotics.html">Lie theory in Robotics</a></li>
+                            <li><a href="post/riemannian_lie_compare.html">Riemannian and Lie theory comparison</a></li>
+                            <li><a href="post/motion_planning.html">Motion planning</a></li>
+                        </ul>
 
-                <ul>
-                    <li><h2>Machine learning</h2></li>
-                    <li><a href="post/linear_regression.html">Linear regression</a></li>
-                    <li><a href="post/support_vector_machine.html">Support vector machine</a></li>
-                </ul>
-      
-                <ul>
-                    <li><h2>Optimization</h2></li>
-                    <li><a href="post/convex_optimization_preliminaries.html">Convex optimization preliminaries</a></li>
-                    <li><a href="post/convex_homogenization.html">Homogenization for convex sets</a></li>
-                    <li><a href="post/linear_programming.html">Linear program</a></li>
-                    <li><a href="post/semidefinite_programming.html">Semidefinite program</a></li>
-                    <li><a href="post/quadratic_programming.html">Quadratic program</a></li>
-                    <li><a href="post/qp_closed_form.html">QP closed-form</a></li>
-                    <li><a href="post/qp_to_cqp.html">QP to SOCP</a></li>
-                    <li><a href="post/qcqp_to_sdp.html">QCQP to SDP</a></li>
-                </ul>
+                        <ul>
+                            <li><h2>Computer vision</h2></li>
+                            <li><a href="post/uncertainty_in_computer_vision.html">Uncertainty in Computer vision</a></li>
+                        </ul>
 
-                <ul>
-                    <li><h2>Robotics</h2></li>
-                    <li><a href="post/point_cloud_registration.html">Point cloud registration</a></li>
-                    <li><a href="post/pose_graph_optimization.html">Pose graph optimization</a></li>
-                    <li><a href="post/lie_theory_in_robotics.html">Lie theory in Robotics</a></li>
-                    <li><a href="post/riemannian_lie_compare.html">Riemannian and Lie theory comparison</a></li>
-                    <li><a href="post/motion_planning.html">Motion planning</a></li>
-                </ul>
+                    </div>
+                    <div class="quote"><p>Math equations may overflow in smaller screen sizes (e.g., smart phone).</p></div>
+                </div>
+            </div>
 
-                <ul>
-                    <li><h2>Computer vision</h2></li>
-                    <li><a href="post/uncertainty_in_computer_vision.html">Uncertainty in Computer vision</a></li>
-                </ul>
-
+            <div class="sec-container">
+                <h1 id="sec_projects" class="sec-header">projects</h1>
+                <div class="projects">
+                    <p>To be done...</p>
+                </div>
             </div>
 
 
-
-            <h1 id="sec_projects">projects</h1>
-            <div class="projects">
-                <p>To be done...</p>
-            </div>
-
-
-            <h1 id="sec_research">research</h1>
-            <div class="research">
-                <p class="research-headers"><span>Publication</span></p>
-                <ol>
-                    <li><strong>Chen, B. S.</strong>, Lin, Y. K., Chen, J. Y., Huang, C. W., Chern, J. L., & Sun, C. C. (2024). 
-                        <i>FracGM: A Fast Fractional Programming Technique for Geman-McClure Robust Estimator</i>,
-                        submitted to IEEE Robotics and Automation Letters. (paper) (<a href="https://arxiv.org/abs/2409.13978">preprint</a>) (<a href="https://github.com/StephLin/FracGM">code</a>)</li>
-                </ol>
-            </div>
-
-            <div class="research">
-                <p class="research-headers"><span>Awards</span></p>
-                <ol>
-                    <li>
-                        <strong>NCTS Research Abroad Program</strong>
-                        A research abroad program financially supported by the Mathematics Division of 
-                        National Center of Theoretical Sciences, worked with Prof. Shuzhong Zhang at the 
-                        University of Minnesota. <i>(Jun 2024 - Aug 2024)</i>
-                    </li>
-                    <li>
-                        <strong>Taiwan-Japan Joint Workshop, Presentation Award</strong>
-                        Out of 40 speakers in the 14th Taiwan-Japan Joint Workshop for Young Scholars in 
-                        Applied Mathematics. <i>(Feb 2024)</i>
-                    </li>
-                    <li>
-                        <strong>IBM Qiskit Hackathon Taiwan, 1st prize</strong>
-                        Out of 12 teams in the final round of the Quantum Computing Hackathon.
-                        <i>(Jul 2022)</i>
-                    </li>
-                    <li>
-                        <strong>Taiwan-Japan Joint Workshop, Presentation Award</strong>
-                        Out of 42 speakers in the 12th Taiwan-Japan Joint Workshop for Young Scholars in 
-                        Applied Mathematics. <i>(Feb 2024)</i>
-                    </li>
-                </ol>
-            </div>
-
-            <div class="research">
-                <p class="research-headers"><span>Presentations</span></p>
-                <ol>
-                    <li>14th Taiwan-Japan Joint Workshop for Young Scholars in Applied Mathematics, Meiji University, Tokyo, Feb 27-29, 2024.</li>
-                    <li>Workshop on Advances in Continuous Optimization 2023, The University of Tokyo, Tokyo, Japan, Jul 24-25, 2023.</li>
-                    <li>2022 Summer school on Quantum Computer, Asia University, Taipei, Taiwan, August 21 - Sep 24, 2022.</li>
-                    <li>Seminar on Quantum Theory and Computation, National Taiwan Normal University, Taipei, Taiwan, Apr 26 - May 24, 2022.</li>
-                    <li>12th Taiwan-Japan Joint Workshop for Young Scholars in Applied Mathematics, (virtual), Feb 28 - Mar 1, 2022.</li>
+            <div class="sec-container">
+                <h1 id="sec_research" class="sec-header">research</h1>
+                <div class="research">
+                    <p class="research-headers"><span>Publication</span></p>
+                    <ol>
+                        <li><strong>Chen, B. S.</strong>, Lin, Y. K., Chen, J. Y., Huang, C. W., Chern, J. L., & Sun, C. C. (2024). 
+                            <i>FracGM: A Fast Fractional Programming Technique for Geman-McClure Robust Estimator</i>,
+                            submitted to IEEE Robotics and Automation Letters. (paper) (<a href="https://arxiv.org/abs/2409.13978">preprint</a>) (<a href="https://github.com/StephLin/FracGM">code</a>)</li>
                     </ol>
                 </div>
+
+                <div class="research">
+                    <p class="research-headers"><span>Awards</span></p>
+                    <ol>
+                        <li>
+                            <strong>NCTS Research Abroad Program</strong>
+                            A research abroad program financially supported by the Mathematics Division of 
+                            National Center of Theoretical Sciences, worked with Prof. Shuzhong Zhang at the 
+                            University of Minnesota. <i>(Jun 2024 - Aug 2024)</i>
+                        </li>
+                        <li>
+                            <strong>Taiwan-Japan Joint Workshop, Presentation Award</strong>
+                            Out of 40 speakers in the 14th Taiwan-Japan Joint Workshop for Young Scholars in 
+                            Applied Mathematics. <i>(Feb 2024)</i>
+                        </li>
+                        <li>
+                            <strong>IBM Qiskit Hackathon Taiwan, 1st prize</strong>
+                            Out of 12 teams in the final round of the Quantum Computing Hackathon.
+                            <i>(Jul 2022)</i>
+                        </li>
+                        <li>
+                            <strong>Taiwan-Japan Joint Workshop, Presentation Award</strong>
+                            Out of 42 speakers in the 12th Taiwan-Japan Joint Workshop for Young Scholars in 
+                            Applied Mathematics. <i>(Feb 2024)</i>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="research">
+                    <p class="research-headers"><span>Presentations</span></p>
+                    <ol>
+                        <li>14th Taiwan-Japan Joint Workshop for Young Scholars in Applied Mathematics, Meiji University, Tokyo, Feb 27-29, 2024.</li>
+                        <li>Workshop on Advances in Continuous Optimization 2023, The University of Tokyo, Tokyo, Japan, Jul 24-25, 2023.</li>
+                        <li>2022 Summer school on Quantum Computer, Asia University, Taipei, Taiwan, August 21 - Sep 24, 2022.</li>
+                        <li>Seminar on Quantum Theory and Computation, National Taiwan Normal University, Taipei, Taiwan, Apr 26 - May 24, 2022.</li>
+                        <li>12th Taiwan-Japan Joint Workshop for Young Scholars in Applied Mathematics, (virtual), Feb 28 - Mar 1, 2022.</li>
+                        </ol>
+                </div>
+            </div>
 
         </article>
         <footer></footer>

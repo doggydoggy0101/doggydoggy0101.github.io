@@ -2,17 +2,17 @@
 CustomEase.create("cubic-bezier-blog", "0,.62,.4,1.22");
 CustomEase.create("cubic-bezier-research", ".27,.63,.64,.9");
 
-gsap.to(".blog", {
+gsap.to(".blog-container", {
     scrollTrigger: {
-        trigger: ".blog",
+        trigger: ".blog-container",
         start: "top 80%",
-        end: "bottom 100%",
+        end: "bottom 30%",
         scrub: false,
         toggleActions: "play reverse play reverse",
         // markers: true, // debug
     },
     x: 200, 
-    duration: 0.8, 
+    duration: 0.6, 
     opacity: 1, 
     ease: "cubic-bezier-blog"
 })
@@ -23,8 +23,8 @@ researchs.forEach((research) => {
     gsap.to(research, { 
             scrollTrigger: {
                 trigger: research,
-                start: "top 85%",
-                end: "bottom 85%",
+                start: "top 100%",
+                end: "160px 100%",
                 scrub: true,
                 // markers: true, // debug
             },

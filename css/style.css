@@ -37,9 +37,14 @@ article {
     padding: 120px 10% 80px 10%;
 }
 
-article h1 {
+article .sec-header {
+    padding-top: 80px;
     font-size: 36px;
     margin-bottom: 20px;
+}
+
+.sec-container {
+    min-height: 100vh;
 }
 
 .about-me-header {
@@ -47,10 +52,10 @@ article h1 {
 }
 
 .about-me-paragraph {
-    /* font-size: 16px; */
     line-height: 2;
-    margin-bottom: 40px;
+    margin-bottom: -40px;
 }
+
 
 
 .album {
@@ -72,17 +77,17 @@ article h1 {
 
 
 #sec_blog {
-    padding-top: 80px;
     padding-bottom: 20px;
+}
+.blog-container {
+    position: relative;
+    left: -200px;
+    opacity: 0;
 }
 
 .blog {
     text-align: left;
-    min-height: 100vh;
     columns: 320px;
-    position: relative;
-    left: -200px;
-    opacity: 0;
 }
 
 .blog ul {
@@ -110,6 +115,7 @@ article h1 {
     background-color: #3a4660;
     left: -4px;
     transform: translateY(8px);
+    z-index: 3;
 }
 
 .blog ul li {
@@ -132,6 +138,7 @@ article h1 {
     background-color: #abb2b9;
     left: -1px;
     transform: translateY(10px);
+    z-index: 2;
 }
 
 .blog ul li a {
@@ -147,22 +154,23 @@ article h1 {
     box-shadow: inset 800px 0 0 0 #a8d0e6;
 }
 
+.quote {
+    text-align: left;
+    margin-top: 20px;  
+    padding-left: 1.4rem;  
+    color: #a8d0e6;
+    border-left: 4px solid #a8d0e6; 
+} 
 
 
-#sec_projects {
-    padding-top: 80px;
-}
-
-.projects {
-    min-height: 100vh;
-}
+/* #sec_projects {
+} */
 
 
 
 
-#sec_research {
-    padding-top: 80px;
-}
+/* #sec_research {
+} */
 
 .research {
     text-align: left;
@@ -173,7 +181,7 @@ article h1 {
 
 .research ol {
     list-style: decima;
-    margin-bottom: 20px;
+    margin-bottom: 32px;
 }
 
 .research ol li {
@@ -197,7 +205,7 @@ article h1 {
 
     font-size: 20px;
     color: #808b96;
-    margin: 32px 0 16px 0;
+    margin: 16px 0 16px 0;
 }
 
 .research-headers:before, .research-headers:after {
