@@ -234,5 +234,3 @@ Boumal, N. (2023). An introduction to optimization on smooth manifolds. Cambridg
 
 <a id="SDA18">[7]</a> 
 Sola, J., Deray, J., & Atchuthan, D. (2018). A micro Lie theory for state estimation in robotics. arXiv preprint arXiv:1812.01537.
-
-#

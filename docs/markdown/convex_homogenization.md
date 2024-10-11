@@ -45,5 +45,3 @@ The homogenization method consists of three steps:
 3. dehomogenize/deconify: translate back
 
 <!-- example of using the homogenization method -->
-
-#

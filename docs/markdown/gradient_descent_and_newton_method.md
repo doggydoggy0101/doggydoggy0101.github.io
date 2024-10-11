@@ -79,5 +79,3 @@ Nesterov, Y., & Polyak, B. T. (2006). Cubic regularization of Newton method and 
 
 <a id="JWZ19">[2]</a> 
 Jiang, B., Wang, H., & Zhang, S. (2019, June). An optimal high-order tensor method for convex optimization. In Conference on Learning Theory (pp. 1799-1801). PMLR.
-
-#

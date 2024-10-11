@@ -86,5 +86,3 @@ $$
 Shor, N. Z. (1987). Quadratic optimization problems. Soviet Journal of Computer and Systems Sciences, 25, 1-11.
 
 [2] Yang, H. (2024). Harvard ENG-SCI 257: [Semidefinite Optimization and Relaxation](https://hankyang.seas.harvard.edu/Semidefinite/).
-
-#

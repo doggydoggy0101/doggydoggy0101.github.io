@@ -213,5 +213,3 @@ the gradient defined by Riemannian manifold structure and Lie theory are also id
 
 
 > We conclude that when we can find a smoothing function with Euclidean gradient by simply relax the feasible manifold space to Euclidean space, and also we can define the gradient by Lie theory, then the two gradients are the same.
-
-#

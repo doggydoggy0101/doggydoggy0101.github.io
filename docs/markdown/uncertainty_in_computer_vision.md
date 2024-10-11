@@ -126,5 +126,3 @@ Kendall, A., Gal, Y., & Cipolla, R. (2018). Multi-task learning using uncertaint
 Jordan, M. I., Ghahramani, Z., Jaakkola, T. S., & Saul, L. K. (1999). An introduction to variational methods for graphical models. Machine learning, 37, 183-233.
 
 [5] Brahmbhatt, S., Gu, J., Kim, K., Hays, J., & Kautz, J. (2018). Geometry-aware learning of maps for camera localization. In Proceedings of the IEEE conference on computer vision and pattern recognition (pp. 2616-2625).
-
-#

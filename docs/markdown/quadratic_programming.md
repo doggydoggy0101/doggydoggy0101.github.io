@@ -60,5 +60,3 @@ Convex QCQPs are also equivalent to semidefinite programs (SDP). Furthermore, we
 
 ## Reference
 [1] S. Boyd, L. Vandenberghe, Convex optimization, Cambridge university press, 2004.
-
-#

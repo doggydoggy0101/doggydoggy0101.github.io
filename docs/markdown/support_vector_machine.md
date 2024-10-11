@@ -79,5 +79,3 @@ Commonly used kernels are summarized as follows:
 - polynomial kernel: $K(\mathbf{x}_i,\mathbf{x}_j)=(\gamma\mathbf{x}_i^\top\mathbf{x}_j+r)^p$
 - Sigmoid kernel: $K(\mathbf{x}_i,\mathbf{x}_j)=\tanh(\gamma\mathbf{x}_i^\top\mathbf{x}_j+r)$
 - Gaussian (RBF) kernel: $K(\mathbf{x}_i,\mathbf{x}_j)=\exp(-\frac{1}{2\sigma}\|\mathbf{x}_i-\mathbf{x}_j\|^2)$
-
-#

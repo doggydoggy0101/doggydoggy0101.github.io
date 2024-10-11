@@ -142,5 +142,3 @@ S. M. LaValle. (2011). Motion planning: Wild frontiers. IEEE Robotics and Automa
 
 <a id="WPG20">[3]</a> 
 Weintraub, I. E., Pachter, M., & Garcia, E. (2020, July). An introduction to pursuit-evasion differential games. In 2020 American Control Conference (ACC) (pp. 1049-1066). IEEE.
-
-#

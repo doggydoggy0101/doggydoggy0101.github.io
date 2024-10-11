@@ -150,5 +150,3 @@ Since $x^*$ and $y^*=\lambda$ are feasible solutions, it follows from the Lagran
 > Simplex method was invented by George Dantzig.
 
 <span style="color:#999999">to be complete</span> 
-
-#

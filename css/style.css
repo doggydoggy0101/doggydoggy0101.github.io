@@ -48,6 +48,7 @@ article .sec-header {
 }
 
 .about-me-header {
+    margin-top: -80px;
     margin-bottom: 40px;
 }
 
@@ -223,7 +224,7 @@ article .sec-header {
 
 
 footer {
-    margin-bottom: 20vh;
+    min-height: 10vh;
 }
 
 

@@ -55,6 +55,9 @@ h1 {
 
 
 
+footer {
+    min-height: 10vh;
+}
 
 
 /* Adjustments for small screens */

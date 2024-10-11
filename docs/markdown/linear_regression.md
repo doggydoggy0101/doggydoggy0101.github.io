@@ -119,5 +119,3 @@ $$
 $$
 
 This is called *stochastic gradient descent*, whereas batch gradient descent has to scan through the entire training set before taking a single update, while stochastic gradient descent can start making progress right away. When the $n$ is large, stochastic gradient descent is often preferred over batch gradient descent.
-
-#

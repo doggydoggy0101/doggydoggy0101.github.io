@@ -78,5 +78,3 @@ $$
 [1] S. Boyd, L. Vandenberghe, Convex optimization, Cambridge university press, 2004.
 
 [2] ApS, M. (2020). Mosek modeling cookbook.
-
-#

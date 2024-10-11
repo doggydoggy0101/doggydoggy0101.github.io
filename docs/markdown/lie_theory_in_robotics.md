@@ -337,5 +337,3 @@ Barfoot, T. D. (2024). State estimation for robotics. Cambridge University Press
 [5] cheat sheet: [Lie theory cheat sheet](https://github.com/artivis/manif/blob/devel/paper/Lie_theory_cheat_sheet.pdf) for [[1]](#SDA18), [Lie group summary sheet](https://norlab.ulaval.ca/research/LieCheatsheet/) for [[2]](#B24)
 
 [6] open source: [manif](https://github.com/artivis/manif)
-
-#

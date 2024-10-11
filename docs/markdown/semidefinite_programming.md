@@ -75,5 +75,3 @@ $$
 ## Reference
 <!-- <a id="VB96">[1]</a>  -->
 [1] Vandenberghe, L., & Boyd, S. (1996). Semidefinite programming. SIAM review, 38(1), 49-95.
-
-#

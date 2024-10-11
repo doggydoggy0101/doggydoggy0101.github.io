@@ -73,5 +73,3 @@ $$
 \bar{H}(x)\approx J(x)^\top J(x).
 $$
 That is, we approximate the Hessian of Newton's method by the Jacobian of $f(x)$. Thereby, we say Gauss-Newton is a second-order approximation with an approximated Hessian.
-
-#

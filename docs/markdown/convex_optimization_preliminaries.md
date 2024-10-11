@@ -603,6 +603,3 @@ S. Boyd, L. Vandenberghe, Convex optimization, Cambridge university press, 2004.
 [2] Bazaraa, M. S., Sherali, H. D., & Shetty, C. M. (2006). Nonlinear programming: theory and algorithms. John wiley & sons.
 
 [3] Zhang, S. (2020). UMN IE 8521: Optimization.
-
-
-#

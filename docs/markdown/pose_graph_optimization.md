@@ -154,5 +154,3 @@ Gao, X., Zhang, T., Liu, Y., & Yan, Q. (2017). 14 lectures on visual SLAM: from 
 
 <a id="SDA18">[3]</a> 
 Sola, J., Deray, J., & Atchuthan, D. (2018). A micro Lie theory for state estimation in robotics. arXiv preprint arXiv:1812.01537.
-
-#
