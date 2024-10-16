@@ -51,7 +51,7 @@ h1 {
     font-size: 112%;
     font-family: "Latin Modern Math", sans-serif;
 }
-.katex-display { overflow: scroll }
+/* .katex-display { overflow: auto hidden } */
 
 
 
