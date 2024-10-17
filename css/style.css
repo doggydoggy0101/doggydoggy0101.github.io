@@ -54,8 +54,22 @@ article .sec-header {
 
 .about-me-paragraph {
     line-height: 2;
+    margin-bottom: 30px;
+}
+
+.about-me-download {
+    line-height: 2;
     margin-bottom: -40px;
 }
+
+.file {
+    color: #2874a6 ;
+}
+
+.file:hover {
+    color: #3498db ;
+}
+
 
 
 
