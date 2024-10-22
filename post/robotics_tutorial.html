@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Bang-Shien Chen pose graph optimization">
+    <meta name="keywords" content="pose graph optimization">
+    <meta name="author" content="Bang-Shien Chen">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pose graph optimization</title>
+    <link rel="icon" href="../docs/images/profile.jpg" type="image/icon type">
+
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/navigator.css">
+    <link rel="stylesheet" href="../css/transition.css">
+    <link rel="stylesheet" href="../css/markdown.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script> 
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.13/dist/lenis.css">
+    <script defer src="../js/scroll.js"></script>
+</head>
+
+</head>
+
+<body>
+<div class="container">
+
+    <!-- Sidebar -->
+    <aside class="profile">
+        <div class="profile-container">
+            <img src="../docs/images/profile.jpg" alt="Profile Picture" class="profile-img">
+            <h2>welcome!</h2>
+            <p>Ian Chen / Bang-Shien Chen</p>
+            <div class="profile-icons">
+                <a href="https://github.com/doggydoggy0101"><img src="../docs/images/logo/github.png" alt="GitHub"></a>
+                <a href="https://www.youtube.com/@doggydoggy0101"><img src="../docs/images/logo/youtube.png" alt="YouTube"></a>
+                <a href="mailto: dgbshien@gmail.com"><img src="../docs/images/logo/gmail-logo.png" alt="Mail"></a>
+                <!-- <a href="https://www.instagram.com/dgbs_cardician"><img src="docs/logo/instagram.png" alt="Instagram"></a> -->
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="content"> 
+
+        <!-- Navigator -->
+        <nav class="navigator">
+            <ul>
+                <li><a href="../index.html" data-replace="Home"><span>Home</span></a></li>
+                <li><a href="../index.html#sec_blog" data-replace="Blog"><span>Blog</span></a></li>
+                <li><a href="../index.html#sec_projects" data-replace="Projects"><span>Projects</span></a></li>
+                <li><a href="../index.html#sec_research" data-replace="Research"><span>Research</span></a></li>
+            </ul>
+        </nav>
+
+        <!-- Article Content -->
+        <article>
+            <script type="module" src="https://cdn.jsdelivr.net/npm/zero-md@3?register"></script>
+            <zero-md src="../docs/markdown/robotics_tutorial.md">
+                <template>
+                    <style>
+                        :host { display: block; position: relative; contain: content; }
+                        :host([hidden]) { display: none; }
+                    </style>
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5/github-markdown.min.css" />
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11/styles/github.min.css" />
+                    <link rel="stylesheet" media="(prefers-color-scheme:dark)" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11/styles/github-dark.min.css" />
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css" />
+       
+                    <link rel="stylesheet" href="../css/markdown.css">
+                </template>
+            </zero-md>
+
+        </article>
+        <footer></footer>
+    </div>
+</div>
+
+</body>
+</html>
