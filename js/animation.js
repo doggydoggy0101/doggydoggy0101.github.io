@@ -24,7 +24,7 @@ researchs.forEach((research) => {
             scrollTrigger: {
                 trigger: research,
                 start: "top 100%",
-                end: "160px 100%",
+                end: "100px 100%",
                 scrub: true,
                 // markers: true, // debug
             },
