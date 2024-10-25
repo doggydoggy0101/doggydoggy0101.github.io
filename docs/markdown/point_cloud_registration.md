@@ -3,9 +3,12 @@
 
 Point cloud registration is a well-knowned problem in robotics and computer vision. Suppose that we have two sets of 3D point clouds, we want to find a spactial transformation between the two point clouds, for example, a rotation matrix or a translation vector.
 
-<p align="center"><img src="../docs/images/post/point_cloud_registration/bunny.png" width="540"/></p>
+<p align="center">
+<img src="../docs/images/post/point_cloud_registration/demo-iteration.gif" width="480"/>
+<img src="../docs/images/post/point_cloud_registration/demo-registration.gif" width="480"/>
+</p>
 
-Here is a quick example, the left figures are the input data, and we are using the darker red and blue points, while the lighter points are only for visualization purpose. Both blue and red point clouds has 100 points with 80 percent of them are ouliters. What we are trying to do here is to align the darker blue points onto the darker red points, where there are a lot of mis-information. 
+> Demo by [FracGM](https://github.com/StephLin/FracGM).
 
 ## Problem statement
 
