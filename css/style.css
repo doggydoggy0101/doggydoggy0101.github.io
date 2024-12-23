@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -178,14 +180,49 @@ article .sec-header {
 } 
 
 
-/* #sec_projects {
-} */
+
+.project-button {
+    text-decoration: none;
+}
+
+.project-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.project {
+    width: auto;
+    background-color: #fef5e7; /* Light gray background for contrast */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.project:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+}
+
+.project h3 {
+    font-size: 1.5em;
+    color: #1a5276;
+    margin-bottom: 10px;
+    font-family: Roboto Mono;
+}
+
+.project p {
+    font-size: 1em;
+    color: #1a5276;
+    line-height: 1.5;
+}
 
 
-
-
-/* #sec_research {
-} */
 
 .research {
     text-align: left;

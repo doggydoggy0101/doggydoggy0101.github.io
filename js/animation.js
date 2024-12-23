@@ -23,8 +23,8 @@ researchs.forEach((research) => {
     gsap.to(research, { 
             scrollTrigger: {
                 trigger: research,
-                start: "top 120%",
-                end: "200px 120%",
+                start: "top 85%",
+                end: "top 65%",
                 scrub: true,
                 // markers: true, // debug
             },
