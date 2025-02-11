@@ -186,16 +186,19 @@
   box-sizing: border-box;
 }
 
+.project-preview .blog {
+  font-size: 0.9rem;
+}
+
 /* === Headings (More Space) === */
 .project-preview h2 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #9ece6a; /* Green highlight */
-  margin-bottom: 12px; /* Adds spacing below heading */
+  margin: 5px 0 15px 0; /* Adds spacing below heading */
 }
 
 /* === Paragraphs (More Comfortable Reading) === */
 .project-preview p {
-  font-size: 1rem;
   color: #c0caf5;
   line-height: 1.6; /* Increases line height for readability */
   margin-bottom: 10px; /* Adds spacing between paragraphs */
@@ -203,7 +206,6 @@
 }
 
 .project-preview ul {
-  font-size: 1rem;
   color: #c0caf5;
   line-height: 1.6; /* Increases line height for readability */
   margin-bottom: 10px; /* Adds spacing between paragraphs */

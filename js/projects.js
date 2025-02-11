@@ -86,4 +86,23 @@ document.addEventListener("DOMContentLoaded", function () {
       arrowIcon.style.transform = "rotate(0deg)"; // Point down when expanded
     }
   });
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const projectContainer = document.querySelector(".projects-container");
+
+  gsap.set(projectContainer, { y: "20vh" });
+
+  gsap.to(projectContainer, {
+    y: "-20vh", // Stronger parallax effect
+    ease: "none",
+    scrollTrigger: {
+      trigger: "#projects",
+      start: "top bottom", 
+      end: "bottom top",
+      scrub: 1, 
+      // markers: true,
+    }
+  });
+
 });
