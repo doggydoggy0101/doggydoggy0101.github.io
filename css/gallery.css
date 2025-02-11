@@ -32,16 +32,16 @@
 .gallery-track {
   display: flex;
   flex-direction: column;
-  gap: 10vh; /* Increased space between rows */
+  gap: 8vh; /* Increased space between rows */
   will-change: transform;
-  padding: 2px 0px 0 10vh;;
-  animation: scrollGallery 40s linear infinite; /* Auto-scroll */
+  padding: 0.1rem 0 0 8vh;;
+  animation: scrollGallery 60s linear infinite; /* Auto-scroll */
 }
 
 /* === Gallery Row (Each Row is Independent) === */
 .gallery-row {
   display: flex;
-  gap: 10vh;; /* Decreased space between columns */
+  gap: 8vh;; /* Decreased space between columns */
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
@@ -50,8 +50,8 @@
 
 /* === Individual Gallery Items (Square Size) === */
 .gallery-item {
-  width: 15vh; /* Each image fits in a 2x2 grid */
-  height: 15vh; /* Same size for height */
+  width: 16vh; /* Each image fits in a 2x2 grid */
+  height: 16vh; /* Same size for height */
   display: flex;
   justify-content: center;
   align-items: center;

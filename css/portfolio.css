@@ -9,20 +9,20 @@
   color: #ffffff;
 }
 
-/* === Hi! Text (Manually Centered) === */
+/* === Hi! (Manually Centered) === */
 #hi-text {
   font-size: 8rem;
   font-weight: 800;
   position: absolute;
-  top: 50vh; /* Adjusted to keep it visually centered */
-  left: 50%;
+  top: 50vh; 
+  left: 50vw;
   transform: translate(-50%, -50%);
   z-index: 2;
 }
 
 /* === Portfolio Section (Bio Page) === */
 #portfolio {
-  height: 100vh; /* Ensures perfect centering when clicking navbar */
+  height: 100vh; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,7 +34,7 @@
 
 /* === Name Styling === */
 .name {
-  font-size: 3.5rem; /* Bigger emphasis */
+  font-size: 3.5rem; 
   font-weight: 700;
   margin-bottom: 5vh;
 }
@@ -55,9 +55,9 @@
   font-size: 1.1rem;
   color: #ffffff;
   text-align: center;
-  padding: 12px 20px;
-  border-radius: 20px; /* Rounded corners */
-  margin-top: 40px;
+  padding: 0.8rem 1.2rem;
+  border-radius: 1.1rem; /* Rounded corners */
+  margin-top: 2rem;
   display: inline-block;
 }
 

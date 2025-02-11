@@ -13,8 +13,7 @@
 /* === Container to Keep Content Centered === */
 .research-container {
   width: 85%; /* Limits width for better readability */
-  max-width: 900px; /* Prevents overly wide text */
-  padding: 0 40px; /* Adds left/right padding */
+  max-width: 60vw; /* Prevents overly wide text */
 }
 
 /* === Section Title === */
@@ -22,12 +21,12 @@
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 }
 
 /* === Research Sections (Publications, Awards, Presentations) === */
 .research-section {
-  margin-bottom: 40px;
+  margin-bottom: 2rem;
 }
 
 /* === Section Headings === */
@@ -35,9 +34,9 @@
   font-size: 1.5rem;
   font-weight: bold;
   color: #41484D;
-  border-bottom: 1px solid #757d82;
-  padding-bottom: 5px;
-  margin-bottom: 15px;
+  border-bottom: 0.1rem solid #757d82;
+  padding-bottom: 0.4rem;
+  margin-bottom: 1rem;
 }
 
 /* === Research List === */
@@ -49,7 +48,7 @@
 /* === List Items (Publications, Awards, Presentations) === */
 .research-list li {
   font-size: 1.2rem;
-  margin-bottom: 12px;
+  margin-bottom: 0.5rem;
   text-align: justify;
   display: flex;
   align-items: flex-start;
@@ -58,7 +57,7 @@
 /* === Numbering Style === */
 .research-index {
   flex-shrink: 0; /* Prevents index from shrinking */
-  width: 40px; /* Fixed width for alignment */
+  width: 1rem; /* Fixed width for alignment */
   text-align: right;
   margin-right: 0.5rem;
 }
@@ -78,11 +77,4 @@
 
 .research-link:hover {
   text-decoration: underline;
-}
-
-
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px); /* Move down slightly */
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }

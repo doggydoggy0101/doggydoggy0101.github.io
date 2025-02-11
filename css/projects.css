@@ -20,8 +20,8 @@
   display: flex;
   flex-direction: column;
   width: 60vw;;
-  height: 70vh; /* 1:8:1 Ratio */
-  border-radius: 12px;
+  height: 70vh; 
+  border-radius: 0.5rem;
   overflow: hidden;
   font-family: 'MesloLGS Nerd Font', monospace;
   font-size: 0.9rem;
@@ -34,28 +34,27 @@
   width: 100%;
 }
 
-/* === MacOS Window Buttons (Close, Minimize, Maximize) === */
 /* === Window Controls (MacOS Buttons + Search Bar) === */
 .window-controls {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 15px;
+  padding: 0.6rem 1rem;
   background: rgba(36, 40, 59, 0.8);
-  border-bottom: 1px solid #414868;
+  border-bottom: 0.1rem solid #414868;
   position: relative;
 }
 
 /* === Window Buttons Container (Left Side) === */
 .window-left {
   display: flex;
-  gap: 8px;
+  gap: 0.6rem;
 }
 
 /* === Window Buttons (Mac Close, Minimize, Maximize) === */
 .window-btn {
-  width: 12px;
-  height: 12px;
+  width: 0.8rem;
+  height: 0.8rem;
   border-radius: 50%;
 }
 
@@ -70,14 +69,12 @@
   transform: translateX(-50%);
   align-items: center;
   text-align: center;
-  border-radius: 6px;
-  padding: 5px 12px;
   color: #c0caf5;
   font-size: 0.85rem;
 }
 
 .search-bar i {
-  margin-right: 8px;
+  margin-right: 0.5rem;
   color: #7aa2f7; /* Blue icon */
 }
 
@@ -85,20 +82,20 @@
 .file-explorer {
   width: 30%;
   background: rgba(36, 40, 59, 0.8);
-  padding: 15px;
+  padding: 0.8rem;
   height: 100%; /* Ensures full height */
   overflow-y: auto; /* Prevents content overflow */
-  border-right: 1px solid #414868; 
+  border-right: 0.1rem solid #414868; 
 }
 
 /* === Collapsible "doggy" Folder === */
 .folder-static {
   font-weight: bold;
-  padding: 8px 10px;
+  padding: 0.5rem 0.6rem;
   color: #c0caf5;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
   cursor: pointer; /* Allow clicking */
 }
 
@@ -111,14 +108,14 @@
   list-style: none;
   padding-left: 20px;
   overflow: hidden;
-  max-height: 300px; /* Set a reasonable max height */
+  max-height: 300px; /* TODO fix height */
   transition: max-height 0.3s ease-out, opacity 0.3s ease-out, transform 0.3s ease-out;
   opacity: 1;
 }
 
 /* === Hide Folder Content When Collapsed (Smooth Transition) === */
 .project-list.collapsed {
-  max-height: 0;  /* Shrinks smoothly */
+  max-height: 0; 
   opacity: 0;
   transform: translateY(-10px); /* Moves files up while collapsing */
 }
@@ -131,7 +128,7 @@
 
 .explorer-title {
   color: #7aa2f7; /* Blue title */
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
   font-size: 0.8rem;
 }
 
@@ -140,17 +137,17 @@
   background: rgba(41, 46, 66, 0.8);
   color: #7aa2f7; /* Blue text like VSCode */
   font-weight: bold;
-  border-left: 3px solid #7aa2f7; /* VSCode-like left border */
+  border-left: 0.2rem solid #7aa2f7; /* VSCode-like left border */
 }
 
 /* === Default File Explorer Items === */
 .project-list li {
-  padding: 8px 10px;
+  padding: 0.5rem 0.6rem;
   cursor: pointer;
   color: #c0caf5; /* Light text */
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
   transition: background 0.3s ease, border-left 0.3s ease;
 }
 
@@ -194,21 +191,21 @@
 .project-preview h2 {
   font-size: 2rem;
   color: #9ece6a; /* Green highlight */
-  margin: 5px 0 15px 0; /* Adds spacing below heading */
+  margin: 0.2rem 0 0.8rem 0; /* Adds spacing below heading */
 }
 
 /* === Paragraphs (More Comfortable Reading) === */
 .project-preview p {
   color: #c0caf5;
   line-height: 1.6; /* Increases line height for readability */
-  margin-bottom: 10px; /* Adds spacing between paragraphs */
+  margin-bottom: 0.5rem; /* Adds spacing between paragraphs */
   font-size: 0.9rem;
 }
 
 .project-preview ul {
   color: #c0caf5;
   line-height: 1.6; /* Increases line height for readability */
-  margin-bottom: 10px; /* Adds spacing between paragraphs */
+  margin-bottom: 0.5rem; /* Adds spacing between paragraphs */
   font-size: 0.9rem;
   list-style-position: outside;
   padding-left: 20px;
@@ -220,8 +217,8 @@
   text-decoration: none;
   font-weight: 500;
   display: inline-block;
-  padding: 6px 10px; /* Adds padding inside the link */
-  border-radius: 4px;
+  padding: 0.3rem 0.5rem; 
+  border-radius: 0.3rem;
   transition: background 0.3s ease, color 0.3s ease;
 }
 
@@ -240,11 +237,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 15px;
+  padding: 0.4rem 0.8rem;
   background: rgba(36, 40, 59, 0.8);
   color: #c0caf5;
   font-size: 0.85rem;
-  border-top: 1px solid #414868;
+  border-top: 0.1rem solid #414868;
   font-family: 'MesloLGS Nerd Font', monospace;
 }
 
@@ -252,7 +249,7 @@
 .left-status {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0.8rem;
 }
 
 /* "NORMAL" Mode Indicator */
@@ -275,7 +272,7 @@
 .right-status {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0.8rem;
 }
 
 /* Line/Column Position (Red) */
