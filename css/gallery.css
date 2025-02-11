@@ -1,0 +1,110 @@
+#gallery {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #faf2e3;
+  overflow: hidden;
+  padding-top: 10vh; /* Slightly lower overall section */
+}
+
+.section-title {
+  flex: 1; /* Reduced flex ratio to move it down */
+  display: flex;
+  align-items: center; /* Centers title more evenly */
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #41484D;
+}
+
+/* === Horizontal Scroll Wrapper === */
+.gallery-wrapper {
+  flex: 9; /* Increased flex ratio to move it up */
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start; /* Moves content slightly up */
+  position: relative;
+}
+
+/* === Horizontal Image Track === */
+.gallery-track {
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* Increased space between rows */
+  will-change: transform;
+  padding: 2px 0px 0 40px;
+  animation: scrollGallery 40s linear infinite; /* Auto-scroll */
+}
+
+/* === Gallery Row (Each Row is Independent) === */
+.gallery-row {
+  display: flex;
+  gap: 40px; /* Decreased space between columns */
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* === Individual Gallery Items (Square Size) === */
+.gallery-item {
+  width: 120px; /* Each image fits in a 2x2 grid */
+  height: 120px; /* Same size for height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  transition: 0.2s linear;
+}
+
+.gallery-item:hover {
+  transform: scale(102%);
+}
+
+/* === Ensure Images Fit While Keeping Aspect Ratio === */
+.gallery-item a {
+  width: 100%;
+  height: 100%;
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Keeps original ratio */
+}
+
+/* === Fading Overlay on Both Sides === */
+.gallery-fade {
+  position: absolute;
+  top: 0;
+  width: 10%; /* Adjust as needed */
+  height: 100%;
+  pointer-events: none; /* Allows interaction with images */
+  z-index: 2;
+}
+
+/* === Left Fade (Fade-Out to Left) === */
+.gallery-fade.left {
+  left: 0;
+  background: linear-gradient(to right, rgba(250, 242, 227, 1) 0%, rgba(250, 242, 227, 0) 100%);
+}
+
+/* === Right Fade (Fade-In from Right) === */
+.gallery-fade.right {
+  right: 0;
+  background: linear-gradient(to left, rgba(250, 242, 227, 1) 0%, rgba(250, 242, 227, 0) 100%);
+}
+
+
+/* === Auto Scroll Animation === */
+@keyframes scrollGallery {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+

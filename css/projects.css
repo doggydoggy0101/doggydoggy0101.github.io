@@ -1,0 +1,213 @@
+@font-face {
+  font-family: 'MesloLGS Nerd Font';
+  src: url('../docs/fonts/MesloLGSNerdFontMono-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* === Projects Section === */
+#projects {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff; 
+  color: #000000;
+  padding: 15vh 0; /* Leaves space for navbar/footer */
+}
+
+/* === Projects Container (Now Styled Like Mac VSCode) === */
+.projects-container {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: 70vh; /* 1:8:1 Ratio */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  background: #1a1b26; /* Tokyonight-Storm */
+  font-family: 'MesloLGS Nerd Font', monospace;
+  font-size: 0.9rem;
+}
+
+.projects-content {
+  display: flex;
+  flex-direction: row; /* Ensures file explorer & editor are side-by-side */
+  height: 100%;
+  width: 100%;
+}
+
+/* === MacOS Window Buttons (Close, Minimize, Maximize) === */
+/* === Window Controls (MacOS Buttons + Search Bar) === */
+.window-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background: #16161e;
+  border-bottom: 1px solid #414868;
+  position: relative;
+}
+
+/* === Window Buttons Container (Left Side) === */
+.window-left {
+  display: flex;
+  gap: 8px;
+}
+
+/* === Window Buttons (Mac Close, Minimize, Maximize) === */
+.window-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.window-btn.red { background: #ff5f56; }     /* Close */
+.window-btn.yellow { background: #ffbd2e; } /* Minimize */
+.window-btn.green { background: #27c93f; }  /* Maximize */
+
+/* === Search Bar (Centered in Window Header) === */
+.search-bar {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  background: #1e1e2e;
+  border-radius: 6px;
+  padding: 5px 12px;
+  color: #c0caf5;
+  border: 1px solid #414868;
+  width: 20%;
+}
+
+.search-bar i {
+  margin-right: 8px;
+  color: #7aa2f7; /* Blue icon */
+}
+
+.search-bar input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #c0caf5;
+  width: 100%;
+}
+
+.search-bar input::placeholder {
+  color: #565f89; /* Dim text like VSCode */
+}
+
+/* === File Explorer (Left Panel) === */
+.file-explorer {
+  width: 28%;
+  background: #16161e; /* Dark sidebar */
+  padding: 15px;
+  height: 100%; /* Ensures full height */
+  overflow-y: auto; /* Prevents content overflow */
+  border-right: 1px solid #414868; 
+}
+
+.explorer-title {
+  color: #7aa2f7; /* Blue title */
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+}
+
+/* === Active Project Indicator === */
+.project-list li.active {
+  background: #292e42; /* VSCode active file highlight */
+  color: #7aa2f7; /* Blue text like VSCode */
+  font-weight: bold;
+  border-left: 3px solid #7aa2f7; /* VSCode-like left border */
+}
+
+/* === Default File Explorer Items === */
+.project-list li {
+  padding: 8px 10px;
+  cursor: pointer;
+  color: #c0caf5; /* Light text */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.3s ease, border-left 0.3s ease;
+}
+
+/* === Hover Effect for File Explorer Items === */
+.project-list li:hover {
+  background: #414868;
+  color: #7aa2f7;
+}
+
+/* === Text Editor (Right Panel) === */
+.editor {
+  flex: 1;
+  background: #1a1b26;
+  display: flex;
+  height: 100%; /* Ensures full height */
+  flex-direction: column;
+}
+
+.editor-content {
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* === Project Preview (Markdown-like styling) === */
+.project-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px; /* Adds padding around the text */
+  box-sizing: border-box;
+}
+
+/* === Headings (More Space) === */
+.project-preview h2 {
+  font-size: 1.5rem;
+  color: #9ece6a; /* Green highlight */
+  margin-bottom: 12px; /* Adds spacing below heading */
+}
+
+/* === Paragraphs (More Comfortable Reading) === */
+.project-preview p {
+  font-size: 1rem;
+  color: #c0caf5;
+  line-height: 1.6; /* Increases line height for readability */
+  margin-bottom: 10px; /* Adds spacing between paragraphs */
+  font-size: 0.9rem;
+}
+
+.project-preview ul {
+  font-size: 1rem;
+  color: #c0caf5;
+  line-height: 1.6; /* Increases line height for readability */
+  margin-bottom: 10px; /* Adds spacing between paragraphs */
+  font-size: 0.9rem;
+  list-style-position: outside;
+  padding-left: 20px;
+}
+
+/* === Links (Clickable & More Padding) === */
+.project-preview a {
+  color: #bb9af7; /* Purple accent */
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+  padding: 6px 10px; /* Adds padding inside the link */
+  border-radius: 4px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.project-preview a:hover {
+  background: rgba(187, 154, 247, 0.2); /* Subtle hover effect */
+  text-decoration: underline;
+}
+
+/* === Hidden Class (For Switching Projects) === */
+.hidden {
+  display: none !important;
+}

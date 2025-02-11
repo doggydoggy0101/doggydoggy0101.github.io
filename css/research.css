@@ -1,0 +1,81 @@
+/* === Research Section (IEEE-Style) === */
+#research {
+  background: #ffffff;
+  color: #41484D;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh; /* Ensures full-page height */
+  padding-top: 10vh; 
+  padding-bottom: 10vh; /* Extra bottom padding for footer clearance */
+  font-family: "Cormorant", serif;
+}
+
+/* === Container to Keep Content Centered === */
+.research-container {
+  width: 85%; /* Limits width for better readability */
+  max-width: 900px; /* Prevents overly wide text */
+  padding: 0 40px; /* Adds left/right padding */
+}
+
+/* === Section Title === */
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* === Research Sections (Publications, Awards, Presentations) === */
+.research-section {
+  margin-bottom: 40px;
+}
+
+/* === Section Headings === */
+.research-section h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #41484D;
+  border-bottom: 1px solid #757d82;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+/* === Research List === */
+.research-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* === List Items (Publications, Awards, Presentations) === */
+.research-list li {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  text-align: justify;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* === Numbering Style === */
+.research-index {
+  flex-shrink: 0; /* Prevents index from shrinking */
+  width: 40px; /* Fixed width for alignment */
+  text-align: right;
+  margin-right: 0.5rem;
+}
+
+/* === Research Text Block (Aligns next to index) === */
+.research-text {
+  flex: 1; /* Takes up remaining space */
+  line-height: 1.4;
+  margin-bottom: 0.2rem;
+}
+
+/* === DOI Link Formatting === */
+.research-link {
+  color: #427ca6;
+  text-decoration: none;
+}
+
+.research-link:hover {
+  text-decoration: underline;
+}

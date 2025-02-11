@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ian Chen / Bang-Shien Chen</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/portfolio.css">
+  <link rel="stylesheet" href="css/gallery.css">
+  <link rel="stylesheet" href="css/projects.css">
+  <link rel="stylesheet" href="css/research.css">
+  <link rel="stylesheet" href="lightbox2/dist/css/lightbox.css">
+
+  <!-- Google Fonts: Cormorant -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Scripts -->
+  <script defer src="js/script.js"></script>
+  <script defer src="js/portfolio.js"></script>
+  <script defer src="js/gallery.js"></script>
+  <script defer src="js/projects.js"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav id="navbar">
+    <ul>
+      <li><a href="#portfolio" data-replace="Portfolio"><span>Portfolio</span></a></li>
+      <li><a href="#gallery" data-replace="Gallery"><span>Gallery</span></a></li>
+      <li><a href="#blogs" data-replace="Blogs"><span>Blogs</span></a></li>
+      <li><a href="#projects" data-replace="Projects"><span>Projects</span></a></li>
+      <li><a href="#research" data-replace="Research"><span>Research</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- First Section (Hi! Intro) -->
+  <section id="intro">
+    <div class="overlay"></div>
+    <h1 id="hi-text">Welcome!</h1>
+    <p class="scroll-down">↓ Scroll Down</p> <!-- New scroll-down reminder -->
+  </section>
+
+  <!-- Second Section (Main Content) -->
+  <section id="portfolio">
+    <div class="overlay"></div>
+
+    <div class="content">
+      <h2 class="name">Ian Chen / Bang-Shien Chen</h2>
+      <p class="bio">
+        I am currently a master's student at the Department of Mathematics,  
+        National Taiwan Normal University. My research interests are mainly  
+        in optimization and robotics, and I write blogs about tools and concepts  
+        I frequently use. Feel free to check them out, and I hope you find them helpful!
+      </p>
+      <div class="download-block">
+        <p>download my 
+          <a href="docs/files/CV_Chen.pdf" target="_blank">cv</a> / 
+          <a href="docs/files/SOP_Chen.pdf" target="_blank">statement</a> (Dec 2024)
+        </p>
+      </div>
+    </div>
+
+    <!-- Social Icons (Footer) -->
+    <div id="footer">
+      <a href="https://github.com/doggydoggy0101" target="_blank" class="icon">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="mailto:dgbshien@gmail.com" class="icon">
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a href="https://www.youtube.com/@doggydoggy0101" target="_blank" class="icon">
+        <i class="fab fa-youtube"></i>
+      </a>
+    </div>
+  </section>
+
+
+<!-- Gallery Section -->
+<section id="gallery">
+  <h2 class="section-title">Gallery</h2>
+
+  <div class="gallery-wrapper">
+    <div class="gallery-fade left"></div>
+    <div class="gallery-track">
+      <!-- Row 1 -->
+      <div class="gallery-row">
+        <div class="gallery-item"><a href="docs/gallery/1.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/1.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/4.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/4.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/7.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/7.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/10.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/10.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/13.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/13.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/16.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/16.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/19.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/19.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/22.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/22.jpg"></a></div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="gallery-row">
+        <div class="gallery-item"><a href="docs/gallery/2.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/2.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/5.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/5.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/8.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/8.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/11.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/11.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/14.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/14.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/17.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/17.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/20.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/20.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/23.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/23.jpg"></a></div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="gallery-row">
+        <div class="gallery-item"><a href="docs/gallery/3.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/3.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/6.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/6.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/9.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/9.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/12.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/12.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/15.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/15.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/18.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/18.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/21.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/21.jpg"></a></div>
+        <div class="gallery-item"><a href="docs/gallery/24.jpg" data-lightbox="gallery"><img class="img" src="docs/gallery-compress/24.jpg"></a></div>
+      </div>
+    </div>
+    <div class="gallery-fade right"></div>
+  </div>
+</section>
+
+
+<section id="blogs" class="dummy-section">
+  <h2>Blogs</h2>
+  <p>TBD</p>
+</section>
+
+
+<section id="projects">
+  <div class="projects-container">
+
+    <!-- MacOS Window Buttons -->
+    <div class="window-controls">
+      <!-- Left Side (MacOS Window Buttons) -->
+      <div class="window-left">
+        <span class="window-btn red"></span>
+        <span class="window-btn yellow"></span>
+        <span class="window-btn green"></span>
+      </div>
+
+      <!-- Search Bar (Centered) -->
+      <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Projects">
+      </div>
+    </div>
+
+    <!-- Project Panels -->
+    <div class="projects-content">
+
+      <!-- File Explorer (Left Panel) -->
+      <div class="file-explorer">
+        <h3 class="explorer-title">EXPLORER</h3>
+        <ul class="project-list">
+          <li data-project="project1">
+            <i class="fas fa-file"></i> master-thesis.md
+          </li>
+          <li data-project="project2">
+            <i class="fas fa-file"></i> quiz-game.md
+          </li>
+        </ul>
+      </div>
+
+      <!-- Text Editor (Right Panel) -->
+      <div class="editor">
+        <div class="editor-content">
+          <div id="project1" class="project-preview hidden">
+            <h2>master-thesis</h2>
+            <p>Robust point cloud registration solvers in my master thesis "Algorithms for Geman-McClure Robust Estimation and Applications for Spatial Perceptions".</p>
+            <ul>
+              <li>IRLS (Iterative Re-weighted Least Squares)</li>
+              <li>GNC (Graduated Non-Convexity)</li>
+              <li>FracGM (Fractional Program for Geman-McClure)</li>
+            </ul>
+            <p>For more information:</p>
+            <a href="https://github.com/doggydoggy0101/master-thesis" target="_blank"><i class="fab fa-github-alt"></i> GitHub</a>
+          </div>
+
+          <div id="project2" class="project-preview hidden">
+            <h2>quiz-game</h2>
+            <p>A quiz-let like website for TOEFL vocabularies.</p>
+            <a href="https://dgbshien.com/quiz-game/" target="_blank"> <i class="fas fa-external-link"></i> Website</a>
+            <a href="https://github.com/doggydoggy0101/quiz-game" target="_blank"><i class="fab fa-github-alt"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+  <section id="research">
+    <div class="research-container">
+      <h2 class="section-title">Research</h2>
+  
+      <!-- Publications -->
+      <div class="research-section">
+        <h3>Publications</h3>
+        <ol class="research-list">
+          <li>
+            <span class="research-index">[1]</span>
+            <div class="research-text">
+              <b>B.-S. Chen</b>, Y. Lin, J. Chen, C. Huang, J. Chern, and C. Sun.
+              A Fast Fractional Programming Technique for Geman-McClure Robust Estimator.
+              <i>IEEE Robotics and Automation Letters</i>, 9(12):11666-11673, 2024.
+              (<a href="https://ieeexplore.ieee.org/document/10749993" class="research-link" target="_blank">paper</a>)
+              (<a href="https://arxiv.org/pdf/2409.13978" class="research-link" target="_blank">preprint</a>)
+              (<a href="https://github.com/StephLin/FracGM" class="research-link" target="_blank">code</a>)
+            </div>
+          </li>
+        </ol>
+      </div>
+  
+      <!-- Awards -->
+      <div class="research-section">
+        <h3>Awards</h3>
+        <ul class="research-list">
+          <li>
+            <span class="research-index">1.</span>
+            <div class="research-text">
+              <b>NCTS Research Abroad Program</b>
+              A research abroad program financially supported by the Mathematics Division of National Center of Theoretical Sciences, worked with Prof. Shuzhong Zhang at the University of Minnesota.
+              <i>(Jun 2024 - Aug 2024)</i>
+            </div>
+          </li>
+          <li>
+            <span class="research-index">2.</span>
+            <div class="research-text">
+              <b>Taiwan-Japan Joint Workshop, Presentation Award</b>
+              Out of 40 speakers in the 14th Taiwan-Japan Joint Workshop for Young Scholars in Applied Mathematics.
+              <i>(Feb 2024)</i>
+            </div>
+          </li>
+          <li>
+            <span class="research-index">3.</span>
+            <div class="research-text">
+              <b>IBM Qiskit Hackathon Taiwan, 1st prize</b>
+              Out of 12 teams in the final round of the Quantum Computing Hackathon.
+              <i>(Jul 2022)</i>
+            </div>
+          </li>
+          <li>
+            <span class="research-index">4.</span>
+            <div class="research-text">
+              <b>Taiwan-Japan Joint Workshop, Presentation Award</b>
+              Out of 42 speakers in the 12th Taiwan-Japan Joint Workshop for Young Scholars in Applied Mathematics.
+              <i>(Feb 2022)</i>
+            </div>
+          </li>
+        </ul>
+      </div>
+  
+      <!-- Presentations -->
+      <div class="research-section">
+        <h3>Presentations</h3>
+        <ul class="research-list">
+          <li>
+            <span class="research-index">1.</span>
+            <div class="research-text">
+              <b>Workshop on Advances in Continuous Optimization 2024.</b>
+              <i>RIKEN Center for Advanced Intelligence Project</i>,
+              Tokyo, Japan, November 25-26, 2024.
+            </div>
+          </li>
+          <li>
+            <span class="research-index">2.</span>
+            <div class="research-text">
+              <b>2024 NCTS Student Workshop on Scientific Computing.</b>
+              <i>National Taiwan University</i>,
+              Taipei, Taiwan, May 6, 2024.
+            </div>
+          </li>
+          <li>
+            <span class="research-index">3.</span>
+            <div class="research-text">
+              <b>14th Taiwan-Japan Joint Workshop for Young Scholars in Applied Mathematics.</b>
+              <i>Meiji University</i>,
+              Tokyo, Japan, Feb 27-29, 2024.
+            </div>
+          </li>
+          <li>
+            <span class="research-index">4.</span>
+            <div class="research-text">
+              <b>Workshop on Advances in Continuous Optimization 2023.</b>
+              <i>The University of Tokyo</i>,
+              Tokyo, Japan, Jul 24-25, 2023.
+            </div>
+          </li>
+          <li>
+            <span class="research-index">5.</span>
+            <div class="research-text">
+              <b>2022 Summer school on Quantum Computer.</b>
+              <i>Asia University</i>,
+              Taipei, Taiwan, August 21 - Sep 24, 2022.
+            </div>
+          </li>
+          <li>
+            <span class="research-index">6.</span>
+            <div class="research-text">
+              <b>Seminar on Quantum Theory and Computation.</b>
+              <i>National Taiwan Normal University</i>,
+              Taipei, Taiwan, Apr 26 - May 24, 2022.
+            </div>
+          </li>
+          <li>
+            <span class="research-index">7.</span>
+            <div class="research-text">
+              <b>12th Taiwan-Japan Joint Workshop for Young Scholars in Applied Mathematics.</b>
+              (virtual) Feb 28 - Mar 1, 2022.
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+
+  <script src="lightbox2/dist/js/lightbox-plus-jquery.js"></script>
+  
+</body>
+</html>
