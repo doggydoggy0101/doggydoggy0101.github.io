@@ -28,15 +28,21 @@
   justify-content: center;
   text-align: center;
   position: relative;
-  color: #faf2e3;
+  color: #ffffff;
   padding-top: 5vh; /* Adds slight overlap to reduce scroll time */
 }
 
 /* === Name Styling === */
 .name {
-  font-size: 3.5rem; 
+  font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 5vh;
+  display: flex;
+  justify-content: center;
+}
+
+.name span {
+  padding-right: 1rem;
 }
 
 /* === Bio Styling (Smaller width for better readability) === */

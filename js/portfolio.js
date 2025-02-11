@@ -45,3 +45,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+var typed = new Typed("#typed-text", {
+  strings: ["Ian", "Bang-Shien"],
+  typeSpeed: 100,
+  backSpeed: 64,
+  backDelay: 4800,
+  loop: true,
+  loopDelay: 4800,
+  showCursor: false,
+});

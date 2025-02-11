@@ -24,6 +24,28 @@ body::before {
   z-index: -1; /* Keeps it behind everything */
 }
 
+/* === Full-Screen Loader (Now White with Blue Text) === */
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* background: #e6e7ed; 
+  color:  #3276a0;  */
+  background:  #6c848c; 
+  color: #ffffff; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  z-index: 9999;
+  transition: opacity 0.8s ease-out; /* Smooth fade-out */
+}
+
+
 /* === Navigation Bar === */
 #navbar {
   position: fixed;

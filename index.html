@@ -41,8 +41,15 @@
   <script defer src="js/gallery.js"></script>
   <script defer src="js/projects.js"></script>
   <script src="lightbox2/dist/js/lightbox-plus-jquery.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 </head>
+
 <body>
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loader"></div>
+    <p><span id="loading-text"></span></p>
+  </div>
 
   <!-- Navigation Bar -->
   <nav id="navbar">
@@ -63,7 +70,7 @@
   <!-- Second Section (Main Content) -->
   <section id="portfolio">
     <div class="content">
-      <h2 class="name">Ian Chen / Bang-Shien Chen</h2>
+      <h2 class="name"><span id="typed-text"></span>Chen</h2>
       <p class="bio">
         I am currently a master's student at the Department of Mathematics,  
         National Taiwan Normal University. My research interests are mainly  

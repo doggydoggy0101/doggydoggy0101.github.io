@@ -1,8 +1,32 @@
+var typed = new Typed("#loading-text", {
+  strings: ["Loading..."],
+  typeSpeed: 100,
+  showCursor: TextTrackCueList,
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger);
 
   const navbar = document.querySelector("#navbar");
   const footer = document.querySelector("#footer");
+  const loader = document.getElementById("loading-screen");
+
+  // Create a new image to preload the background
+  const bgImage = new Image();
+  bgImage.src = "../docs/images/background.jpg";
+
+  bgImage.onload = function () {
+    setTimeout(() => {
+      // Explicitly set opacity to 0 and transition in JS
+      loader.style.transition = "opacity 0.8s ease-out";
+      loader.style.opacity = "0"; 
+
+      // Ensure the loader is removed after fade-out completes
+      setTimeout(() => {
+        loader.style.display = "none";
+      }, 800); // Matches the CSS transition time (0.8s)
+    }, 2000); // Small delay before fade-out starts
+  };
 
   // Float in navbar & footer when reaching the bio part
   gsap.to([navbar, footer], {
