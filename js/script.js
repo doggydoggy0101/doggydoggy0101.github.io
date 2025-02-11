@@ -37,4 +37,23 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+
+  const lenis = new Lenis({
+    duration: 1,  // Adjust smoothness (higher = smoother)
+    easing: (t) => 1 - Math.pow(1 - t, 3), // Inertia easing
+    smoothWheel: true,  // Enables smooth scrolling for mouse wheel
+    smoothTouch: false,  // You can enable this for touch devices if needed
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
+
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+  });
 });
