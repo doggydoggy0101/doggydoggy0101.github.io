@@ -11,21 +11,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #ffffff; 
-  color: #000000;
   padding: 15vh 0; /* Leaves space for navbar/footer */
+  z-index: 2;
 }
 
 /* === Projects Container (Now Styled Like Mac VSCode) === */
 .projects-container {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 60vw;;
   height: 70vh; /* 1:8:1 Ratio */
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  background: #1a1b26; /* Tokyonight-Storm */
   font-family: 'MesloLGS Nerd Font', monospace;
   font-size: 0.9rem;
 }
@@ -44,7 +41,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 15px;
-  background: #16161e;
+  background: rgba(36, 40, 59, 0.8);
   border-bottom: 1px solid #414868;
   position: relative;
 }
@@ -71,14 +68,12 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
   align-items: center;
-  background: #1e1e2e;
+  text-align: center;
   border-radius: 6px;
   padding: 5px 12px;
   color: #c0caf5;
-  border: 1px solid #414868;
-  width: 20%;
+  font-size: 0.85rem;
 }
 
 .search-bar i {
@@ -86,22 +81,10 @@
   color: #7aa2f7; /* Blue icon */
 }
 
-.search-bar input {
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #c0caf5;
-  width: 100%;
-}
-
-.search-bar input::placeholder {
-  color: #565f89; /* Dim text like VSCode */
-}
-
 /* === File Explorer (Left Panel) === */
 .file-explorer {
   width: 30%;
-  background: #16161e; /* Dark sidebar */
+  background: rgba(36, 40, 59, 0.8);
   padding: 15px;
   height: 100%; /* Ensures full height */
   overflow-y: auto; /* Prevents content overflow */
@@ -142,7 +125,7 @@
 
 /* === Active File Highlight === */
 .project-list li.active {
-  background: #292e42;
+  background: rgba(41, 46, 66, 0.8);
   color: #7aa2f7;
 }
 
@@ -154,7 +137,7 @@
 
 /* === Active Project Indicator === */
 .project-list li.active {
-  background: #292e42; /* VSCode active file highlight */
+  background: rgba(41, 46, 66, 0.8);
   color: #7aa2f7; /* Blue text like VSCode */
   font-weight: bold;
   border-left: 3px solid #7aa2f7; /* VSCode-like left border */
@@ -173,14 +156,14 @@
 
 /* === Hover Effect for File Explorer Items === */
 .project-list li:hover {
-  background: #414868;
+  background: rgba(65, 72, 104, 0.8);
   color: #7aa2f7;
 }
 
 /* === Text Editor (Right Panel) === */
 .editor {
   flex: 1;
-  background: #1a1b26;
+  background: rgba(44, 50, 77, 0.8); 
   display: flex;
   height: 100%; /* Ensures full height */
   flex-direction: column;
@@ -256,7 +239,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 5px 15px;
-  background: #16161e; /* Dark theme */
+  background: rgba(36, 40, 59, 0.8);
   color: #c0caf5;
   font-size: 0.85rem;
   border-top: 1px solid #414868;

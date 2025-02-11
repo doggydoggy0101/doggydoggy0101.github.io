@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const doggyFolder = document.querySelector("#doggy-folder");
   const projectList = document.querySelector(".project-list");
   const arrowIcon = doggyFolder.querySelector(".fa-caret-down");
+  const folderIcon = doggyFolder.querySelector(".fa-folder-open"); 
 
   function setActiveProject(selectedProject) {
     // Remove active class from all
@@ -77,10 +78,11 @@ document.addEventListener("DOMContentLoaded", function () {
   doggyFolder.addEventListener("click", function () {
     projectList.classList.toggle("collapsed"); // Toggle visibility
   
-    // Correct arrow rotation: Right (collapsed) <-> Down (expanded)
     if (projectList.classList.contains("collapsed")) {
+      folderIcon.classList.replace("fa-folder-open", "fa-folder"); // Change to closed folder
       arrowIcon.style.transform = "rotate(-90deg)"; // Point right when collapsed
     } else {
+      folderIcon.classList.replace("fa-folder", "fa-folder-open"); // Change to open folder
       arrowIcon.style.transform = "rotate(0deg)"; // Point down when expanded
     }
   });
