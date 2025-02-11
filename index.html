@@ -175,12 +175,16 @@
       <!-- File Explorer (Left Panel) -->
       <div class="file-explorer">
         <h3 class="explorer-title">EXPLORER</h3>
+        <div class="folder-static" id="doggy-folder">
+          <i class="fas fa-caret-down"></i> <!-- Arrow Icon -->
+          <i class="fas fa-folder-open"></i> doggy
+        </div>
         <ul class="project-list">
           <li data-project="project1">
-            <i class="fas fa-file"></i> master-thesis.md
+            <i class="fas fa-file-code"></i> master-thesis.md
           </li>
           <li data-project="project2">
-            <i class="fas fa-file"></i> quiz-game.md
+            <i class="fas fa-file-code"></i> quiz-game.md
           </li>
         </ul>
       </div>
@@ -208,12 +212,20 @@
           </div>
         </div>
       </div>
-
+    </div>
+    <div class="status-bar">
+      <div class="left-status">
+        <span class="mode">NORMAL</span>
+        <span class="git-branch"><i class="fas fa-code-branch"></i> main</span>
+        <span class="file-path"><i class="fas fa-file-code"></i> <span class="file-name">project1.md</span></span>
+      </div>
+      <div class="right-status">
+        <span class="cursor-pos">Ln 1, Col 1</span>
+        <span class="clock"><i class="fas fa-clock"></i> <span id="current-time">12:00 PM</span></span>
+      </div>
     </div>
   </div>
 </section>
-
-
 
 
 

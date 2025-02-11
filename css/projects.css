@@ -100,12 +100,50 @@
 
 /* === File Explorer (Left Panel) === */
 .file-explorer {
-  width: 28%;
+  width: 30%;
   background: #16161e; /* Dark sidebar */
   padding: 15px;
   height: 100%; /* Ensures full height */
   overflow-y: auto; /* Prevents content overflow */
   border-right: 1px solid #414868; 
+}
+
+/* === Collapsible "doggy" Folder === */
+.folder-static {
+  font-weight: bold;
+  padding: 8px 10px;
+  color: #c0caf5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer; /* Allow clicking */
+}
+
+.folder-static i:first-child {
+  transition: transform 0.3s ease;
+}
+
+/* === Folder Content Initially Expanded === */
+.project-list {
+  list-style: none;
+  padding-left: 20px;
+  overflow: hidden;
+  max-height: 300px; /* Set a reasonable max height */
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out, transform 0.3s ease-out;
+  opacity: 1;
+}
+
+/* === Hide Folder Content When Collapsed (Smooth Transition) === */
+.project-list.collapsed {
+  max-height: 0;  /* Shrinks smoothly */
+  opacity: 0;
+  transform: translateY(-10px); /* Moves files up while collapsing */
+}
+
+/* === Active File Highlight === */
+.project-list li.active {
+  background: #292e42;
+  color: #7aa2f7;
 }
 
 .explorer-title {
@@ -210,4 +248,57 @@
 /* === Hidden Class (For Switching Projects) === */
 .hidden {
   display: none !important;
+}
+
+/* === Powerlevel10k-style Status Bar === */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 15px;
+  background: #16161e; /* Dark theme */
+  color: #c0caf5;
+  font-size: 0.85rem;
+  border-top: 1px solid #414868;
+  font-family: 'MesloLGS Nerd Font', monospace;
+}
+
+/* Left Side (Mode, Git Branch, File Path) */
+.left-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* "NORMAL" Mode Indicator */
+.mode {
+  color: #9ece6a; /* Green (Neovim NORMAL mode) */
+  font-weight: bold;
+}
+
+/* Git Branch */
+.git-branch {
+  color: #e0af68; /* Yellow */
+}
+
+/* File Path */
+.file-path {
+  color: #7aa2f7; /* Blue */
+}
+
+/* Right Side (Cursor Position & Clock) */
+.right-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Line/Column Position (Red) */
+.cursor-pos {
+  color: #f7768e; /* Red */
+}
+
+/* Clock (Green) */
+.clock {
+  color: #bb9af7; /* Green */
 }
