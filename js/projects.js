@@ -1,23 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const projectLinks = document.querySelectorAll(".project-list li");
   const previews = document.querySelectorAll(".project-preview");
   const fileNameDisplay = document.querySelector(".file-name");
   const cursorPosDisplay = document.querySelector(".cursor-pos");
   const timeDisplay = document.getElementById("current-time");
   const editorContent = document.querySelector(".editor-content");
-
-  const doggyFolder = document.querySelector("#doggy-folder");
-  const projectList = document.querySelector(".project-list");
-  const arrowIcon = doggyFolder.querySelector(".fa-caret-down");
-  const folderIcon = doggyFolder.querySelector(".fa-folder-open"); 
+  const projectLinks = document.querySelectorAll(".project-list li");
 
   function setActiveProject(selectedProject) {
     // Remove active class from all
     projectLinks.forEach(link => link.classList.remove("active"));
-
     // Add active class to the clicked project
     selectedProject.classList.add("active");
-
     // Update the file name in the status bar
     fileNameDisplay.textContent = `doggy/${selectedProject.innerText}`;
   }
@@ -33,13 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
     link.addEventListener("click", function () {
       // Hide all project previews
       previews.forEach(preview => preview.classList.add("hidden"));
-
       // Show the selected project preview
       const selectedProject = document.getElementById(this.dataset.project);
       if (selectedProject) {
         selectedProject.classList.remove("hidden");
       }
-
       // Update active file indicator in the explorer
       setActiveProject(this);
     });
@@ -61,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
   setInterval(updateTime, 1000); // Update every second
   updateTime(); // Initialize time on page load
 
-  // Update cursor position in status bar (Simulated)
+  // Update cursor position in status bar 
   editorContent.addEventListener("mousemove", function (e) {
     const boundingRect = editorContent.getBoundingClientRect();
   
@@ -75,6 +66,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // === Toggle Doggy Folder Expand/Collapse ===
+  const doggyFolder = document.querySelector("#doggy-folder");
+  const projectList = document.querySelector(".project-list");
+  const arrowIcon = doggyFolder.querySelector(".fa-caret-down");
+  const folderIcon = doggyFolder.querySelector(".fa-folder-open"); 
   doggyFolder.addEventListener("click", function () {
     projectList.classList.toggle("collapsed"); // Toggle visibility
   
@@ -85,5 +80,47 @@ document.addEventListener("DOMContentLoaded", function () {
       folderIcon.classList.replace("fa-folder", "fa-folder-open"); // Change to open folder
       arrowIcon.style.transform = "rotate(0deg)"; // Point down when expanded
     }
+  });
+
+
+  // === Dragging the projects container ===
+  const projectsSection = document.querySelector("#projects");
+  const projectContainer = document.querySelector(".projects-container");
+  const dragHandle = document.querySelector(".window-controls");
+
+  let isDragging = false;
+  let offsetX = 0, offsetY = 0;
+
+  // Ensure container is centered initially without transform
+  const projectSectionRect = projectsSection.getBoundingClientRect();
+  projectContainer.style.left = `${(projectSectionRect.width - projectContainer.offsetWidth) / 2}px`;
+  projectContainer.style.top = `${(projectSectionRect.height - projectContainer.offsetHeight) / 2}px`;
+
+  // Start Dragging
+  dragHandle.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    const projectContainerRect = projectContainer.getBoundingClientRect();
+    offsetX = e.clientX - projectContainerRect.left;
+    offsetY = e.clientY - projectContainerRect.top;
+    e.preventDefault();
+  });
+
+  // Dragging Motion
+  document.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    const projectSectionRect = projectsSection.getBoundingClientRect();
+    let newX = e.clientX - offsetX - projectSectionRect.left;
+    let newY = e.clientY - offsetY - projectSectionRect.top;
+    // Restrict movement to `#projects`
+    newX = Math.max(0, Math.min(newX, projectSectionRect.width - projectContainer.offsetWidth));
+    newY = Math.max(0, Math.min(newY, projectSectionRect.height - projectContainer.offsetHeight));
+    // Apply new position
+    projectContainer.style.left = `${newX}px`;
+    projectContainer.style.top = `${newY}px`;
+  });
+
+  // Stop Dragging
+  document.addEventListener("mouseup", () => {
+    isDragging = false;
   });
 });
