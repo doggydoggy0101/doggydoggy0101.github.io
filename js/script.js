@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Create a new image to preload the background
   const bgImage = new Image();
-  bgImage.src = "../docs/images/background.jpg";
+  bgImage.src = "../docs/images/background.webp";
 
   bgImage.onload = function () {
     setTimeout(() => {
