@@ -3,6 +3,7 @@ Bang-Shien Chen's personal website:
     https://dgbshien.com/
 
 **todo**
+- gallery webp for faster load
 - old blogs
   
 **ideas**
