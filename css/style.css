@@ -190,3 +190,22 @@ body::before {
     background-position: center;
   }
 }
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px; /* Adjust scrollbar width */
+}
+
+::-webkit-scrollbar-track {
+  background: #e6e7ed 
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(74, 157, 165, 0.6); 
+  border-radius: 10px; /* Rounded scrollbar */
+  transition: background 0.3s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(74, 157, 165, 1); /* Darker on hover */
+}
