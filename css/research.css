@@ -12,7 +12,6 @@
 
 /* === Container to Keep Content Centered === */
 .research-container {
-  width: 85%; /* Limits width for better readability */
   max-width: 60vw; /* Prevents overly wide text */
 }
 
@@ -57,7 +56,7 @@
 /* === Numbering Style === */
 .research-index {
   flex-shrink: 0; /* Prevents index from shrinking */
-  width: 1rem; /* Fixed width for alignment */
+  width: auto;
   text-align: right;
   margin-right: 0.5rem;
 }
@@ -77,4 +76,25 @@
 
 .research-link:hover {
   text-decoration: underline;
+}
+
+
+@media screen and (max-width: 768px) {
+  .research-container {
+    max-width: 80vw; /* Increase width to use more space */
+  }
+
+  .research-section h3 {
+    font-size: 1.4rem; /* Slightly reduce heading size */
+  }
+
+  .research-list li {
+    font-size: 1.1rem; /* Adjust list item size for better readability */
+  }
+
+  .research-index {
+    width: auto; /* Allow it to shrink naturally */
+    text-align: right;
+    margin-bottom: 0.3rem; /* Add spacing below index */
+  }
 }

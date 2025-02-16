@@ -86,7 +86,6 @@
 
 /* === File Explorer (Left Panel) === */
 .file-explorer {
-  width: 30%;
   background: rgba(36, 40, 59, 0.8);
   padding: 0.8rem;
   height: 100%; /* Ensures full height */
@@ -287,4 +286,35 @@
 /* Clock (Green) */
 .clock {
   color: #bb9af7; /* Green */
+}
+
+@media screen and (max-width: 1000px) {
+  .cursor-pos {
+    display: none !important;
+  }
+  .apple {
+    display: none !important;
+  }
+  .mode {
+    display: none !important;
+  }
+  .git-branch {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  
+  /* === Disable Dragging on Mobile === */
+  .projects-container {
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
+    top: auto !important;
+    width: 80vw;;
+  }
+
+  .file-explorer {
+    display: none !important;
+  }
 }

@@ -9,7 +9,16 @@ body {
   font-family: "Cormorant", serif;
   overflow-x: hidden;
   position: relative;
-  background: url("../docs/images/background.jpg") center/cover no-repeat fixed;
+}
+
+.background {
+  position: fixed; /* Ensures it stays fixed */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url("../docs/images/background.webp") center/cover no-repeat;
+  z-index: -2; 
 }
 
 /* === Global Overlay Effect === */
@@ -148,4 +157,11 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .background {
+    background-attachment: scroll; /* Fixes phone issue */
+    background-position: center;
+  }
 }

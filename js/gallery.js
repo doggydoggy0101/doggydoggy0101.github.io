@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 lightbox.option({
-  'positionFromTop': 64,
+  'positionFromTop': 100,
   'wrapAround': true,
   'showImageNumberLabel': false,
 })
