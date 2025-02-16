@@ -10,12 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const navbar = document.querySelector("#navbar");
   const footer = document.querySelector("#footer");
-  const loader = document.getElementById("loading-screen");
-  const loader_text = document.getElementById("loading-text");
 
   // Create a new image to preload the background
   const bgImage = new Image();
-  bgImage.src = "../docs/images/background.webp";
+  bgImage.src = "../docs/images/background.jpg";
 
   bgImage.onload = function () {
     setTimeout(() => {

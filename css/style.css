@@ -17,7 +17,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: url("../docs/images/background.webp") center/cover no-repeat;
+  background: url("../docs/images/background.jpg") center/cover no-repeat;
   z-index: -2; 
 }
 
