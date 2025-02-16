@@ -1,7 +1,8 @@
 var typed = new Typed("#loading-text", {
   strings: ["Loading..."],
   typeSpeed: 100,
-  showCursor: TextTrackCueList,
+  showCursor: true, // Keep cursor visible initially
+  cursorChar: "|", // Standard blinking cursor
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -10,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const navbar = document.querySelector("#navbar");
   const footer = document.querySelector("#footer");
   const loader = document.getElementById("loading-screen");
+  const loader_text = document.getElementById("loading-text");
 
   // Create a new image to preload the background
   const bgImage = new Image();
@@ -17,15 +19,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   bgImage.onload = function () {
     setTimeout(() => {
-      // Explicitly set opacity to 0 and transition in JS
-      loader.style.transition = "opacity 0.8s ease-out";
-      loader.style.opacity = "0"; 
-
-      // Ensure the loader is removed after fade-out completes
-      setTimeout(() => {
-        loader.style.display = "none";
-      }, 800); // Matches the CSS transition time (0.8s)
-    }, 2000); // Small delay before fade-out starts
+      // Hide text & cursor
+      document.getElementById("loading-text").style.display = "none"; 
+      document.querySelector(".typed-cursor").style.display = "none"; 
+      // Animate the top half moving UP and the bottom half moving DOWN
+      gsap.to(".loader-top", {
+        y: "-100%",
+        duration: 1.5,
+        ease: "power4.out",
+      });
+  
+      gsap.to(".loader-bottom", {
+        y: "100%",
+        duration: 1.5,
+        ease: "power4.out",
+        onComplete: () => {
+          document.getElementById("loading-screen").style.display = "none"; 
+        }
+      });
+  
+    }, 2400); // Adjust delay before animation starts
   };
 
   // Float in navbar & footer when reaching the bio part

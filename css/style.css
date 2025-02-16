@@ -33,16 +33,14 @@ body::before {
   z-index: -1; /* Keeps it behind everything */
 }
 
-/* === Full-Screen Loader (Now White with Blue Text) === */
-#loading-screen {
+/* === Full-Screen Loader === */
+/* #loading-screen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  /* background: #e6e7ed; 
-  color:  #3276a0;  */
-  background:  #6c848c; 
+  background: #6c848c; 
   color: #ffffff; 
   display: flex;
   flex-direction: column;
@@ -51,9 +49,53 @@ body::before {
   font-size: 2rem;
   font-weight: bold;
   z-index: 9999;
-  transition: opacity 0.8s ease-out; /* Smooth fade-out */
+} */
+ /* === Full-Screen Loader Container === */
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: none; /* No background here */
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
 }
 
+/* === Top Half of Loader === */
+.loader-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #6c848c;
+}
+
+/* === Bottom Half of Loader === */
+.loader-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #6c848c;
+}
+
+/* === Loading Text (Centered) === */
+.loader-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 
 /* === Navigation Bar === */
 #navbar {
