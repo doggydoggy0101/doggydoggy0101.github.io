@@ -13,10 +13,7 @@
 #hi-text {
   font-size: 8rem;
   font-weight: 800;
-  position: absolute;
-  top: 50vh; 
-  left: 50vw;
-  transform: translate(-50%, -50%);
+  padding-top: 40vh;
   z-index: 2;
 }
 
@@ -80,7 +77,7 @@
 /* === Scroll Down Indicator (Fixed to Bottom) === */
 .scroll-down {
   position: absolute;
-  top: 90vh; /* Adjusted to keep it visually centered */
+  top: 88vh; /* Adjusted to keep it visually centered */
   left: 50%;
   transform: translateX(-50%);
   font-size: 1.2rem;
