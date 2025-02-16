@@ -108,3 +108,10 @@
   }
 }
 
+
+@media screen and (max-width: 768px) {
+  .gallery-track {
+    gap: 4vh; /* Increased space between rows */
+    animation: scrollGallery 90s linear infinite; /* Auto-scroll */
+  }
+}

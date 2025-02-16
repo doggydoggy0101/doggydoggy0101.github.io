@@ -1,89 +1,145 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const projectLinks = document.querySelectorAll(".project-list li");
   const previews = document.querySelectorAll(".project-preview");
   const fileNameDisplay = document.querySelector(".file-name");
   const cursorPosDisplay = document.querySelector(".cursor-pos");
   const timeDisplay = document.getElementById("current-time");
   const editorContent = document.querySelector(".editor-content");
+  const projectLinks = document.querySelectorAll(".project-list li");
+  const projectContainer = document.querySelector(".projects-container");
+  const projectsSection = document.querySelector("#projects");
+  const dragHandle = document.querySelector(".window-controls");
 
-  const doggyFolder = document.querySelector("#doggy-folder");
-  const projectList = document.querySelector(".project-list");
-  const arrowIcon = doggyFolder.querySelector(".fa-caret-down");
-  const folderIcon = doggyFolder.querySelector(".fa-folder-open"); 
-
+  // Set the active project in the explorer & update status bar
   function setActiveProject(selectedProject) {
-    // Remove active class from all
     projectLinks.forEach(link => link.classList.remove("active"));
-
-    // Add active class to the clicked project
     selectedProject.classList.add("active");
-
-    // Update the file name in the status bar
-    fileNameDisplay.textContent = `doggy/${selectedProject.innerText}`;
+    fileNameDisplay.textContent = `doggy/${selectedProject.innerText.trim()}`;
   }
 
-  // Set default active project (first one on load)
-  if (projectLinks.length > 0) {
-    projectLinks[0].classList.add("active");
-    document.getElementById(projectLinks[0].dataset.project).classList.remove("hidden");
-    fileNameDisplay.textContent = `doggy/${projectLinks[0].innerText}`;
+  // Reset to the default - used on load & mobile mode
+  function resetToDefaultProject() {
+    if (projectLinks.length > 0) {
+      projectLinks.forEach(link => link.classList.remove("active"));
+      projectLinks[0].classList.add("active");
+      previews.forEach(preview => preview.classList.add("hidden"));
+      document.getElementById(projectLinks[0].dataset.project).classList.remove("hidden");
+      fileNameDisplay.textContent = `doggy/${projectLinks[0].innerText.trim()}`;
+    }
   }
 
+  // Resizing behavior 
+  function checkScreenSize() {
+    const windowName = document.querySelector(".window-name");
+    if (window.innerWidth < 768) {
+      resetToDefaultProject();
+      windowName.innerHTML = `<i class="fas fa-folder"></i> doggy@umich`;
+    } else {
+      windowName.innerHTML = `<i class="fas fa-folder"></i> doggy@umich: ~/doggy`;
+    }
+    resetProjectPosition(); // Reset position when resizing screen
+  }
+
+  // Reset project container position to center
+  function resetProjectPosition() {
+    const projectSectionRect = projectsSection.getBoundingClientRect();
+    projectContainer.style.left = `${(projectSectionRect.width - projectContainer.offsetWidth) / 2}px`;
+    projectContainer.style.top = `${(projectSectionRect.height - projectContainer.offsetHeight) / 2}px`;
+  }
+
+  // Initialization
+  resetToDefaultProject();
+  checkScreenSize();
+  window.addEventListener("resize", checkScreenSize);
+
+  // Handle clicking on project links (updates preview & status bar)
   projectLinks.forEach(link => {
     link.addEventListener("click", function () {
-      // Hide all project previews
       previews.forEach(preview => preview.classList.add("hidden"));
-
-      // Show the selected project preview
       const selectedProject = document.getElementById(this.dataset.project);
       if (selectedProject) {
         selectedProject.classList.remove("hidden");
       }
-
-      // Update active file indicator in the explorer
       setActiveProject(this);
     });
   });
 
-  // Update time in status bar every second
   function updateTime() {
     const now = new Date();
     let hours = now.getHours();
     let minutes = now.getMinutes();
     let ampm = hours >= 12 ? 'PM' : 'AM';
-
-    hours = hours % 12 || 12; // Convert to 12-hour format
-    minutes = minutes < 10 ? '0' + minutes : minutes; // Add leading zero if needed
-
+    hours = hours % 12 || 12;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
     timeDisplay.textContent = `${hours}:${minutes} ${ampm}`;
   }
 
-  setInterval(updateTime, 1000); // Update every second
-  updateTime(); // Initialize time on page load
+  setInterval(updateTime, 1000);
+  updateTime();
 
-  // Update cursor position in status bar (Simulated)
+  // Handles cursor position tracking (updates line & column in status bar)
   editorContent.addEventListener("mousemove", function (e) {
     const boundingRect = editorContent.getBoundingClientRect();
-  
-    // Get cursor Y position relative to the whole editor
-    let line = Math.floor((e.clientY - boundingRect.top) / 24) + 1; // Approx. 24px per line
-  
-    // Get cursor X position relative to the whole editor
-    let col = Math.floor((e.clientX - boundingRect.left) / 8) + 1;  // Approx. 8px per character
-  
+    let line = Math.floor((e.clientY - boundingRect.top) / 24) + 1;
+    let col = Math.floor((e.clientX - boundingRect.left) / 8) + 1;
     cursorPosDisplay.textContent = `Ln ${line}, Col ${col}`;
   });
 
-  // === Toggle Doggy Folder Expand/Collapse ===
+  // File Explorer
+  const doggyFolder = document.querySelector("#doggy-folder");
+  const projectList = document.querySelector(".project-list");
+  const arrowIcon = doggyFolder.querySelector(".fa-caret-down");
+  const folderIcon = doggyFolder.querySelector(".fa-folder-open");
+
   doggyFolder.addEventListener("click", function () {
-    projectList.classList.toggle("collapsed"); // Toggle visibility
-  
+    projectList.classList.toggle("collapsed");
     if (projectList.classList.contains("collapsed")) {
-      folderIcon.classList.replace("fa-folder-open", "fa-folder"); // Change to closed folder
-      arrowIcon.style.transform = "rotate(-90deg)"; // Point right when collapsed
+      folderIcon.classList.replace("fa-folder-open", "fa-folder");
+      arrowIcon.style.transform = "rotate(-90deg)";
     } else {
-      folderIcon.classList.replace("fa-folder", "fa-folder-open"); // Change to open folder
-      arrowIcon.style.transform = "rotate(0deg)"; // Point down when expanded
+      folderIcon.classList.replace("fa-folder", "fa-folder-open");
+      arrowIcon.style.transform = "rotate(0deg)";
     }
   });
+
+  // Dragging 
+  let isDragging = false, offsetX = 0, offsetY = 0;
+
+  function enableDragging() {
+    if (window.innerWidth > 768) {
+      dragHandle.addEventListener("mousedown", startDragging);
+      document.addEventListener("mousemove", onDrag);
+      document.addEventListener("mouseup", stopDragging);
+    } else {
+      dragHandle.removeEventListener("mousedown", startDragging);
+      document.removeEventListener("mousemove", onDrag);
+      document.removeEventListener("mouseup", stopDragging);
+      resetProjectPosition(); // Ensure correct placement
+    }
+  }
+
+  function startDragging(e) {
+    isDragging = true;
+    const rect = projectContainer.getBoundingClientRect();
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+    e.preventDefault();
+  }
+
+  function onDrag(e) {
+    if (!isDragging) return;
+    const sectionRect = projectsSection.getBoundingClientRect();
+    let newX = e.clientX - offsetX - sectionRect.left;
+    let newY = e.clientY - offsetY - sectionRect.top;
+    newX = Math.max(0, Math.min(newX, sectionRect.width - projectContainer.offsetWidth));
+    newY = Math.max(0, Math.min(newY, sectionRect.height - projectContainer.offsetHeight));
+    projectContainer.style.left = `${newX}px`;
+    projectContainer.style.top = `${newY}px`;
+  }
+
+  function stopDragging() {
+    isDragging = false;
+  }
+
+  enableDragging();
+  window.addEventListener("resize", enableDragging);
 });
