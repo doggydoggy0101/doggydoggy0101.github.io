@@ -208,13 +208,13 @@
 .project-preview h2 {
   font-size: 2rem;
   color: #9ece6a; 
-  margin: 0.2rem 0 0.8rem 0; 
+  margin: 0.2rem 0 0.4rem 0; 
 }
 
 .project-preview p {
   color: #c0caf5;
   line-height: 1.6; 
-  margin-bottom: 0.5rem; 
+  margin: 1rem 0 0.4rem 0; 
   font-size: 0.9rem;
 }
 
