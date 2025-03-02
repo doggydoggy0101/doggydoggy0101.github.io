@@ -1,6 +1,5 @@
-/* === Intro Section (Hi! Page) === */
 #intro {
-  height: 60vh; /* Shortened height */
+  height: 60vh; /* shortened height */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,7 +8,6 @@
   color: #ffffff;
 }
 
-/* === Hi! (Manually Centered) === */
 #hi-text {
   font-size: 8rem;
   font-weight: 800;
@@ -17,7 +15,6 @@
   z-index: 2;
 }
 
-/* === Portfolio Section (Bio Page) === */
 #portfolio {
   height: 100vh; 
   display: flex;
@@ -26,10 +23,9 @@
   text-align: center;
   position: relative;
   color: #ffffff;
-  padding-top: 5vh; /* Adds slight overlap to reduce scroll time */
+  padding-top: 5vh;
 }
 
-/* === Name Styling === */
 .name {
   font-size: 3.5rem;
   font-weight: 700;
@@ -42,7 +38,6 @@
   padding-right: 1rem;
 }
 
-/* === Bio Styling (Smaller width for better readability) === */
 .bio {
   font-size: 1.1rem;
   line-height: 1.6;
@@ -51,19 +46,17 @@
   color: #ffffff;
 }
 
-/* === Download Block === */
 .download-block {
   background: rgba(52, 73, 94, 0.4);
   font-size: 1.1rem;
   color: #ffffff;
   text-align: center;
   padding: 0.8rem 1.2rem;
-  border-radius: 1.1rem; /* Rounded corners */
+  border-radius: 1.1rem; 
   margin-top: 2rem;
   display: inline-block;
 }
 
-/* === Download Links === */
 .download-block a {
   color: #85c1e9;
   text-decoration: none;
@@ -74,10 +67,10 @@
   text-decoration: underline;
 }
 
-/* === Scroll Down Indicator (Fixed to Bottom) === */
+/* === scroll down arrow === */
 .scroll-down {
   position: absolute;
-  top: 88vh; /* Adjusted to keep it visually centered */
+  top: 88vh; 
   left: 50%;
   transform: translateX(-50%);
   font-size: 1.2rem;
@@ -89,7 +82,6 @@
   transition: opacity 0.5s ease-out;
 }
 
-/* === Bouncing Animation for Scroll Indicator === */
 @keyframes bounce {
   0%, 100% {
     transform: translateX(-50%) translateY(0);
@@ -100,37 +92,27 @@
 }
 
 
-
-/* === Responsive Adjustments for Mobile === */
 @media (max-width: 768px) {
-  /* Scale down "Welcome!" text for smaller screens */
   #hi-text {
-    font-size: 4rem; /* Smaller font on smaller screens */
+    font-size: 4rem; 
   }
-
-  /* Reduce font size of the name to prevent overflow */
   .name {
-    font-size: 2.5rem; /* Reduced size */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    font-size: 2.5rem; 
+    flex-wrap: wrap; 
   }
   .name span {
-    padding-right: 0.5rem; /* Reduce spacing */
+    padding-right: 0.5rem; 
   }
-
-  /* Make bio take more width on mobile screens */
   .bio {
-    font-size: 1rem; /* Adjust font size slightly */
-    max-width: 80vw; /* Increases width so text is readable */
+    font-size: 1rem; 
+    max-width: 80vw; 
   }
-
-  /* Adjust Download Block size */
   .download-block {
-    font-size: 1rem; /* Reduce font size slightly */
-    padding: 0.6rem 1rem; /* Adjust padding */
+    font-size: 1rem; 
+    padding: 0.6rem 1rem; 
   }
-  /* Adjust scroll down indicator for better placement */
   .scroll-down {
-    font-size: 1rem; /* Slightly smaller text */
-    top: 85vh; /* Adjust position */
+    font-size: 1rem; 
+    top: 85vh; 
   }
 }

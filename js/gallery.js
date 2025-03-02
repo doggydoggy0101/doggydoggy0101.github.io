@@ -1,43 +1,39 @@
 document.addEventListener("DOMContentLoaded", () => {
   const parent = document.querySelector(".gallery-wrapper"); 
   let track = document.querySelector(".gallery-track"); 
-  // small resize problem
+  //! [TEST] small resize problem
   let lastWidth = window.innerWidth;
   let lastHeight = window.innerHeight;
 
   function initializeGallery() {
-    // Clear all existing content inside the wrapper (prevents leftover gaps)
+    // initialize wrapper
     parent.innerHTML = "";
 
-    // Clone the original gallery track before removing
+    // clone track (before removing)
     const newTrack = track.cloneNode(true);
     const duplicate = newTrack.cloneNode(true);
 
-    // Reset classes
+    // remove old track
     newTrack.classList.remove("duplicate");
     duplicate.classList.add("duplicate");
 
-    // Append both the original and duplicate tracks to the parent container
+    // add new track
     parent.appendChild(newTrack);
     parent.appendChild(duplicate);
 
-    // Ensure correct positioning for seamless looping
+    // position track
     newTrack.style.position = "absolute";
-    newTrack.style.left = "0"; // position
-
+    newTrack.style.left = "0"; 
     duplicate.style.position = "absolute";
     duplicate.style.left = `${newTrack.scrollWidth}px`; 
 
-    // Update reference to the new original track
+    // update track
     track = newTrack;
-
-    console.log("Gallery reinitialized correctly");
   }
 
-  // Initialize gallery on page load
+  // initialize on page load
   initializeGallery();
-
-  // Reinitialize gallery on resize (clears gaps)
+  // initialize resize 
   window.addEventListener("resize", () => {
     let newWidth = window.innerWidth;
     let newHeight = window.innerHeight;

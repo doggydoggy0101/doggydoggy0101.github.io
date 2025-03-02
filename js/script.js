@@ -1,8 +1,8 @@
 var typed = new Typed("#loading-text", {
   strings: ["Loading..."],
   typeSpeed: 100,
-  showCursor: true, // Keep cursor visible initially
-  cursorChar: "|", // Standard blinking cursor
+  showCursor: true, 
+  cursorChar: "|", 
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,16 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const navbar = document.querySelector("#navbar");
   const footer = document.querySelector("#footer");
 
-  // Create a new image to preload the background
+  // pre-load background
   const bgImage = new Image();
   bgImage.src = "../docs/images/background.webp";
 
   bgImage.onload = function () {
     setTimeout(() => {
-      // Hide text & cursor
+      // hide text & cursor
       document.getElementById("loading-text").style.display = "none"; 
       document.querySelector(".typed-cursor").style.display = "none"; 
-      // Animate the top half moving UP and the bottom half moving DOWN
+      // loading screen animation
       gsap.to(".loader-top", {
         y: "-100%",
         duration: 1.5,
@@ -36,10 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
   
-    }, 2400); // Adjust delay before animation starts
+    }, 2400); // slight delay before animation starts
   };
 
-  // Float in navbar & footer when reaching the bio part
+  // float in navbar and footer 
   gsap.to([navbar, footer], {
     opacity: 1,
     pointerEvents: "all",
@@ -53,32 +53,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Fix navbar click alignment issue (Ensure sections align correctly)
+  // navbar animation
   document.querySelectorAll('#navbar a').forEach(link => {
     link.addEventListener('click', function (e) {
       e.preventDefault();
       const targetId = this.getAttribute('href').substring(1);
       const targetElement = document.getElementById(targetId);
-
       if (targetElement) {
-        const sectionTop = targetElement.offsetTop; // Get section's top position
-        const viewportHeight = window.innerHeight; // Get 100vh height
-
-        // Ensure the section starts from the first 100vh
         window.scrollTo({
-          top: sectionTop,
+          top: targetElement.offsetTop, // section starts from top
           behavior: "smooth"
         });
       }
     });
   });
 
-
+  // smooth scroll
   const lenis = new Lenis({
-    duration: 1,  // Adjust smoothness (higher = smoother)
-    easing: (t) => 1 - Math.pow(1 - t, 3), // Inertia easing
-    smoothWheel: true,  // Enables smooth scrolling for mouse wheel
-    smoothTouch: false,  // You can enable this for touch devices if needed
+    duration: 1,  
+    easing: (t) => 1 - Math.pow(1 - t, 3), 
+    smoothWheel: true,  
+    smoothTouch: false,  
   });
 
   function raf(time) {
@@ -91,4 +86,5 @@ document.addEventListener("DOMContentLoaded", () => {
   gsap.ticker.add((time) => {
     lenis.raf(time * 1000);
   });
+
 });
