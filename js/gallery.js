@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const parent = document.querySelector(".gallery-wrapper"); // The container
-  let track = document.querySelector(".gallery-track"); // The original track
+  const parent = document.querySelector(".gallery-wrapper"); 
+  let track = document.querySelector(".gallery-track"); 
+  // small resize problem
+  let lastWidth = window.innerWidth;
+  let lastHeight = window.innerHeight;
 
   function initializeGallery() {
     // Clear all existing content inside the wrapper (prevents leftover gaps)
@@ -20,12 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Ensure correct positioning for seamless looping
     newTrack.style.position = "absolute";
-    newTrack.style.left = "0"; // Start at the beginning
+    newTrack.style.left = "0"; // position
 
     duplicate.style.position = "absolute";
-    duplicate.style.left = `${newTrack.scrollWidth}px`; // Align seamlessly
+    duplicate.style.left = `${newTrack.scrollWidth}px`; 
 
-    // Update reference to the new original track (since we replaced it)
+    // Update reference to the new original track
     track = newTrack;
 
     console.log("Gallery reinitialized correctly");
@@ -36,8 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Reinitialize gallery on resize (clears gaps)
   window.addEventListener("resize", () => {
-    console.log("Window resized - Restarting gallery to prevent gaps");
-    initializeGallery();
+    let newWidth = window.innerWidth;
+    let newHeight = window.innerHeight;
+    //! [TEST] initialize only if change > 50px
+    if (Math.abs(newWidth - lastWidth) > 50 || Math.abs(newHeight - lastHeight) > 50) {
+      lastWidth = newWidth;
+      lastHeight = newHeight;
+      initializeGallery();
+    }
   });
 });
 
