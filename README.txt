@@ -3,8 +3,8 @@ Bang-Shien Chen's personal website:
     https://dgbshien.com/
 
 **todo**
-- gallery webp for faster load
-- old blogs
+- blog: lie theory
+- blog: gradient descent
   
 **ideas**
 - stack card for research section
