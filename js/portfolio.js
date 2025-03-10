@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const content = document.querySelector(".content");
   const scrollDownIndicator = document.querySelector(".scroll-down");
 
-  // Ensure "Hi!" fades out correctly
+  // welcome text
   gsap.to(hiText, {
     opacity: 0,
     y: -50,
@@ -18,19 +18,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Fix scroll indicator disappearing too early
+  // scroll down arrow
   gsap.to(scrollDownIndicator, {
     opacity: 0,
     scrollTrigger: {
-      trigger: "#portfolio",  // Now only disappears when reaching the bio section
-      start: "top 58%",  // This ensures it stays visible while in the intro section
+      trigger: "#portfolio",  
+      start: "top 58%",  
       end: "top 58%",
       toggleActions: "play none none reverse",
       // markers: true,
     }
   });
 
-  // Ensure main content ("I am Ian Chen..." & Bio) fades in correctly
+  // portfolio 
   gsap.from(content, {
     opacity: 0,
     y: 50,
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ease: "power2.out",
     scrollTrigger: {
       trigger: "#portfolio",
-      start: "top 40%",  // Adjusted for better centering
+      start: "top 40%", 
       end: "top 10%",
       scrub: true,
       // markers: true,
@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// typewritter effect
 var typed = new Typed("#typed-text", {
   strings: ["Ian", "Bang-Shien"],
   typeSpeed: 100,

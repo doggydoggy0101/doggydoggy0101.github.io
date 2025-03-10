@@ -5,53 +5,48 @@
   align-items: center;
   background: #faf2e3;
   overflow: hidden;
-  padding-top: 10vh; /* Slightly lower overall section */
+  padding-top: 10vh; 
 }
 
 .section-title {
-  flex: 1; /* Reduced flex ratio to move it down */
+  flex: 1;
   display: flex;
-  align-items: center; /* Centers title more evenly */
+  align-items: center;
   justify-content: center;
   font-size: 2rem;
   font-weight: bold;
   color: #41484D;
 }
 
-/* === Horizontal Scroll Wrapper === */
 .gallery-wrapper {
-  flex: 9; /* Increased flex ratio to move it up */
+  flex: 9; 
   width: 100vw;
   overflow: hidden;
   display: flex;
-  align-items: flex-start; /* Moves content slightly up */
+  align-items: flex-start; 
   position: relative;
 }
 
-/* === Horizontal Image Track === */
 .gallery-track {
   display: flex;
   flex-direction: column;
-  gap: 8vh; /* Increased space between rows */
+  gap: 8vh; /* space between rows */
   will-change: transform;
   padding: 0.1rem 0 0 8vh;;
-  animation: scrollGallery 60s linear infinite; /* Auto-scroll */
+  animation: scrollGallery 60s linear infinite; 
 }
 
-/* === Gallery Row (Each Row is Independent) === */
 .gallery-row {
   display: flex;
-  gap: 8vh;; /* Decreased space between columns */
+  gap: 8vh; /* space between columns */
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
 }
 
-
-/* === Individual Gallery Items (Square Size) === */
 .gallery-item {
-  width: 16vh; /* Each image fits in a 2x2 grid */
-  height: 16vh; /* Same size for height */
+  width: 16vh; /* square grid size */
+  height: 16vh; /* square grid size */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,41 +59,37 @@
   transform: scale(102%);
 }
 
-/* === Ensure Images Fit While Keeping Aspect Ratio === */
 .gallery-item a {
   width: 100%;
   height: 100%;
 }
+
 .gallery-item img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Keeps original ratio */
+  object-fit: contain; 
 }
 
-/* === Fading Overlay on Both Sides === */
 .gallery-fade {
   position: absolute;
   top: 0;
-  width: 10%; /* Adjust as needed */
+  width: 10%; 
   height: 100%;
-  pointer-events: none; /* Allows interaction with images */
+  pointer-events: none; 
   z-index: 2;
 }
 
-/* === Left Fade (Fade-Out to Left) === */
 .gallery-fade.left {
   left: 0;
   background: linear-gradient(to right, rgba(250, 242, 227, 1) 0%, rgba(250, 242, 227, 0) 100%);
 }
 
-/* === Right Fade (Fade-In from Right) === */
 .gallery-fade.right {
   right: 0;
   background: linear-gradient(to left, rgba(250, 242, 227, 1) 0%, rgba(250, 242, 227, 0) 100%);
 }
 
 
-/* === Auto Scroll Animation === */
 @keyframes scrollGallery {
   0% {
     transform: translateX(0);
@@ -111,7 +102,7 @@
 
 @media screen and (max-width: 768px) {
   .gallery-track {
-    gap: 4vh; /* Increased space between rows */
-    animation: scrollGallery 90s linear infinite; /* Auto-scroll */
+    gap: 4vh; 
+    animation: scrollGallery 90s linear infinite; 
   }
 }

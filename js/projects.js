@@ -9,14 +9,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const projectsSection = document.querySelector("#projects");
   const dragHandle = document.querySelector(".window-controls");
 
-  // Set the active project in the explorer & update status bar
+  // set the active project and update status bar
   function setActiveProject(selectedProject) {
     projectLinks.forEach(link => link.classList.remove("active"));
     selectedProject.classList.add("active");
     fileNameDisplay.textContent = `doggy/${selectedProject.innerText.trim()}`;
   }
 
-  // Reset to the default - used on load & mobile mode
+  // initialize project
   function resetToDefaultProject() {
     if (projectLinks.length > 0) {
       projectLinks.forEach(link => link.classList.remove("active"));
@@ -27,31 +27,32 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Resizing behavior 
-  function checkScreenSize() {
-    const windowName = document.querySelector(".window-name");
-    if (window.innerWidth < 768) {
-      resetToDefaultProject();
-      windowName.innerHTML = `<i class="fas fa-folder"></i> doggy@umich`;
-    } else {
-      windowName.innerHTML = `<i class="fas fa-folder"></i> doggy@umich: ~/doggy`;
-    }
-    resetProjectPosition(); // Reset position when resizing screen
-  }
-
-  // Reset project container position to center
+  // initialize position
   function resetProjectPosition() {
     const projectSectionRect = projectsSection.getBoundingClientRect();
     projectContainer.style.left = `${(projectSectionRect.width - projectContainer.offsetWidth) / 2}px`;
     projectContainer.style.top = `${(projectSectionRect.height - projectContainer.offsetHeight) / 2}px`;
   }
 
-  // Initialization
+  // resize
+  function checkScreenSize() {
+    const windowName = document.querySelector(".window-name");
+    if (window.innerWidth < 768) {
+      resetToDefaultProject(); // initialize project (mobile)
+      windowName.innerHTML = `<i class="fas fa-folder"></i> doggy@umich`;
+    } else {
+      windowName.innerHTML = `<i class="fas fa-folder"></i> doggy@umich: ~/doggy`;
+    }
+    resetProjectPosition(); // initialize position
+  }
+
+  // initialize on page load
   resetToDefaultProject();
+  // initialize on resize
   checkScreenSize();
   window.addEventListener("resize", checkScreenSize);
 
-  // Handle clicking on project links (updates preview & status bar)
+  // update preview and statub bar
   projectLinks.forEach(link => {
     link.addEventListener("click", function () {
       previews.forEach(preview => preview.classList.add("hidden"));
@@ -63,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // clock
   function updateTime() {
     const now = new Date();
     let hours = now.getHours();
@@ -72,11 +74,10 @@ document.addEventListener("DOMContentLoaded", function () {
     minutes = minutes < 10 ? '0' + minutes : minutes;
     timeDisplay.textContent = `${hours}:${minutes} ${ampm}`;
   }
-
   setInterval(updateTime, 1000);
   updateTime();
 
-  // Handles cursor position tracking (updates line & column in status bar)
+  // line and column
   editorContent.addEventListener("mousemove", function (e) {
     const boundingRect = editorContent.getBoundingClientRect();
     let line = Math.floor((e.clientY - boundingRect.top) / 24) + 1;
@@ -84,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
     cursorPosDisplay.textContent = `Ln ${line}, Col ${col}`;
   });
 
-  // File Explorer
+  // file collapse
   const doggyFolder = document.querySelector("#doggy-folder");
   const projectList = document.querySelector(".project-list");
   const arrowIcon = doggyFolder.querySelector(".fa-caret-down");
@@ -101,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Dragging 
+  // dragging
   let isDragging = false, offsetX = 0, offsetY = 0;
 
   function enableDragging() {
@@ -113,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
       dragHandle.removeEventListener("mousedown", startDragging);
       document.removeEventListener("mousemove", onDrag);
       document.removeEventListener("mouseup", stopDragging);
-      resetProjectPosition(); // Ensure correct placement
+      resetProjectPosition(); 
     }
   }
 

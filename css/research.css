@@ -1,21 +1,18 @@
-/* === Research Section (IEEE-Style) === */
 #research {
   background: #e6e7ed;
   color: #41484D;
   display: flex;
   justify-content: center;
-  min-height: 100vh; /* Ensures full-page height */
+  min-height: 100vh; 
   padding-top: 10vh; 
-  padding-bottom: 10vh; /* Extra bottom padding for footer clearance */
+  padding-bottom: 10vh; 
   font-family: "Cormorant", serif;
 }
 
-/* === Container to Keep Content Centered === */
 .research-container {
-  max-width: 60vw; /* Prevents overly wide text */
+  max-width: 60vw; 
 }
 
-/* === Section Title === */
 .section-title {
   font-size: 2rem;
   font-weight: bold;
@@ -23,12 +20,10 @@
   margin-bottom: 2rem;
 }
 
-/* === Research Sections (Publications, Awards, Presentations) === */
 .research-section {
   margin-bottom: 2rem;
 }
 
-/* === Section Headings === */
 .research-section h3 {
   font-size: 1.5rem;
   font-weight: bold;
@@ -38,13 +33,11 @@
   margin-bottom: 1rem;
 }
 
-/* === Research List === */
 .research-list {
   list-style: none;
   padding-left: 0;
 }
 
-/* === List Items (Publications, Awards, Presentations) === */
 .research-list li {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
@@ -53,22 +46,19 @@
   align-items: flex-start;
 }
 
-/* === Numbering Style === */
 .research-index {
-  flex-shrink: 0; /* Prevents index from shrinking */
+  flex-shrink: 0; 
   width: auto;
   text-align: right;
   margin-right: 0.5rem;
 }
 
-/* === Research Text Block (Aligns next to index) === */
 .research-text {
-  flex: 1; /* Takes up remaining space */
+  flex: 1; 
   line-height: 1.4;
   margin-bottom: 0.2rem;
 }
 
-/* === DOI Link Formatting === */
 .research-link {
   color: #438abc;
   text-decoration: none;
@@ -81,20 +71,17 @@
 
 @media screen and (max-width: 768px) {
   .research-container {
-    max-width: 80vw; /* Increase width to use more space */
+    max-width: 80vw; 
   }
-
   .research-section h3 {
-    font-size: 1.4rem; /* Slightly reduce heading size */
+    font-size: 1.4rem; 
   }
-
   .research-list li {
-    font-size: 1.1rem; /* Adjust list item size for better readability */
+    font-size: 1.1rem; 
   }
-
   .research-index {
-    width: auto; /* Allow it to shrink naturally */
+    width: auto; 
     text-align: right;
-    margin-bottom: 0.3rem; /* Add spacing below index */
+    margin-bottom: 0.3rem; 
   }
 }
