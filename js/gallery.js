@@ -37,8 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", () => {
     let newWidth = window.innerWidth;
     let newHeight = window.innerHeight;
-    //! [TEST] initialize only if change > 50px
-    if (Math.abs(newWidth - lastWidth) > 50 || Math.abs(newHeight - lastHeight) > 50) {
+    //! [TEST] initialize only if change > 150px
+    if (Math.abs(newWidth - lastWidth) > 150 || Math.abs(newHeight - lastHeight) > 150) {
       lastWidth = newWidth;
       lastHeight = newHeight;
       initializeGallery();
