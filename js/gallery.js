@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const parent = document.querySelector(".gallery-wrapper"); 
   let track = document.querySelector(".gallery-track"); 
-  //! [TEST] small resize problem
+  // small resize problem
   let lastWidth = window.innerWidth;
   let lastHeight = window.innerHeight;
 
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", () => {
     let newWidth = window.innerWidth;
     let newHeight = window.innerHeight;
-    //! [TEST] initialize only if change > 150px
+    // initialize only if change > 150px
     if (Math.abs(newWidth - lastWidth) > 150 || Math.abs(newHeight - lastHeight) > 150) {
       lastWidth = newWidth;
       lastHeight = newHeight;

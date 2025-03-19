@@ -33,7 +33,7 @@
   gap: 8vh; /* space between rows */
   will-change: transform;
   padding: 0.1rem 0 0 8vh;;
-  animation: scrollGallery 60s linear infinite; 
+  animation: scrollGallery 90s linear infinite; 
 }
 
 .gallery-row {
