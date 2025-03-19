@@ -3,7 +3,6 @@ Bang-Shien Chen's personal website:
     https://dgbshien.com/
 
 **todo**
-- blog: lie theory
 - blog: gradient descent
   
 **ideas**
