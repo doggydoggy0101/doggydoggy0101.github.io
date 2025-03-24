@@ -18,10 +18,15 @@
   color: #41484D;
 }
 
-.gallery-wrapper {
-  flex: 9; 
+.gallery-container {
+  flex: 11; 
+  position: relative;
   width: 100vw;
   overflow: hidden;
+}
+
+.gallery-wrapper {
+  width: 100vw;
   display: flex;
   align-items: flex-start; 
   position: relative;
@@ -42,6 +47,7 @@
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+  padding-top: 4px;
 }
 
 .gallery-item {
@@ -75,18 +81,17 @@
   top: 0;
   width: 10%; 
   height: 100%;
-  pointer-events: none; 
   z-index: 2;
 }
 
 .gallery-fade.left {
   left: 0;
-  background: linear-gradient(to right, rgba(250, 242, 227, 1) 0%, rgba(250, 242, 227, 0) 100%);
+  background: linear-gradient(to right, rgb(216, 227, 235) 0%, rgba(250, 242, 227, 0) 100%);
 }
 
 .gallery-fade.right {
   right: 0;
-  background: linear-gradient(to left, rgba(250, 242, 227, 1) 0%, rgba(250, 242, 227, 0) 100%);
+  background: linear-gradient(to left, rgb(216, 227, 235) 0%, rgba(250, 242, 227, 0) 100%);
 }
 
 

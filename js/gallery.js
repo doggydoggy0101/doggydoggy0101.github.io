@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
   generateGalleryRow([1, 4, 7, 10, 13, 16, 19, 22, 25, 28], "gallery-row-1");
   generateGalleryRow([2, 5, 8, 11, 14, 17, 20, 23, 26, 29], "gallery-row-2");
   generateGalleryRow([3, 6, 9, 12, 15, 18, 21, 24, 27, 30], "gallery-row-3");
+  console.log("Wrapper:", parent.offsetWidth);
+  console.log("Track:", track.scrollWidth);
 
   // small resize problem
   let lastWidth = window.innerWidth;
