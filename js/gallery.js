@@ -1,6 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
   const parent = document.querySelector(".gallery-wrapper"); 
   let track = document.querySelector(".gallery-track"); 
+
+  function generateGalleryRow(imageIds, containerId) {
+    const container = document.getElementById(containerId);
+  
+    imageIds.forEach(id => {
+      const item = document.createElement("div");
+      item.classList.add("gallery-item");
+  
+      item.innerHTML = `
+        <a href="docs/gallery/${id}.webp" data-lightbox="gallery">
+          <img class="img" src="docs/gallery-compress/${id}.jpg" alt="Gallery Image ${id}">
+        </a>
+      `;
+  
+      container.appendChild(item);
+    });
+  }
+
+  //! maintain gallery here
+  generateGalleryRow([1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31], "gallery-row-1");
+  generateGalleryRow([2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32], "gallery-row-2");
+  generateGalleryRow([3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33], "gallery-row-3");
+
   // small resize problem
   let lastWidth = window.innerWidth;
   let lastHeight = window.innerHeight;
@@ -48,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 lightbox.option({
-  'positionFromTop': 100,
+  'positionFromTop': 70,
   'wrapAround': true,
   'showImageNumberLabel': false,
 })
