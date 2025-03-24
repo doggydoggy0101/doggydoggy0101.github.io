@@ -48,7 +48,7 @@ body::before {
   background: none; 
   font-size: 2rem;
   font-weight: bold;
-  color: #ffffff;
+  color: #e7e8ed;
 }
 
 .loader-top {
@@ -117,7 +117,7 @@ body::before {
   transform-origin: 100% 50%;
   transform: translate3d(200%, 0, 0);
   transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
-  color: #4A9DA5; /* Blue color on hover */
+  color: #438abc;
 }
 
 #navbar ul li a:hover::before {
@@ -162,7 +162,7 @@ body::before {
 
 #footer .icon:hover {
   transform: scale(1.2);
-  color: #4A9DA5;
+  color: #438abc;
 }
 
 /*! [TEST] dummy section */
@@ -182,17 +182,17 @@ body::before {
 }
 
 ::-webkit-scrollbar-track {
-  background: #e6e7ed 
+  background: #d8e3eb
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(74, 157, 165, 0.6); 
+  background: rgba(67, 138, 188, 0.4); 
   border-radius: 10px; 
   transition: background 0.3s ease-in-out;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(74, 157, 165, 1); 
+  background: rgba(67, 138, 188, 0.8); 
 }
 
 @media screen and (max-width: 768px) {
