@@ -15,22 +15,22 @@ document.addEventListener("DOMContentLoaded", () => {
       end: "bottom 30%",
       scrub: true,
       // markers: true,
-    }
+    },
   });
 
   // scroll down arrow
   gsap.to(scrollDownIndicator, {
     opacity: 0,
     scrollTrigger: {
-      trigger: "#portfolio",  
-      start: "top 58%",  
+      trigger: "#portfolio",
+      start: "top 58%",
       end: "top 58%",
       toggleActions: "play none none reverse",
       // markers: true,
-    }
+    },
   });
 
-  // portfolio 
+  // portfolio
   gsap.from(content, {
     opacity: 0,
     y: 50,
@@ -38,11 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
     ease: "power2.out",
     scrollTrigger: {
       trigger: "#portfolio",
-      start: "top 40%", 
+      start: "top 40%",
       end: "top 10%",
       scrub: true,
       // markers: true,
-    }
+    },
   });
 });
 

@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'MesloLGS Nerd Font';
-  src: url('../docs/fonts/MesloLGSNerdFontMono-Regular.ttf') format('truetype');
+  font-family: "MesloLGS Nerd Font";
+  src: url("../docs/fonts/MesloLGSNerdFontMono-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -10,7 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15vh 0; 
+  padding: 15vh 0;
   z-index: 2;
   position: relative;
 }
@@ -18,11 +18,11 @@
 .projects-container {
   display: flex;
   flex-direction: column;
-  width: 60vw;;
-  height: 70vh; 
+  width: 60vw;
+  height: 70vh;
   border-radius: 0.5rem;
   overflow: hidden;
-  font-family: 'MesloLGS Nerd Font', monospace;
+  font-family: "MesloLGS Nerd Font", monospace;
   font-size: 0.9rem;
   position: absolute; /* allow movement */
   left: 50%;
@@ -31,7 +31,7 @@
 
 .projects-content {
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   height: 100%;
   width: 100%;
 }
@@ -57,9 +57,15 @@
   border-radius: 50%;
 }
 
-.window-btn.red { background: #ff5f56; }    
-.window-btn.yellow { background: #ffbd2e; } 
-.window-btn.green { background: #27c93f; }  
+.window-btn.red {
+  background: #ff5f56;
+}
+.window-btn.yellow {
+  background: #ffbd2e;
+}
+.window-btn.green {
+  background: #27c93f;
+}
 
 .window-name {
   position: absolute;
@@ -67,7 +73,7 @@
   transform: translateX(-50%);
   align-items: center;
   text-align: center;
-  user-select: none; 
+  user-select: none;
   cursor: default;
   color: #c0caf5;
   font-size: 0.85rem;
@@ -81,10 +87,10 @@
 .file-explorer {
   background: rgba(36, 40, 59, 0.8);
   padding: 0.8rem;
-  height: 100%; 
-  overflow-y: auto; 
-  border-right: 0.1rem solid #414868; 
-  user-select: none;  
+  height: 100%;
+  overflow-y: auto;
+  border-right: 0.1rem solid #414868;
+  user-select: none;
 }
 
 .folder-static {
@@ -93,7 +99,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .folder-static i:first-child {
@@ -105,12 +111,15 @@
   padding-left: 20px;
   overflow: hidden;
   max-height: 300px; /* TODO fix height */
-  transition: max-height 0.3s ease-out, opacity 0.3s ease-out, transform 0.3s ease-out;
+  transition:
+    max-height 0.3s ease-out,
+    opacity 0.3s ease-out,
+    transform 0.3s ease-out;
   opacity: 1;
 }
 
 .project-list.collapsed {
-  max-height: 0; 
+  max-height: 0;
   opacity: 0;
   transform: translateY(-10px);
 }
@@ -142,16 +151,16 @@
   content: "";
   position: absolute;
   left: 0;
-  width: 0.2rem; 
+  width: 0.2rem;
   height: 100%;
   background-color: #7aa2f7;
-  transform-origin: left; 
-  transform: scaleX(0);  
-  transition: transform 0.3s ease; 
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
 }
 
 .project-list li.active::before {
-  transform: scaleX(1); 
+  transform: scaleX(1);
 }
 
 .project-list li:hover {
@@ -161,9 +170,9 @@
 
 .editor {
   flex: 1;
-  background: rgba(44, 50, 77, 0.8); 
+  background: rgba(44, 50, 77, 0.8);
   display: flex;
-  height: 100%; 
+  height: 100%;
   flex-direction: column;
 }
 
@@ -172,24 +181,24 @@
   width: 100%;
   height: 100%;
   position: relative;
-  overflow-y: auto; 
-  max-height: 100%; 
+  overflow-y: auto;
+  max-height: 100%;
 }
 
 .editor-content::-webkit-scrollbar {
-  width: 8px; 
+  width: 8px;
 }
 
 .editor-content::-webkit-scrollbar-track {
-  background: transparent; 
+  background: transparent;
 }
 
 .editor-content::-webkit-scrollbar-thumb {
-  background-color: rgba(122, 162, 247, 0.2); /
+  background-color: rgba(122, 162, 247, 0.2);
 }
 
 .editor-content::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(122, 162, 247, 0.4); 
+  background-color: rgba(122, 162, 247, 0.4);
 }
 
 .project-preview {
@@ -197,7 +206,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px; 
+  padding: 20px;
   box-sizing: border-box;
 }
 
@@ -207,21 +216,21 @@
 
 .project-preview h2 {
   font-size: 2rem;
-  color: #9ece6a; 
-  margin: 0.2rem 0 0.4rem 0; 
+  color: #9ece6a;
+  margin: 0.2rem 0 0.4rem 0;
 }
 
 .project-preview p {
   color: #c0caf5;
-  line-height: 1.6; 
-  margin: 1rem 0 0.4rem 0; 
+  line-height: 1.6;
+  margin: 1rem 0 0.4rem 0;
   font-size: 0.9rem;
 }
 
 .project-preview ul {
   color: #c0caf5;
-  line-height: 1.6; 
-  margin-bottom: 0.0rem;
+  line-height: 1.6;
+  margin-bottom: 0rem;
   font-size: 0.9rem;
   list-style-position: outside;
   padding-left: 0.8rem;
@@ -233,24 +242,25 @@
 }
 
 .project-preview .links {
-  color: #bb9af7; 
+  color: #bb9af7;
   text-decoration: none;
   font-weight: 500;
   display: inline-block;
-  padding: 0.3rem 0.5rem; 
+  padding: 0.3rem 0.5rem;
   border-radius: 0.3rem;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
 .project-preview .links:hover {
-  background: rgba(187, 154, 247, 0.2); 
+  background: rgba(187, 154, 247, 0.2);
   text-decoration: underline;
 }
 
 .hidden {
   display: none !important;
 }
-
 
 .status-bar {
   display: flex;
@@ -261,7 +271,7 @@
   color: #c0caf5;
   font-size: 0.85rem;
   border-top: 0.1rem solid #414868;
-  font-family: 'MesloLGS Nerd Font', monospace;
+  font-family: "MesloLGS Nerd Font", monospace;
 }
 
 .left-status {
@@ -270,24 +280,41 @@
   gap: 0.8rem;
 }
 
-.mode {color: #9ece6a;}
-.git-branch {color: #e0af68;}
-.file-path {color: #7aa2f7; }
+.mode {
+  color: #9ece6a;
+}
+.git-branch {
+  color: #e0af68;
+}
+.file-path {
+  color: #7aa2f7;
+}
 .right-status {
   display: flex;
   align-items: center;
   gap: 0.8rem;
 }
-.cursor-pos {color: #f7768e;}
-.clock {color: #bb9af7;}
-
+.cursor-pos {
+  color: #f7768e;
+}
+.clock {
+  color: #bb9af7;
+}
 
 /* two-step responsive */
 @media screen and (max-width: 1000px) {
-  .cursor-pos {display: none !important;}
-  .apple {display: none !important;}
-  .mode {display: none !important;}
-  .git-branch {display: none !important;}
+  .cursor-pos {
+    display: none !important;
+  }
+  .apple {
+    display: none !important;
+  }
+  .mode {
+    display: none !important;
+  }
+  .git-branch {
+    display: none !important;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -296,7 +323,7 @@
     transform: none !important;
     left: auto !important;
     top: auto !important;
-    width: 80vw;;
+    width: 80vw;
   }
   .file-explorer {
     display: none !important;

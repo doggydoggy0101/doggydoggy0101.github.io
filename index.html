@@ -1,249 +1,245 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Bang-Shien Chen's homepage.">  
-  <meta name="keywords" content="Bang-Shien Chen, FracGM"> 
-  <meta name="author" content="Bang-Shien Chen">  
-  <meta name="robots" content="index, follow">  <!-- Allow search engines to index -->
-  
-  <title>Bang-Shien Chen</title>
-  <link rel="icon" href="docs/images/icon.jpg" type="image/icon type">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Bang-Shien Chen's homepage." />
+    <meta name="keywords" content="Bang-Shien Chen, FracGM" />
+    <meta name="author" content="Bang-Shien Chen" />
+    <meta name="robots" content="index, follow" />
 
-  <!-- css -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/portfolio.css">
-  <link rel="stylesheet" href="css/gallery.css">
-  <link rel="stylesheet" href="css/projects.css">
-  <link rel="stylesheet" href="css/research.css">
-  <link rel="stylesheet" href="lightbox2/dist/css/lightbox.css">
+    <title>Bang-Shien Chen</title>
+    <link rel="icon" href="docs/images/icon.jpg" type="image/icon type" />
 
-  <!-- fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/portfolio.css" />
+    <link rel="stylesheet" href="css/gallery.css" />
+    <link rel="stylesheet" href="css/projects.css" />
+    <link rel="stylesheet" href="css/research.css" />
+    <link rel="stylesheet" href="lightbox2/dist/css/lightbox.css" />
 
-  <!-- icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- gsap -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
 
-  <!-- lenis -->
-  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script> 
-  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.13/dist/lenis.css">
+    <!-- gsap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-  <!-- js -->
-  <script defer src="js/script.js"></script>
-  <script defer src="js/portfolio.js"></script>
-  <script defer src="js/gallery.js"></script>
-  <script defer src="js/projects.js"></script>
-  <script defer src="js/research.js"></script>
-  <script src="lightbox2/dist/js/lightbox-plus-jquery.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-</head>
+    <!-- lenis -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/lenis@1.1.13/dist/lenis.css"
+    />
 
-<body>
-  <!-- loading screen -->
-  <div id="loading-screen">
-    <div class="loader-top"></div>
-    <div class="loader-bottom"></div>
-    <p class="loader-text"><span id="loading-text"></span></p>
-  </div>
+    <!-- js -->
+    <script defer src="js/script.js"></script>
+    <script defer src="js/portfolio.js"></script>
+    <script defer src="js/gallery.js"></script>
+    <script defer src="js/projects.js"></script>
+    <script defer src="js/research.js"></script>
+    <script src="lightbox2/dist/js/lightbox-plus-jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  </head>
 
-  <!-- background -->
-  <div class="background"></div>
+  <body>
+    <!-- loading screen -->
+    <div id="loading-screen">
+      <div class="loader-top"></div>
+      <div class="loader-bottom"></div>
+      <p class="loader-text"><span id="loading-text"></span></p>
+    </div>
 
-  <!-- navigation bar -->
-  <nav id="navbar">
-    <ul>
-      <li><a href="#portfolio" data-replace="Portfolio"><span>Portfolio</span></a></li>
-      <li><a href="#gallery" data-replace="Gallery"><span>Gallery</span></a></li>
-      <li><a href="#projects" data-replace="Blog"><span>Blog</span></a></li>
-      <li><a href="#research" data-replace="Research"><span>Research</span></a></li>
-    </ul>
-  </nav>
+    <!-- background -->
+    <div class="background"></div>
 
-  <!-- intro -->
-  <section id="intro">
-    <h1 id="hi-text">Welcome!</h1>
-    <p class="scroll-down">↓ Scroll Down</p> <!-- New scroll-down reminder -->
-  </section>
+    <!-- navigation bar -->
+    <nav id="navbar">
+      <ul>
+        <li>
+          <a href="#portfolio" data-replace="Portfolio"
+            ><span>Portfolio</span></a
+          >
+        </li>
+        <li>
+          <a href="#gallery" data-replace="Gallery"><span>Gallery</span></a>
+        </li>
+        <li>
+          <a href="#projects" data-replace="Blog"><span>Blog</span></a>
+        </li>
+        <li>
+          <a href="#research" data-replace="Research"><span>Research</span></a>
+        </li>
+      </ul>
+    </nav>
 
-  <!-- portfoliio -->
-  <section id="portfolio">
-    <div class="content">
-      <h2 class="name"><span id="typed-text"></span>Chen</h2>
-      <p class="bio">
-        I am currently a master's student at the Department of Mathematics,  
-        National Taiwan Normal University. My research interests are mainly  
-        in optimization and robotics, and I write blogs about tools and concepts  
-        I frequently use. Feel free to check them out, and I hope you find them helpful!
-      </p>
-      <div class="download-block">
-        <p>download my 
-          <a href="docs/files/CV_Chen.pdf" target="_blank">cv</a> / 
-          <a href="docs/files/SOP_Chen.pdf" target="_blank">statement</a> (Dec 2024)
+    <!-- intro -->
+    <section id="intro">
+      <h1 id="hi-text">Welcome!</h1>
+      <p class="scroll-down">↓ Scroll Down</p>
+    </section>
+
+    <!-- portfoliio -->
+    <section id="portfolio">
+      <div class="content">
+        <h2 class="name"><span id="typed-text"></span>Chen</h2>
+        <p class="bio">
+          I am currently a master's student at the Department of Mathematics,
+          National Taiwan Normal University. My research interests are mainly in
+          optimization and robotics, and I write blogs about tools and concepts
+          I frequently use. Feel free to check them out, and I hope you find
+          them helpful!
         </p>
-      </div>
-    </div>
-
-    <!-- footer -->
-    <div id="footer">
-      <a href="https://github.com/doggydoggy0101" target="_blank" class="icon">
-        <i class="fab fa-github"></i>
-      </a>
-      <a href="mailto:dgbshien@gmail.com" class="icon">
-        <i class="fas fa-envelope"></i>
-      </a>
-      <a href="https://www.youtube.com/@doggydoggy0101" target="_blank" class="icon">
-        <i class="fab fa-youtube"></i>
-      </a>
-    </div>
-  </section>
-
-
-  <!-- gallery -->
-  <section id="gallery">
-    <h2 class="section-title">Gallery</h2>
-    <div class="gallery-container">
-      <div class="gallery-fade left"></div>
-      <div class="gallery-fade right"></div>
-      <div class="gallery-wrapper">
-        <div class="gallery-track">
-          <!-- !maintain rows in `js/gallery.js` -->
-          <div class="gallery-row" id="gallery-row-1"></div>
-          <div class="gallery-row" id="gallery-row-2"></div>
-          <div class="gallery-row" id="gallery-row-3"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- blog -->
-  <section id="projects">
-    <div class="projects-container">
-
-      <!-- top bar -->
-      <div class="window-controls">
-        <div class="window-left">
-          <span class="window-btn red"></span>
-          <span class="window-btn yellow"></span>
-          <span class="window-btn green"></span>
-        </div>
-        <div class="window-name">
-          <i class="fas fa-folder"></i>doggy@umich: ~/doggy
+        <div class="download-block">
+          <p>
+            download my
+            <a href="docs/files/CV_Chen.pdf" target="_blank">cv</a> /
+            <a href="docs/files/SOP_Chen.pdf" target="_blank">statement</a> (Dec
+            2024)
+          </p>
         </div>
       </div>
 
-      <!-- middle section -->
-      <div class="projects-content">
-        <!-- file explorer (left part) -->
-        <div class="file-explorer">
-          <h3 class="explorer-title">EXPLORER</h3>
-          <div class="folder-static" id="doggy-folder">
-            <i class="fas fa-caret-down"></i> <!-- Arrow Icon -->
-            <i class="fas fa-folder-open"></i> doggy
-          </div>
-          <ul class="project-list">
-            <li data-project="project1">
-              <i class="fas fa-file-code"></i> blog.md
-            </li>
-            <li data-project="project2">
-              <i class="fas fa-file-code"></i> quiz-game.md
-            </li>
-            <li data-project="project3">
-              <i class="fas fa-file-code"></i> master-thesis.md
-            </li>
-          </ul>
-        </div>
-        <!-- text editor (right part) -->
-        <div class="editor">
-          <div class="editor-content">
-            <div id="project1" class="project-preview hidden">
-              <h2>blog</h2>
-              <p><i class="fas fa-book"></i> Optimization</p>
-              <ul>
-                <a href="docs/blogs/optimality-conditions.pdf" target="_blank" class="links"><i class="fas fa-file-pdf"></i> Optimality conditions</a>
-              </ul>
-              <p><i class="fas fa-book"></i> Robotics</p>
-              <ul>
-                <a href="docs/blogs/rotation-representation.pdf" target="_blank" class="links"><i class="fas fa-file-pdf"></i> Rotation representation</a>
-              </ul>
-              <ul>
-                <a href="docs/blogs/lie-theory.pdf" target="_blank" class="links"><i class="fas fa-file-pdf"></i> Lie theory</a>
-              </ul>
-            </div>
+      <!-- footer -->
+      <div id="footer">
+        <a
+          href="https://github.com/doggydoggy0101"
+          target="_blank"
+          class="icon"
+        >
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="mailto:dgbshien@gmail.com" class="icon">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a
+          href="https://www.youtube.com/@doggydoggy0101"
+          target="_blank"
+          class="icon"
+        >
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+    </section>
 
-            <div id="project2" class="project-preview hidden">
-              <h2>quiz-game</h2>
-              <p>A quiz-let like website for TOEFL vocabularies.</p>
-              <a href="https://dgbshien.com/quiz-game/" target="_blank" class="links"> <i class="fas fa-external-link"></i> Website</a>
-              <a href="https://github.com/doggydoggy0101/quiz-game" target="_blank" class="links"><i class="fab fa-github-alt"></i> GitHub</a>
-            </div>
-
-            <div id="project3" class="project-preview hidden">
-              <h2>master-thesis</h2>
-              <p>
-                Implementation of my master thesis "Algorithms for Geman-McClure Robust Estimation and Applications for Spatial Perceptions". 
-                We provide robust point cloud registration solvers:
-              </p>
-              <ul>
-                <li>IRLS (Iterative Re-weighted Least Squares)</li>
-                <li>GNC (Graduated Non-Convexity)</li>
-                <li>FracGM <a href="#FracGM" class="cite">[1]</a></li>
-              </ul>
-              <p>For more information:</p>
-              <a href="https://github.com/doggydoggy0101/master-thesis" target="_blank" class="links"><i class="fab fa-github-alt"></i> GitHub</a>
-            </div>
-
+    <!-- gallery -->
+    <section id="gallery">
+      <h2 class="section-title">Gallery</h2>
+      <div class="gallery-container">
+        <div class="gallery-fade left"></div>
+        <div class="gallery-fade right"></div>
+        <div class="gallery-wrapper">
+          <div class="gallery-track">
+            <!-- !maintain rows in `js/gallery.js` -->
+            <div class="gallery-row" id="gallery-row-1"></div>
+            <div class="gallery-row" id="gallery-row-2"></div>
+            <div class="gallery-row" id="gallery-row-3"></div>
           </div>
         </div>
       </div>
-      <div class="status-bar">
-        <div class="left-status">
-          <span class="apple"><i class="fab fa-apple"></i></span>
-          <span class="mode">NORMAL</span>
-          <span class="git-branch"><i class="fas fa-code-branch"></i> main</span>
-          <span class="file-path"><i class="fas fa-file-code"></i> <span class="file-name">project1.md</span></span>
-        </div>
-        <div class="right-status">
-          <span class="cursor-pos">Ln 1, Col 1</span>
-          <span class="clock"><i class="fas fa-clock"></i> <span id="current-time">12:00 PM</span></span>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
+    <!-- blog -->
+    <section id="projects">
+      <div class="projects-container">
+        <!-- top bar -->
+        <div class="window-controls">
+          <div class="window-left">
+            <span class="window-btn red"></span>
+            <span class="window-btn yellow"></span>
+            <span class="window-btn green"></span>
+          </div>
+          <div class="window-name">
+            <i class="fas fa-folder"></i>doggy@umich: ~/doggy
+          </div>
+        </div>
 
-  <!-- research -->
-  <section id="research">
-    <div class="research-container">
-      <h2 class="section-title">Research</h2>
-  
-      <!-- !maintain publications in `js/research.js` -->
-      <div class="research-section">
-        <h3>Publications</h3>
-        <ol class="research-list" id="publications-list"></ol>
+        <!-- middle section -->
+        <div class="projects-content">
+          <!-- file explorer (left part) -->
+          <div class="file-explorer">
+            <h3 class="explorer-title">EXPLORER</h3>
+            <div class="folder-static" id="doggy-folder">
+              <i class="fas fa-caret-down"></i>
+              <!-- Arrow Icon -->
+              <i class="fas fa-folder-open"></i> doggy
+            </div>
+            <ul class="project-list">
+              <li data-project="project1">
+                <i class="fas fa-file-code"></i> blog.md
+              </li>
+              <li data-project="project2">
+                <i class="fas fa-file-code"></i> quiz-game.md
+              </li>
+              <li data-project="project3">
+                <i class="fas fa-file-code"></i> master-thesis.md
+              </li>
+            </ul>
+          </div>
+          <!-- text editor (right part) -->
+          <div class="editor">
+            <!-- !maintain preview in `js/projects.js` -->
+            <div class="editor-content"></div>
+          </div>
+        </div>
+        <div class="status-bar">
+          <div class="left-status">
+            <span class="apple"><i class="fab fa-apple"></i></span>
+            <span class="mode">NORMAL</span>
+            <span class="git-branch"
+              ><i class="fas fa-code-branch"></i> main</span
+            >
+            <span class="file-path"
+              ><i class="fas fa-file-code"></i>
+              <span class="file-name">project1.md</span></span
+            >
+          </div>
+          <div class="right-status">
+            <span class="cursor-pos">Ln 1, Col 1</span>
+            <span class="clock"
+              ><i class="fas fa-clock"></i>
+              <span id="current-time">12:00 PM</span></span
+            >
+          </div>
+        </div>
       </div>
-      
-      <!-- !maintain awards in `js/research.js` -->
-      <div class="research-section">
-        <h3>Awards</h3>
-        <ul class="research-list" id="awards-list"></ul>
+    </section>
+
+    <!-- research -->
+    <section id="research">
+      <div class="research-container">
+        <h2 class="section-title">Research</h2>
+
+        <!-- !maintain publications in `js/research.js` -->
+        <div class="research-section">
+          <h3>Publications</h3>
+          <ol class="research-list" id="publications-list"></ol>
+        </div>
+
+        <!-- !maintain awards in `js/research.js` -->
+        <div class="research-section">
+          <h3>Awards</h3>
+          <ul class="research-list" id="awards-list"></ul>
+        </div>
+
+        <!-- !maintain presentations in `js/research.js` -->
+        <div class="research-section">
+          <h3>Presentations</h3>
+          <ul class="research-list" id="presentations-list"></ul>
+        </div>
       </div>
-      
-      <!-- !maintain presentations in `js/research.js` -->
-      <div class="research-section">
-        <h3>Presentations</h3>
-        <ul class="research-list" id="presentations-list"></ul>
-      </div>
-    </div>
-    
-  </section>
-  
-</body>
+    </section>
+  </body>
 </html>

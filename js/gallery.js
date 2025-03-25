@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const parent = document.querySelector(".gallery-wrapper"); 
-  let track = document.querySelector(".gallery-track"); 
+  const parent = document.querySelector(".gallery-wrapper");
+  let track = document.querySelector(".gallery-track");
 
   //! maintain gallery here
   generateGalleryRow([1, 4, 7, 10, 13, 16, 19, 22, 25, 28], "gallery-row-1");
@@ -13,12 +13,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // initialize on page load
   initializeGallery();
-  // initialize resize 
+  // initialize resize
   window.addEventListener("resize", () => {
     let newWidth = window.innerWidth;
     let newHeight = window.innerHeight;
     // initialize only if change > 150px
-    if (Math.abs(newWidth - lastWidth) > 150 || Math.abs(newHeight - lastHeight) > 150) {
+    if (
+      Math.abs(newWidth - lastWidth) > 150 ||
+      Math.abs(newHeight - lastHeight) > 150
+    ) {
       lastWidth = newWidth;
       lastHeight = newHeight;
       initializeGallery();
@@ -26,11 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 function generateGalleryRow(imageIds, containerId) {
   const container = document.getElementById(containerId);
 
-  imageIds.forEach(id => {
+  imageIds.forEach((id) => {
     const item = document.createElement("div");
     item.classList.add("gallery-item");
 
@@ -43,7 +45,6 @@ function generateGalleryRow(imageIds, containerId) {
     container.appendChild(item);
   });
 }
-
 
 function initializeGallery() {
   // initialize wrapper
@@ -63,17 +64,16 @@ function initializeGallery() {
 
   // position track
   newTrack.style.position = "absolute";
-  newTrack.style.left = "0"; 
+  newTrack.style.left = "0";
   duplicate.style.position = "absolute";
-  duplicate.style.left = `${newTrack.scrollWidth}px`; 
+  duplicate.style.left = `${newTrack.scrollWidth}px`;
 
   // update track
   track = newTrack;
 }
 
-
 lightbox.option({
-  'positionFromTop': 70,
-  'wrapAround': true,
-  'showImageNumberLabel': false,
-})
+  positionFromTop: 70,
+  wrapAround: true,
+  showImageNumberLabel: false,
+});

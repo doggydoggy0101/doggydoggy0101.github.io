@@ -1,8 +1,8 @@
 var typed = new Typed("#loading-text", {
   strings: ["Loading..."],
   typeSpeed: 100,
-  showCursor: true, 
-  cursorChar: "|", 
+  showCursor: true,
+  cursorChar: "|",
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -18,28 +18,27 @@ document.addEventListener("DOMContentLoaded", () => {
   bgImage.onload = function () {
     setTimeout(() => {
       // hide text & cursor
-      document.getElementById("loading-text").style.display = "none"; 
-      document.querySelector(".typed-cursor").style.display = "none"; 
+      document.getElementById("loading-text").style.display = "none";
+      document.querySelector(".typed-cursor").style.display = "none";
       // loading screen animation
       gsap.to(".loader-top", {
         y: "-100%",
         duration: 1.5,
         ease: "power4.out",
       });
-  
+
       gsap.to(".loader-bottom", {
         y: "100%",
         duration: 1.5,
         ease: "power4.out",
         onComplete: () => {
-          document.getElementById("loading-screen").style.display = "none"; 
-        }
+          document.getElementById("loading-screen").style.display = "none";
+        },
       });
-  
     }, 2400); // slight delay before animation starts
   };
 
-  // float in navbar and footer 
+  // float in navbar and footer
   gsap.to([navbar, footer], {
     opacity: 1,
     pointerEvents: "all",
@@ -50,19 +49,19 @@ document.addEventListener("DOMContentLoaded", () => {
       end: "top 95%",
       toggleActions: "play none none reverse",
       // markers: true,
-    }
+    },
   });
 
   // navbar animation
-  document.querySelectorAll('#navbar a').forEach(link => {
-    link.addEventListener('click', function (e) {
+  document.querySelectorAll("#navbar a").forEach((link) => {
+    link.addEventListener("click", function (e) {
       e.preventDefault();
-      const targetId = this.getAttribute('href').substring(1);
+      const targetId = this.getAttribute("href").substring(1);
       const targetElement = document.getElementById(targetId);
       if (targetElement) {
         window.scrollTo({
           top: targetElement.offsetTop, // section starts from top
-          behavior: "smooth"
+          behavior: "smooth",
         });
       }
     });
@@ -70,10 +69,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // smooth scroll
   const lenis = new Lenis({
-    duration: 0.5,  
-    easing: (t) => 1 - Math.pow(1 - t, 3), 
-    smoothWheel: true,  
-    smoothTouch: false,  
+    duration: 0.5,
+    easing: (t) => 1 - Math.pow(1 - t, 3),
+    smoothWheel: true,
+    smoothTouch: false,
   });
 
   function raf(time) {
@@ -86,5 +85,4 @@ document.addEventListener("DOMContentLoaded", () => {
   gsap.ticker.add((time) => {
     lenis.raf(time * 1000);
   });
-
 });
