@@ -1,16 +1,16 @@
 #research {
   background: #d8e3eb;
-  color: #41484D;
+  color: #41484d;
   display: flex;
   justify-content: center;
-  min-height: 100vh; 
-  padding-top: 10vh; 
-  padding-bottom: 10vh; 
+  min-height: 100vh;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
   font-family: "Cormorant", serif;
 }
 
 .research-container {
-  max-width: 60vw; 
+  max-width: 60vw;
 }
 
 .section-title {
@@ -27,7 +27,7 @@
 .research-section h3 {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #41484D;
+  color: #41484d;
   border-bottom: 0.1rem solid #757d82;
   padding-bottom: 0.4rem;
   margin-bottom: 1rem;
@@ -47,14 +47,14 @@
 }
 
 .research-index {
-  flex-shrink: 0; 
+  flex-shrink: 0;
   width: auto;
   text-align: right;
   margin-right: 0.5rem;
 }
 
 .research-text {
-  flex: 1; 
+  flex: 1;
   line-height: 1.4;
   margin-bottom: 0.2rem;
 }
@@ -68,20 +68,19 @@
   text-decoration: underline;
 }
 
-
 @media screen and (max-width: 768px) {
   .research-container {
-    max-width: 80vw; 
+    max-width: 80vw;
   }
   .research-section h3 {
-    font-size: 1.4rem; 
+    font-size: 1.4rem;
   }
   .research-list li {
-    font-size: 1.1rem; 
+    font-size: 1.1rem;
   }
   .research-index {
-    width: auto; 
+    width: auto;
     text-align: right;
-    margin-bottom: 0.3rem; 
+    margin-bottom: 0.3rem;
   }
 }
