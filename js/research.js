@@ -83,76 +83,76 @@ const presentations = [
   },
 ];
 
-function generatePublications() {
-  const container = document.getElementById("publications-list");
-  publications.forEach((pub) => {
-    const li = document.createElement("li");
-
-    const index = document.createElement("span");
-    index.classList.add("research-index");
-    index.setAttribute("id", pub.id);
-    index.innerHTML = pub.index;
-
-    const text = document.createElement("div");
-    text.classList.add("research-text");
-    text.innerHTML = pub.text;
-
-    pub.links.forEach((link) => {
-      const a = document.createElement("a");
-      a.href = link.href;
-      a.target = "_blank";
-      a.className = "research-link";
-      a.textContent = link.label;
-      text.appendChild(document.createTextNode(" ("));
-      text.appendChild(a);
-      text.appendChild(document.createTextNode(")"));
-    });
-
-    li.appendChild(index);
-    li.appendChild(text);
-    container.appendChild(li);
-  });
-}
-
-function generateAwards() {
-  const container = document.getElementById("awards-list");
-  awards.forEach((item) => {
-    const li = document.createElement("li");
-
-    const index = document.createElement("span");
-    index.classList.add("research-index");
-    index.innerHTML = item.index;
-
-    const text = document.createElement("div");
-    text.classList.add("research-text");
-    text.innerHTML = `${item.title} ${item.desc} ${item.date}`;
-
-    li.appendChild(index);
-    li.appendChild(text);
-    container.appendChild(li);
-  });
-}
-
-function generatePresentations() {
-  const container = document.getElementById("presentations-list");
-  presentations.forEach((pres) => {
-    const li = document.createElement("li");
-
-    const index = document.createElement("span");
-    index.classList.add("research-index");
-    index.innerHTML = pres.index;
-
-    const text = document.createElement("div");
-    text.classList.add("research-text");
-    text.innerHTML = `${pres.title} ${pres.location}`;
-
-    li.appendChild(index);
-    li.appendChild(text);
-    container.appendChild(li);
-  });
-}
-
 document.addEventListener("DOMContentLoaded", function () {
+  function generatePublications() {
+    const container = document.getElementById("publications-list");
+    publications.forEach((pub) => {
+      const li = document.createElement("li");
+
+      const index = document.createElement("span");
+      index.classList.add("research-index");
+      index.setAttribute("id", pub.id);
+      index.innerHTML = pub.index;
+
+      const text = document.createElement("div");
+      text.classList.add("research-text");
+      text.innerHTML = pub.text;
+
+      pub.links.forEach((link) => {
+        const a = document.createElement("a");
+        a.href = link.href;
+        a.target = "_blank";
+        a.className = "research-link";
+        a.textContent = link.label;
+        text.appendChild(document.createTextNode(" ("));
+        text.appendChild(a);
+        text.appendChild(document.createTextNode(")"));
+      });
+
+      li.appendChild(index);
+      li.appendChild(text);
+      container.appendChild(li);
+    });
+  }
+
+  function generateAwards() {
+    const container = document.getElementById("awards-list");
+    awards.forEach((item) => {
+      const li = document.createElement("li");
+
+      const index = document.createElement("span");
+      index.classList.add("research-index");
+      index.innerHTML = item.index;
+
+      const text = document.createElement("div");
+      text.classList.add("research-text");
+      text.innerHTML = `${item.title} ${item.desc} ${item.date}`;
+
+      li.appendChild(index);
+      li.appendChild(text);
+      container.appendChild(li);
+    });
+  }
+
+  function generatePresentations() {
+    const container = document.getElementById("presentations-list");
+    presentations.forEach((pres) => {
+      const li = document.createElement("li");
+
+      const index = document.createElement("span");
+      index.classList.add("research-index");
+      index.innerHTML = pres.index;
+
+      const text = document.createElement("div");
+      text.classList.add("research-text");
+      text.innerHTML = `${pres.title} ${pres.location}`;
+
+      li.appendChild(index);
+      li.appendChild(text);
+      container.appendChild(li);
+    });
+  }
+
   generatePublications();
   generateAwards();
   generatePresentations();
