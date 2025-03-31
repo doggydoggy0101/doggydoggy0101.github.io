@@ -4,6 +4,7 @@ Bang-Shien Chen's personal website:
 
 **todo**
 - blog: gradient descent
+- change number font
   
 **ideas**
 - stack card for research section
