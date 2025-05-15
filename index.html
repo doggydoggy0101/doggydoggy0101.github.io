@@ -4,12 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Bang-Shien Chen's homepage." />
-    <meta name="keywords" content="Bang-Shien Chen, FracGM" />
+    <meta name="keywords" content="Bang-Shien Chen" />
     <meta name="author" content="Bang-Shien Chen" />
     <meta name="robots" content="index, follow" />
 
     <title>Bang-Shien Chen</title>
     <link rel="icon" href="docs/images/icon.jpg" type="image/icon type" />
+
+    <meta property="og:title" content="Bang-Shien Chen" />
+    <meta
+      property="og:description"
+      content="Interested in Optimization and Robotics."
+    />
+    <meta
+      property="og:image"
+      content="https://dgbshien.com/docs/images/icon.jpg"
+    />
+    <meta property="og:url" content="https://dgbshien.com/" />
+    <meta property="og:type" content="website" />
 
     <!-- css -->
     <link rel="stylesheet" href="css/style.css" />
@@ -162,7 +174,7 @@
             <span class="window-btn green"></span>
           </div>
           <div class="window-name">
-            <i class="fas fa-folder"></i>doggy@umich: ~/doggy
+            <i class="fas fa-folder"></i>doggy@macbook: ~/doggy
           </div>
         </div>
 
@@ -171,20 +183,33 @@
           <!-- file explorer (left part) -->
           <div class="file-explorer">
             <h3 class="explorer-title">EXPLORER</h3>
-            <div class="folder-static" id="doggy-folder">
+            <!-- blog -->
+            <div class="folder-static" id="test-folder">
               <i class="fas fa-caret-down"></i>
-              <!-- Arrow Icon -->
-              <i class="fas fa-folder-open"></i> doggy
+              <i class="fas fa-folder-open"></i> blog
             </div>
-            <ul class="project-list">
-              <li data-project="project1">
-                <i class="fas fa-file-code"></i> blog.md
+            <ul class="file-list test-list">
+              <li data-folder="blog" data-project="blog-robotics">
+                <i class="fas fa-file-code"></i> robotics.md
               </li>
-              <li data-project="project2">
-                <i class="fas fa-file-code"></i> quiz-game.md
+              <li data-folder="blog" data-project="blog-optimization">
+                <i class="fas fa-file-code"></i> optimization.md
               </li>
-              <li data-project="project3">
+            </ul>
+            <!-- project -->
+            <div class="folder-static" id="project-folder">
+              <i class="fas fa-caret-down"></i>
+              <i class="fas fa-folder-open"></i> project
+            </div>
+            <ul class="file-list project-list">
+              <li data-folder="project" data-project="project-fracgm">
+                <i class="fas fa-file-code"></i> FracGM.md
+              </li>
+              <li data-folder="project" data-project="project-master-thesis">
                 <i class="fas fa-file-code"></i> master-thesis.md
+              </li>
+              <li data-folder="project" data-project="project-quiz-game">
+                <i class="fas fa-file-code"></i> quiz-game.md
               </li>
             </ul>
           </div>
