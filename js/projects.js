@@ -95,9 +95,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // utility function to update file path display
   function updateFilePathDisplay(link) {
-    const folder = link.dataset.folder || "unknown";
+    const folder = link.dataset.folder || "doggy";
     const filename = link.innerText.trim();
-    fileNameDisplay.textContent = `${folder}/${filename}`;
+    fileNameDisplay.textContent = `doggy/${folder}/${filename}`;
   }
 
   // set the active project and update status bar
@@ -133,9 +133,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const windowName = document.querySelector(".window-name");
     if (window.innerWidth < 768) {
       resetToDefaultProject(); // initialize project (mobile)
-      windowName.innerHTML = `<i class="fas fa-folder"></i> doggy@macbook`;
+      windowName.innerHTML = `<i class="fas fa-folder"></i> doggy@stevens`;
     } else {
-      windowName.innerHTML = `<i class="fas fa-folder"></i> doggy@macbook: ~/doggy`;
+      windowName.innerHTML = `<i class="fas fa-folder"></i> doggy@stevens: ~/doggy`;
     }
     resetProjectPosition(); // initialize position
   }
@@ -181,21 +181,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // file collapse
-  // const projectFolder = document.querySelector("#file-folder");
-  // const projectList = document.querySelector(".project-list");
-  // const arrowIcon = projectFolder.querySelector(".fa-caret-down");
-  // const folderIcon = projectFolder.querySelector(".fa-folder-open");
-
-  // doggyFolder.addEventListener("click", function () {
-  //   projectList.classList.toggle("collapsed");
-  //   if (projectList.classList.contains("collapsed")) {
-  //     folderIcon.classList.replace("fa-folder-open", "fa-folder");
-  //     arrowIcon.style.transform = "rotate(-90deg)";
-  //   } else {
-  //     folderIcon.classList.replace("fa-folder", "fa-folder-open");
-  //     arrowIcon.style.transform = "rotate(0deg)";
-  //   }
-  // });
   function setupFolderToggle(folderId, listClass) {
     const folder = document.getElementById(folderId);
     const list = document.querySelector(`.${listClass}`);
@@ -213,7 +198,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-
   setupFolderToggle("project-folder", "project-list");
   setupFolderToggle("test-folder", "test-list");
 
