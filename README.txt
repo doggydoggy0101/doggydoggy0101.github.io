@@ -3,8 +3,8 @@ Bang-Shien Chen's personal website:
     https://dgbshien.com/
 
 **todo**
-- blog: gradient descent
-- change number font
+- blog: newton method
+- project: preview
   
 **ideas**
 - stack card for research section

@@ -106,7 +106,7 @@
   transition: transform 0.3s ease;
 }
 
-.project-list {
+.file-list {
   list-style: none;
   padding-left: 20px;
   overflow: hidden;
@@ -118,19 +118,13 @@
   opacity: 1;
 }
 
-.project-list.collapsed {
+.file-list.collapsed {
   max-height: 0;
   opacity: 0;
   transform: translateY(-10px);
 }
 
-.explorer-title {
-  color: #7aa2f7;
-  margin-bottom: 0.5rem;
-  font-size: 0.8rem;
-}
-
-.project-list li {
+.file-list li {
   padding: 0.5rem 0.6rem;
   cursor: pointer;
   color: #c0caf5;
@@ -141,13 +135,13 @@
   position: relative;
 }
 
-.project-list li.active {
+.file-list li.active {
   background: rgba(41, 46, 66, 0.8);
   color: #7aa2f7;
 }
 
 /* left border */
-.project-list li::before {
+.file-list li::before {
   content: "";
   position: absolute;
   left: 0;
@@ -159,13 +153,19 @@
   transition: transform 0.3s ease;
 }
 
-.project-list li.active::before {
+.file-list li.active::before {
   transform: scaleX(1);
 }
 
-.project-list li:hover {
+.file-list li:hover {
   background: rgba(65, 72, 104, 0.8);
   color: #7aa2f7;
+}
+
+.explorer-title {
+  color: #7aa2f7;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
 }
 
 .editor {

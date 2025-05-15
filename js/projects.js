@@ -1,16 +1,9 @@
 const projects = [
   {
-    id: "project1",
-    name: "blog.md",
+    id: "blog-robotics",
+    name: "robotics.md",
     content: `
-      <h2>blog</h2>
-      <p><i class="fas fa-book"></i> Optimization</p>
-      <ul>
-        <a href="docs/blogs/optimality-conditions.pdf" target="_blank" class="links">
-          <i class="fas fa-file-pdf"></i> Optimality conditions
-        </a>
-      </ul>
-      <p><i class="fas fa-book"></i> Robotics</p>
+      <h2>Robotics</h2>
       <ul>
         <a href="docs/blogs/rotation-representation.pdf" target="_blank" class="links">
           <i class="fas fa-file-pdf"></i> Rotation representation
@@ -24,7 +17,50 @@ const projects = [
     `,
   },
   {
-    id: "project2",
+    id: "blog-optimization",
+    name: "optimization.md",
+    content: `
+      <h2>Optimization</h2>
+      <ul>
+        <a href="docs/blogs/optimality-conditions.pdf" target="_blank" class="links">
+          <i class="fas fa-file-pdf"></i> Optimality conditions
+        </a>
+      </ul>
+    `,
+  },
+  {
+    id: "project-fracgm",
+    name: "FracGM.md",
+    content: `
+      <h2>FracGM</h2>
+      <p>A Fast Fractional Programming Technique for Geman-McClure Robust Estimator.
+        Accepted for publication in IEEE Robotics and Automation Letters (RA-L 2024).</p>
+      <a href="https://dgbshien.com/FracGM/" target="_blank" class="links"> 
+        <i class="fas fa-external-link"></i> Project page
+      </a>
+      <a href="https://arxiv.org/pdf/2409.13978" target="_blank" class="links">
+        <i class="fas fa-file-pdf"></i> Paper
+      </a>
+      <a href="https://github.com/StephLin/FracGM" target="_blank" class="links">
+        <i class="fab fa-github-alt"></i> GitHub
+      </a>
+    `,
+  },
+  {
+    id: "project-master-thesis",
+    name: "master-thesis.md",
+    content: `
+      <h2>master-thesis</h2>
+      <p>
+        My master thesis: Algorithms for Geman-McClure Robust Estimation and Applications for Spatial Perceptions. 
+      </p>
+      <a href="https://github.com/doggydoggy0101/master-thesis" target="_blank" class="links">
+        <i class="fab fa-github-alt"></i> GitHub
+      </a>
+    `,
+  },
+  {
+    id: "project-quiz-game",
     name: "quiz-game.md",
     content: `
       <h2>quiz-game</h2>
@@ -37,26 +73,6 @@ const projects = [
       </a>
     `,
   },
-  {
-    id: "project3",
-    name: "master-thesis.md",
-    content: `
-      <h2>master-thesis</h2>
-      <p>
-        Implementation of my master thesis "Algorithms for Geman-McClure Robust Estimation and Applications for Spatial Perceptions". 
-        We provide robust point cloud registration solvers:
-      </p>
-      <ul>
-        <li>IRLS (Iterative Re-weighted Least Squares)</li>
-        <li>GNC (Graduated Non-Convexity)</li>
-        <li>FracGM <a href="#FracGM" class="cite">[1]</a></li>
-      </ul>
-      <p>For more information:</p>
-      <a href="https://github.com/doggydoggy0101/master-thesis" target="_blank" class="links">
-        <i class="fab fa-github-alt"></i> GitHub
-      </a>
-    `,
-  },
 ];
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -64,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const cursorPosDisplay = document.querySelector(".cursor-pos");
   const timeDisplay = document.getElementById("current-time");
   const editorContent = document.querySelector(".editor-content");
-  const projectLinks = document.querySelectorAll(".project-list li");
+  const projectLinks = document.querySelectorAll(".file-list li");
   const projectContainer = document.querySelector(".projects-container");
   const projectsSection = document.querySelector("#projects");
   const dragHandle = document.querySelector(".window-controls");
@@ -77,11 +93,18 @@ document.addEventListener("DOMContentLoaded", function () {
     editorContent.appendChild(div);
   });
 
+  // utility function to update file path display
+  function updateFilePathDisplay(link) {
+    const folder = link.dataset.folder || "unknown";
+    const filename = link.innerText.trim();
+    fileNameDisplay.textContent = `${folder}/${filename}`;
+  }
+
   // set the active project and update status bar
   function setActiveProject(selectedProject) {
     projectLinks.forEach((link) => link.classList.remove("active"));
     selectedProject.classList.add("active");
-    fileNameDisplay.textContent = `doggy/${selectedProject.innerText.trim()}`;
+    updateFilePathDisplay(selectedProject);
   }
 
   // initialize project
@@ -94,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document
         .getElementById(projectLinks[0].dataset.project)
         .classList.remove("hidden");
-      fileNameDisplay.textContent = `doggy/${projectLinks[0].innerText.trim()}`;
+      updateFilePathDisplay(projectLinks[0]);
     }
   }
 
@@ -110,9 +133,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const windowName = document.querySelector(".window-name");
     if (window.innerWidth < 768) {
       resetToDefaultProject(); // initialize project (mobile)
-      windowName.innerHTML = `<i class="fas fa-folder"></i> doggy@umich`;
+      windowName.innerHTML = `<i class="fas fa-folder"></i> doggy@macbook`;
     } else {
-      windowName.innerHTML = `<i class="fas fa-folder"></i> doggy@umich: ~/doggy`;
+      windowName.innerHTML = `<i class="fas fa-folder"></i> doggy@macbook: ~/doggy`;
     }
     resetProjectPosition(); // initialize position
   }
@@ -158,21 +181,41 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // file collapse
-  const doggyFolder = document.querySelector("#doggy-folder");
-  const projectList = document.querySelector(".project-list");
-  const arrowIcon = doggyFolder.querySelector(".fa-caret-down");
-  const folderIcon = doggyFolder.querySelector(".fa-folder-open");
+  // const projectFolder = document.querySelector("#file-folder");
+  // const projectList = document.querySelector(".project-list");
+  // const arrowIcon = projectFolder.querySelector(".fa-caret-down");
+  // const folderIcon = projectFolder.querySelector(".fa-folder-open");
 
-  doggyFolder.addEventListener("click", function () {
-    projectList.classList.toggle("collapsed");
-    if (projectList.classList.contains("collapsed")) {
-      folderIcon.classList.replace("fa-folder-open", "fa-folder");
-      arrowIcon.style.transform = "rotate(-90deg)";
-    } else {
-      folderIcon.classList.replace("fa-folder", "fa-folder-open");
-      arrowIcon.style.transform = "rotate(0deg)";
-    }
-  });
+  // doggyFolder.addEventListener("click", function () {
+  //   projectList.classList.toggle("collapsed");
+  //   if (projectList.classList.contains("collapsed")) {
+  //     folderIcon.classList.replace("fa-folder-open", "fa-folder");
+  //     arrowIcon.style.transform = "rotate(-90deg)";
+  //   } else {
+  //     folderIcon.classList.replace("fa-folder", "fa-folder-open");
+  //     arrowIcon.style.transform = "rotate(0deg)";
+  //   }
+  // });
+  function setupFolderToggle(folderId, listClass) {
+    const folder = document.getElementById(folderId);
+    const list = document.querySelector(`.${listClass}`);
+    const arrow = folder.querySelector(".fa-caret-down");
+    const icon = folder.querySelector(".fa-folder-open");
+
+    folder.addEventListener("click", () => {
+      list.classList.toggle("collapsed");
+      if (list.classList.contains("collapsed")) {
+        icon.classList.replace("fa-folder-open", "fa-folder");
+        arrow.style.transform = "rotate(-90deg)";
+      } else {
+        icon.classList.replace("fa-folder", "fa-folder-open");
+        arrow.style.transform = "rotate(0deg)";
+      }
+    });
+  }
+
+  setupFolderToggle("project-folder", "project-list");
+  setupFolderToggle("test-folder", "test-list");
 
   // dragging
   let isDragging = false,
