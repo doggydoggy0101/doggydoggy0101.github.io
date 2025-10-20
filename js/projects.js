@@ -1,5 +1,27 @@
 const projects = [
   {
+    id: "blog-optimization",
+    name: "optimization.md",
+    content: `
+      <h2>Optimization</h2>
+      <ul>
+        <a href="docs/blogs/gradient-descent.pdf" target="_blank" class="links">
+          <i class="fas fa-file-pdf"></i> Gradient descent
+        </a>
+      </ul>
+      <ul>
+        <a href="docs/blogs/optimality-conditions.pdf" target="_blank" class="links">
+          <i class="fas fa-file-pdf"></i> Optimality conditions
+        </a>
+      </ul>
+      <ul>
+        <a href="docs/blogs/lasserre-hierarchy.pdf" target="_blank" class="links">
+          <i class="fas fa-file-pdf"></i> Lasserre's hierarchy
+        </a>
+      </ul>
+    `,
+  },
+  {
     id: "blog-robotics",
     name: "robotics.md",
     content: `
@@ -12,18 +34,6 @@ const projects = [
       <ul>
         <a href="docs/blogs/lie-theory.pdf" target="_blank" class="links">
           <i class="fas fa-file-pdf"></i> Lie theory
-        </a>
-      </ul>
-    `,
-  },
-  {
-    id: "blog-optimization",
-    name: "optimization.md",
-    content: `
-      <h2>Optimization</h2>
-      <ul>
-        <a href="docs/blogs/optimality-conditions.pdf" target="_blank" class="links">
-          <i class="fas fa-file-pdf"></i> Optimality conditions
         </a>
       </ul>
     `,
@@ -133,9 +143,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const windowName = document.querySelector(".window-name");
     if (window.innerWidth < 768) {
       resetToDefaultProject(); // initialize project (mobile)
-      windowName.innerHTML = `<i class="fas fa-folder"></i> doggy@stevens`;
+      windowName.innerHTML = `<i class="fas fa-folder"></i> doggy@neu`;
     } else {
-      windowName.innerHTML = `<i class="fas fa-folder"></i> doggy@stevens: ~/doggy`;
+      windowName.innerHTML = `<i class="fas fa-folder"></i> doggy@neu: ~/doggy`;
     }
     resetProjectPosition(); // initialize position
   }
