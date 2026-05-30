@@ -1,0 +1,1445 @@
+<!doctype html>
+<html lang="en" data-design="editorial" data-palette="yerin-rose">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design Explorer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Archivo:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&family=Fraunces:opsz,wght@9..144,300..600&family=Syne:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --font-display: "Space Grotesk", sans-serif;
+        --font-body: "Inter", sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+
+        --step--1: clamp(0.8rem, 0.75rem + 0.2vw, 0.9rem);
+        --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.15rem);
+        --step-1: clamp(1.4rem, 1.2rem + 1vw, 1.95rem);
+        --step-2: clamp(2rem, 1.6rem + 2vw, 3rem);
+        --step-3: clamp(3rem, 2rem + 5vw, 6rem);
+        --step-4: clamp(4.5rem, 3rem + 9vw, 11rem);
+
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+        --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+        --space: clamp(1.5rem, 1rem + 3vw, 5rem);
+        --maxw: 1200px;
+
+        /* design knobs */
+        --bg: #fff;
+        --surface: #f2f2f2;
+        --text: #0a0a0a;
+        --muted: #737373;
+        --accent: #e2342a;
+        --line: rgba(0, 0, 0, 0.14);
+        --radius: 0px;
+        --disp-weight: 700;
+        --disp-tracking: -0.03em;
+        --label-case: uppercase;
+        --label-tracking: 0.18em;
+        --border-w: 1px;
+      }
+
+      /* ============ DESIGN PERSONALITIES ============ */
+
+      /* 1 — Swiss / International */
+      [data-design="swiss"] {
+        --font-display: "Archivo";
+        --font-body: "Inter";
+        --font-mono: "JetBrains Mono";
+        --bg: #fff;
+        --surface: #f0f0f0;
+        --text: #0a0a0a;
+        --muted: #707070;
+        --accent: #e2342a;
+        --line: rgba(0, 0, 0, 0.16);
+        --radius: 0px;
+        --disp-weight: 700;
+        --disp-tracking: -0.04em;
+        --label-case: uppercase;
+        --label-tracking: 0.2em;
+        --border-w: 1px;
+      }
+      [data-design="swiss"] .hero h1 {
+        text-transform: uppercase;
+      }
+
+      /* 2 — Brutalist */
+      [data-design="brutalist"] {
+        --font-display: "Space Mono";
+        --font-body: "Space Mono";
+        --font-mono: "Space Mono";
+        --bg: #f3f2ec;
+        --surface: #fff;
+        --text: #000;
+        --muted: #555;
+        --accent: #000;
+        --line: #000;
+        --radius: 0px;
+        --disp-weight: 700;
+        --disp-tracking: -0.02em;
+        --label-case: uppercase;
+        --label-tracking: 0.05em;
+        --border-w: 2px;
+      }
+      [data-design="brutalist"] .entry,
+      [data-design="brutalist"] .swatches,
+      [data-design="brutalist"] .list-row {
+        border-color: #000;
+      }
+      [data-design="brutalist"] .hero h1 {
+        text-transform: uppercase;
+      }
+
+      /* 3 — Editorial / Magazine */
+      [data-design="editorial"] {
+        --font-display: "Fraunces", serif;
+        --font-body: "Inter";
+        --font-mono: "JetBrains Mono";
+        --bg: #f8f4ec;
+        --surface: #fffdf6;
+        --text: #1a1712;
+        --muted: #8a7f6c;
+        --accent: #8a2e2e;
+        --line: rgba(0, 0, 0, 0.12);
+        --radius: 2px;
+        --disp-weight: 400;
+        --disp-tracking: -0.01em;
+        --label-case: none;
+        --label-tracking: 0.05em;
+        --border-w: 1px;
+      }
+      [data-design="editorial"] .eyebrow,
+      [data-design="editorial"] .label {
+        font-style: italic;
+      }
+      [data-design="editorial"] .hero .bio {
+        font-family: var(--font-display);
+      }
+
+      /* 4 — Terminal */
+      [data-design="terminal"] {
+        --font-display: "JetBrains Mono";
+        --font-body: "JetBrains Mono";
+        --font-mono: "JetBrains Mono";
+        --bg: #edefea;
+        --surface: #f7f9f4;
+        --text: #16201a;
+        --muted: #6b7a6b;
+        --accent: #1f8a3b;
+        --line: rgba(0, 0, 0, 0.14);
+        --radius: 0px;
+        --disp-weight: 700;
+        --disp-tracking: -0.02em;
+        --label-case: uppercase;
+        --label-tracking: 0.1em;
+        --border-w: 1px;
+      }
+
+      /* 5 — Minimal / Quiet */
+      [data-design="minimal"] {
+        --font-display: "Space Grotesk";
+        --font-body: "Inter";
+        --font-mono: "JetBrains Mono";
+        --bg: #fcfcfc;
+        --surface: #fff;
+        --text: #1a1a1a;
+        --muted: #a3a3a3;
+        --accent: #1a1a1a;
+        --line: rgba(0, 0, 0, 0.07);
+        --radius: 100px;
+        --disp-weight: 300;
+        --disp-tracking: -0.02em;
+        --label-case: uppercase;
+        --label-tracking: 0.25em;
+        --border-w: 1px;
+      }
+      [data-design="minimal"] .hero .bio {
+        font-weight: 300;
+      }
+
+      /* 6 — Display / Expressive */
+      [data-design="display"] {
+        --font-display: "Syne";
+        --font-body: "Inter";
+        --font-mono: "JetBrains Mono";
+        --bg: #fff;
+        --surface: #f4f4f4;
+        --text: #0a0a0a;
+        --muted: #777;
+        --accent: #ff4d00;
+        --line: rgba(0, 0, 0, 0.12);
+        --radius: 0px;
+        --disp-weight: 800;
+        --disp-tracking: -0.04em;
+        --label-case: uppercase;
+        --label-tracking: 0.15em;
+        --border-w: 1px;
+      }
+      [data-design="display"] .hero h1 {
+        line-height: 0.85;
+        font-size: clamp(5rem, 3rem + 12vw, 14rem);
+      }
+      [data-design="display"] .eyebrow {
+        background: var(--accent);
+        color: #fff;
+        padding: 0.3rem 0.8rem;
+        display: inline-block;
+      }
+
+      /* 7 — Soft / Rounded */
+      [data-design="soft"] {
+        --font-display: "Space Grotesk";
+        --font-body: "Inter";
+        --font-mono: "JetBrains Mono";
+        --bg: #f1eefb;
+        --surface: #fff;
+        --text: #241f38;
+        --muted: #837b9c;
+        --accent: #7c6ce0;
+        --line: rgba(0, 0, 0, 0.06);
+        --radius: 24px;
+        --disp-weight: 600;
+        --disp-tracking: -0.03em;
+        --label-case: none;
+        --label-tracking: 0.02em;
+        --border-w: 1px;
+      }
+
+      /* 8 — Product / SaaS */
+      [data-design="product"] {
+        --font-display: "Inter";
+        --font-body: "Inter";
+        --font-mono: "JetBrains Mono";
+        --bg: #f7f8fa;
+        --surface: #fff;
+        --text: #0d1117;
+        --muted: #656d79;
+        --accent: #5b6cff;
+        --line: rgba(0, 0, 0, 0.08);
+        --radius: 10px;
+        --disp-weight: 600;
+        --disp-tracking: -0.03em;
+        --label-case: none;
+        --label-tracking: 0.02em;
+        --border-w: 1px;
+      }
+
+      /* 9 — Blueprint / Technical */
+      [data-design="blueprint"] {
+        --font-display: "Archivo";
+        --font-body: "Inter";
+        --font-mono: "JetBrains Mono";
+        --bg: #e9eff2;
+        --surface: #f6fafb;
+        --text: #0e2230;
+        --muted: #5e7585;
+        --accent: #0a6ebd;
+        --line: rgba(10, 110, 189, 0.22);
+        --radius: 0px;
+        --disp-weight: 500;
+        --disp-tracking: -0.02em;
+        --label-case: uppercase;
+        --label-tracking: 0.18em;
+        --border-w: 1px;
+      }
+
+      /* 10 — Riso / Playful */
+      [data-design="riso"] {
+        --font-display: "Syne";
+        --font-body: "Inter";
+        --font-mono: "Space Mono";
+        --bg: #f6f0e4;
+        --surface: #fffdf6;
+        --text: #1a1714;
+        --muted: #8a7f6c;
+        --accent: #ff4d8d;
+        --line: rgba(0, 0, 0, 0.12);
+        --radius: 0px;
+        --disp-weight: 800;
+        --disp-tracking: -0.03em;
+        --label-case: uppercase;
+        --label-tracking: 0.12em;
+        --border-w: 1px;
+      }
+
+      /* ============ EDITORIAL PALETTES (override colors only) ============ */
+      [data-palette="classic"] {
+        --bg: #f8f4ec;
+        --surface: #fffdf6;
+        --text: #1a1712;
+        --muted: #8a7f6c;
+        --accent: #8a2e2e;
+        --line: rgba(0, 0, 0, 0.12);
+      }
+      /* sampled from Yerin Baek — "Every letter I sent you." */
+      [data-palette="yerin"] {
+        --bg: #f8f1e6;
+        --surface: #fdf9f1;
+        --text: #3a382f;
+        --muted: #8c8374;
+        --accent: #9c8064;
+        --line: rgba(58, 56, 47, 0.12);
+      }
+      [data-palette="yerin-rose"] {
+        --bg: #f8f1e6;
+        --surface: #fdf9f1;
+        --text: #3a382f;
+        --muted: #8c8374;
+        --accent: #b07a64;
+        --line: rgba(58, 56, 47, 0.12);
+      }
+      [data-palette="yerin-olive"] {
+        --bg: #f8f1e6;
+        --surface: #fdf9f1;
+        --text: #33322b;
+        --muted: #8c8374;
+        --accent: #5b5a51;
+        --line: rgba(58, 56, 47, 0.12);
+      }
+      /* classic paper, non-Claude accents (keep warmth, change the one giveaway) */
+      [data-palette="classic-ink"] {
+        --bg: #f8f4ec;
+        --surface: #fffdf6;
+        --text: #1a1712;
+        --muted: #8a7f6c;
+        --accent: #1a1712;
+        --line: rgba(0, 0, 0, 0.12);
+      }
+      [data-palette="classic-navy"] {
+        --bg: #f8f4ec;
+        --surface: #fffdf6;
+        --text: #16213a;
+        --muted: #857f6f;
+        --accent: #243a6b;
+        --line: rgba(0, 0, 0, 0.12);
+      }
+      [data-palette="classic-forest"] {
+        --bg: #f8f4ec;
+        --surface: #fffdf6;
+        --text: #16201a;
+        --muted: #857f6c;
+        --accent: #2f4a32;
+        --line: rgba(0, 0, 0, 0.12);
+      }
+      [data-palette="classic-wine"] {
+        --bg: #f8f4ec;
+        --surface: #fffdf6;
+        --text: #1f1411;
+        --muted: #8a7f6c;
+        --accent: #5e1f2e;
+        --line: rgba(0, 0, 0, 0.12);
+      }
+      [data-palette="classic-cool"] {
+        --bg: #f1efe8;
+        --surface: #fbfaf4;
+        --text: #1a1712;
+        --muted: #84827a;
+        --accent: #8a2e2e;
+        --line: rgba(0, 0, 0, 0.11);
+      }
+      [data-palette="ivory"] {
+        --bg: #faf7f0;
+        --surface: #ffffff;
+        --text: #161310;
+        --muted: #8a8175;
+        --accent: #161310;
+        --line: rgba(0, 0, 0, 0.12);
+      }
+      [data-palette="newsprint"] {
+        --bg: #f0efe9;
+        --surface: #faf9f4;
+        --text: #14130f;
+        --muted: #7f7d73;
+        --accent: #1a1a1a;
+        --line: rgba(0, 0, 0, 0.16);
+      }
+      [data-palette="sepia"] {
+        --bg: #efe6d6;
+        --surface: #f8f1e4;
+        --text: #2a1d10;
+        --muted: #8f7d63;
+        --accent: #6b3f1d;
+        --line: rgba(0, 0, 0, 0.13);
+      }
+      [data-palette="bordeaux"] {
+        --bg: #f7efe9;
+        --surface: #fff8f3;
+        --text: #21140f;
+        --muted: #8f7a70;
+        --accent: #6e1f2e;
+        --line: rgba(0, 0, 0, 0.12);
+      }
+      [data-palette="terracotta"] {
+        --bg: #f7efe7;
+        --surface: #fff9f2;
+        --text: #1f140d;
+        --muted: #8d7d6f;
+        --accent: #b5562f;
+        --line: rgba(0, 0, 0, 0.12);
+      }
+      [data-palette="ochre"] {
+        --bg: #f7f1e3;
+        --surface: #fffaf0;
+        --text: #211a0e;
+        --muted: #8d8266;
+        --accent: #a9750f;
+        --line: rgba(0, 0, 0, 0.12);
+      }
+      [data-palette="forest"] {
+        --bg: #eef0e6;
+        --surface: #f8faf0;
+        --text: #18200f;
+        --muted: #7a8169;
+        --accent: #2f4a32;
+        --line: rgba(0, 0, 0, 0.12);
+      }
+      [data-palette="teal"] {
+        --bg: #ecf1ef;
+        --surface: #f7fbf9;
+        --text: #0f1c1a;
+        --muted: #6f7e7a;
+        --accent: #1f4a47;
+        --line: rgba(0, 0, 0, 0.11);
+      }
+      [data-palette="navy"] {
+        --bg: #f4f3ee;
+        --surface: #fffdf8;
+        --text: #131722;
+        --muted: #7e7d78;
+        --accent: #1f2d4a;
+        --line: rgba(0, 0, 0, 0.12);
+      }
+      [data-palette="slate"] {
+        --bg: #eef0f1;
+        --surface: #fafbfb;
+        --text: #14181d;
+        --muted: #757c83;
+        --accent: #3a4452;
+        --line: rgba(0, 0, 0, 0.11);
+      }
+      [data-palette="plum"] {
+        --bg: #f4eff2;
+        --surface: #fdf9fb;
+        --text: #1c141a;
+        --muted: #877a84;
+        --accent: #5a2c4a;
+        --line: rgba(0, 0, 0, 0.11);
+      }
+      [data-palette="rose"] {
+        --bg: #f4f0ee;
+        --surface: #fdf8f7;
+        --text: #1a1313;
+        --muted: #897a78;
+        --accent: #a0566a;
+        --line: rgba(0, 0, 0, 0.11);
+      }
+      /* blue family */
+      [data-palette="cloud"] {
+        --bg: #eef1f5;
+        --surface: #ffffff;
+        --text: #11151c;
+        --muted: #687184;
+        --accent: #3b6fff;
+        --line: rgba(0, 0, 0, 0.09);
+      }
+      [data-palette="cobalt"] {
+        --bg: #f6f8fb;
+        --surface: #ffffff;
+        --text: #0a0c14;
+        --muted: #6b7280;
+        --accent: #2b59ff;
+        --line: rgba(0, 0, 0, 0.1);
+      }
+      [data-palette="frost"] {
+        --bg: #f0f4f8;
+        --surface: #ffffff;
+        --text: #0d1520;
+        --muted: #64748b;
+        --accent: #0ea5e9;
+        --line: rgba(0, 0, 0, 0.09);
+      }
+      [data-palette="indigo"] {
+        --bg: #f3f3fb;
+        --surface: #ffffff;
+        --text: #0c0e1a;
+        --muted: #6b7088;
+        --accent: #4f46e5;
+        --line: rgba(0, 0, 0, 0.1);
+      }
+      [data-palette="steel"] {
+        --bg: #e8ecf1;
+        --surface: #ffffff;
+        --text: #131a24;
+        --muted: #69727f;
+        --accent: #2d4a6b;
+        --line: rgba(0, 0, 0, 0.1);
+      }
+      [data-palette="denim"] {
+        --bg: #eaeef3;
+        --surface: #ffffff;
+        --text: #10151d;
+        --muted: #677488;
+        --accent: #45619e;
+        --line: rgba(0, 0, 0, 0.09);
+      }
+      [data-palette="inkblue"] {
+        --bg: #f6f3ec;
+        --surface: #fffdf6;
+        --text: #16213a;
+        --muted: #7c7e80;
+        --accent: #243a6b;
+        --line: rgba(0, 0, 0, 0.11);
+      }
+      /* bold — colored backgrounds (dark text) */
+      [data-palette="mustard"] {
+        --bg: #e6c34a;
+        --surface: #f0d472;
+        --text: #20180a;
+        --muted: #7a6a3a;
+        --accent: #1f2d4a;
+        --line: rgba(0, 0, 0, 0.16);
+      }
+      [data-palette="sky"] {
+        --bg: #bfe3ef;
+        --surface: #d6eef6;
+        --text: #0c2630;
+        --muted: #5a7b86;
+        --accent: #d2452f;
+        --line: rgba(0, 0, 0, 0.13);
+      }
+      [data-palette="mintbg"] {
+        --bg: #bfe6cf;
+        --surface: #d4efdf;
+        --text: #0e2419;
+        --muted: #5e7d6c;
+        --accent: #b5562f;
+        --line: rgba(0, 0, 0, 0.13);
+      }
+      [data-palette="lilac"] {
+        --bg: #d9ccf2;
+        --surface: #e7defa;
+        --text: #1d1430;
+        --muted: #6f6388;
+        --accent: #2f4a32;
+        --line: rgba(0, 0, 0, 0.13);
+      }
+      [data-palette="peach"] {
+        --bg: #f7d3b6;
+        --surface: #fbe2cd;
+        --text: #2a1a0e;
+        --muted: #8a6f5a;
+        --accent: #1f4a47;
+        --line: rgba(0, 0, 0, 0.13);
+      }
+      [data-palette="blushbg"] {
+        --bg: #f3c4d2;
+        --surface: #f9d6e0;
+        --text: #2a1018;
+        --muted: #8a6470;
+        --accent: #2d4a6b;
+        --line: rgba(0, 0, 0, 0.13);
+      }
+      /* navy-inspired (light bg + navy + warm pop) */
+      [data-palette="harbor"] {
+        --bg: #f3efe6;
+        --surface: #fffdf6;
+        --text: #1a2740;
+        --muted: #7e7d78;
+        --accent: #d2682f;
+        --line: rgba(0, 0, 0, 0.11);
+      }
+      [data-palette="oxford"] {
+        --bg: #eef0f4;
+        --surface: #ffffff;
+        --text: #16223a;
+        --muted: #6e7686;
+        --accent: #1e3a5f;
+        --line: rgba(0, 0, 0, 0.1);
+      }
+      [data-palette="marine"] {
+        --bg: #eaf0f5;
+        --surface: #ffffff;
+        --text: #13243f;
+        --muted: #6c7888;
+        --accent: #1f3a5c;
+        --line: rgba(0, 0, 0, 0.1);
+      }
+      [data-palette="regatta"] {
+        --bg: #f4f2ec;
+        --surface: #fffdf7;
+        --text: #16213a;
+        --muted: #7e7c75;
+        --accent: #c9a24b;
+        --line: rgba(0, 0, 0, 0.11);
+      }
+      /* light tinted backgrounds (dark text) */
+      [data-palette="butter"] {
+        --bg: #f7efc4;
+        --surface: #fdf8de;
+        --text: #241f0c;
+        --muted: #867d52;
+        --accent: #1e3a5f;
+        --line: rgba(0, 0, 0, 0.13);
+      }
+      [data-palette="seafoam"] {
+        --bg: #d9efe2;
+        --surface: #e8f6ee;
+        --text: #0e241a;
+        --muted: #5f7d6e;
+        --accent: #b5562f;
+        --line: rgba(0, 0, 0, 0.12);
+      }
+      [data-palette="powder"] {
+        --bg: #dbe7f2;
+        --surface: #ebf2f9;
+        --text: #0e2030;
+        --muted: #637585;
+        --accent: #c4612f;
+        --line: rgba(0, 0, 0, 0.12);
+      }
+      [data-palette="apricot"] {
+        --bg: #fbe2c8;
+        --surface: #fdeed9;
+        --text: #2a1a0c;
+        --muted: #8a7058;
+        --accent: #1f4a47;
+        --line: rgba(0, 0, 0, 0.12);
+      }
+      [data-palette="periwinkle"] {
+        --bg: #dee0f5;
+        --surface: #ecedfb;
+        --text: #161730;
+        --muted: #6c6e8a;
+        --accent: #b5562f;
+        --line: rgba(0, 0, 0, 0.12);
+      }
+      [data-palette="petal"] {
+        --bg: #f6e1e8;
+        --surface: #fcecf0;
+        --text: #2a1018;
+        --muted: #8a6c74;
+        --accent: #2f4a32;
+        --line: rgba(0, 0, 0, 0.12);
+      }
+      [data-palette="citron"] {
+        --bg: #edefca;
+        --surface: #f5f6de;
+        --text: #1d2010;
+        --muted: #7d8158;
+        --accent: #5a2c4a;
+        --line: rgba(0, 0, 0, 0.12);
+      }
+      [data-palette="aqua"] {
+        --bg: #d6edef;
+        --surface: #e6f4f5;
+        --text: #0c2628;
+        --muted: #5e7d7e;
+        --accent: #d2452f;
+        --line: rgba(0, 0, 0, 0.12);
+      }
+      /* light bg + vivid accent */
+      [data-palette="tangerine"] {
+        --bg: #fdfbf6;
+        --surface: #ffffff;
+        --text: #1a1206;
+        --muted: #857c6a;
+        --accent: #f0670a;
+        --line: rgba(0, 0, 0, 0.1);
+      }
+      [data-palette="grass"] {
+        --bg: #fafcf7;
+        --surface: #ffffff;
+        --text: #0f1a0c;
+        --muted: #6f7a66;
+        --accent: #3f8f3f;
+        --line: rgba(0, 0, 0, 0.1);
+      }
+      [data-palette="magenta"] {
+        --bg: #fdf8fb;
+        --surface: #ffffff;
+        --text: #1c0d16;
+        --muted: #857078;
+        --accent: #c0277a;
+        --line: rgba(0, 0, 0, 0.1);
+      }
+      [data-palette="cerulean"] {
+        --bg: #f6fafc;
+        --surface: #ffffff;
+        --text: #0a1a24;
+        --muted: #6b7882;
+        --accent: #1f7fc4;
+        --line: rgba(0, 0, 0, 0.1);
+      }
+      [data-palette="gold"] {
+        --bg: #faf6ec;
+        --surface: #fffdf6;
+        --text: #1c1708;
+        --muted: #897f63;
+        --accent: #b8860b;
+        --line: rgba(0, 0, 0, 0.11);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        font-size: var(--step-0);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        transition:
+          background 0.5s var(--ease),
+          color 0.5s var(--ease);
+        overflow-x: hidden;
+      }
+
+      .grain {
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.4s var(--ease);
+        mix-blend-mode: multiply;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+      [data-grain="on"] .grain {
+        opacity: 0.06;
+      }
+
+      .wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 var(--space);
+      }
+
+      /* switcher chrome (stays neutral) */
+      .switcher {
+        position: fixed;
+        top: 0.8rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.3rem;
+        padding: 0.5rem 0.7rem;
+        max-width: 94vw;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: color-mix(in srgb, var(--bg) 82%, transparent);
+        backdrop-filter: blur(12px);
+      }
+      .switcher button {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        color: var(--muted);
+        background: none;
+        border: none;
+        padding: 0.34rem 0.72rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s var(--ease);
+      }
+      .switcher button:hover {
+        color: var(--text);
+      }
+      .switcher button[aria-current="true"] {
+        color: #fff;
+        background: var(--accent);
+      }
+
+      section {
+        padding: clamp(5rem, 10vh, 9rem) 0;
+        border-bottom: var(--border-w) solid var(--line);
+      }
+      .label {
+        font-family: var(--font-mono);
+        font-size: var(--step--1);
+        letter-spacing: var(--label-tracking);
+        text-transform: var(--label-case);
+        color: var(--muted);
+        margin-bottom: 2.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      .label::before {
+        content: "";
+        width: 28px;
+        height: 1px;
+        background: var(--accent);
+      }
+
+      .hero {
+        min-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 6rem;
+      }
+      .hero .eyebrow {
+        font-family: var(--font-mono);
+        font-size: var(--step--1);
+        letter-spacing: var(--label-tracking);
+        text-transform: var(--label-case);
+        color: var(--accent);
+        margin-bottom: 1.5rem;
+      }
+      .hero h1 {
+        font-family: var(--font-display);
+        font-weight: var(--disp-weight);
+        font-size: var(--step-4);
+        line-height: 0.95;
+        letter-spacing: var(--disp-tracking);
+      }
+      .hero h1 .thin {
+        font-weight: 300;
+        color: var(--muted);
+      }
+      .hero .bio {
+        max-width: 46ch;
+        margin-top: 2rem;
+        color: var(--muted);
+        font-size: var(--step-1);
+        font-weight: 300;
+        line-height: 1.4;
+      }
+      .hero .bio b {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      .entries {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 3.5rem;
+      }
+      .entry {
+        font-family: var(--font-mono);
+        font-size: var(--step--1);
+        color: var(--text);
+        text-decoration: none;
+        padding: 0.85rem 1.4rem;
+        border: var(--border-w) solid var(--line);
+        border-radius: var(--radius);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        transition: all 0.4s var(--ease);
+      }
+      .entry .num {
+        color: var(--accent);
+      }
+      .entry:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+
+      .type-row {
+        display: grid;
+        grid-template-columns: 90px 1fr;
+        gap: 1.5rem;
+        align-items: baseline;
+        padding: 1.2rem 0;
+        border-top: var(--border-w) solid var(--line);
+      }
+      .type-row .meta {
+        font-family: var(--font-mono);
+        font-size: var(--step--1);
+        color: var(--muted);
+      }
+      .d1 {
+        font-family: var(--font-display);
+        font-size: var(--step-3);
+        font-weight: var(--disp-weight);
+        letter-spacing: var(--disp-tracking);
+        line-height: 1;
+      }
+      .d2 {
+        font-family: var(--font-display);
+        font-size: var(--step-2);
+        font-weight: var(--disp-weight);
+        letter-spacing: var(--disp-tracking);
+      }
+      .d3 {
+        font-family: var(--font-display);
+        font-size: var(--step-1);
+        font-weight: var(--disp-weight);
+      }
+      .b1 {
+        font-size: var(--step-0);
+        max-width: 60ch;
+      }
+      .m1 {
+        font-family: var(--font-mono);
+        font-size: var(--step--1);
+        color: var(--muted);
+        letter-spacing: 0.05em;
+      }
+
+      .swatches {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1px;
+        background: var(--line);
+        border: var(--border-w) solid var(--line);
+      }
+      .swatch {
+        background: var(--bg);
+        padding: 1.5rem;
+        min-height: 130px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+      .swatch .dot {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        margin-bottom: auto;
+        border: 1px solid var(--line);
+      }
+      .swatch .name {
+        font-family: var(--font-mono);
+        font-size: var(--step--1);
+        margin-top: 0.8rem;
+      }
+      .swatch .hex {
+        font-family: var(--font-mono);
+        font-size: var(--step--1);
+        color: var(--muted);
+      }
+
+      .list-row {
+        display: flex;
+        align-items: baseline;
+        gap: 1.5rem;
+        padding: 1.4rem 0;
+        border-top: var(--border-w) solid var(--line);
+        text-decoration: none;
+        color: var(--text);
+        transition: padding 0.4s var(--ease);
+      }
+      .list-row:hover {
+        padding-left: 1rem;
+      }
+      .list-row .idx {
+        font-family: var(--font-mono);
+        font-size: var(--step--1);
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+      .list-row .title {
+        font-family: var(--font-display);
+        font-size: var(--step-1);
+        font-weight: var(--disp-weight);
+        flex: 1;
+      }
+      .list-row .arrow {
+        color: var(--muted);
+        transition: transform 0.4s var(--ease);
+      }
+      .list-row:hover .arrow {
+        transform: translateX(6px);
+        color: var(--accent);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.9s var(--ease-out),
+          transform 0.9s var(--ease-out);
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+      .stagger > * {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.7s var(--ease-out),
+          transform 0.7s var(--ease-out);
+      }
+      .stagger.in > * {
+        opacity: 1;
+        transform: none;
+      }
+      .stagger.in > *:nth-child(2) {
+        transition-delay: 0.08s;
+      }
+      .stagger.in > *:nth-child(3) {
+        transition-delay: 0.16s;
+      }
+      .stagger.in > *:nth-child(4) {
+        transition-delay: 0.24s;
+      }
+
+      /* random palette readout */
+      .readout {
+        position: fixed;
+        bottom: 1rem;
+        left: 1rem;
+        z-index: 100;
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 0.7rem;
+        background: color-mix(in srgb, var(--bg) 86%, transparent);
+        backdrop-filter: blur(12px);
+        display: none;
+        max-width: 280px;
+      }
+      .readout.show {
+        display: block;
+      }
+      .ro-chips {
+        display: flex;
+        gap: 4px;
+        margin-bottom: 0.55rem;
+      }
+      .ro-chips span {
+        flex: 1;
+        height: 34px;
+        border-radius: 5px;
+        border: 1px solid var(--line);
+      }
+      .ro-hex {
+        display: flex;
+        gap: 4px;
+        color: var(--muted);
+        margin-bottom: 0.6rem;
+      }
+      .ro-hex span {
+        flex: 1;
+        text-align: center;
+        font-size: 0.56rem;
+        letter-spacing: -0.02em;
+      }
+      .ro-meta {
+        display: flex;
+        gap: 0.4rem;
+        align-items: center;
+      }
+      .ro-meta button {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        cursor: pointer;
+        border: 1px solid var(--line);
+        background: none;
+        color: var(--text);
+        border-radius: 6px;
+        padding: 0.25rem 0.55rem;
+        transition: all 0.2s var(--ease);
+      }
+      .ro-meta button:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .ro-tag {
+        color: var(--muted);
+        margin-right: auto;
+      }
+      .ro-saved {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 0.6rem;
+      }
+      .ro-saved button {
+        width: 26px;
+        height: 26px;
+        border-radius: 5px;
+        cursor: pointer;
+        border: 1px solid var(--line);
+        padding: 0;
+        position: relative;
+      }
+      .ro-saved button::after {
+        content: "";
+        position: absolute;
+        right: 3px;
+        bottom: 3px;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+      }
+
+      .note {
+        color: var(--muted);
+        max-width: 60ch;
+        font-size: var(--step--1);
+        margin-top: 1rem;
+        font-family: var(--font-mono);
+        line-height: 1.7;
+      }
+      .grid2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space);
+      }
+      @media (max-width: 700px) {
+        .grid2 {
+          grid-template-columns: 1fr;
+        }
+        .type-row {
+          grid-template-columns: 1fr;
+          gap: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="grain"></div>
+
+    <div class="switcher" id="palettes">
+      <button
+        data-action="random"
+        style="background: var(--accent); color: #fff"
+      >
+        🎲 random
+      </button>
+      <button data-palette="yerin">yerin</button>
+      <button data-palette="yerin-rose" aria-current="true">yerin-rose</button>
+      <button data-palette="yerin-olive">yerin-olive</button>
+      <button data-palette="classic">classic</button>
+      <button data-palette="classic-ink">classic-ink</button>
+      <button data-palette="classic-navy">classic-navy</button>
+      <button data-palette="classic-forest">classic-forest</button>
+      <button data-palette="classic-wine">classic-wine</button>
+      <button data-palette="classic-cool">classic-cool</button>
+      <button data-palette="ivory">ivory</button>
+      <button data-palette="newsprint">newsprint</button>
+      <button data-palette="sepia">sepia</button>
+      <button data-palette="bordeaux">bordeaux</button>
+      <button data-palette="terracotta">terracotta</button>
+      <button data-palette="ochre">ochre</button>
+      <button data-palette="forest">forest</button>
+      <button data-palette="teal">teal</button>
+      <button data-palette="navy">navy</button>
+      <button data-palette="slate">slate</button>
+      <button data-palette="plum">plum</button>
+      <button data-palette="rose">rose</button>
+      <button data-palette="cloud">cloud</button>
+      <button data-palette="cobalt">cobalt</button>
+      <button data-palette="frost">frost</button>
+      <button data-palette="indigo">indigo</button>
+      <button data-palette="steel">steel</button>
+      <button data-palette="denim">denim</button>
+      <button data-palette="inkblue">inkblue</button>
+      <button data-palette="harbor">harbor</button>
+      <button data-palette="oxford">oxford</button>
+      <button data-palette="marine">marine</button>
+      <button data-palette="regatta">regatta</button>
+      <button data-palette="mustard">mustard</button>
+      <button data-palette="sky">sky</button>
+      <button data-palette="mintbg">mintbg</button>
+      <button data-palette="lilac">lilac</button>
+      <button data-palette="peach">peach</button>
+      <button data-palette="blushbg">blushbg</button>
+      <button data-palette="butter">butter</button>
+      <button data-palette="seafoam">seafoam</button>
+      <button data-palette="powder">powder</button>
+      <button data-palette="apricot">apricot</button>
+      <button data-palette="periwinkle">periwinkle</button>
+      <button data-palette="petal">petal</button>
+      <button data-palette="citron">citron</button>
+      <button data-palette="aqua">aqua</button>
+      <button data-palette="tangerine">tangerine</button>
+      <button data-palette="grass">grass</button>
+      <button data-palette="magenta">magenta</button>
+      <button data-palette="cerulean">cerulean</button>
+      <button data-palette="gold">gold</button>
+      <button data-grain="toggle" style="opacity: 0.6">+ grain</button>
+    </div>
+
+    <div class="readout" id="readout">
+      <div class="ro-chips" id="roChips"></div>
+      <div class="ro-hex" id="roHex"></div>
+      <div class="ro-meta">
+        <span class="ro-tag" id="roTag">—</span>
+        <button id="roAgain">🎲 again</button>
+        <button id="roSave">♥ save</button>
+      </div>
+      <div class="ro-saved" id="roSaved"></div>
+    </div>
+
+    <header class="hero wrap">
+      <div class="reveal">
+        <p class="eyebrow">Optimization · Robotics</p>
+        <h1>Bang-Shien<br /><span class="thin">Chen</span></h1>
+        <p class="bio">
+          PhD student at <b>Northeastern University</b>. I work on optimization
+          and robotics, and write notes on the tools I use.
+        </p>
+        <nav class="entries">
+          <a class="entry" href="#type"><span class="num">01</span> Home</a>
+          <a class="entry" href="#color"
+            ><span class="num">02</span> Portfolio</a
+          >
+          <a class="entry" href="#ui"><span class="num">03</span> Blog</a>
+          <a class="entry" href="#motion"
+            ><span class="num">04</span> Research</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <section id="type" class="wrap">
+      <p class="label reveal">Typography</p>
+      <div class="reveal">
+        <div class="type-row">
+          <span class="meta">Display</span
+          ><span class="d1">Bang-Shien Chen</span>
+        </div>
+        <div class="type-row">
+          <span class="meta">H2</span
+          ><span class="d2">Selected Publications</span>
+        </div>
+        <div class="type-row">
+          <span class="meta">H3</span
+          ><span class="d3">A Fast Fractional Programming Technique</span>
+        </div>
+        <div class="type-row">
+          <span class="meta">Body</span
+          ><span class="b1"
+            >Robust estimation seeks parameters that fit the data while
+            tolerating outliers — the Geman-McClure estimator is one such
+            approach, reformulated here as a fractional program.</span
+          >
+        </div>
+        <div class="type-row">
+          <span class="meta">Mono</span
+          ><span class="m1"
+            >chen.ban@northeastern.edu · github / doggydoggy0101</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <section id="color" class="wrap">
+      <p class="label reveal">Palette</p>
+      <div class="swatches reveal">
+        <div class="swatch">
+          <span class="dot" style="background: var(--bg)"></span
+          ><span class="name">background</span><span class="hex">--bg</span>
+        </div>
+        <div class="swatch">
+          <span class="dot" style="background: var(--surface)"></span
+          ><span class="name">surface</span><span class="hex">--surface</span>
+        </div>
+        <div class="swatch">
+          <span class="dot" style="background: var(--text)"></span
+          ><span class="name">text</span><span class="hex">--text</span>
+        </div>
+        <div class="swatch">
+          <span class="dot" style="background: var(--muted)"></span
+          ><span class="name">muted</span><span class="hex">--muted</span>
+        </div>
+        <div class="swatch">
+          <span class="dot" style="background: var(--accent)"></span
+          ><span class="name">accent</span><span class="hex">--accent</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="ui" class="wrap">
+      <p class="label reveal">UI — list rows (blog / research feel)</p>
+      <div class="stagger">
+        <a class="list-row" href="#"
+          ><span class="idx">[01]</span
+          ><span class="title">optimization.md</span
+          ><span class="arrow">→</span></a
+        >
+        <a class="list-row" href="#"
+          ><span class="idx">[02]</span
+          ><span class="title">rotation representations</span
+          ><span class="arrow">→</span></a
+        >
+        <a class="list-row" href="#"
+          ><span class="idx">[03]</span
+          ><span class="title">Lasserre's hierarchy</span
+          ><span class="arrow">→</span></a
+        >
+        <a class="list-row" href="#"
+          ><span class="idx">[04]</span
+          ><span class="title">Lie theory for robotics</span
+          ><span class="arrow">→</span></a
+        >
+      </div>
+    </section>
+
+    <section id="motion" class="wrap">
+      <p class="label reveal">Motion</p>
+      <div class="grid2">
+        <div class="reveal">
+          <p class="d3">Calm at rest.</p>
+          <p class="note">
+            // motion triggered by scroll &amp; hover, never ambient.
+          </p>
+        </div>
+        <div class="reveal">
+          <p class="d3">One signature moment.</p>
+          <p class="note">// the hero gets the wow — the rest stays quiet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" style="border: none">
+      <p class="note">
+        // 10 design personalities — tell me which 1–2 you want to push further,
+        or which bits to splice together.
+      </p>
+    </section>
+
+    <script>
+      const root = document.documentElement;
+      const VARS = ["bg", "surface", "text", "muted", "accent", "line"];
+
+      document
+        .querySelectorAll("#palettes button[data-palette]")
+        .forEach((btn) => {
+          btn.addEventListener("click", () => {
+            VARS.forEach((k) => root.style.removeProperty("--" + k)); // clear random overrides
+            root.dataset.palette = btn.dataset.palette;
+            document
+              .querySelectorAll("#palettes button[data-palette]")
+              .forEach((b) => b.removeAttribute("aria-current"));
+            btn.setAttribute("aria-current", "true");
+            document.getElementById("readout").classList.remove("show");
+          });
+        });
+
+      // ---- random palette generator ----
+      const rand = (a, b) => a + Math.random() * (b - a);
+      const ri = (a, b) => Math.round(rand(a, b));
+      function hslHex(h, s, l) {
+        s /= 100;
+        l /= 100;
+        const k = (n) => (n + h / 30) % 12;
+        const a = s * Math.min(l, 1 - l);
+        const f = (n) => l - a * Math.max(-1, Math.min(k(n) - 3, 9 - k(n), 1));
+        const hx = (x) =>
+          Math.round(255 * x)
+            .toString(16)
+            .padStart(2, "0");
+        return `#${hx(f(0))}${hx(f(8))}${hx(f(4))}`;
+      }
+      function randomPalette() {
+        const H = ri(0, 359);
+        const mode = ["light", "light", "paper", "tinted", "tinted"][ri(0, 4)];
+        let p = { mode };
+        if (mode === "light") {
+          // near-white, cool/neutral, with a saturated accent
+          p.bg = hslHex(H, ri(8, 22), ri(95, 98));
+          p.surface = hslHex(H, ri(6, 14), 100);
+          p.text = hslHex(H, ri(12, 28), ri(8, 14));
+          p.muted = hslHex(H, ri(8, 18), ri(46, 56));
+          p.accent = hslHex(
+            (H + ri(-30, 30) + 360) % 360,
+            ri(58, 88),
+            ri(42, 54),
+          );
+          p.line = "rgba(0,0,0,0.10)";
+        } else if (mode === "paper") {
+          // warm cream paper + jewel accent
+          const Hw = ri(28, 46);
+          p.bg = hslHex(Hw, ri(20, 38), ri(92, 96));
+          p.surface = hslHex(Hw, ri(20, 40), ri(97, 99));
+          p.text = hslHex(Hw, ri(20, 40), ri(9, 15));
+          p.muted = hslHex(Hw, ri(12, 24), ri(46, 56));
+          p.accent = hslHex(H, ri(45, 80), ri(33, 48));
+          p.line = "rgba(0,0,0,0.11)";
+        } else {
+          // light TINTED background (pale color) + complementary dark accent
+          const S = ri(28, 60),
+            L = ri(82, 92);
+          p.bg = hslHex(H, S, L);
+          p.surface = hslHex(H, S, Math.min(96, L + 5));
+          p.text = hslHex(H, ri(28, 42), ri(9, 15));
+          p.muted = hslHex(H, ri(18, 28), ri(40, 50));
+          p.accent = hslHex((H + ri(150, 210)) % 360, ri(55, 85), ri(35, 48));
+          p.line = "rgba(0,0,0,0.12)";
+        }
+        return p;
+      }
+      function applyPalette(p) {
+        VARS.forEach((k) => root.style.setProperty("--" + k, p[k]));
+        document
+          .querySelectorAll("#palettes button[data-palette]")
+          .forEach((b) => b.removeAttribute("aria-current"));
+        const ro = document.getElementById("readout");
+        ro.classList.add("show");
+        document.getElementById("roChips").innerHTML = VARS.map(
+          (k) => `<span style="background:${p[k]}"></span>`,
+        ).join("");
+        document.getElementById("roHex").innerHTML = ["bg", "text", "accent"]
+          .map((k) => `<span>${p[k]}</span>`)
+          .join("");
+        document.getElementById("roTag").textContent = p.mode;
+        current = p;
+      }
+      let current = null;
+      const saved = [];
+      document
+        .querySelector('[data-action="random"]')
+        .addEventListener("click", () => applyPalette(randomPalette()));
+      document
+        .getElementById("roAgain")
+        .addEventListener("click", () => applyPalette(randomPalette()));
+      document.getElementById("roSave").addEventListener("click", () => {
+        if (!current) return;
+        const p = current;
+        saved.push(p);
+        const b = document.createElement("button");
+        b.style.background = p.bg;
+        b.title = `${p.mode}  bg ${p.bg} · text ${p.text} · accent ${p.accent}`;
+        b.innerHTML = `<i style="position:absolute;right:3px;bottom:3px;width:7px;height:7px;border-radius:50%;background:${p.accent}"></i>`;
+        b.addEventListener("click", () => applyPalette(p));
+        document.getElementById("roSaved").appendChild(b);
+      });
+      document
+        .querySelector('[data-grain="toggle"]')
+        .addEventListener("click", (e) => {
+          const on = root.dataset.grain === "on";
+          root.dataset.grain = on ? "off" : "on";
+          e.currentTarget.style.opacity = on ? "0.6" : "1";
+        });
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+      document
+        .querySelectorAll(".reveal, .stagger")
+        .forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>
