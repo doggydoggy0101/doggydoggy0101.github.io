@@ -24,7 +24,8 @@
   --surface: #fdf9f1;
   --text: #3a382f;
   --muted: #8c8374;
-  --accent: #b07a64;
+  --accent: #b07a64; /* warm dusty rose (primary) */
+  --contrast: #3c78d2; /* cool complementary blue — for emphasis/interaction */
   --line: rgba(58, 56, 47, 0.12);
 
   /* motion */

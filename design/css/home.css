@@ -58,13 +58,19 @@
   padding: 7rem 0 4.5rem;
 }
 
-/* editorial split: big name (left) + supporting text (right), both bottom-aligned */
+/* base (narrow): text only, stacked; bunny canvas hidden */
 .hero-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  align-items: end;
-  gap: 2.5rem 3rem;
+  position: relative;
+  z-index: 3;
   width: 100%;
+}
+.hero-text {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.8rem;
+}
+.sig-canvas {
+  display: none;
 }
 
 .hero-name {
@@ -178,16 +184,22 @@
   }
 }
 
-/* ---- responsive ---- */
-@media (max-width: 760px) {
+/* ---- show the bunny only when there's room beside the text ---- */
+@media (min-width: 1000px) {
   .hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) min(42vw, 520px);
+    align-items: center;
+    gap: var(--space);
+  }
+  .sig-canvas {
     display: block;
-  }
-  .hero-head {
-    margin-bottom: 2rem;
-  }
-  .hero-meta {
-    max-width: 100%;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
   }
 }
 

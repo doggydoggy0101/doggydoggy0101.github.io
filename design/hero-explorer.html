@@ -1,13 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-palette="yerin-rose" data-hero="cloud">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Bang-Shien Chen's homepage." />
-    <meta name="author" content="Bang-Shien Chen" />
-    <title>Bang-Shien Chen</title>
-
-    <link rel="icon" href="../docs/images/icon.jpg" type="image/icon type" />
+    <title>Hero Explorer — Bang-Shien Chen</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,10 +14,28 @@
 
     <link rel="stylesheet" href="css/tokens.css" />
     <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/hero-explorer.css" />
   </head>
 
   <body>
     <div class="grain"></div>
+
+    <div class="switcher" id="heroSwitch">
+      <button data-hero="plain">plain</button>
+      <button data-hero="cloud" aria-current="true">cloud · bunny</button>
+    </div>
+
+    <div class="switcher" id="hiSwitch" style="top: auto; bottom: 1rem">
+      <button data-rgb="240,146,118">coral</button>
+      <button data-rgb="222,70,55">red</button>
+      <button data-rgb="235,170,70">amber</button>
+      <button data-rgb="40,150,135">teal</button>
+      <button data-rgb="60,120,210" aria-current="true">blue</button>
+      <button data-rgb="120,90,200">violet</button>
+      <button data-rgb="205,70,140">magenta</button>
+      <button data-rgb="250,238,220">glow</button>
+      <button data-rgb="58,56,47">ink</button>
+    </div>
 
     <nav class="nav">
       <a class="nav-mark" href="#home">Bang-Shien&nbsp;Chen</a>
@@ -33,7 +47,6 @@
       </ul>
     </nav>
 
-    <!-- 01 — HOME -->
     <section id="home" class="hero">
       <canvas class="sig-canvas" id="sigCanvas"></canvas>
 
@@ -80,11 +93,26 @@
     <script src="js/main.js"></script>
     <script src="js/bunny.js"></script>
     <script>
-      // ============================================================
-      // Home hero — Stanford-bunny point cloud as a diffusion model.
-      // Bang-Shien = clean bunny (data x0)  <->  Ian = Gaussian noise (x_T)
-      // Cursor adds a lagged spotlight in the --contrast blue.
-      // ============================================================
+      const root = document.documentElement;
+      document.querySelectorAll("#heroSwitch button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          root.dataset.hero = btn.dataset.hero;
+          document
+            .querySelectorAll("#heroSwitch button")
+            .forEach((b) => b.removeAttribute("aria-current"));
+          btn.setAttribute("aria-current", "true");
+        });
+      });
+      document.querySelectorAll("#hiSwitch button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          HI = btn.dataset.rgb.split(",").map(Number);
+          document
+            .querySelectorAll("#hiSwitch button")
+            .forEach((b) => b.removeAttribute("aria-current"));
+          btn.setAttribute("aria-current", "true");
+        });
+      });
+
       const cv = document.getElementById("sigCanvas");
       const ctx = cv.getContext("2d");
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -99,9 +127,9 @@
         cuY = -1e5,
         lcuX = -1e5,
         lcuY = -1e5;
-      const ACCENT = "176,122,100"; // --accent (rose)
-      const MUTED = "140,131,116"; // --muted
-      const HI = [60, 120, 210]; // --contrast (blue)
+      const ACCENT = "176,122,100";
+      const MUTED = "140,131,116";
+      let HI = [60, 120, 210]; // highlight colour — cool contrast (--contrast)
       function size() {
         const r = cv.getBoundingClientRect();
         const nw = Math.max(1, Math.round(r.width * dpr));
@@ -112,7 +140,42 @@
         }
       }
 
-      // Gaussian noise (diffusion ε), regenerated per cycle
+      // pose-graph edges: connect each point to its 2 nearest neighbours (once)
+      const N = BUNNY.length;
+      const EDGES = [];
+      for (let i = 0; i < N; i++) {
+        let a = -1,
+          b = -1,
+          da = 1e9,
+          db = 1e9;
+        const p = BUNNY[i];
+        for (let j = 0; j < N; j++) {
+          if (j === i) continue;
+          const q = BUNNY[j];
+          const dx = p[0] - q[0],
+            dy = p[1] - q[1],
+            dz = p[2] - q[2];
+          const d = dx * dx + dy * dy + dz * dz;
+          if (d < da) {
+            db = da;
+            b = a;
+            da = d;
+            a = j;
+          } else if (d < db) {
+            db = d;
+            b = j;
+          }
+        }
+        if (a > i) EDGES.push([i, a]); // dedupe by ordering
+        if (b > i) EDGES.push([i, b]);
+      }
+
+      const sx = new Float32Array(N),
+        sy = new Float32Array(N),
+        dep = new Float32Array(N),
+        hl = new Float32Array(N); // cursor-proximity highlight 0..1
+
+      // Gaussian-noise targets (the ε of a diffusion model), regenerated per cycle
       function gauss() {
         let u = 0,
           v = 0;
@@ -123,7 +186,7 @@
       const SIGMA = 0.4;
       function genNoise() {
         const a = [];
-        for (let i = 0; i < BUNNY.length; i++)
+        for (let i = 0; i < N; i++)
           a.push([gauss() * SIGMA, gauss() * SIGMA, gauss() * SIGMA]);
         return a;
       }
@@ -131,7 +194,8 @@
       const easeInOut = (p) =>
         p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
 
-      // shared timeline: name swap + bunny morph
+      // ---- shared timeline = a diffusion model ----
+      //   Bang-Shien = clean bunny (data x0)   <->   Ian = pure Gaussian noise (x_T)
       const nameEl = document.getElementById("nameType");
       let phase = "bunny",
         pStart = performance.now(),
@@ -187,43 +251,10 @@
         }
       }
 
-      // pose-graph edges: each point to its 2 nearest neighbours (once)
-      const N = BUNNY.length;
-      const EDGES = [];
-      for (let i = 0; i < N; i++) {
-        let a = -1,
-          b = -1,
-          da = 1e9,
-          db = 1e9;
-        const p = BUNNY[i];
-        for (let j = 0; j < N; j++) {
-          if (j === i) continue;
-          const q = BUNNY[j];
-          const dx = p[0] - q[0],
-            dy = p[1] - q[1],
-            dz = p[2] - q[2];
-          const d = dx * dx + dy * dy + dz * dz;
-          if (d < da) {
-            db = da;
-            b = a;
-            da = d;
-            a = j;
-          } else if (d < db) {
-            db = d;
-            b = j;
-          }
-        }
-        if (a > i) EDGES.push([i, a]);
-        if (b > i) EDGES.push([i, b]);
-      }
-
-      const sx = new Float32Array(N),
-        sy = new Float32Array(N),
-        dep = new Float32Array(N),
-        hl = new Float32Array(N);
-      function drawCloud() {
+      function drawCloud(now) {
+        routine(now);
         const ax = my * 0.4;
-        const ay = -0.5 + mx * 0.5; // fixed 3/4 view + cursor parallax
+        const ay = -0.5 + mx * 0.5; // fixed 3/4 view + cursor parallax (no auto-spin)
         const cx = W * 0.72,
           cy = H * 0.52,
           R = Math.min(W, H) * 0.24;
@@ -245,9 +276,9 @@
           const z2 = Y * sb + z1 * cb;
           dep[i] = (z2 + 1) / 2;
           sx[i] = cx + x1 * R + mx * 26 * dpr;
-          sy[i] = cy - y1 * R;
+          sy[i] = cy - y1 * R; // upright
         }
-        // lagged cursor + eased glow (afterglow)
+        // cursor proximity highlight — lagged cursor + eased per-point glow (afterglow)
         lcuX += (cuX - lcuX) * 0.3;
         lcuY += (cuY - lcuY) * 0.3;
         const RAD = 120 * dpr,
@@ -257,9 +288,10 @@
             dy = sy[i] - lcuY,
             dd = dx * dx + dy * dy;
           const t0 = dd < RAD2 ? 1 - Math.sqrt(dd) / RAD : 0;
-          hl[i] += (t0 - hl[i]) * 0.2;
+          hl[i] += (t0 - hl[i]) * 0.2; // smooth fade in/out → lag + afterglow
         }
-        // edges
+
+        // edges (pose graph) — fade out as it scatters into noise, glow near cursor
         ctx.lineWidth = dpr;
         const edgeFade = 1 - morph * 0.35;
         for (let e = 0; e < EDGES.length; e++) {
@@ -273,7 +305,7 @@
           ctx.lineTo(sx[j], sy[j]);
           ctx.stroke();
         }
-        // nodes (rose → contrast-blue within the cursor spotlight)
+        // nodes — shift rose -> gold, grow & brighten within the cursor spotlight
         for (let i = 0; i < N; i++) {
           const t = hl[i];
           let alpha = 0.16 + dep[i] * 0.6;
@@ -295,13 +327,11 @@
       }
 
       function loop(now) {
-        routine(now || performance.now()); // name always animates
-        if (cv.offsetParent !== null) {
-          // canvas visible (wide screens) → draw the cloud
+        if (root.dataset.hero === "cloud") {
           try {
             size();
             ctx.clearRect(0, 0, W, H);
-            drawCloud();
+            drawCloud(now || performance.now());
           } catch (e) {
             /* keep loop alive */
           }
@@ -316,6 +346,7 @@
         cuX = (e.clientX - r.left) * dpr;
         cuY = (e.clientY - r.top) * dpr;
       });
+      size();
       requestAnimationFrame(loop);
     </script>
   </body>
