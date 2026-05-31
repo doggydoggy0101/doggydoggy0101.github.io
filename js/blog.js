@@ -5,18 +5,18 @@ const projects = [
     id: "blog-optimization",
     content: `
       <h2>Optimization</h2>
-      <a class="editor-link" href="docs/blogs/gradient-descent.pdf" target="_blank">Gradient descent <span class="ext">pdf ↗</span></a>
-      <a class="editor-link" href="docs/blogs/optimality-conditions.pdf" target="_blank">Optimality conditions <span class="ext">pdf ↗</span></a>
-      <a class="editor-link" href="docs/blogs/lasserre-hierarchy.pdf" target="_blank">Lasserre's hierarchy <span class="ext">pdf ↗</span></a>
-      <a class="editor-link" href="docs/blogs/ideals-varieties.pdf" target="_blank">Ideals & Varieties <span class="ext">pdf ↗</span></a>
+      <a class="editor-link" href="assets/blogs/gradient-descent.pdf" target="_blank">Gradient descent <span class="ext">pdf ↗</span></a>
+      <a class="editor-link" href="assets/blogs/optimality-conditions.pdf" target="_blank">Optimality conditions <span class="ext">pdf ↗</span></a>
+      <a class="editor-link" href="assets/blogs/lasserre-hierarchy.pdf" target="_blank">Lasserre's hierarchy <span class="ext">pdf ↗</span></a>
+      <a class="editor-link" href="assets/blogs/ideals-varieties.pdf" target="_blank">Ideals & Varieties <span class="ext">pdf ↗</span></a>
     `,
   },
   {
     id: "blog-robotics",
     content: `
       <h2>Robotics</h2>
-      <a class="editor-link" href="docs/blogs/rotation-representation.pdf" target="_blank">Rotation representation <span class="ext">pdf ↗</span></a>
-      <a class="editor-link" href="docs/blogs/lie-theory.pdf" target="_blank">Lie theory <span class="ext">pdf ↗</span></a>
+      <a class="editor-link" href="assets/blogs/rotation-representation.pdf" target="_blank">Rotation representation <span class="ext">pdf ↗</span></a>
+      <a class="editor-link" href="assets/blogs/lie-theory.pdf" target="_blank">Lie theory <span class="ext">pdf ↗</span></a>
     `,
   },
   {

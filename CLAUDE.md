@@ -22,16 +22,16 @@ Work happens on `develop`; `main` is the deployed branch (GitHub Pages + the for
 Content is **data-driven** — edit the arrays/strings at the top of the JS, not the HTML:
 
 - **Research** (`js/research.js`): editorial list, grouped by sub-heading; entries are HTML strings.
-- **Blog/projects** (`js/blog.js`): a fake VS-Code "editor window"; the file-tree content links to PDFs in `docs/blogs/`.
-- **Portfolio** (`js/photos.js` + `js/portfolio.js`): `photos.js` holds the `TRIPS` manifest (one object per trip: `{id, location, date, cover, photos[]}`, newest-first, cover pinned first). `portfolio.js` builds the hover-expand timeline, the slide-in per-trip gallery subpage, and the single-photo lightbox. Each photo has a `docs/photos/<id>/thumb/<f>` (grid/preview) and full-res `docs/photos/<id>/<f>` (lightbox only).
+- **Blog/projects** (`js/blog.js`): a fake VS-Code "editor window"; the file-tree content links to PDFs in `assets/blogs/`.
+- **Portfolio** (`js/photos.js` + `js/portfolio.js`): `photos.js` holds the `TRIPS` manifest (one object per trip: `{id, location, date, cover, photos[]}`, newest-first, cover pinned first). `portfolio.js` builds the hover-expand timeline, the slide-in per-trip gallery subpage, and the single-photo lightbox. Each photo has a `assets/photos/<id>/thumb/<f>` (grid/preview) and full-res `assets/photos/<id>/<f>` (lightbox only).
 - **Home** (`js/bunny.js` + inline script in `index.html`): `bunny.js` holds the `BUNNY` point cloud; the hero canvas animates a diffusion-style scatter/reform of it.
 - `js/main.js`: nav active-state, scroll-reveal (IntersectionObserver), hash routing.
 
 ## Assets
 
-`docs/` holds all binary assets and is kept out of Prettier's scope: `images/icon.jpg` (favicon), `files/*.pdf` (CV/SOP), `blogs/*.pdf`, and `photos/<trip>/` (web WebP + `thumb/` subfolder).
+`assets/` holds all binary assets and is kept out of Prettier's scope: `icon.jpg` (favicon), `docs/*.pdf` (CV/SOP), `blogs/*.pdf`, and `photos/<trip>/` (web WebP + `thumb/` subfolder).
 
-Photos: convert originals to WebP with ImageMagick (`magick -auto-orient -quality 90`), then generate ~1000px thumbnails into each trip's `thumb/` (`magick in.webp -resize '1000x1000>' -quality 80 thumb/in.webp`). Full-res originals are kept locally in `docs/temp/`, which is git-ignored (not shipped).
+Photos: convert originals to WebP with ImageMagick (`magick -auto-orient -quality 90`), then generate ~1000px thumbnails into each trip's `thumb/` (`magick in.webp -resize '1000x1000>' -quality 80 thumb/in.webp`). Full-res originals are kept locally in `assets/temp/`, which is git-ignored (not shipped).
 
 ## Conventions
 

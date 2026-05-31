@@ -1,4 +1,4 @@
-// Photography — trips → WebP in docs/photos/<id>/  (cover first, rest shuffled)
+// Photography — trips → WebP in assets/photos/<id>/  (cover first, rest shuffled)
 const TRIPS = [
   {
     id: "202601-Boston",

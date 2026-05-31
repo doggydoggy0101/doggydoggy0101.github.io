@@ -1,4 +1,4 @@
 .DS_Store
 
-# full-res photo originals — local archive only, not shipped (web webp lives in docs/photos)
-docs/temp/
+# full-res photo originals — local archive only, not shipped (web webp lives in assets/photos)
+assets/temp/

@@ -2,8 +2,8 @@
 (function () {
   if (typeof TRIPS === "undefined") return;
   const root = document.documentElement;
-  const thumb = (id, f) => `docs/photos/${id}/thumb/${f}`; // small: grid + preview
-  const full = (id, f) => `docs/photos/${id}/${f}`; // full-res: lightbox only
+  const thumb = (id, f) => `assets/photos/${id}/thumb/${f}`; // small: grid + preview
+  const full = (id, f) => `assets/photos/${id}/${f}`; // full-res: lightbox only
 
   // ---- timeline (left: hover to expand · right: synced preview) ----
   const tlList = document.getElementById("tlList");
