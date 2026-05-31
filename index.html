@@ -4,266 +4,451 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Bang-Shien Chen's homepage." />
-    <meta name="keywords" content="Bang-Shien Chen" />
     <meta name="author" content="Bang-Shien Chen" />
-    <meta name="robots" content="index, follow" />
-
     <title>Bang-Shien Chen</title>
-    <link rel="icon" href="docs/images/icon.jpg" type="image/icon type" />
 
-    <meta property="og:title" content="Bang-Shien Chen" />
-    <meta
-      property="og:description"
-      content="Interested in Optimization and Robotics."
-    />
-    <meta
-      property="og:image"
-      content="https://dgbshien.com/docs/images/icon.jpg"
-    />
-    <meta property="og:url" content="https://dgbshien.com/" />
-    <meta property="og:type" content="website" />
+    <link rel="icon" href="assets/icon.jpg" type="image/icon type" />
 
-    <!-- css -->
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/portfolio.css" />
-    <link rel="stylesheet" href="css/gallery.css" />
-    <link rel="stylesheet" href="css/projects.css" />
-    <link rel="stylesheet" href="css/research.css" />
-    <link rel="stylesheet" href="lightbox2/dist/css/lightbox.css" />
-
-    <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK@0,9..144,300..600,0;1,9..144,300..500,0&family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
-    <!-- icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-
-    <!-- gsap -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <!-- lenis -->
-    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/lenis@1.1.13/dist/lenis.css"
-    />
-
-    <!-- js -->
-    <script defer src="js/script.js"></script>
-    <script defer src="js/portfolio.js"></script>
-    <script defer src="js/gallery.js"></script>
-    <script defer src="js/projects.js"></script>
-    <script defer src="js/research.js"></script>
-    <script src="lightbox2/dist/js/lightbox-plus-jquery.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/sections.css" />
+    <link rel="stylesheet" href="css/blog.css" />
+    <link rel="stylesheet" href="css/portfolio.css" />
   </head>
 
   <body>
-    <!-- loading screen -->
-    <div id="loading-screen">
-      <div class="loader-top"></div>
-      <div class="loader-bottom"></div>
-      <p class="loader-text"><span id="loading-text"></span></p>
-    </div>
+    <div class="grain"></div>
+    <div class="nav-fog"></div>
 
-    <!-- background -->
-    <div class="background"></div>
-
-    <!-- navigation bar -->
-    <nav id="navbar">
-      <ul>
+    <nav class="nav">
+      <a class="nav-mark" href="#home">Bang-Shien&nbsp;Chen</a>
+      <ul class="nav-links">
         <li>
-          <a href="#portfolio" data-replace="Portfolio"
-            ><span>Portfolio</span></a
-          >
+          <a href="#home"><span class="n">01</span> Home</a>
         </li>
         <li>
-          <a href="#gallery" data-replace="Gallery"><span>Gallery</span></a>
+          <a href="#portfolio"><span class="n">02</span> Portfolio</a>
         </li>
         <li>
-          <a href="#projects" data-replace="Blog"><span>Blog</span></a>
+          <a href="#blog"><span class="n">03</span> Blog</a>
         </li>
         <li>
-          <a href="#research" data-replace="Research"><span>Research</span></a>
+          <a href="#research"><span class="n">04</span> Research</a>
         </li>
       </ul>
     </nav>
 
-    <!-- intro -->
-    <section id="intro">
-      <h1 id="hi-text">Welcome!</h1>
-      <p class="scroll-down">↓ Scroll Down</p>
-    </section>
+    <!-- 01 — HOME -->
+    <section id="home" class="hero">
+      <canvas class="sig-canvas" id="sigCanvas"></canvas>
 
-    <!-- portfoliio -->
-    <section id="portfolio">
-      <div class="content">
-        <h2 class="name"><span id="typed-text"></span>Chen</h2>
-        <p class="bio">
-          Hi! I am currently a PhD student at Northeastern University. My
-          research interests are mainly in optimization and robotics, and I
-          write blogs about tools and concepts I frequently use. Feel free to
-          check them out, and I hope you find them helpful!
-        </p>
-        <div class="download-block">
-          <p>
-            download my
-            <a href="docs/files/CV_Chen.pdf" target="_blank">cv</a> /
-            <a href="docs/files/SOP_Chen.pdf" target="_blank">statement</a> (Dec
-            2024)
-          </p>
-        </div>
-      </div>
-
-      <!-- footer -->
-      <div id="footer">
-        <a
-          href="https://github.com/doggydoggy0101"
-          target="_blank"
-          class="icon"
-        >
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="mailto:dgbshien@gmail.com" class="icon">
-          <i class="fas fa-envelope"></i>
-        </a>
-        <a
-          href="https://www.youtube.com/@doggydoggy0101"
-          target="_blank"
-          class="icon"
-        >
-          <i class="fab fa-youtube"></i>
-        </a>
-      </div>
-    </section>
-
-    <!-- gallery -->
-    <section id="gallery">
-      <h2 class="section-title">Gallery</h2>
-      <div class="gallery-container">
-        <div class="gallery-fade left"></div>
-        <div class="gallery-fade right"></div>
-        <div class="gallery-wrapper">
-          <div class="gallery-track">
-            <!-- !maintain rows in `js/gallery.js` -->
-            <div class="gallery-row" id="gallery-row-1"></div>
-            <div class="gallery-row" id="gallery-row-2"></div>
-            <div class="gallery-row" id="gallery-row-3"></div>
+      <div class="hero-inner wrap">
+        <div class="hero-text">
+          <div class="hero-head reveal">
+            <span class="section-label">01 — Home</span>
+            <h1 class="hero-name">
+              <span id="nameType">Bang-Shien</span><br /><em>Chen</em>
+            </h1>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- blog -->
-    <section id="projects">
-      <div class="projects-container">
-        <!-- top bar -->
-        <div class="window-controls">
-          <div class="window-left">
-            <span class="window-btn red"></span>
-            <span class="window-btn yellow"></span>
-            <span class="window-btn green"></span>
-          </div>
-          <div class="window-name">
-            <i class="fas fa-folder"></i>doggy@macbook: ~/doggy
-          </div>
-        </div>
-
-        <!-- middle section -->
-        <div class="projects-content">
-          <!-- file explorer (left part) -->
-          <div class="file-explorer">
-            <h3 class="explorer-title">EXPLORER</h3>
-            <!-- blog -->
-            <div class="folder-static" id="test-folder">
-              <i class="fas fa-caret-down"></i>
-              <i class="fas fa-folder-open"></i> blog
+          <div class="hero-meta stagger">
+            <p class="hero-bio">
+              Hi, I am a PhD student at Northeastern University.<br />
+              My research interests are mainly in
+              <span class="hl">Optimization</span> and
+              <span class="hl">Robotics</span>.
+            </p>
+            <div class="hero-actions">
+              <a class="btn" href="assets/docs/CV_Chen.pdf" target="_blank"
+                >Curriculum Vitae ↗</a
+              >
+              <a class="btn" href="assets/docs/SOP_Chen.pdf" target="_blank"
+                >Statement ↗</a
+              >
             </div>
-            <ul class="file-list test-list">
-              <li data-folder="blog" data-project="blog-optimization">
-                <i class="fas fa-file-code"></i> optimization.md
-              </li>
-              <li data-folder="blog" data-project="blog-robotics">
-                <i class="fas fa-file-code"></i> robotics.md
-              </li>
-            </ul>
-            <!-- project -->
-            <div class="folder-static" id="project-folder">
-              <i class="fas fa-caret-down"></i>
-              <i class="fas fa-folder-open"></i> project
+            <div class="hero-social">
+              <a href="https://github.com/doggydoggy0101" target="_blank"
+                >GitHub</a
+              >
+              <a href="mailto:dgbshien@gmail.com">Email</a>
+              <a href="https://www.youtube.com/@doggydoggy0101" target="_blank"
+                >YouTube</a
+              >
             </div>
-            <ul class="file-list project-list">
-              <li data-folder="project" data-project="project-fracgm">
-                <i class="fas fa-file-code"></i> FracGM.md
-              </li>
-              <li data-folder="project" data-project="project-master-thesis">
-                <i class="fas fa-file-code"></i> master-thesis.md
-              </li>
-              <li data-folder="project" data-project="project-quiz-game">
-                <i class="fas fa-file-code"></i> quiz-game.md
-              </li>
-            </ul>
-          </div>
-          <!-- text editor (right part) -->
-          <div class="editor">
-            <!-- !maintain preview in `js/projects.js` -->
-            <div class="editor-content"></div>
           </div>
         </div>
-        <div class="status-bar">
-          <div class="left-status">
-            <span class="apple"><i class="fab fa-apple"></i></span>
-            <span class="mode">NORMAL</span>
-            <span class="git-branch"
-              ><i class="fas fa-code-branch"></i> main</span
-            >
-            <span class="file-path"
-              ><i class="fas fa-file-code"></i>
-              <span class="file-name">project1.md</span></span
-            >
+      </div>
+
+      <div class="hero-foot">
+        <span class="scroll-cue">Scroll</span>
+      </div>
+    </section>
+
+    <!-- 02 — PORTFOLIO -->
+    <section id="portfolio" class="section">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-label">02 — Portfolio</span>
+        </header>
+        <div class="tl2">
+          <div class="tl-list" id="tlList"></div>
+          <div class="tl-preview"><img id="tlPreview" alt="" /></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — BLOG -->
+    <section id="blog" class="section">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-label">03 — Blog</span>
+        </header>
+
+        <div class="code-window reveal">
+          <div class="win-bar">
+            <div class="win-dots">
+              <i class="r"></i><i class="y"></i><i class="g"></i>
+            </div>
+            <span class="win-name">doggy@neu</span>
           </div>
-          <div class="right-status">
-            <span class="cursor-pos">Ln 1, Col 1</span>
-            <span class="clock"
-              ><i class="fas fa-clock"></i>
-              <span id="current-time">12:00 PM</span></span
-            >
+
+          <div class="win-body">
+            <div class="explorer">
+              <h3 class="explorer-title">Explorer</h3>
+              <div class="folder" id="folder-blog">
+                <span class="caret">▾</span> blog
+              </div>
+              <ul class="file-list" data-list="blog">
+                <li data-project="blog-optimization" data-folder="blog">
+                  optimization.md
+                </li>
+                <li data-project="blog-robotics" data-folder="blog">
+                  robotics.md
+                </li>
+              </ul>
+              <div class="folder" id="folder-project">
+                <span class="caret">▾</span> project
+              </div>
+              <ul class="file-list" data-list="project">
+                <li data-project="project-registration" data-folder="project">
+                  registration.md
+                </li>
+                <li data-project="project-websites" data-folder="project">
+                  websites.md
+                </li>
+              </ul>
+              <ul class="file-list rootlist">
+                <li data-project="claude-md" data-folder="">CLAUDE.md</li>
+              </ul>
+            </div>
+
+            <div class="editor"><div class="editor-content"></div></div>
+          </div>
+
+          <div class="win-status">
+            <div class="left-status">
+              <span class="branch">⎇ main</span>
+              <span class="file-name">doggy/blog/optimization.md</span>
+            </div>
+            <div class="right-status">
+              <span class="cursor-pos">Ln 1, Col 1</span>
+              <span class="clock" id="current-time">12:00 PM</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- research -->
-    <section id="research">
-      <div class="research-container">
-        <h2 class="section-title">Research</h2>
-
-        <!-- !maintain publications in `js/research.js` -->
-        <div class="research-section">
-          <h3>Publications</h3>
-          <ol class="research-list" id="publications-list"></ol>
+    <!-- 04 — RESEARCH -->
+    <section id="research" class="section">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-label">04 — Research</span>
+        </header>
+        <div class="res-group">
+          <h3 class="res-sub">Publications</h3>
+          <ol class="res-list" id="publications-list"></ol>
         </div>
-
-        <!-- !maintain awards in `js/research.js` -->
-        <div class="research-section">
-          <h3>Awards</h3>
-          <ul class="research-list" id="awards-list"></ul>
+        <div class="res-group">
+          <h3 class="res-sub">Awards</h3>
+          <ul class="res-list" id="awards-list"></ul>
         </div>
-
-        <!-- !maintain presentations in `js/research.js` -->
-        <div class="research-section">
-          <h3>Presentations</h3>
-          <ul class="research-list" id="presentations-list"></ul>
+        <div class="res-group">
+          <h3 class="res-sub">Presentations</h3>
+          <ul class="res-list" id="presentations-list"></ul>
         </div>
       </div>
     </section>
+
+    <!-- portfolio: trip gallery (slides up) + single-photo lightbox -->
+    <div class="subpage" id="subpage">
+      <aside class="sub-menu">
+        <span class="sub-back" id="subBack">← back</span>
+        <ul class="sub-tlist" id="subTripList"></ul>
+      </aside>
+      <div class="sub-main">
+        <div class="sub-head">
+          <span class="sub-loc" id="subLoc"></span>
+          <span class="sub-meta" id="subMeta"></span>
+        </div>
+        <div class="sub-grid" id="subGrid"></div>
+      </div>
+    </div>
+    <div class="lb" id="lb">
+      <button class="lb-btn lb-close" id="lbClose">✕</button>
+      <img id="lbImg" alt="" />
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/research.js"></script>
+    <script src="js/blog.js"></script>
+    <script src="js/photos.js"></script>
+    <script src="js/portfolio.js"></script>
+    <script src="js/bunny.js"></script>
+    <script>
+      // ============================================================
+      // Home hero — Stanford-bunny point cloud as a diffusion model.
+      // Bang-Shien = clean bunny (data x0)  <->  Ian = Gaussian noise (x_T)
+      // Cursor adds a lagged spotlight in the --contrast blue.
+      // ============================================================
+      const cv = document.getElementById("sigCanvas");
+      const ctx = cv.getContext("2d");
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const reduce = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      let W = 1,
+        H = 1,
+        mx = 0,
+        my = 0,
+        cuX = -1e5,
+        cuY = -1e5,
+        lcuX = -1e5,
+        lcuY = -1e5;
+      const ACCENT = "176,122,100"; // --accent (rose)
+      const MUTED = "140,131,116"; // --muted
+      const HI = [60, 120, 210]; // --contrast (blue)
+      function size() {
+        const r = cv.getBoundingClientRect();
+        const nw = Math.max(1, Math.round(r.width * dpr));
+        const nh = Math.max(1, Math.round(r.height * dpr));
+        if (nw !== W || nh !== H) {
+          W = cv.width = nw;
+          H = cv.height = nh;
+        }
+      }
+
+      // Gaussian noise (diffusion ε), regenerated per cycle
+      function gauss() {
+        let u = 0,
+          v = 0;
+        while (u === 0) u = Math.random();
+        while (v === 0) v = Math.random();
+        return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+      }
+      const SIGMA = 0.4;
+      function genNoise() {
+        const a = [];
+        for (let i = 0; i < BUNNY.length; i++)
+          a.push([gauss() * SIGMA, gauss() * SIGMA, gauss() * SIGMA]);
+        return a;
+      }
+      let eps = genNoise();
+      const easeInOut = (p) =>
+        p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+
+      // shared timeline: name swap + bunny morph
+      const nameEl = document.getElementById("nameType");
+      let phase = "bunny",
+        pStart = performance.now(),
+        morph = 0; // 0 = bunny, 1 = noise
+      const DUR = { bunny: 2600, diffuse: 1600, noise: 2400, denoise: 1600 };
+      function nameMorph(p, from, to) {
+        if (p < 0.5)
+          nameEl.textContent = from.slice(
+            0,
+            Math.round(from.length * (1 - p * 2)),
+          );
+        else
+          nameEl.textContent = to.slice(0, Math.round(to.length * (p * 2 - 1)));
+      }
+      function routine(now) {
+        if (reduce) {
+          morph = 0;
+          nameEl.textContent = "Bang-Shien";
+          return;
+        }
+        const el = now - pStart;
+        if (phase === "bunny") {
+          morph = 0;
+          nameEl.textContent = "Bang-Shien";
+          if (el >= DUR.bunny) {
+            phase = "diffuse";
+            pStart = now;
+            eps = genNoise();
+          }
+        } else if (phase === "diffuse") {
+          const p = Math.min(1, el / DUR.diffuse);
+          morph = easeInOut(p);
+          nameMorph(p, "Bang-Shien", "Ian");
+          if (el >= DUR.diffuse) {
+            phase = "noise";
+            pStart = now;
+          }
+        } else if (phase === "noise") {
+          morph = 1;
+          nameEl.textContent = "Ian";
+          if (el >= DUR.noise) {
+            phase = "denoise";
+            pStart = now;
+          }
+        } else {
+          const p = Math.min(1, el / DUR.denoise);
+          morph = 1 - easeInOut(p);
+          nameMorph(p, "Ian", "Bang-Shien");
+          if (el >= DUR.denoise) {
+            phase = "bunny";
+            pStart = now;
+          }
+        }
+      }
+
+      // pose-graph edges: each point to its 2 nearest neighbours (once)
+      const N = BUNNY.length;
+      const EDGES = [];
+      for (let i = 0; i < N; i++) {
+        let a = -1,
+          b = -1,
+          da = 1e9,
+          db = 1e9;
+        const p = BUNNY[i];
+        for (let j = 0; j < N; j++) {
+          if (j === i) continue;
+          const q = BUNNY[j];
+          const dx = p[0] - q[0],
+            dy = p[1] - q[1],
+            dz = p[2] - q[2];
+          const d = dx * dx + dy * dy + dz * dz;
+          if (d < da) {
+            db = da;
+            b = a;
+            da = d;
+            a = j;
+          } else if (d < db) {
+            db = d;
+            b = j;
+          }
+        }
+        if (a > i) EDGES.push([i, a]);
+        if (b > i) EDGES.push([i, b]);
+      }
+
+      const sx = new Float32Array(N),
+        sy = new Float32Array(N),
+        dep = new Float32Array(N),
+        hl = new Float32Array(N);
+      function drawCloud() {
+        const ax = my * 0.4;
+        const ay = -0.5 + mx * 0.5; // fixed 3/4 view + cursor parallax
+        const cx = W * 0.72,
+          cy = H * 0.52,
+          R = Math.min(W, H) * 0.24;
+        const ca = Math.cos(ay),
+          sa = Math.sin(ay),
+          cb = Math.cos(ax),
+          sb = Math.sin(ax);
+        const ka = Math.sqrt(1 - morph),
+          kb = Math.sqrt(morph);
+        for (let i = 0; i < N; i++) {
+          const h = BUNNY[i],
+            s = eps[i];
+          const X = h[0] * ka + s[0] * kb;
+          const Y = h[1] * ka + s[1] * kb;
+          const Z = h[2] * ka + s[2] * kb;
+          const x1 = X * ca - Z * sa;
+          const z1 = X * sa + Z * ca;
+          const y1 = Y * cb - z1 * sb;
+          const z2 = Y * sb + z1 * cb;
+          dep[i] = (z2 + 1) / 2;
+          sx[i] = cx + x1 * R + mx * 26 * dpr;
+          sy[i] = cy - y1 * R;
+        }
+        // lagged cursor + eased glow (afterglow)
+        lcuX += (cuX - lcuX) * 0.3;
+        lcuY += (cuY - lcuY) * 0.3;
+        const RAD = 120 * dpr,
+          RAD2 = RAD * RAD;
+        for (let i = 0; i < N; i++) {
+          const dx = sx[i] - lcuX,
+            dy = sy[i] - lcuY,
+            dd = dx * dx + dy * dy;
+          const t0 = dd < RAD2 ? 1 - Math.sqrt(dd) / RAD : 0;
+          hl[i] += (t0 - hl[i]) * 0.2;
+        }
+        // edges
+        ctx.lineWidth = dpr;
+        const edgeFade = 1 - morph * 0.35;
+        for (let e = 0; e < EDGES.length; e++) {
+          const i = EDGES[e][0],
+            j = EDGES[e][1];
+          let a = (0.05 + ((dep[i] + dep[j]) / 2) * 0.2) * edgeFade;
+          a += Math.max(hl[i], hl[j]) * 0.4;
+          ctx.strokeStyle = `rgba(${MUTED},${a})`;
+          ctx.beginPath();
+          ctx.moveTo(sx[i], sy[i]);
+          ctx.lineTo(sx[j], sy[j]);
+          ctx.stroke();
+        }
+        // nodes (rose → contrast-blue within the cursor spotlight)
+        for (let i = 0; i < N; i++) {
+          const t = hl[i];
+          let alpha = 0.16 + dep[i] * 0.6;
+          let rad = (0.4 + dep[i] * 1.4) * dpr;
+          let col = ACCENT;
+          if (t > 0) {
+            const r = (176 + (HI[0] - 176) * t) | 0;
+            const g = (122 + (HI[1] - 122) * t) | 0;
+            const b = (100 + (HI[2] - 100) * t) | 0;
+            col = `${r},${g},${b}`;
+            alpha = alpha + (1 - alpha) * t;
+            rad *= 1 + t * 1.8;
+          }
+          ctx.beginPath();
+          ctx.arc(sx[i], sy[i], rad, 0, 7);
+          ctx.fillStyle = `rgba(${col},${alpha})`;
+          ctx.fill();
+        }
+      }
+
+      function loop(now) {
+        routine(now || performance.now()); // name always animates
+        if (cv.offsetParent !== null) {
+          // canvas visible (wide screens) → draw the cloud
+          try {
+            size();
+            ctx.clearRect(0, 0, W, H);
+            drawCloud();
+          } catch (e) {
+            /* keep loop alive */
+          }
+        }
+        requestAnimationFrame(loop);
+      }
+      window.addEventListener("resize", size);
+      window.addEventListener("mousemove", (e) => {
+        mx = e.clientX / window.innerWidth - 0.5;
+        my = e.clientY / window.innerHeight - 0.5;
+        const r = cv.getBoundingClientRect();
+        cuX = (e.clientX - r.left) * dpr;
+        cuY = (e.clientY - r.top) * dpr;
+      });
+      requestAnimationFrame(loop);
+    </script>
   </body>
 </html>

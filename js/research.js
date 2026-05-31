@@ -1,3 +1,5 @@
+// Research content — edit the arrays below to maintain this section.
+
 const publications = [
   {
     id: "FracGM",
@@ -16,27 +18,27 @@ const publications = [
 const awards = [
   {
     index: "1.",
+    title: "<b>Draper Scholar</b>",
+    desc: "A scholarship designed to transform exceptional students into innovative professionals by integrating thesis research with hands-on experience.",
+    date: "<i>(Sep 2025 - Present)</i>",
+  },
+  {
+    index: "2.",
     title: "<b>NCTS Research Abroad Program</b>",
     desc: "A research abroad program financially supported by the Mathematics Division of National Center of Theoretical Sciences, worked with Prof. Shuzhong Zhang at the University of Minnesota.",
     date: "<i>(Jun 2024 - Aug 2024)</i>",
   },
   {
-    index: "2.",
+    index: "3.",
     title: "<b>Taiwan-Japan Joint Workshop, Presentation Award</b>",
     desc: "Out of 40 speakers in the 14th Taiwan-Japan Joint Workshop for Young Scholars in Applied Mathematics.",
     date: "<i>(Feb 2024)</i>",
   },
   {
-    index: "3.",
+    index: "4.",
     title: "<b>IBM Qiskit Hackathon Taiwan, 1st prize</b>",
     desc: "Out of 12 teams in the final round of the Quantum Computing Hackathon.",
     date: "<i>(Jul 2022)</i>",
-  },
-  {
-    index: "4.",
-    title: "<b>Taiwan-Japan Joint Workshop, Presentation Award</b>",
-    desc: "Out of 42 speakers in the 12th Taiwan-Japan Joint Workshop for Young Scholars in Applied Mathematics.",
-    date: "<i>(Feb 2022)</i>",
   },
 ];
 
@@ -63,113 +65,60 @@ const presentations = [
     title: "<b>Workshop on Advances in Continuous Optimization 2023.</b>",
     location: "<i>The University of Tokyo</i>, Tokyo, Japan, Jul 24-25, 2023.",
   },
-  {
-    index: "5.",
-    title: "<b>2022 Summer school on Quantum Computer.</b>",
-    location:
-      "<i>Asia University</i>, Taipei, Taiwan, August 21 - Sep 24, 2022.",
-  },
-  {
-    index: "6.",
-    title: "<b>Seminar on Quantum Theory and Computation.</b>",
-    location:
-      "<i>National Taiwan Normal University</i>, Taipei, Taiwan, Apr 26 - May 24, 2022.",
-  },
-  {
-    index: "7.",
-    title:
-      "<b>12th Taiwan-Japan Joint Workshop for Young Scholars in Applied Mathematics.</b>",
-    location: "(virtual) Feb 28 - Mar 1, 2022.",
-  },
 ];
 
-document.addEventListener("DOMContentLoaded", function () {
-  function generatePublications() {
-    const container = document.getElementById("publications-list");
-    publications.forEach((pub) => {
-      const li = document.createElement("li");
+document.addEventListener("DOMContentLoaded", () => {
+  const item = (index, html, id) => {
+    const li = document.createElement("li");
+    li.className = "res-item";
+    const ix = document.createElement("span");
+    ix.className = "res-index";
+    if (id) ix.id = id;
+    ix.innerHTML = index;
+    const txt = document.createElement("div");
+    txt.className = "res-text";
+    txt.innerHTML = html;
+    li.append(ix, txt);
+    return li;
+  };
 
-      const index = document.createElement("span");
-      index.classList.add("research-index");
-      index.setAttribute("id", pub.id);
-      index.innerHTML = pub.index;
+  const pubEl = document.getElementById("publications-list");
+  publications.forEach((p) => {
+    const links = p.links
+      .map(
+        (l) =>
+          ` (<a class="res-link" href="${l.href}" target="_blank">${l.label}</a>)`,
+      )
+      .join("");
+    pubEl.appendChild(item(p.index, p.text + links, p.id));
+  });
 
-      const text = document.createElement("div");
-      text.classList.add("research-text");
-      text.innerHTML = pub.text;
+  const awardEl = document.getElementById("awards-list");
+  awards.forEach((a) =>
+    awardEl.appendChild(item(a.index, `${a.title} ${a.desc} ${a.date}`)),
+  );
 
-      pub.links.forEach((link) => {
-        const a = document.createElement("a");
-        a.href = link.href;
-        a.target = "_blank";
-        a.className = "research-link";
-        a.textContent = link.label;
-        text.appendChild(document.createTextNode(" ("));
-        text.appendChild(a);
-        text.appendChild(document.createTextNode(")"));
+  const presEl = document.getElementById("presentations-list");
+  presentations.forEach((p) =>
+    presEl.appendChild(item(p.index, `${p.title} ${p.location}`)),
+  );
+
+  // staggered reveal per group
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
       });
-
-      li.appendChild(index);
-      li.appendChild(text);
-      container.appendChild(li);
+    },
+    { threshold: 0.12 },
+  );
+  document.querySelectorAll(".res-group").forEach((g) => {
+    g.querySelectorAll(".res-item").forEach((li, i) => {
+      li.style.transitionDelay = 0.06 + i * 0.05 + "s";
     });
-  }
-
-  function generateAwards() {
-    const container = document.getElementById("awards-list");
-    awards.forEach((item) => {
-      const li = document.createElement("li");
-
-      const index = document.createElement("span");
-      index.classList.add("research-index");
-      index.innerHTML = item.index;
-
-      const text = document.createElement("div");
-      text.classList.add("research-text");
-      text.innerHTML = `${item.title} ${item.desc} ${item.date}`;
-
-      li.appendChild(index);
-      li.appendChild(text);
-      container.appendChild(li);
-    });
-  }
-
-  function generatePresentations() {
-    const container = document.getElementById("presentations-list");
-    presentations.forEach((pres) => {
-      const li = document.createElement("li");
-
-      const index = document.createElement("span");
-      index.classList.add("research-index");
-      index.innerHTML = pres.index;
-
-      const text = document.createElement("div");
-      text.classList.add("research-text");
-      text.innerHTML = `${pres.title} ${pres.location}`;
-
-      li.appendChild(index);
-      li.appendChild(text);
-      container.appendChild(li);
-    });
-  }
-
-  generatePublications();
-  generateAwards();
-  generatePresentations();
-
-  document.querySelectorAll(".cite").forEach((link) => {
-    link.addEventListener("click", function (event) {
-      event.preventDefault();
-
-      const targetId = this.getAttribute("href").substring(1);
-      const targetElement = document.getElementById(targetId);
-
-      if (targetElement) {
-        targetElement.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    });
+    io.observe(g);
   });
 });
