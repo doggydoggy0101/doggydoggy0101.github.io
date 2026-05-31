@@ -10,6 +10,34 @@
   const tlPreview = document.getElementById("tlPreview");
   const items = [];
   let activeT = -1;
+  // size the preview so (width + height) stays ~constant → consistent visual size
+  // across portrait/landscape, instead of capping width or height independently.
+  let curNat = null; // natural {w,h} of the current preview (for re-fit on resize)
+  function fitPreview() {
+    if (!curNat) return;
+    const r = curNat.w / curNat.h;
+    const px = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const box = tlPreview.parentElement;
+    const tl2 = box.closest(".tl2");
+    // region the preview lives in: section's left edge → just before the timeline
+    const regionLeft = tl2.getBoundingClientRect().left;
+    const regionRight = tlList.getBoundingClientRect().left - 2 * px;
+    const regionW = Math.max(8 * px, regionRight - regionLeft);
+    const K = 40 * px; // target width + height
+    let h = K / (1 + r),
+      w = r * h;
+    const capSc = Math.min(1, (40 * px) / w, (30 * px) / h); // full size (caps only)
+    const sc = Math.min(capSc, regionW / w); // also fit within the region
+    const fw = w * sc,
+      fh = h * sc;
+    box.style.width = fw + "px";
+    box.style.height = fh + "px";
+    box.style.marginLeft = Math.max(0, (regionW - fw) * 0.3) + "px"; // biased left of center
+    // hide (rather than show shrunk) once the region can't fit the full size;
+    // visibility (not display) keeps the grid slot so the timeline stays put
+    box.classList.toggle("tl-preview--off", regionW < w * capSc - 1);
+  }
+  window.addEventListener("resize", fitPreview);
   function setActive(i) {
     if (i === activeT) return;
     activeT = i;
@@ -19,6 +47,8 @@
     const pre = new Image();
     pre.onload = () => {
       tlPreview.src = s; // old stays until new is ready → no blank gap
+      curNat = { w: pre.naturalWidth, h: pre.naturalHeight };
+      fitPreview();
       tlPreview.classList.remove("in");
       void tlPreview.offsetWidth; // restart the animation
       tlPreview.classList.add("in");

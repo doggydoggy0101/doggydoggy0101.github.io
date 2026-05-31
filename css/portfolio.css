@@ -90,7 +90,7 @@
 /* ---------------- TIMELINE (two-pane) ---------------- */
 .tl2 {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: 1fr 1.5fr; /* preview (left) · timeline (right) */
   gap: var(--space);
   align-items: center;
   min-height: 31rem; /* > tallest possible list content so the rail never reflows */
@@ -100,6 +100,12 @@
 .tl-list {
   position: relative;
   align-self: stretch; /* rail spans the fixed row height */
+  justify-self: end; /* sit on the right, nudged in from the edge */
+  margin-right: clamp(1rem, 10vw, 10rem);
+  width: min(
+    26rem,
+    100%
+  ); /* fixed-ish width so the rail doesn't reflow on hover */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -210,8 +216,8 @@
 /* right: single synced preview */
 .tl-preview {
   position: relative;
-  max-width: 26rem;
-  justify-self: center;
+  max-width: 40rem;
+  justify-self: start; /* JS margin-left centers it within the available region */
   cursor: pointer;
   overflow: hidden;
   border-radius: 3px;
@@ -220,11 +226,13 @@
 }
 .tl-preview img {
   display: block;
-  max-width: 100%;
-  max-height: 26rem;
-  width: auto;
-  height: auto;
+  width: 100%; /* fill the JS-sized box (box keeps width + height ~constant) */
+  height: 100%;
+  object-fit: cover;
   border-radius: 3px;
+}
+.tl-preview--off {
+  visibility: hidden; /* hide but keep the grid slot so the timeline doesn't shift */
 }
 @keyframes previewIn {
   from {
