@@ -317,46 +317,46 @@
   background:
     radial-gradient(
       circle calc(var(--brush) * 1) at var(--mx0, -100%) var(--my0, -100%),
-      rgba(var(--c), 1),
+      rgba(var(--c), 0.6),
       transparent 72%
     ),
     radial-gradient(
       circle calc(var(--brush) * 0.92) at var(--mx1, -100%) var(--my1, -100%),
-      rgba(var(--c), 0.85),
+      rgba(var(--c), 0.5),
       transparent 72%
     ),
     radial-gradient(
       circle calc(var(--brush) * 0.86) at var(--mx2, -100%) var(--my2, -100%),
-      rgba(var(--c), 0.7),
+      rgba(var(--c), 0.42),
       transparent 72%
     ),
     radial-gradient(
       circle calc(var(--brush) * 0.79) at var(--mx3, -100%) var(--my3, -100%),
-      rgba(var(--c), 0.56),
+      rgba(var(--c), 0.34),
       transparent 72%
     ),
     radial-gradient(
       circle calc(var(--brush) * 0.73) at var(--mx4, -100%) var(--my4, -100%),
-      rgba(var(--c), 0.44),
+      rgba(var(--c), 0.26),
       transparent 72%
     ),
     radial-gradient(
       circle calc(var(--brush) * 0.66) at var(--mx5, -100%) var(--my5, -100%),
-      rgba(var(--c), 0.32),
+      rgba(var(--c), 0.19),
       transparent 72%
     ),
     radial-gradient(
       circle calc(var(--brush) * 0.59) at var(--mx6, -100%) var(--my6, -100%),
-      rgba(var(--c), 0.22),
+      rgba(var(--c), 0.13),
       transparent 72%
     ),
     radial-gradient(
       circle calc(var(--brush) * 0.52) at var(--mx7, -100%) var(--my7, -100%),
-      rgba(var(--c), 0.12),
+      rgba(var(--c), 0.07),
       transparent 72%
     );
   filter: url(#liquid) blur(4px); /* warp into an organic liquid shape (light blur) */
-  mix-blend-mode: color; /* recolor the photo blue (film-filter look), not add light */
+  mix-blend-mode: overlay; /* blue tint that keeps the photo's depth (film-like, not dark) */
   opacity: 0;
   transition: opacity 0.35s var(--ease);
 }
