@@ -12,12 +12,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK@0,9..144,300..600,0;1,9..144,300..500,0&family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
     <link rel="stylesheet" href="css/tokens.css" />
     <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/sections.css" />
   </head>
 
   <body>
@@ -26,10 +27,18 @@
     <nav class="nav">
       <a class="nav-mark" href="#home">Bang-Shien&nbsp;Chen</a>
       <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#research">Research</a></li>
+        <li>
+          <a href="#home"><span class="n">01</span> Home</a>
+        </li>
+        <li>
+          <a href="#portfolio"><span class="n">02</span> Portfolio</a>
+        </li>
+        <li>
+          <a href="#blog"><span class="n">03</span> Blog</a>
+        </li>
+        <li>
+          <a href="#research"><span class="n">04</span> Research</a>
+        </li>
       </ul>
     </nav>
 
@@ -40,6 +49,7 @@
       <div class="hero-inner wrap">
         <div class="hero-text">
           <div class="hero-head reveal">
+            <span class="section-label">01 — Home</span>
             <h1 class="hero-name">
               <span id="nameType">Bang-Shien</span><br /><em>Chen</em>
             </h1>
@@ -77,7 +87,51 @@
       </div>
     </section>
 
+    <!-- 02 — PORTFOLIO (placeholder) -->
+    <section id="portfolio" class="section section--ph">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-label">02 — Portfolio</span>
+          <h2 class="section-title">Photography</h2>
+        </header>
+        <p class="ph-note reveal">// coming soon — a photography showcase</p>
+      </div>
+    </section>
+
+    <!-- 03 — BLOG (placeholder) -->
+    <section id="blog" class="section section--ph">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-label">03 — Blog</span>
+          <h2 class="section-title">Writing &amp; Notes</h2>
+        </header>
+        <p class="ph-note reveal">// coming soon — blog &amp; project notes</p>
+      </div>
+    </section>
+
+    <!-- 04 — RESEARCH -->
+    <section id="research" class="section">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-label">04 — Research</span>
+        </header>
+        <div class="res-group">
+          <h3 class="res-sub">Publications</h3>
+          <ol class="res-list" id="publications-list"></ol>
+        </div>
+        <div class="res-group">
+          <h3 class="res-sub">Awards</h3>
+          <ul class="res-list" id="awards-list"></ul>
+        </div>
+        <div class="res-group">
+          <h3 class="res-sub">Presentations</h3>
+          <ul class="res-list" id="presentations-list"></ul>
+        </div>
+      </div>
+    </section>
+
     <script src="js/main.js"></script>
+    <script src="js/research.js"></script>
     <script src="js/bunny.js"></script>
     <script>
       // ============================================================
