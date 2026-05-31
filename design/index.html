@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/tokens.css" />
     <link rel="stylesheet" href="css/home.css" />
     <link rel="stylesheet" href="css/sections.css" />
+    <link rel="stylesheet" href="css/blog.css" />
   </head>
 
   <body>
@@ -98,14 +99,65 @@
       </div>
     </section>
 
-    <!-- 03 — BLOG (placeholder) -->
-    <section id="blog" class="section section--ph">
+    <!-- 03 — BLOG -->
+    <section id="blog" class="section">
       <div class="wrap">
         <header class="section-head reveal">
           <span class="section-label">03 — Blog</span>
-          <h2 class="section-title">Writing &amp; Notes</h2>
         </header>
-        <p class="ph-note reveal">// coming soon — blog &amp; project notes</p>
+
+        <div class="code-window reveal">
+          <div class="win-bar">
+            <div class="win-dots">
+              <i class="r"></i><i class="y"></i><i class="g"></i>
+            </div>
+            <span class="win-name">doggy@neu</span>
+          </div>
+
+          <div class="win-body">
+            <div class="explorer">
+              <h3 class="explorer-title">Explorer</h3>
+              <div class="folder" id="folder-blog">
+                <span class="caret">▾</span> blog
+              </div>
+              <ul class="file-list" data-list="blog">
+                <li data-project="blog-optimization" data-folder="blog">
+                  optimization.md
+                </li>
+                <li data-project="blog-robotics" data-folder="blog">
+                  robotics.md
+                </li>
+              </ul>
+              <div class="folder" id="folder-project">
+                <span class="caret">▾</span> project
+              </div>
+              <ul class="file-list" data-list="project">
+                <li data-project="project-registration" data-folder="project">
+                  registration.md
+                </li>
+                <li data-project="project-websites" data-folder="project">
+                  websites.md
+                </li>
+              </ul>
+              <ul class="file-list rootlist">
+                <li data-project="claude-md" data-folder="">CLAUDE.md</li>
+              </ul>
+            </div>
+
+            <div class="editor"><div class="editor-content"></div></div>
+          </div>
+
+          <div class="win-status">
+            <div class="left-status">
+              <span class="branch">⎇ main</span>
+              <span class="file-name">doggy/blog/optimization.md</span>
+            </div>
+            <div class="right-status">
+              <span class="cursor-pos">Ln 1, Col 1</span>
+              <span class="clock" id="current-time">12:00 PM</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -132,6 +184,7 @@
 
     <script src="js/main.js"></script>
     <script src="js/research.js"></script>
+    <script src="js/blog.js"></script>
     <script src="js/bunny.js"></script>
     <script>
       // ============================================================
