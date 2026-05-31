@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="css/home.css" />
     <link rel="stylesheet" href="css/sections.css" />
     <link rel="stylesheet" href="css/blog.css" />
+    <link rel="stylesheet" href="css/portfolio.css" />
   </head>
 
   <body>
@@ -89,14 +90,16 @@
       </div>
     </section>
 
-    <!-- 02 — PORTFOLIO (placeholder) -->
-    <section id="portfolio" class="section section--ph">
+    <!-- 02 — PORTFOLIO -->
+    <section id="portfolio" class="section">
       <div class="wrap">
         <header class="section-head reveal">
           <span class="section-label">02 — Portfolio</span>
-          <h2 class="section-title">Photography</h2>
         </header>
-        <p class="ph-note reveal">// coming soon — a photography showcase</p>
+        <div class="tl2">
+          <div class="tl-list" id="tlList"></div>
+          <div class="tl-preview"><img id="tlPreview" alt="" /></div>
+        </div>
       </div>
     </section>
 
@@ -183,9 +186,30 @@
       </div>
     </section>
 
+    <!-- portfolio: trip gallery (slides up) + single-photo lightbox -->
+    <div class="subpage" id="subpage">
+      <aside class="sub-menu">
+        <span class="sub-back" id="subBack">← back</span>
+        <ul class="sub-tlist" id="subTripList"></ul>
+      </aside>
+      <div class="sub-main">
+        <div class="sub-head">
+          <span class="sub-loc" id="subLoc"></span>
+          <span class="sub-meta" id="subMeta"></span>
+        </div>
+        <div class="sub-grid" id="subGrid"></div>
+      </div>
+    </div>
+    <div class="lb" id="lb">
+      <button class="lb-btn lb-close" id="lbClose">✕</button>
+      <img id="lbImg" alt="" />
+    </div>
+
     <script src="js/main.js"></script>
     <script src="js/research.js"></script>
     <script src="js/blog.js"></script>
+    <script src="js/photos.js"></script>
+    <script src="js/portfolio.js"></script>
     <script src="js/bunny.js"></script>
     <script>
       // ============================================================

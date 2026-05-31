@@ -1,0 +1,128 @@
+// Portfolio — hover-expand timeline → slide-up trip gallery → single-photo lightbox
+(function () {
+  if (typeof TRIPS === "undefined") return;
+  const root = document.documentElement;
+  const thumb = (id, f) => `../docs/photos/${id}/thumb/${f}`; // small: grid + preview
+  const full = (id, f) => `../docs/photos/${id}/${f}`; // full-res: lightbox only
+
+  // ---- timeline (left: hover to expand · right: synced preview) ----
+  const tlList = document.getElementById("tlList");
+  const tlPreview = document.getElementById("tlPreview");
+  const items = [];
+  let activeT = -1;
+  function setActive(i) {
+    if (i === activeT) return;
+    activeT = i;
+    items.forEach((el, k) => el.classList.toggle("active", k === i));
+    const t = TRIPS[i];
+    const s = thumb(t.id, t.cover || t.photos[0]);
+    const pre = new Image();
+    pre.onload = () => {
+      tlPreview.src = s; // old stays until new is ready → no blank gap
+      tlPreview.classList.remove("in");
+      void tlPreview.offsetWidth; // restart the animation
+      tlPreview.classList.add("in");
+    };
+    pre.src = s;
+  }
+  TRIPS.forEach((t, i) => {
+    const detail =
+      (t.month ? `<span class="d">${t.month}</span> · ` : "") +
+      `${t.photos.length} photos`;
+    const el = document.createElement("div");
+    el.className = "tl-item";
+    el.innerHTML = `
+      <div class="tl-body">
+        <div class="tl-loc">${t.location}</div>
+        <div class="tl-detail">${detail}</div>
+      </div>`;
+    el.addEventListener("mouseenter", () => setActive(i));
+    el.addEventListener("click", () => (location.hash = "t/" + t.id));
+    items.push(el);
+    tlList.appendChild(el);
+    // year divider on the left when the next trip is an earlier year
+    const next = TRIPS[i + 1];
+    if (next && next.year !== t.year) {
+      const div = document.createElement("div");
+      div.className = "tl-div";
+      div.innerHTML = `<span class="y">${t.year}</span><span class="ln"></span>`;
+      tlList.appendChild(div);
+    }
+  });
+  setActive(0);
+  tlPreview.parentElement.addEventListener("click", () => {
+    if (activeT >= 0) location.hash = "t/" + TRIPS[activeT].id;
+  });
+
+  // ---- subpage (full trip gallery, slides in from the right) ----
+  const subMain = document.querySelector(".sub-main");
+  const subLoc = document.getElementById("subLoc");
+  const subMeta = document.getElementById("subMeta");
+  const subGrid = document.getElementById("subGrid");
+
+  // build the left trip menu once
+  const subTripList = document.getElementById("subTripList");
+  TRIPS.forEach((t) => {
+    const li = document.createElement("li");
+    li.dataset.id = t.id;
+    li.innerHTML = `<span class="l">${t.location}</span><span class="d">${t.date}</span>`;
+    li.addEventListener("click", () => (location.hash = "t/" + t.id));
+    subTripList.appendChild(li);
+  });
+
+  function showTrip(id) {
+    const ti = TRIPS.findIndex((x) => x.id === id);
+    if (ti < 0) return showTimeline();
+    const t = TRIPS[ti];
+    subLoc.textContent = t.location;
+    subMeta.textContent = `${t.date} · ${t.photos.length} photos`;
+    subTripList
+      .querySelectorAll("li")
+      .forEach((li) => li.classList.toggle("active", li.dataset.id === id));
+    subGrid.innerHTML = "";
+    t.photos.forEach((f, pi) => {
+      const img = new Image();
+      img.src = thumb(t.id, f);
+      img.loading = "lazy";
+      img.addEventListener("click", () => openLB(ti, pi));
+      subGrid.appendChild(img);
+    });
+    root.dataset.view = "trip";
+    document.body.style.overflow = "hidden";
+    if (subMain) {
+      subMain.scrollTop = 0;
+      subMain.classList.remove("swap");
+      void subMain.offsetWidth; // restart the fade-up
+      subMain.classList.add("swap");
+    }
+  }
+  function showTimeline() {
+    root.dataset.view = "timeline";
+    document.body.style.overflow = "";
+  }
+  document.getElementById("subBack").addEventListener("click", () => (location.hash = "portfolio"));
+  function route() {
+    const m = location.hash.match(/^#t\/(.+)$/);
+    if (m) showTrip(decodeURIComponent(m[1]));
+    else showTimeline();
+  }
+  window.addEventListener("hashchange", route);
+  route();
+
+  // ---- lightbox (single photo, no caption) ----
+  const lb = document.getElementById("lb");
+  const lbImg = document.getElementById("lbImg");
+  function openLB(ti, pi) {
+    const t = TRIPS[ti];
+    lbImg.src = full(t.id, t.photos[pi]); // full-res only on click
+    lb.classList.add("open");
+  }
+  const closeLB = () => lb.classList.remove("open");
+  document.getElementById("lbClose").onclick = closeLB;
+  lb.addEventListener("click", closeLB);
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    if (lb.classList.contains("open")) closeLB();
+    else if (root.dataset.view === "trip") location.hash = "portfolio";
+  });
+})();
