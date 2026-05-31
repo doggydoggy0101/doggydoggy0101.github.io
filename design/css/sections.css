@@ -53,7 +53,7 @@
 
 /* ---- Research ---- */
 .res-group {
-  margin-top: 3.5rem;
+  margin-top: 2.4rem;
 }
 .section-head + .res-group {
   margin-top: 2rem;
@@ -98,7 +98,7 @@
   display: grid;
   grid-template-columns: 2.6rem 1fr;
   gap: 1rem;
-  padding: 0.7rem 0;
+  padding: 0.4rem 0;
   align-items: baseline;
 }
 .res-index {
