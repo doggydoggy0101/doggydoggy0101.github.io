@@ -70,6 +70,60 @@
     subTripList.appendChild(li);
   });
 
+  // cursor-trailing spotlight engine — shared by gallery cells + the timeline preview
+  // (echoes the hero point-cloud emphasis: target follows the cursor, position eases in)
+  const Spotlight = (() => {
+    let cell = null,
+      tx = 50,
+      ty = 50,
+      cx = 50,
+      cy = 50,
+      raf = 0;
+    const run = () => {
+      cx += (tx - cx) * 0.16; // ease toward the cursor for a fluid lag
+      cy += (ty - cy) * 0.16;
+      if (cell) {
+        cell.style.setProperty("--mx", cx.toFixed(1) + "%");
+        cell.style.setProperty("--my", cy.toFixed(1) + "%");
+      }
+      raf =
+        Math.abs(tx - cx) > 0.1 || Math.abs(ty - cy) > 0.1
+          ? requestAnimationFrame(run)
+          : 0;
+    };
+    return {
+      move(c, e) {
+        if (!c) return this.leave();
+        const r = c.getBoundingClientRect();
+        tx = ((e.clientX - r.left) / r.width) * 100;
+        ty = ((e.clientY - r.top) / r.height) * 100;
+        if (c !== cell) {
+          if (cell) cell.classList.remove("lit");
+          cell = c;
+          cell.classList.add("lit");
+          cx = tx; // jump to the entry point (no trail across the gap)
+          cy = ty;
+        }
+        if (!raf) raf = requestAnimationFrame(run);
+      },
+      leave() {
+        if (cell) cell.classList.remove("lit");
+        cell = null;
+      },
+    };
+  })();
+  // gallery grid (delegated — cells are rebuilt per trip)
+  subGrid.addEventListener("pointermove", (e) =>
+    Spotlight.move(e.target.closest(".ph"), e),
+  );
+  subGrid.addEventListener("pointerleave", () => Spotlight.leave());
+  // timeline preview (single persistent element)
+  const tlPrevWrap = tlPreview.parentElement;
+  tlPrevWrap.addEventListener("pointermove", (e) =>
+    Spotlight.move(tlPrevWrap, e),
+  );
+  tlPrevWrap.addEventListener("pointerleave", () => Spotlight.leave());
+
   function showTrip(id) {
     const ti = TRIPS.findIndex((x) => x.id === id);
     if (ti < 0) return showTimeline();
@@ -81,11 +135,15 @@
       .forEach((li) => li.classList.toggle("active", li.dataset.id === id));
     subGrid.innerHTML = "";
     t.photos.forEach((f, pi) => {
+      const fig = document.createElement("figure");
+      fig.className = "ph";
       const img = new Image();
       img.src = thumb(t.id, f);
       img.loading = "lazy";
-      img.addEventListener("click", () => openLB(ti, pi));
-      subGrid.appendChild(img);
+      img.alt = "";
+      fig.appendChild(img);
+      fig.addEventListener("click", () => openLB(ti, pi));
+      subGrid.appendChild(fig);
     });
     root.dataset.view = "trip";
     document.body.style.overflow = "hidden";
@@ -116,10 +174,20 @@
   const lbImg = document.getElementById("lbImg");
   function openLB(ti, pi) {
     const t = TRIPS[ti];
+    lbImg.classList.remove("ready"); // hide until the new full-res decodes
+    lbImg.onload = () => lbImg.classList.add("ready");
     lbImg.src = full(t.id, t.photos[pi]); // full-res only on click
     lb.classList.add("open");
   }
-  const closeLB = () => lb.classList.remove("open");
+  const closeLB = () => {
+    lb.classList.remove("open"); // fade the overlay out
+    lbImg.classList.remove("ready");
+    // clear src only after the fade-out, so the image doesn't vanish mid-animation
+    // (and not at all if it was reopened in the meantime)
+    setTimeout(() => {
+      if (!lb.classList.contains("open")) lbImg.removeAttribute("src");
+    }, 300);
+  };
   document.getElementById("lbClose").onclick = closeLB;
   lb.addEventListener("click", closeLB);
   document.addEventListener("keydown", (e) => {

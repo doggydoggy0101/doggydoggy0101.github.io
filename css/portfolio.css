@@ -103,6 +103,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start; /* rows shrink to content, so hover only fires over the rail + names */
 }
 /* the rail sits after the year gutter — fixed length, doesn't react to hover */
 .tl-list::before {
@@ -208,9 +209,14 @@
 
 /* right: single synced preview */
 .tl-preview {
+  position: relative;
   max-width: 26rem;
   justify-self: center;
   cursor: pointer;
+  overflow: hidden;
+  border-radius: 3px;
+  --mx: 50%;
+  --my: 50%;
 }
 .tl-preview img {
   display: block;
@@ -276,16 +282,45 @@
   column-gap: 1.1rem;
   max-width: 48rem; /* keep columns a sensible size on wide screens */
 }
-.sub-grid img {
-  width: 100%;
+.ph {
+  position: relative;
   margin-bottom: 1.1rem;
+  break-inside: avoid; /* keep each figure whole within its column */
   border-radius: 2px;
-  display: block;
+  overflow: hidden;
   cursor: pointer;
-  transition: opacity 0.3s var(--ease);
+  --mx: 50%;
+  --my: 50%;
 }
-.sub-grid img:hover {
-  opacity: 0.86;
+.ph img {
+  display: block;
+  width: 100%;
+}
+/* soft spotlight that trails the cursor (position driven by --mx/--my from JS) */
+.ph::after,
+.tl-preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 240px at var(--mx) var(--my),
+    rgba(255, 255, 255, 0.45),
+    rgba(255, 255, 255, 0) 70%
+  );
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+}
+.ph.lit::after,
+.tl-preview.lit::after {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ph::after,
+  .tl-preview::after {
+    transition: none;
+  }
 }
 
 /* mobile: trip menu stacks on top, single column */
@@ -317,22 +352,14 @@
   }
 }
 @media (max-width: 620px) {
+  /* same hover-enlarge behavior as desktop, just full-width with no preview.
+     keep the reserved min-height (from .tl2 above) so the rail stays a fixed
+     length and the section below never gets pushed. */
   .tl2 {
     grid-template-columns: 1fr;
-    min-height: 0;
   }
   .tl-preview {
     display: none;
-  }
-  /* touch: no hover — show every entry expanded */
-  .tl-loc {
-    font-size: var(--step-2);
-    color: var(--text);
-  }
-  .tl-detail {
-    max-height: 2rem;
-    opacity: 1;
-    margin-top: 0.45rem;
   }
   .sub-grid {
     columns: 1;
@@ -344,18 +371,39 @@
   position: fixed;
   inset: 0;
   z-index: 500;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(26, 24, 20, 0.94);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s var(--ease),
+    visibility 0.3s var(--ease);
 }
 .lb.open {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
 }
 .lb img {
   max-width: 90vw;
   max-height: 84vh;
   object-fit: contain;
+  opacity: 0;
+  transform: scale(0.96);
+  transition:
+    opacity 0.3s var(--ease),
+    transform 0.3s var(--ease);
+}
+.lb img.ready {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lb,
+  .lb img {
+    transition: none;
+  }
 }
 .lb-btn {
   position: absolute;
