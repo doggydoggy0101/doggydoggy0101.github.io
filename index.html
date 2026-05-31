@@ -51,7 +51,7 @@
 
       <div class="hero-inner wrap">
         <div class="hero-text">
-          <div class="hero-head reveal">
+          <div class="hero-head">
             <span class="section-label">01 — Home</span>
             <h1 class="hero-name">
               <span id="nameType">Bang-Shien</span><br /><em>Chen</em>
@@ -93,12 +93,12 @@
     <!-- 02 — PORTFOLIO -->
     <section id="portfolio" class="section">
       <div class="wrap">
-        <header class="section-head reveal">
+        <header class="section-head">
           <span class="section-label">02 — Portfolio</span>
         </header>
         <div class="tl2">
-          <div class="tl-list" id="tlList"></div>
           <div class="tl-preview"><img id="tlPreview" alt="" /></div>
+          <div class="tl-list" id="tlList"></div>
         </div>
       </div>
     </section>
@@ -106,7 +106,7 @@
     <!-- 03 — BLOG -->
     <section id="blog" class="section">
       <div class="wrap">
-        <header class="section-head reveal">
+        <header class="section-head">
           <span class="section-label">03 — Blog</span>
         </header>
 
@@ -121,31 +121,33 @@
           <div class="win-body">
             <div class="explorer">
               <h3 class="explorer-title">Explorer</h3>
-              <div class="folder" id="folder-blog">
-                <span class="caret">▾</span> blog
+              <div class="explorer-body">
+                <div class="folder" id="folder-blog">
+                  <span class="caret">▾</span> blog
+                </div>
+                <ul class="file-list" data-list="blog">
+                  <li data-project="blog-optimization" data-folder="blog">
+                    optimization.md
+                  </li>
+                  <li data-project="blog-robotics" data-folder="blog">
+                    robotics.md
+                  </li>
+                </ul>
+                <div class="folder" id="folder-project">
+                  <span class="caret">▾</span> project
+                </div>
+                <ul class="file-list" data-list="project">
+                  <li data-project="project-registration" data-folder="project">
+                    registration.md
+                  </li>
+                  <li data-project="project-websites" data-folder="project">
+                    websites.md
+                  </li>
+                </ul>
+                <ul class="file-list rootlist">
+                  <li data-project="claude-md" data-folder="">CLAUDE.md</li>
+                </ul>
               </div>
-              <ul class="file-list" data-list="blog">
-                <li data-project="blog-optimization" data-folder="blog">
-                  optimization.md
-                </li>
-                <li data-project="blog-robotics" data-folder="blog">
-                  robotics.md
-                </li>
-              </ul>
-              <div class="folder" id="folder-project">
-                <span class="caret">▾</span> project
-              </div>
-              <ul class="file-list" data-list="project">
-                <li data-project="project-registration" data-folder="project">
-                  registration.md
-                </li>
-                <li data-project="project-websites" data-folder="project">
-                  websites.md
-                </li>
-              </ul>
-              <ul class="file-list rootlist">
-                <li data-project="claude-md" data-folder="">CLAUDE.md</li>
-              </ul>
             </div>
 
             <div class="editor"><div class="editor-content"></div></div>
@@ -168,7 +170,7 @@
     <!-- 04 — RESEARCH -->
     <section id="research" class="section">
       <div class="wrap">
-        <header class="section-head reveal">
+        <header class="section-head">
           <span class="section-label">04 — Research</span>
         </header>
         <div class="res-group">
@@ -205,16 +207,40 @@
       <img id="lbImg" alt="" />
     </div>
 
+    <!-- turbulence filter: warps the gallery cursor-filter into an organic liquid shape -->
+    <svg width="0" height="0" aria-hidden="true" style="position: absolute">
+      <filter id="liquid" x="-40%" y="-40%" width="180%" height="180%">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.02"
+          numOctaves="3"
+          seed="7"
+          result="n"
+        />
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="n"
+          scale="50"
+          xChannelSelector="R"
+          yChannelSelector="G"
+        />
+      </filter>
+    </svg>
+
     <script src="js/main.js"></script>
     <script src="js/research.js"></script>
     <script src="js/blog.js"></script>
     <script src="js/photos.js"></script>
     <script src="js/portfolio.js"></script>
     <script src="js/bunny.js"></script>
+    <script src="js/m3500.js"></script>
     <script>
       // ============================================================
-      // Home hero — Stanford-bunny point cloud as a diffusion model.
-      // Bang-Shien = clean bunny (data x0)  <->  Ian = Gaussian noise (x_T)
+      // Home hero — a point cloud as a diffusion model, cycling
+      //   sphere → bunny → M3500 (Manhattan pose graph) → …
+      // Formed shape = "Bang-Shien" (data x0)  <->  Gaussian noise = "Ian" (x_T).
+      // Sphere & M3500 are pose-graph-optimization motifs (research nod);
+      // edges crossfade through the noise so the graph never "jumps".
       // Cursor adds a lagged spotlight in the --contrast blue.
       // ============================================================
       const cv = document.getElementById("sigCanvas");
@@ -252,23 +278,114 @@
         while (v === 0) v = Math.random();
         return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
       }
-      const SIGMA = 0.4;
+      const CRAD = 1.3; // radius for bunny, M3500 and the noise ball (sphere stays 1.0)
+      const SIGMA = 0.55; // spread → noise fills toward radius 1.2
+      const N = BUNNY.length; // 600 — every cloud shares this point count
       function genNoise() {
         const a = [];
-        for (let i = 0; i < BUNNY.length; i++)
-          a.push([gauss() * SIGMA, gauss() * SIGMA, gauss() * SIGMA]);
+        for (let i = 0; i < N; i++) {
+          let x, y, z;
+          do {
+            x = gauss() * SIGMA;
+            y = gauss() * SIGMA;
+            z = gauss() * SIGMA;
+          } while (x * x + y * y + z * z > CRAD * CRAD); // noise stays inside radius 1.2
+          a.push([x, y, z]);
+        }
         return a;
       }
       let eps = genNoise();
       const easeInOut = (p) =>
         p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
 
-      // shared timeline: name swap + bunny morph
+      // ---- the clouds: sphere (procedural) · bunny · M3500 (loaded) ----
+      const rotY = (P, a) => {
+        const c = Math.cos(a),
+          s = Math.sin(a);
+        return P.map((p) => [p[0] * c - p[2] * s, p[1], p[0] * s + p[2] * c]);
+      };
+      // scale a cloud so its farthest point sits at `target` radius
+      const normTo = (P, target) => {
+        let mr = 0;
+        for (const p of P) {
+          const r = Math.hypot(p[0], p[1], p[2]);
+          if (r > mr) mr = r;
+        }
+        const s = target / mr;
+        return P.map((p) => [p[0] * s, p[1] * s, p[2] * s]);
+      };
+      function genSphere(n) {
+        const a = [],
+          gold = Math.PI * (3 - Math.sqrt(5)); // fibonacci sphere
+        for (let i = 0; i < n; i++) {
+          const y = 1 - (i / (n - 1)) * 2,
+            r = Math.sqrt(Math.max(0, 1 - y * y)),
+            th = gold * i;
+          a.push([Math.cos(th) * r, y, Math.sin(th) * r]);
+        }
+        return a;
+      }
+      const CLOUDS = {
+        // sphere is a full shell (every point at max radius), so it reads larger than
+        // the others at the same radius → keep it at 1.0 while the rest sit at 1.2
+        Sphere: genSphere(N),
+        Bunny: normTo(BUNNY, CRAD), // native 3/4 view
+        M3500: rotY(normTo(M3500, CRAD), 0.5), // flat map, face-on at rest
+      };
+      const GAINV = { Sphere: 1, Bunny: 1, M3500: 1.8 }; // flat M3500 needs a little more tilt
+      // nearest-2-neighbour edges for the surfaces; M3500 uses its real street graph
+      function nnEdges(P) {
+        const E = [];
+        for (let i = 0; i < N; i++) {
+          let a = -1,
+            b = -1,
+            da = 1e9,
+            db = 1e9;
+          const p = P[i];
+          for (let j = 0; j < N; j++) {
+            if (j === i) continue;
+            const q = P[j],
+              dx = p[0] - q[0],
+              dy = p[1] - q[1],
+              dz = p[2] - q[2],
+              d = dx * dx + dy * dy + dz * dz;
+            if (d < da) {
+              db = da;
+              b = a;
+              da = d;
+              a = j;
+            } else if (d < db) {
+              db = d;
+              b = j;
+            }
+          }
+          if (a > i) E.push([i, a]);
+          if (b > i) E.push([i, b]);
+        }
+        return E;
+      }
+      const EDGES = {
+        Sphere: nnEdges(CLOUDS.Sphere),
+        Bunny: nnEdges(CLOUDS.Bunny),
+        M3500: M3500_EDGES,
+      };
+      const LOOP = ["Bunny", "Sphere", "M3500"];
+      const seq = LOOP.map((k) => CLOUDS[k]),
+        seqE = LOOP.map((k) => EDGES[k]),
+        seqG = LOOP.map((k) => GAINV[k]);
+      let si = 0,
+        SHAPE = seq[0],
+        EDG = seqE[0],
+        prevE = seqE[0], // web crossfading away during the noise
+        cross = 1, // 1 = fully on EDG
+        curGain = seqG[0];
+
+      // shared timeline: name swap + shape morph
       const nameEl = document.getElementById("nameType");
-      let phase = "bunny",
+      let phase = "form",
         pStart = performance.now(),
-        morph = 0; // 0 = bunny, 1 = noise
-      const DUR = { bunny: 2600, diffuse: 1600, noise: 2400, denoise: 1600 };
+        morph = 0; // 0 = formed shape, 1 = noise
+      const DUR = { form: 2600, diffuse: 1600, noise: 2400, denoise: 1600 };
       function nameMorph(p, from, to) {
         if (p < 0.5)
           nameEl.textContent = from.slice(
@@ -282,13 +399,17 @@
         if (reduce) {
           morph = 0;
           nameEl.textContent = "Bang-Shien";
+          SHAPE = BUNNY;
+          EDG = EDGES.Bunny;
+          curGain = 1;
           return;
         }
         const el = now - pStart;
-        if (phase === "bunny") {
+        if (phase === "form") {
           morph = 0;
+          cross = 1;
           nameEl.textContent = "Bang-Shien";
-          if (el >= DUR.bunny) {
+          if (el >= DUR.form) {
             phase = "diffuse";
             pStart = now;
             eps = genNoise();
@@ -300,53 +421,31 @@
           if (el >= DUR.diffuse) {
             phase = "noise";
             pStart = now;
+            prevE = EDG; // crossfade the web old → new through the noise
+            si = (si + 1) % seq.length;
+            SHAPE = seq[si];
+            EDG = seqE[si];
+            cross = 0;
           }
         } else if (phase === "noise") {
           morph = 1;
+          cross = Math.min(1, el / DUR.noise);
           nameEl.textContent = "Ian";
           if (el >= DUR.noise) {
             phase = "denoise";
             pStart = now;
+            cross = 1;
           }
         } else {
           const p = Math.min(1, el / DUR.denoise);
           morph = 1 - easeInOut(p);
+          cross = 1;
           nameMorph(p, "Ian", "Bang-Shien");
           if (el >= DUR.denoise) {
-            phase = "bunny";
+            phase = "form";
             pStart = now;
           }
         }
-      }
-
-      // pose-graph edges: each point to its 2 nearest neighbours (once)
-      const N = BUNNY.length;
-      const EDGES = [];
-      for (let i = 0; i < N; i++) {
-        let a = -1,
-          b = -1,
-          da = 1e9,
-          db = 1e9;
-        const p = BUNNY[i];
-        for (let j = 0; j < N; j++) {
-          if (j === i) continue;
-          const q = BUNNY[j];
-          const dx = p[0] - q[0],
-            dy = p[1] - q[1],
-            dz = p[2] - q[2];
-          const d = dx * dx + dy * dy + dz * dz;
-          if (d < da) {
-            db = da;
-            b = a;
-            da = d;
-            a = j;
-          } else if (d < db) {
-            db = d;
-            b = j;
-          }
-        }
-        if (a > i) EDGES.push([i, a]);
-        if (b > i) EDGES.push([i, b]);
       }
 
       const sx = new Float32Array(N),
@@ -354,8 +453,11 @@
         dep = new Float32Array(N),
         hl = new Float32Array(N);
       function drawCloud() {
-        const ax = my * 0.4;
-        const ay = -0.5 + mx * 0.5; // fixed 3/4 view + cursor parallax
+        curGain += (seqG[si] - curGain) * 0.06; // ease between shapes' tilt gains
+        // boost applies only to the formed shape; the noise blob always tilts at gain 1
+        const g = 1 + (curGain - 1) * (1 - morph);
+        const ax = my * 0.4 * g;
+        const ay = -0.5 + mx * 0.5 * g; // 3/4 view + cursor parallax
         const cx = W * 0.72,
           cy = H * 0.52,
           R = Math.min(W, H) * 0.24;
@@ -366,7 +468,7 @@
         const ka = Math.sqrt(1 - morph),
           kb = Math.sqrt(morph);
         for (let i = 0; i < N; i++) {
-          const h = BUNNY[i],
+          const h = SHAPE[i],
             s = eps[i];
           const X = h[0] * ka + s[0] * kb;
           const Y = h[1] * ka + s[1] * kb;
@@ -382,7 +484,7 @@
         // lagged cursor + eased glow (afterglow)
         lcuX += (cuX - lcuX) * 0.3;
         lcuY += (cuY - lcuY) * 0.3;
-        const RAD = 120 * dpr,
+        const RAD = 90 * dpr,
           RAD2 = RAD * RAD;
         for (let i = 0; i < N; i++) {
           const dx = sx[i] - lcuX,
@@ -391,20 +493,25 @@
           const t0 = dd < RAD2 ? 1 - Math.sqrt(dd) / RAD : 0;
           hl[i] += (t0 - hl[i]) * 0.2;
         }
-        // edges
+        // edges — crossfade old → new web through the noise so it never jumps
         ctx.lineWidth = dpr;
-        const edgeFade = 1 - morph * 0.35;
-        for (let e = 0; e < EDGES.length; e++) {
-          const i = EDGES[e][0],
-            j = EDGES[e][1];
-          let a = (0.05 + ((dep[i] + dep[j]) / 2) * 0.2) * edgeFade;
-          a += Math.max(hl[i], hl[j]) * 0.4;
-          ctx.strokeStyle = `rgba(${MUTED},${a})`;
-          ctx.beginPath();
-          ctx.moveTo(sx[i], sy[i]);
-          ctx.lineTo(sx[j], sy[j]);
-          ctx.stroke();
-        }
+        const edgeVis = 1 - morph * 0.25;
+        const drawEdges = (list, w) => {
+          if (w <= 0.001) return;
+          for (let e = 0; e < list.length; e++) {
+            const i = list[e][0],
+              j = list[e][1];
+            let a = (0.05 + ((dep[i] + dep[j]) / 2) * 0.2) * edgeVis * w;
+            a += Math.max(hl[i], hl[j]) * 0.4 * w;
+            ctx.strokeStyle = `rgba(${MUTED},${a})`;
+            ctx.beginPath();
+            ctx.moveTo(sx[i], sy[i]);
+            ctx.lineTo(sx[j], sy[j]);
+            ctx.stroke();
+          }
+        };
+        drawEdges(EDG, cross);
+        if (cross < 0.999) drawEdges(prevE, 1 - cross);
         // nodes (rose → contrast-blue within the cursor spotlight)
         for (let i = 0; i < N; i++) {
           const t = hl[i];
@@ -448,6 +555,37 @@
         cuX = (e.clientX - r.left) * dpr;
         cuY = (e.clientY - r.top) * dpr;
       });
+
+      // cursor spotlight on the "Chen" name → turns --contrast blue near the cursor
+      const chen = document.querySelector(".hero-name em");
+      if (chen) {
+        let tx = 50,
+          ty = -200,
+          cx = 50,
+          cy = -200,
+          craf = 0;
+        const chrun = () => {
+          cx += (tx - cx) * 0.3; // eased follow (matches the cloud cursor lag)
+          cy += (ty - cy) * 0.3;
+          chen.style.setProperty("--mx", cx.toFixed(1) + "%");
+          chen.style.setProperty("--my", cy.toFixed(1) + "%");
+          craf =
+            Math.abs(tx - cx) > 0.5 || Math.abs(ty - cy) > 0.5
+              ? requestAnimationFrame(chrun)
+              : 0;
+        };
+        chen.addEventListener("pointermove", (e) => {
+          const r = chen.getBoundingClientRect();
+          tx = ((e.clientX - r.left) / r.width) * 100;
+          ty = ((e.clientY - r.top) / r.height) * 100;
+          if (!craf) craf = requestAnimationFrame(chrun);
+        });
+        chen.addEventListener("pointerleave", () => {
+          tx = 50;
+          ty = -200; // glide back off the text
+          if (!craf) craf = requestAnimationFrame(chrun);
+        });
+      }
       requestAnimationFrame(loop);
     </script>
   </body>

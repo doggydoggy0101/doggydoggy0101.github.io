@@ -107,11 +107,24 @@
   line-height: 0.94;
   letter-spacing: -0.025em;
   color: var(--text);
+  cursor: default; /* it's an interactive title, not selectable text → no I-beam */
+  user-select: none;
 }
 .hero-name em {
   font-style: italic;
   font-weight: 400;
-  color: var(--accent);
+  /* text filled with a cursor-following gradient: blue near the cursor, rose elsewhere */
+  --mx: 50%;
+  --my: -200%; /* parked off the text until the cursor enters */
+  background-image: radial-gradient(
+    circle 4rem at var(--mx) var(--my),
+    var(--contrast),
+    var(--accent) 60%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 /* right column */

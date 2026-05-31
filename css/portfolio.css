@@ -90,7 +90,7 @@
 /* ---------------- TIMELINE (two-pane) ---------------- */
 .tl2 {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: 1fr 1.5fr; /* preview (left) · timeline (right) */
   gap: var(--space);
   align-items: center;
   min-height: 31rem; /* > tallest possible list content so the rail never reflows */
@@ -100,9 +100,16 @@
 .tl-list {
   position: relative;
   align-self: stretch; /* rail spans the fixed row height */
+  justify-self: end; /* sit on the right, nudged in from the edge */
+  margin-right: clamp(1rem, 10vw, 10rem);
+  width: min(
+    26rem,
+    100%
+  ); /* fixed-ish width so the rail doesn't reflow on hover */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start; /* rows shrink to content, so hover only fires over the rail + names */
 }
 /* the rail sits after the year gutter — fixed length, doesn't react to hover */
 .tl-list::before {
@@ -208,17 +215,24 @@
 
 /* right: single synced preview */
 .tl-preview {
-  max-width: 26rem;
-  justify-self: center;
+  position: relative;
+  max-width: 40rem;
+  justify-self: start; /* JS margin-left centers it within the available region */
   cursor: pointer;
+  overflow: hidden;
+  isolation: isolate; /* contain the color blend to the photo */
+  border-radius: 3px;
+  --brush: 150px; /* smaller filter blob on the (large) preview */
 }
 .tl-preview img {
   display: block;
-  max-width: 100%;
-  max-height: 26rem;
-  width: auto;
-  height: auto;
+  width: 100%; /* fill the JS-sized box (box keeps width + height ~constant) */
+  height: 100%;
+  object-fit: cover;
   border-radius: 3px;
+}
+.tl-preview--off {
+  visibility: hidden; /* hide but keep the grid slot so the timeline doesn't shift */
 }
 @keyframes previewIn {
   from {
@@ -276,16 +290,85 @@
   column-gap: 1.1rem;
   max-width: 48rem; /* keep columns a sensible size on wide screens */
 }
-.sub-grid img {
-  width: 100%;
+.ph {
+  position: relative;
   margin-bottom: 1.1rem;
+  break-inside: avoid; /* keep each figure whole within its column */
   border-radius: 2px;
-  display: block;
+  overflow: hidden;
+  isolation: isolate; /* contain the color blend to the photo */
   cursor: pointer;
-  transition: opacity 0.3s var(--ease);
+  --brush: 190px; /* base filter-blob size */
 }
-.sub-grid img:hover {
-  opacity: 0.86;
+.ph img {
+  display: block;
+  width: 100%;
+}
+/* soft spotlight that trails the cursor (position driven by --mx/--my from JS) */
+.ph::after,
+.tl-preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  --c: 60, 120, 210; /* --contrast blue */
+  /* trail of varied-size dabs, warped together → an organic, liquid blue filter
+     (--brush base size is inherited from .ph / .tl-preview) */
+  background:
+    radial-gradient(
+      circle calc(var(--brush) * 1) at var(--mx0, -100%) var(--my0, -100%),
+      rgba(var(--c), 0.6),
+      transparent 72%
+    ),
+    radial-gradient(
+      circle calc(var(--brush) * 0.92) at var(--mx1, -100%) var(--my1, -100%),
+      rgba(var(--c), 0.5),
+      transparent 72%
+    ),
+    radial-gradient(
+      circle calc(var(--brush) * 0.86) at var(--mx2, -100%) var(--my2, -100%),
+      rgba(var(--c), 0.42),
+      transparent 72%
+    ),
+    radial-gradient(
+      circle calc(var(--brush) * 0.79) at var(--mx3, -100%) var(--my3, -100%),
+      rgba(var(--c), 0.34),
+      transparent 72%
+    ),
+    radial-gradient(
+      circle calc(var(--brush) * 0.73) at var(--mx4, -100%) var(--my4, -100%),
+      rgba(var(--c), 0.26),
+      transparent 72%
+    ),
+    radial-gradient(
+      circle calc(var(--brush) * 0.66) at var(--mx5, -100%) var(--my5, -100%),
+      rgba(var(--c), 0.19),
+      transparent 72%
+    ),
+    radial-gradient(
+      circle calc(var(--brush) * 0.59) at var(--mx6, -100%) var(--my6, -100%),
+      rgba(var(--c), 0.13),
+      transparent 72%
+    ),
+    radial-gradient(
+      circle calc(var(--brush) * 0.52) at var(--mx7, -100%) var(--my7, -100%),
+      rgba(var(--c), 0.07),
+      transparent 72%
+    );
+  filter: url(#liquid) blur(4px); /* warp into an organic liquid shape (light blur) */
+  mix-blend-mode: overlay; /* blue tint that keeps the photo's depth (film-like, not dark) */
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+}
+.ph.lit::after,
+.tl-preview.lit::after {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ph::after,
+  .tl-preview::after {
+    transition: none;
+  }
 }
 
 /* mobile: trip menu stacks on top, single column */
@@ -317,22 +400,14 @@
   }
 }
 @media (max-width: 620px) {
+  /* same hover-enlarge behavior as desktop, just full-width with no preview.
+     keep the reserved min-height (from .tl2 above) so the rail stays a fixed
+     length and the section below never gets pushed. */
   .tl2 {
     grid-template-columns: 1fr;
-    min-height: 0;
   }
   .tl-preview {
     display: none;
-  }
-  /* touch: no hover — show every entry expanded */
-  .tl-loc {
-    font-size: var(--step-2);
-    color: var(--text);
-  }
-  .tl-detail {
-    max-height: 2rem;
-    opacity: 1;
-    margin-top: 0.45rem;
   }
   .sub-grid {
     columns: 1;
@@ -344,18 +419,39 @@
   position: fixed;
   inset: 0;
   z-index: 500;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(26, 24, 20, 0.94);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s var(--ease),
+    visibility 0.3s var(--ease);
 }
 .lb.open {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
 }
 .lb img {
   max-width: 90vw;
   max-height: 84vh;
   object-fit: contain;
+  opacity: 0;
+  transform: scale(0.96);
+  transition:
+    opacity 0.3s var(--ease),
+    transform 0.3s var(--ease);
+}
+.lb img.ready {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lb,
+  .lb img {
+    transition: none;
+  }
 }
 .lb-btn {
   position: absolute;

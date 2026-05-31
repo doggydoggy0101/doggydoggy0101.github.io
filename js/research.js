@@ -102,23 +102,4 @@ document.addEventListener("DOMContentLoaded", () => {
   presentations.forEach((p) =>
     presEl.appendChild(item(p.index, `${p.title} ${p.location}`)),
   );
-
-  // staggered reveal per group
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("in");
-          io.unobserve(e.target);
-        }
-      });
-    },
-    { threshold: 0.12 },
-  );
-  document.querySelectorAll(".res-group").forEach((g) => {
-    g.querySelectorAll(".res-item").forEach((li, i) => {
-      li.style.transitionDelay = 0.06 + i * 0.05 + "s";
-    });
-    io.observe(g);
-  });
 });

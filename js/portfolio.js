@@ -10,6 +10,34 @@
   const tlPreview = document.getElementById("tlPreview");
   const items = [];
   let activeT = -1;
+  // size the preview so (width + height) stays ~constant → consistent visual size
+  // across portrait/landscape, instead of capping width or height independently.
+  let curNat = null; // natural {w,h} of the current preview (for re-fit on resize)
+  function fitPreview() {
+    if (!curNat) return;
+    const r = curNat.w / curNat.h;
+    const px = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const box = tlPreview.parentElement;
+    const tl2 = box.closest(".tl2");
+    // region the preview lives in: section's left edge → just before the timeline
+    const regionLeft = tl2.getBoundingClientRect().left;
+    const regionRight = tlList.getBoundingClientRect().left - 2 * px;
+    const regionW = Math.max(8 * px, regionRight - regionLeft);
+    const K = 40 * px; // target width + height
+    let h = K / (1 + r),
+      w = r * h;
+    const capSc = Math.min(1, (40 * px) / w, (30 * px) / h); // full size (caps only)
+    const sc = Math.min(capSc, regionW / w); // also fit within the region
+    const fw = w * sc,
+      fh = h * sc;
+    box.style.width = fw + "px";
+    box.style.height = fh + "px";
+    box.style.marginLeft = Math.max(0, (regionW - fw) * 0.3) + "px"; // biased left of center
+    // hide (rather than show shrunk) once the region can't fit the full size;
+    // visibility (not display) keeps the grid slot so the timeline stays put
+    box.classList.toggle("tl-preview--off", regionW < w * capSc - 1);
+  }
+  window.addEventListener("resize", fitPreview);
   function setActive(i) {
     if (i === activeT) return;
     activeT = i;
@@ -19,6 +47,8 @@
     const pre = new Image();
     pre.onload = () => {
       tlPreview.src = s; // old stays until new is ready → no blank gap
+      curNat = { w: pre.naturalWidth, h: pre.naturalHeight };
+      fitPreview();
       tlPreview.classList.remove("in");
       void tlPreview.offsetWidth; // restart the animation
       tlPreview.classList.add("in");
@@ -70,6 +100,75 @@
     subTripList.appendChild(li);
   });
 
+  // cursor-trailing spotlight engine — shared by gallery cells + the timeline preview
+  // (echoes the hero point-cloud emphasis: target follows the cursor, position eases in)
+  const Spotlight = (() => {
+    const N = 8; // trail length → brush-stroke feel
+    let cell = null,
+      tx = 50,
+      ty = 50,
+      cx = 50,
+      cy = 50,
+      raf = 0;
+    const hx = new Array(N).fill(50),
+      hy = new Array(N).fill(50);
+    const run = () => {
+      cx += (tx - cx) * 0.3; // eased head
+      cy += (ty - cy) * 0.3;
+      for (let i = N - 1; i > 0; i--) {
+        hx[i] = hx[i - 1]; // shift the trail buffer
+        hy[i] = hy[i - 1];
+      }
+      hx[0] = cx;
+      hy[0] = cy;
+      if (cell) {
+        for (let i = 0; i < N; i++) {
+          cell.style.setProperty("--mx" + i, hx[i].toFixed(1) + "%");
+          cell.style.setProperty("--my" + i, hy[i].toFixed(1) + "%");
+        }
+      }
+      const moving = Math.abs(tx - cx) > 0.1 || Math.abs(ty - cy) > 0.1;
+      const spread =
+        Math.abs(hx[N - 1] - cx) > 0.5 || Math.abs(hy[N - 1] - cy) > 0.5;
+      raf = moving || spread ? requestAnimationFrame(run) : 0; // run until the trail collapses
+    };
+    return {
+      move(c, e) {
+        if (!c) return this.leave();
+        const r = c.getBoundingClientRect();
+        tx = ((e.clientX - r.left) / r.width) * 100;
+        ty = ((e.clientY - r.top) / r.height) * 100;
+        if (c !== cell) {
+          if (cell) cell.classList.remove("lit");
+          cell = c;
+          cell.classList.add("lit");
+          cx = tx; // jump to the entry point (no trail across the gap)
+          cy = ty;
+          for (let i = 0; i < N; i++) {
+            hx[i] = tx; // start the trail collapsed at the entry point
+            hy[i] = ty;
+          }
+        }
+        if (!raf) raf = requestAnimationFrame(run);
+      },
+      leave() {
+        if (cell) cell.classList.remove("lit");
+        cell = null;
+      },
+    };
+  })();
+  // gallery grid (delegated — cells are rebuilt per trip)
+  subGrid.addEventListener("pointermove", (e) =>
+    Spotlight.move(e.target.closest(".ph"), e),
+  );
+  subGrid.addEventListener("pointerleave", () => Spotlight.leave());
+  // timeline preview (single persistent element)
+  const tlPrevWrap = tlPreview.parentElement;
+  tlPrevWrap.addEventListener("pointermove", (e) =>
+    Spotlight.move(tlPrevWrap, e),
+  );
+  tlPrevWrap.addEventListener("pointerleave", () => Spotlight.leave());
+
   function showTrip(id) {
     const ti = TRIPS.findIndex((x) => x.id === id);
     if (ti < 0) return showTimeline();
@@ -81,11 +180,15 @@
       .forEach((li) => li.classList.toggle("active", li.dataset.id === id));
     subGrid.innerHTML = "";
     t.photos.forEach((f, pi) => {
+      const fig = document.createElement("figure");
+      fig.className = "ph";
       const img = new Image();
       img.src = thumb(t.id, f);
       img.loading = "lazy";
-      img.addEventListener("click", () => openLB(ti, pi));
-      subGrid.appendChild(img);
+      img.alt = "";
+      fig.appendChild(img);
+      fig.addEventListener("click", () => openLB(ti, pi));
+      subGrid.appendChild(fig);
     });
     root.dataset.view = "trip";
     document.body.style.overflow = "hidden";
@@ -116,10 +219,20 @@
   const lbImg = document.getElementById("lbImg");
   function openLB(ti, pi) {
     const t = TRIPS[ti];
+    lbImg.classList.remove("ready"); // hide until the new full-res decodes
+    lbImg.onload = () => lbImg.classList.add("ready");
     lbImg.src = full(t.id, t.photos[pi]); // full-res only on click
     lb.classList.add("open");
   }
-  const closeLB = () => lb.classList.remove("open");
+  const closeLB = () => {
+    lb.classList.remove("open"); // fade the overlay out
+    lbImg.classList.remove("ready");
+    // clear src only after the fade-out, so the image doesn't vanish mid-animation
+    // (and not at all if it was reopened in the meantime)
+    setTimeout(() => {
+      if (!lb.classList.contains("open")) lbImg.removeAttribute("src");
+    }, 300);
+  };
   document.getElementById("lbClose").onclick = closeLB;
   lb.addEventListener("click", closeLB);
   document.addEventListener("keydown", (e) => {
