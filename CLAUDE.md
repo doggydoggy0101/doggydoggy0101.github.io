@@ -4,13 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Bang-Shien Chen's personal academic website, served as a static site via GitHub Pages at https://dgbshien.com/ (domain set by `CNAME`). There is no build step, bundler, or package manager — `index.html` is the single page and loads CSS/JS directly. All third-party libraries (GSAP + ScrollTrigger, Lenis, Typed.js, jQuery) are pulled from CDNs; only `lightbox2` is vendored as a git submodule.
+Bang-Shien Chen's personal academic website, served as a static site via GitHub Pages at https://dgbshien.com/ (domain set by `CNAME`). Hand-written HTML/CSS/vanilla JS — **no framework, no build step, no bundler, no package manager**. The only external dependency is Google Fonts (loaded via `<link>`); there are no vendored libraries or submodules.
 
 ## Commands
 
-- **Run locally**: open `index.html` in a browser, or serve the folder (e.g. `python3 -m http.server`) so relative `docs/`, `css/`, `js/` paths resolve.
-- **Format** (the only CI check, runs Prettier on PRs/pushes to `main`): `prettier . --check` to verify, `prettier . --write` to fix. `lightbox2/` and `docs/` are excluded via `.prettierignore`.
-- **Submodule**: after a fresh clone run `git submodule update --init` to populate `lightbox2/`.
+- **Run locally**: serve the repo root (e.g. `python3 -m http.server`) so relative `docs/`, `css/`, `js/` paths resolve, then open the printed URL. Opening `index.html` directly also works but `fetch`-free, so it's fine.
+- **Format** (the only CI check, runs Prettier on PRs/pushes to `main`): `prettier . --check` to verify, `prettier . --write` to fix. `docs/` is excluded via `.prettierignore`.
 
 ## Branching
 
@@ -18,22 +17,22 @@ Work happens on `develop`; `main` is the deployed branch (GitHub Pages + the for
 
 ## Architecture
 
-`index.html` defines the page as a sequence of `<section>` elements (`#intro`, `#portfolio`, `#gallery`, `#projects`, `#research`) plus a `#loading-screen` and `#navbar`. Each section has a matching `css/<name>.css` and `js/<name>.js`. Most sections are **data-driven**: the HTML ships near-empty container elements (e.g. `<ol id="publications-list">`) and the JS injects content on `DOMContentLoaded`.
+`index.html` is a **single-page scroll site** with four sections — `#home`, `#portfolio`, `#blog`, `#research` — plus a fixed `nav`. Each area has matching `css/<name>.css` and `js/<name>.js`. The design system lives in `css/tokens.css` (palette, fonts, fluid type scale, motion primitives); fonts are Fraunces (display serif), Inter (body), JetBrains Mono (accents).
 
-To edit site content you edit the data arrays/calls in JS, not the HTML:
+Content is **data-driven** — edit the arrays/strings at the top of the JS, not the HTML:
 
-- **Research** (`js/research.js`): edit the `publications`, `awards`, and `presentations` arrays. Entries are objects with HTML strings (`<b>`, `<i>` inline) and link lists.
-- **Projects/blogs** (`js/projects.js`): edit the `projects` array; each entry is a "file" card whose `content` is an HTML string linking to PDFs in `docs/blogs/`.
-- **Gallery** (`js/gallery.js`): edit the `generateGalleryRow([...ids], rowId)` calls (look for the `//! maintain gallery here` marker). Each id `N` maps to a full-res `docs/gallery/N.webp` (lightbox target) and a compressed `docs/gallery-compress/N.jpg` (thumbnail) — add both files when adding an id.
-- `js/script.js` drives the loading screen and global scroll setup; `js/portfolio.js` handles intro/portfolio GSAP scroll animations.
-
-Animation throughout uses GSAP `ScrollTrigger`; smooth scrolling uses Lenis. The loading screen waits on `docs/images/background.webp` to load before revealing the page.
+- **Research** (`js/research.js`): editorial list, grouped by sub-heading; entries are HTML strings.
+- **Blog/projects** (`js/blog.js`): a fake VS-Code "editor window"; the file-tree content links to PDFs in `docs/blogs/`.
+- **Portfolio** (`js/photos.js` + `js/portfolio.js`): `photos.js` holds the `TRIPS` manifest (one object per trip: `{id, location, date, cover, photos[]}`, newest-first, cover pinned first). `portfolio.js` builds the hover-expand timeline, the slide-in per-trip gallery subpage, and the single-photo lightbox. Each photo has a `docs/photos/<id>/thumb/<f>` (grid/preview) and full-res `docs/photos/<id>/<f>` (lightbox only).
+- **Home** (`js/bunny.js` + inline script in `index.html`): `bunny.js` holds the `BUNNY` point cloud; the hero canvas animates a diffusion-style scatter/reform of it.
+- `js/main.js`: nav active-state, scroll-reveal (IntersectionObserver), hash routing.
 
 ## Assets
 
-`docs/` holds all binary assets (`blogs/` PDFs, `gallery/` + `gallery-compress/` images, `images/`, `files/`, `fonts/`). Gallery thumbnails are JPGs converted from WebP (see `README.txt` for the conversion tool). Keep `docs/` out of Prettier's scope.
+`docs/` holds all binary assets and is kept out of Prettier's scope: `images/icon.jpg` (favicon), `files/*.pdf` (CV/SOP), `blogs/*.pdf`, and `photos/<trip>/` (web WebP + `thumb/` subfolder).
+
+Photos: convert originals to WebP with ImageMagick (`magick -auto-orient -quality 90`), then generate ~1000px thumbnails into each trip's `thumb/` (`magick in.webp -resize '1000x1000>' -quality 80 thumb/in.webp`). Full-res originals are kept locally in `docs/temp/`, which is git-ignored (not shipped).
 
 ## Conventions
 
-- Code in this repo uses `//!` for maintenance-point markers (e.g. the gallery list) — search these when looking for the spot to edit content.
 - `README.txt` tracks a running todo/ideas list for the site.
