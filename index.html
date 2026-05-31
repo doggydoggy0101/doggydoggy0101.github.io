@@ -51,7 +51,7 @@
 
       <div class="hero-inner wrap">
         <div class="hero-text">
-          <div class="hero-head reveal">
+          <div class="hero-head">
             <span class="section-label">01 — Home</span>
             <h1 class="hero-name">
               <span id="nameType">Bang-Shien</span><br /><em>Chen</em>
@@ -93,7 +93,7 @@
     <!-- 02 — PORTFOLIO -->
     <section id="portfolio" class="section">
       <div class="wrap">
-        <header class="section-head reveal">
+        <header class="section-head">
           <span class="section-label">02 — Portfolio</span>
         </header>
         <div class="tl2">
@@ -106,7 +106,7 @@
     <!-- 03 — BLOG -->
     <section id="blog" class="section">
       <div class="wrap">
-        <header class="section-head reveal">
+        <header class="section-head">
           <span class="section-label">03 — Blog</span>
         </header>
 
@@ -170,7 +170,7 @@
     <!-- 04 — RESEARCH -->
     <section id="research" class="section">
       <div class="wrap">
-        <header class="section-head reveal">
+        <header class="section-head">
           <span class="section-label">04 — Research</span>
         </header>
         <div class="res-group">
@@ -206,6 +206,26 @@
       <button class="lb-btn lb-close" id="lbClose">✕</button>
       <img id="lbImg" alt="" />
     </div>
+
+    <!-- turbulence filter: warps the gallery cursor-filter into an organic liquid shape -->
+    <svg width="0" height="0" aria-hidden="true" style="position: absolute">
+      <filter id="liquid" x="-40%" y="-40%" width="180%" height="180%">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.02"
+          numOctaves="3"
+          seed="7"
+          result="n"
+        />
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="n"
+          scale="50"
+          xChannelSelector="R"
+          yChannelSelector="G"
+        />
+      </filter>
+    </svg>
 
     <script src="js/main.js"></script>
     <script src="js/research.js"></script>
@@ -464,7 +484,7 @@
         // lagged cursor + eased glow (afterglow)
         lcuX += (cuX - lcuX) * 0.3;
         lcuY += (cuY - lcuY) * 0.3;
-        const RAD = 120 * dpr,
+        const RAD = 90 * dpr,
           RAD2 = RAD * RAD;
         for (let i = 0; i < N; i++) {
           const dx = sx[i] - lcuX,
@@ -535,6 +555,37 @@
         cuX = (e.clientX - r.left) * dpr;
         cuY = (e.clientY - r.top) * dpr;
       });
+
+      // cursor spotlight on the "Chen" name → turns --contrast blue near the cursor
+      const chen = document.querySelector(".hero-name em");
+      if (chen) {
+        let tx = 50,
+          ty = -200,
+          cx = 50,
+          cy = -200,
+          craf = 0;
+        const chrun = () => {
+          cx += (tx - cx) * 0.3; // eased follow (matches the cloud cursor lag)
+          cy += (ty - cy) * 0.3;
+          chen.style.setProperty("--mx", cx.toFixed(1) + "%");
+          chen.style.setProperty("--my", cy.toFixed(1) + "%");
+          craf =
+            Math.abs(tx - cx) > 0.5 || Math.abs(ty - cy) > 0.5
+              ? requestAnimationFrame(chrun)
+              : 0;
+        };
+        chen.addEventListener("pointermove", (e) => {
+          const r = chen.getBoundingClientRect();
+          tx = ((e.clientX - r.left) / r.width) * 100;
+          ty = ((e.clientY - r.top) / r.height) * 100;
+          if (!craf) craf = requestAnimationFrame(chrun);
+        });
+        chen.addEventListener("pointerleave", () => {
+          tx = 50;
+          ty = -200; // glide back off the text
+          if (!craf) craf = requestAnimationFrame(chrun);
+        });
+      }
       requestAnimationFrame(loop);
     </script>
   </body>

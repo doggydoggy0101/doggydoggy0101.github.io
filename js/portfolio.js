@@ -103,23 +103,34 @@
   // cursor-trailing spotlight engine — shared by gallery cells + the timeline preview
   // (echoes the hero point-cloud emphasis: target follows the cursor, position eases in)
   const Spotlight = (() => {
+    const N = 8; // trail length → brush-stroke feel
     let cell = null,
       tx = 50,
       ty = 50,
       cx = 50,
       cy = 50,
       raf = 0;
+    const hx = new Array(N).fill(50),
+      hy = new Array(N).fill(50);
     const run = () => {
-      cx += (tx - cx) * 0.16; // ease toward the cursor for a fluid lag
-      cy += (ty - cy) * 0.16;
-      if (cell) {
-        cell.style.setProperty("--mx", cx.toFixed(1) + "%");
-        cell.style.setProperty("--my", cy.toFixed(1) + "%");
+      cx += (tx - cx) * 0.3; // eased head
+      cy += (ty - cy) * 0.3;
+      for (let i = N - 1; i > 0; i--) {
+        hx[i] = hx[i - 1]; // shift the trail buffer
+        hy[i] = hy[i - 1];
       }
-      raf =
-        Math.abs(tx - cx) > 0.1 || Math.abs(ty - cy) > 0.1
-          ? requestAnimationFrame(run)
-          : 0;
+      hx[0] = cx;
+      hy[0] = cy;
+      if (cell) {
+        for (let i = 0; i < N; i++) {
+          cell.style.setProperty("--mx" + i, hx[i].toFixed(1) + "%");
+          cell.style.setProperty("--my" + i, hy[i].toFixed(1) + "%");
+        }
+      }
+      const moving = Math.abs(tx - cx) > 0.1 || Math.abs(ty - cy) > 0.1;
+      const spread =
+        Math.abs(hx[N - 1] - cx) > 0.5 || Math.abs(hy[N - 1] - cy) > 0.5;
+      raf = moving || spread ? requestAnimationFrame(run) : 0; // run until the trail collapses
     };
     return {
       move(c, e) {
@@ -133,6 +144,10 @@
           cell.classList.add("lit");
           cx = tx; // jump to the entry point (no trail across the gap)
           cy = ty;
+          for (let i = 0; i < N; i++) {
+            hx[i] = tx; // start the trail collapsed at the entry point
+            hy[i] = ty;
+          }
         }
         if (!raf) raf = requestAnimationFrame(run);
       },
