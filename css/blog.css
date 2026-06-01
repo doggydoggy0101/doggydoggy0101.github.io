@@ -2,14 +2,170 @@
    BLOG — restyled "code editor" window (light / editorial)
    ============================================================ */
 
-.code-window {
+/* stage holds the editor window above a photo revealed when it's minimized */
+.blog-stage {
+  position: relative;
   max-width: 62rem;
   margin: 2rem auto 0;
+}
+/* legend + photo, always present behind the editor; minimizing uncovers it */
+.blog-reveal {
+  position: absolute;
+  top: 50%;
+  right: 18%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: flex-start; /* legend rides at the top, clear of the minimized editor */
+  gap: 1.4rem;
+  pointer-events: none;
+}
+.dogs-legend {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  line-height: 1.3;
+  color: var(--muted); /* code-comment style */
+  white-space: nowrap;
+}
+.dogs-legend .pos {
+  opacity: 0.6;
+}
+.blog-photo {
+  max-width: 15rem;
+  max-height: 18rem;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 24px 50px -28px rgba(58, 56, 47, 0.5);
+}
+.code-window {
+  position: relative;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 12px;
   box-shadow: 0 34px 80px -44px rgba(58, 56, 47, 0.55);
   overflow: hidden;
+  transform-origin: bottom left;
+  transition:
+    transform 0.5s var(--ease),
+    box-shadow 0.5s var(--ease);
+}
+/* traffic-light dots: yellow minimizes (reveals the photo), red shakes ("nope") */
+.win-dots .y,
+.win-dots .r {
+  cursor: pointer;
+}
+@keyframes win-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(-7px);
+  }
+  30% {
+    transform: translateX(6px);
+  }
+  45% {
+    transform: translateX(-4px);
+  }
+  60% {
+    transform: translateX(3px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+}
+.code-window.shake {
+  animation: win-shake 0.5s var(--ease);
+}
+.win-dots .g {
+  cursor: pointer;
+}
+/* green: maximize the editor over a dim backdrop (green / Esc / backdrop to restore) */
+.blog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 590;
+  background: rgba(26, 24, 20, 0.55);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.4s var(--ease),
+    visibility 0.4s;
+}
+.blog-stage.max .blog-backdrop {
+  opacity: 1;
+  visibility: visible;
+  cursor: pointer;
+}
+.blog-stage.max .code-window {
+  position: fixed;
+  inset: 5vh 6vw;
+  z-index: 600;
+  transform: none;
+  transform-origin: center;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.45);
+  animation: winMax 0.3s var(--ease-out);
+}
+.blog-stage.max .win-body {
+  flex: 1;
+  height: auto;
+  min-height: 0;
+}
+/* while maximized only green (restore) is active → grey out + disable red & yellow */
+.blog-stage.max .win-dots .y,
+.blog-stage.max .win-dots .r {
+  background: var(--muted);
+  opacity: 0.4;
+  pointer-events: none;
+}
+@keyframes winMax {
+  from {
+    opacity: 0.4;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.blog-stage.min .code-window {
+  transform: scale(0.42);
+  cursor: pointer; /* click the minimized editor to restore */
+  box-shadow: 0 26px 50px -28px rgba(58, 56, 47, 0.6);
+}
+.blog-stage.min .code-window > * {
+  pointer-events: none; /* a click on the window restores instead of hitting files */
+}
+/* the dog reveal is a wide-screen treat — disable it (and the minimize) when narrow */
+@media (max-width: 860px) {
+  .win-dots .r,
+  .win-dots .y,
+  .win-dots .g {
+    cursor: default; /* all window controls are inert below 860 */
+  }
+  .blog-reveal {
+    display: none;
+  }
+  .blog-stage.min .code-window {
+    transform: none;
+    cursor: auto;
+    box-shadow: 0 34px 80px -44px rgba(58, 56, 47, 0.55);
+  }
+  .blog-stage.min .code-window > * {
+    pointer-events: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .blog-photo,
+  .code-window {
+    transition: none;
+  }
 }
 
 /* title bar */

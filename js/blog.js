@@ -134,4 +134,52 @@ document.addEventListener("DOMContentLoaded", () => {
     const col = Math.max(1, Math.floor((e.clientX - r.left) / 8));
     cursorPos.textContent = `Ln ${ln}, Col ${col}`;
   });
+
+  // yellow dot minimizes the window (revealing the photo behind); click to restore
+  const stage = document.querySelector(".blog-stage");
+  const win = stage && stage.querySelector(".code-window");
+  const dots = document.querySelector(".win-dots");
+  if (stage && win && dots) {
+    const wide = () => window.innerWidth > 860; // window controls are a wide-screen treat
+    // yellow: minimize → reveal the photo; click the small window to restore
+    dots.querySelector(".y").addEventListener("click", (e) => {
+      if (!wide()) return;
+      e.stopPropagation();
+      stage.classList.add("min");
+    });
+    win.addEventListener("click", () => {
+      if (stage.classList.contains("min")) stage.classList.remove("min");
+    });
+    // red: a playful "nope" shake (closing isn't a real action)
+    dots.querySelector(".r").addEventListener("click", (e) => {
+      if (!wide()) return;
+      e.stopPropagation();
+      win.classList.remove("shake");
+      void win.offsetWidth; // restart the animation
+      win.classList.add("shake");
+    });
+    win.addEventListener("animationend", (ev) => {
+      if (ev.animationName === "win-shake") win.classList.remove("shake");
+    });
+    // green: maximize the editor; green again / Esc / backdrop click restores
+    dots.querySelector(".g").addEventListener("click", (e) => {
+      if (!wide()) return;
+      e.stopPropagation();
+      stage.classList.remove("min");
+      stage.classList.toggle("max");
+    });
+    stage
+      .querySelector(".blog-backdrop")
+      .addEventListener("click", () => stage.classList.remove("max"));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") stage.classList.remove("max");
+    });
+    // drop any active state if the window shrinks below the threshold
+    window.addEventListener("resize", () => {
+      if (!wide()) {
+        stage.classList.remove("min", "max");
+        win.classList.remove("shake");
+      }
+    });
+  }
 });
