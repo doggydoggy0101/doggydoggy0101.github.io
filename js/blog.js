@@ -162,24 +162,77 @@ document.addEventListener("DOMContentLoaded", () => {
     win.addEventListener("animationend", (ev) => {
       if (ev.animationName === "win-shake") win.classList.remove("shake");
     });
-    // green: maximize the editor; green again / Esc / backdrop click restores
+    // green: maximize/restore by animating the window's actual rect (top/right/
+    // bottom/left), so it really grows and the content reflows — not a scale
+    const backdrop = stage.querySelector(".blog-backdrop");
+    const E = "cubic-bezier(0.4, 0, 0.2, 1)";
+    const TR = `top 0.45s ${E}, right 0.45s ${E}, bottom 0.45s ${E}, left 0.45s ${E}`;
+    const setRect = (r) => {
+      win.style.top = r.top + "px";
+      win.style.left = r.left + "px";
+      win.style.right = window.innerWidth - r.right + "px";
+      win.style.bottom = window.innerHeight - r.bottom + "px";
+    };
+    function flipMax(toMax) {
+      if (toMax) {
+        const r = win.getBoundingClientRect(); // editor's current rect
+        stage.style.minHeight = stage.offsetHeight + "px"; // hold the section's space
+        win.style.transition = "none";
+        stage.classList.add("max"); // fixed + flex + (CSS) fullscreen inset
+        setRect(r); // pin at the editor rect…
+        win.getBoundingClientRect(); // reflow
+        win.style.transition = TR;
+        win.style.top =
+          win.style.right =
+          win.style.bottom =
+          win.style.left =
+            ""; // …grow to CSS fullscreen
+      } else {
+        win.style.transition = TR;
+        setRect(stage.getBoundingClientRect()); // shrink back toward the editor's slot
+        backdrop.style.opacity = "0"; // fade the dim out alongside
+      }
+    }
+    win.addEventListener("transitionend", (ev) => {
+      if (ev.propertyName !== "left") return;
+      win.style.transition = "";
+      if (win.style.left) {
+        // restore finished → settle back into normal flow
+        stage.classList.remove("max");
+        win.style.top =
+          win.style.left =
+          win.style.right =
+          win.style.bottom =
+            "";
+        stage.style.minHeight = "";
+        backdrop.style.opacity = "";
+      }
+    });
     dots.querySelector(".g").addEventListener("click", (e) => {
       if (!wide()) return;
       e.stopPropagation();
       stage.classList.remove("min");
-      stage.classList.toggle("max");
+      flipMax(!stage.classList.contains("max"));
     });
-    stage
-      .querySelector(".blog-backdrop")
-      .addEventListener("click", () => stage.classList.remove("max"));
+    backdrop.addEventListener("click", () => {
+      if (stage.classList.contains("max")) flipMax(false);
+    });
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") stage.classList.remove("max");
+      if (e.key === "Escape" && stage.classList.contains("max")) flipMax(false);
     });
     // drop any active state if the window shrinks below the threshold
     window.addEventListener("resize", () => {
       if (!wide()) {
         stage.classList.remove("min", "max");
         win.classList.remove("shake");
+        win.style.top =
+          win.style.left =
+          win.style.right =
+          win.style.bottom =
+          win.style.transition =
+            "";
+        stage.style.minHeight = "";
+        backdrop.style.opacity = "";
       }
     });
   }

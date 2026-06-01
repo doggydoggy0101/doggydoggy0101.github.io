@@ -105,12 +105,10 @@
   position: fixed;
   inset: 5vh 6vw;
   z-index: 600;
-  transform: none;
-  transform-origin: center;
   display: flex;
   flex-direction: column;
   box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.45);
-  animation: winMax 0.3s var(--ease-out);
+  /* the grow/shrink is animated via a FLIP transform in blog.js */
 }
 .blog-stage.max .win-body {
   flex: 1;
@@ -123,16 +121,6 @@
   background: var(--muted);
   opacity: 0.4;
   pointer-events: none;
-}
-@keyframes winMax {
-  from {
-    opacity: 0.4;
-    transform: scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
 }
 .blog-stage.min .code-window {
   transform: scale(0.42);
