@@ -21,34 +21,6 @@
   width: 100%; /* auto margins would otherwise shrink it to fit in the flex column */
 }
 
-/* section header: small mono label + big serif title */
-.section-head {
-  margin-bottom: 1rem;
-}
-.section-label {
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
-  letter-spacing: 0.02em;
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-}
-.section-label::before {
-  content: "";
-  width: 26px;
-  height: 1px;
-  background: var(--accent);
-}
-.section-title {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: var(--step-2);
-  letter-spacing: -0.03em;
-  margin-top: 0.6rem;
-  color: var(--text);
-}
-
 /* ---- placeholder sections (Portfolio / Blog) ---- */
 .section--ph {
   min-height: 78vh;
@@ -67,8 +39,8 @@
 .res-group {
   margin-top: 2.4rem;
 }
-.section-head + .res-group {
-  margin-top: 2rem;
+.res-group:first-child {
+  margin-top: 0;
 }
 .res-sub {
   font-family: var(--font-display);

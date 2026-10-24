@@ -6,7 +6,7 @@
 .blog-stage {
   position: relative;
   max-width: 62rem;
-  margin: 2rem auto 0;
+  margin: 0 auto;
 }
 /* legend + photo, always present behind the editor; minimizing uncovers it */
 .blog-reveal {
@@ -190,10 +190,17 @@
 }
 
 /* body: explorer + editor */
+/* body height follows the viewport: the whole window fills the screen below
+   the nav (3.5rem) minus ~14vh of air top and bottom and the title/status
+   bars (~4.5rem), clamped so it never gets cramped or oversized */
 .win-body {
   display: grid;
   grid-template-columns: 13rem 1fr;
-  height: 23rem;
+  height: clamp(
+    23rem,
+    calc(100svh - 8rem - 2 * clamp(3.5rem, 14vh, 8rem)),
+    42rem
+  );
 }
 .explorer {
   border-right: 1px solid var(--line);

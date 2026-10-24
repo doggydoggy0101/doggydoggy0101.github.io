@@ -42,6 +42,7 @@ const awards = [
   },
 ];
 
+// not shown on the site for now (no Presentations group in index.html)
 const presentations = [
   {
     index: "1.",
@@ -96,10 +97,5 @@ document.addEventListener("DOMContentLoaded", () => {
   const awardEl = document.getElementById("awards-list");
   awards.forEach((a) =>
     awardEl.appendChild(item(a.index, `${a.title} ${a.desc} ${a.date}`)),
-  );
-
-  const presEl = document.getElementById("presentations-list");
-  presentations.forEach((p) =>
-    presEl.appendChild(item(p.index, `${p.title} ${p.location}`)),
   );
 });

@@ -42,14 +42,8 @@
 .nav-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   height: 3.5rem;
-}
-.nav-mark {
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--text);
-  text-decoration: none;
 }
 .nav-links {
   position: relative;
@@ -69,8 +63,9 @@
 .nav-links a[data-active="true"] {
   color: var(--text);
 }
-/* one underline under the current section's link; main.js sets --ind-x /
-   --ind-w and it slides between links (transition enabled after first place) */
+/* one underline marking where you are; main.js sets --ind-x / --ind-w.
+   Side-by-side pages drive it straight from the scroll position (.ind-live,
+   no transition); the vertical layout slides it between links instead */
 .nav-links::after {
   content: "";
   position: absolute;
@@ -81,7 +76,7 @@
   background: var(--text);
   transform: translateX(var(--ind-x, 0));
 }
-.nav-links.ind-ready::after {
+.nav-links.ind-ready:not(.ind-live)::after {
   transition:
     transform 0.45s var(--ease),
     width 0.45s var(--ease);
@@ -91,9 +86,9 @@
     transition: none;
   }
 }
-@media (max-width: 720px) {
+@media (max-width: 480px) {
   .nav-links {
-    display: none;
+    gap: 1.25rem;
   }
 }
 

@@ -1,0 +1,43 @@
+/* ============================================================
+   PAGER — the four sections as one-screen pages side by side in a
+   horizontal scroller (js/pager.js). Only active on wide screens:
+   js adds .paged to <html>; without it (narrow / no JS) the page
+   scrolls vertically as usual.
+   ============================================================ */
+
+html.paged,
+html.paged body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* fixed full-screen row of pages, scrolled sideways */
+html.paged .pages {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior: none; /* no swipe-back navigation on trackpads */
+  scrollbar-width: none;
+}
+html.paged .pages::-webkit-scrollbar {
+  display: none;
+}
+/* the editor's maximize overlay (z 600) must still cover the fixed nav */
+html.paged .pages:has(.blog-stage.max) {
+  z-index: 500;
+}
+
+html.paged .pages > section {
+  flex: 0 0 100%;
+  height: 100%;
+  min-height: 0;
+  border-top: none;
+}
+
+/* a page whose content runs taller than the screen scrolls inside itself */
+html.paged .section--full {
+  overflow-y: auto;
+  justify-content: safe center;
+}

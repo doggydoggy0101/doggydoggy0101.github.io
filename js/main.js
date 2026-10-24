@@ -24,19 +24,34 @@ document.addEventListener("DOMContentLoaded", () => {
     .querySelectorAll(".reveal:not(.in), .stagger:not(.in)")
     .forEach((el) => io.observe(el));
 
-  // active-section highlight in the nav: the current section is the last one
-  // whose top has passed 40% of the viewport; a single underline slides to it
+  // active-section highlight in the nav, plus a single underline.
+  // wide screens: js/pager.js reports the nearest page ("pagechange") and the
+  // exact scroll position ("pagescroll"), so the underline tracks the scroll;
+  // narrow (vertical) screens: the last section whose top has passed 40% of
+  // the view is active and the underline slides to it
   const navList = document.querySelector(".nav-links");
   const links = [...navList.querySelectorAll("a")];
+  const linkFor = (id) =>
+    links.find((l) => l.getAttribute("href") === "#" + id);
   const sections = links
     .map((a) => document.getElementById(a.getAttribute("href").slice(1)))
     .filter(Boolean);
   let current = null;
+  let live = null; // {from, to, t} from the pager while it's active
   let clickLock = false; // while a nav click scrolls, don't hop through sections
   const placeUnderline = () => {
-    if (!current) return;
-    navList.style.setProperty("--ind-x", `${current.offsetLeft}px`);
-    navList.style.setProperty("--ind-w", `${current.offsetWidth}px`);
+    let x, w;
+    if (live) {
+      const a = linkFor(live.from);
+      const b = linkFor(live.to);
+      x = a.offsetLeft + (b.offsetLeft - a.offsetLeft) * live.t;
+      w = a.offsetWidth + (b.offsetWidth - a.offsetWidth) * live.t;
+    } else if (current) {
+      x = current.offsetLeft;
+      w = current.offsetWidth;
+    } else return;
+    navList.style.setProperty("--ind-x", `${x}px`);
+    navList.style.setProperty("--ind-w", `${w}px`);
   };
   const setActive = (a) => {
     if (a === current) return;
@@ -46,7 +61,12 @@ document.addEventListener("DOMContentLoaded", () => {
     placeUnderline();
   };
   const fromScroll = () => {
-    if (clickLock) return;
+    const paged = document.documentElement.classList.contains("paged");
+    if (!paged && live) {
+      live = null; // back to the vertical layout
+      navList.classList.remove("ind-live");
+    }
+    if (clickLock || paged) return;
     let i = 0;
     sections.forEach((s, k) => {
       if (s.getBoundingClientRect().top <= window.innerHeight * 0.4) i = k;
@@ -83,6 +103,15 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(release, 1200); // fallback where scrollend isn't supported
     }),
   );
+  document.addEventListener("pagechange", (e) => {
+    const a = linkFor(e.detail.id);
+    if (a) setActive(a);
+  });
+  document.addEventListener("pagescroll", (e) => {
+    live = e.detail;
+    navList.classList.add("ind-live");
+    placeUnderline();
+  });
   window.addEventListener("resize", placeUnderline);
   fromScroll();
   document.fonts.ready.then(() => {
