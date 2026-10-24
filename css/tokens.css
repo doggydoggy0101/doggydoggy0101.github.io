@@ -1,32 +1,37 @@
 /* ============================================================
    FOUNDATION — locked design tokens
-   Type:    Fraunces (display) · Inter (body) · JetBrains Mono (accent)
-   Palette: yerin-rose — sampled from Yerin Baek,
-            "Every letter I sent you."
+   Type:    IBM Plex Sans (display + body) · IBM Plex Mono (accent)
+   Palette: neutral white / graphite with a single IBM-blue accent
+            (kept to a few tokens so a dark mode can swap them later)
    ============================================================ */
 
 :root {
   /* type */
-  --font-display: "Fraunces", serif;
-  --font-body: "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-display: "IBM Plex Sans", sans-serif;
+  --font-body: "IBM Plex Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
 
   /* fluid type scale */
   --step--1: clamp(0.8rem, 0.75rem + 0.2vw, 0.9rem);
-  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.15rem);
+  --step-0: clamp(
+    1rem,
+    0.97rem + 0.1vw,
+    1.05rem
+  ); /* body — matches the About paragraph */
   --step-1: clamp(1.4rem, 1.2rem + 1vw, 1.95rem);
   --step-2: clamp(2rem, 1.6rem + 2vw, 3rem);
   --step-3: clamp(3rem, 2rem + 5vw, 6rem);
   --step-4: clamp(4.5rem, 3rem + 9vw, 11rem);
 
-  /* palette — yerin-rose */
-  --bg: #f8f1e6;
-  --surface: #fdf9f1;
-  --text: #3a382f;
-  --muted: #8c8374;
-  --accent: #b07a64; /* warm dusty rose (primary) */
-  --contrast: #3c78d2; /* cool complementary blue — for emphasis/interaction */
-  --line: rgba(58, 56, 47, 0.12);
+  /* palette — neutral + IBM blue */
+  --bg: #ffffff;
+  --surface: #f4f4f4;
+  --text: #161616;
+  --muted: #6f6f6f;
+  --accent: #0f62fe; /* IBM blue — the one accent */
+  --contrast: #0f62fe; /* emphasis/interaction (same blue for now) */
+  --line: rgba(22, 22, 22, 0.14);
+  --dot: rgba(22, 22, 22, 0.22); /* background dot grid */
 
   /* motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -61,17 +66,6 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
-}
-
-/* subtle film grain — matches the album's texture, very low opacity */
-.grain {
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  pointer-events: none;
-  opacity: 0.04;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* ---- shared layout ---- */

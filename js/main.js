@@ -24,21 +24,71 @@ document.addEventListener("DOMContentLoaded", () => {
     .querySelectorAll(".reveal:not(.in), .stagger:not(.in)")
     .forEach((el) => io.observe(el));
 
-  // active-section highlight in the nav
-  const links = [...document.querySelectorAll(".nav-links a")];
-  const map = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
-  const navIO = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          links.forEach((a) => a.removeAttribute("data-active"));
-          map.get(e.target.id)?.setAttribute("data-active", "true");
-        }
-      });
+  // active-section highlight in the nav: the current section is the last one
+  // whose top has passed 40% of the viewport; a single underline slides to it
+  const navList = document.querySelector(".nav-links");
+  const links = [...navList.querySelectorAll("a")];
+  const sections = links
+    .map((a) => document.getElementById(a.getAttribute("href").slice(1)))
+    .filter(Boolean);
+  let current = null;
+  let clickLock = false; // while a nav click scrolls, don't hop through sections
+  const placeUnderline = () => {
+    if (!current) return;
+    navList.style.setProperty("--ind-x", `${current.offsetLeft}px`);
+    navList.style.setProperty("--ind-w", `${current.offsetWidth}px`);
+  };
+  const setActive = (a) => {
+    if (a === current) return;
+    links.forEach((l) => l.removeAttribute("data-active"));
+    a.setAttribute("data-active", "true");
+    current = a;
+    placeUnderline();
+  };
+  const fromScroll = () => {
+    if (clickLock) return;
+    let i = 0;
+    sections.forEach((s, k) => {
+      if (s.getBoundingClientRect().top <= window.innerHeight * 0.4) i = k;
+    });
+    // the last section may be too short to reach the line at the page bottom
+    const atBottom =
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 2;
+    setActive(links[atBottom ? sections.length - 1 : i]);
+  };
+  let navTick = false;
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!navTick) {
+        navTick = true;
+        requestAnimationFrame(() => {
+          navTick = false;
+          fromScroll();
+        });
+      }
     },
-    { threshold: 0.5 },
+    { passive: true },
   );
-  document.querySelectorAll("section[id]").forEach((s) => navIO.observe(s));
+  links.forEach((a) =>
+    a.addEventListener("click", () => {
+      setActive(a);
+      clickLock = true;
+      const release = () => {
+        clickLock = false;
+        fromScroll();
+      };
+      window.addEventListener("scrollend", release, { once: true });
+      setTimeout(release, 1200); // fallback where scrollend isn't supported
+    }),
+  );
+  window.addEventListener("resize", placeUnderline);
+  fromScroll();
+  document.fonts.ready.then(() => {
+    placeUnderline(); // re-measure with the real font, then allow sliding
+    requestAnimationFrame(() => navList.classList.add("ind-ready"));
+  });
 
   // typewriter on the first name — cycles Bang-Shien / Ian
   const typeEl = document.getElementById("typeName");

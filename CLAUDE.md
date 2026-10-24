@@ -17,19 +17,19 @@ Work happens on `develop`; `main` is the deployed branch (GitHub Pages + the for
 
 ## Architecture
 
-`index.html` is a **single-page scroll site** with four sections — `#home`, `#portfolio`, `#blog`, `#research` — plus a fixed `nav`. Each area has matching `css/<name>.css` and `js/<name>.js`. The design system lives in `css/tokens.css` (palette, fonts, fluid type scale, motion primitives); fonts are Fraunces (display serif), Inter (body), JetBrains Mono (accents).
+`index.html` is a **single-page scroll site** with four sections — `#about`, `#portfolio`, `#blog`, `#research` — plus a fixed `nav`. Each area has matching `css/<name>.css` and `js/<name>.js`. The design system lives in `css/tokens.css` (palette, fonts, fluid type scale, motion primitives); fonts are IBM Plex Sans (display + body) and IBM Plex Mono (accents); the palette is neutral white/graphite with a single IBM-blue accent, kept to a few tokens so a dark mode can swap them.
 
 Content is **data-driven** — edit the arrays/strings at the top of the JS, not the HTML:
 
 - **Research** (`js/research.js`): editorial list, grouped by sub-heading; entries are HTML strings.
 - **Blog/projects** (`js/blog.js`): a fake VS-Code "editor window"; the file-tree content links to PDFs in `assets/blogs/`.
 - **Portfolio** (`js/photos.js` + `js/portfolio.js`): `photos.js` holds the `TRIPS` manifest (one object per trip: `{id, location, date, cover, photos[]}`, newest-first, cover pinned first). `portfolio.js` builds the hover-expand timeline, the slide-in per-trip gallery subpage, and the single-photo lightbox. Each photo has a `assets/photos/<id>/thumb/<f>` (grid/preview) and full-res `assets/photos/<id>/<f>` (lightbox only).
-- **Home** (`js/bunny.js` + `js/m3500.js` + inline script in `index.html`): the hero canvas runs a diffusion-style loop that scatters to Gaussian noise and reforms into successive point clouds — **bunny → sphere → M3500** (a grid-deduped Olson Manhattan pose graph; `js/m3500.js` holds `M3500` + its street `M3500_EDGES`). Sphere/bunny edges are nearest-neighbor; M3500 uses its real edges. The per-shape graph crossfades through the noise so it never "jumps", and flat clouds (M3500) get a higher cursor-tilt gain.
+- **About** (`css/home.css` + `js/home.js`; markup in `index.html`): three columns — name (Bang-Shien ⇄ Ian typewriter in `js/main.js`), plain-text email, CV button with its "Updated" date, and Scholar/GitHub/YouTube links | portrait `assets/profile/001.jpg` | one about paragraph. The CV button is the layout's reference line: `js/home.js` shifts the left column so the button sits at the photo's vertical centre, shifts the paragraph so its first line sits level with the button's label, and drifts the background dot grid at 3.5% of scroll speed (masked clear in the centre). The old point-cloud hero (`js/bunny.js`, `js/m3500.js`) is no longer loaded.
 - `js/main.js`: nav active-state, scroll-reveal (IntersectionObserver), hash routing.
 
 ## Assets
 
-`assets/` holds all binary assets and is kept out of Prettier's scope: `icon.jpg` (favicon), `docs/*.pdf` (CV/SOP), `blogs/*.pdf`, and `photos/<trip>/` (web WebP + `thumb/` subfolder).
+`assets/` holds all binary assets and is kept out of Prettier's scope: `icon.jpg` (favicon), `docs/*.pdf` (CV/SOP), `profile/001.jpg` (hero portrait, 1200×1800 JPEG), `blogs/*.pdf`, and `photos/<trip>/` (web WebP + `thumb/` subfolder).
 
 Photos: convert originals to WebP with ImageMagick (`magick -auto-orient -quality 90`), then generate ~1000px thumbnails into each trip's `thumb/` (`magick in.webp -resize '1000x1000>' -quality 80 thumb/in.webp`). Full-res originals are kept locally in `assets/temp/`, which is git-ignored (not shipped).
 

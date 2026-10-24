@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK@0,9..144,300..600,0;1,9..144,300..500,0&family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
@@ -24,74 +24,89 @@
   </head>
 
   <body>
-    <div class="grain"></div>
-    <div class="nav-fog"></div>
+    <div class="dots" id="dots" aria-hidden="true"></div>
 
     <nav class="nav">
-      <a class="nav-mark" href="#home">Bang-Shien&nbsp;Chen</a>
-      <ul class="nav-links">
-        <li>
-          <a href="#home"><span class="n">01</span> Home</a>
-        </li>
-        <li>
-          <a href="#portfolio"><span class="n">02</span> Portfolio</a>
-        </li>
-        <li>
-          <a href="#blog"><span class="n">03</span> Blog</a>
-        </li>
-        <li>
-          <a href="#research"><span class="n">04</span> Research</a>
-        </li>
-      </ul>
+      <div class="nav-inner wrap">
+        <a class="nav-mark" href="#about">Bang-Shien Chen</a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#research">Research</a></li>
+        </ul>
+      </div>
     </nav>
 
-    <!-- 01 — HOME -->
-    <section id="home" class="hero">
-      <canvas class="sig-canvas" id="sigCanvas"></canvas>
-
-      <div class="hero-inner wrap">
-        <div class="hero-text">
-          <div class="hero-head">
-            <span class="section-label">01 — Home</span>
-            <h1 class="hero-name">
-              <span id="nameType">Bang-Shien</span><br /><em>Chen</em>
+    <!-- 01 — ABOUT -->
+    <section id="about" class="hero">
+      <div class="hero-grid wrap">
+        <div class="hero-left">
+          <div>
+            <h1 class="hero-name" aria-label="Bang-Shien (Ian) Chen">
+              <span id="typeName">Bang-Shien</span><br />Chen
             </h1>
+            <p class="hero-email">chen.ban@northeastern.edu</p>
           </div>
-          <div class="hero-meta stagger">
-            <p class="hero-bio">
-              Hi, I am a PhD student at Northeastern University.<br />
-              My research interests are mainly in
-              <span class="hl">Optimization</span> and
-              <span class="hl">Robotics</span>.
-            </p>
-            <div class="hero-actions">
-              <a class="btn" href="assets/docs/CV_Chen.pdf" target="_blank"
-                >Curriculum Vitae ↗</a
+
+          <div>
+            <a class="cv" href="assets/docs/CV_Chen.pdf" target="_blank">
+              <span>Curriculum Vitae ↗</span>
+              <span class="cv-date">Updated Oct 2026</span>
+            </a>
+            <div class="hero-links">
+              <a
+                href="https://scholar.google.com/citations?user=F_RSn0YAAAAJ"
+                target="_blank"
+                >Scholar</a
               >
-              <a class="btn" href="assets/docs/SOP_Chen.pdf" target="_blank"
-                >Statement ↗</a
-              >
-            </div>
-            <div class="hero-social">
               <a href="https://github.com/doggydoggy0101" target="_blank"
                 >GitHub</a
               >
-              <a href="mailto:dgbshien@gmail.com">Email</a>
               <a href="https://www.youtube.com/@doggydoggy0101" target="_blank"
                 >YouTube</a
               >
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="hero-foot">
-        <span class="scroll-cue">Scroll</span>
+        <figure class="portrait">
+          <img
+            src="assets/profile/001.jpg"
+            alt="Bang-Shien Chen"
+            width="1200"
+            height="1800"
+          />
+          <figcaption>
+            <span>Guangzhou, 2026</span>
+          </figcaption>
+        </figure>
+
+        <div class="hero-right">
+          <p class="hero-about">
+            I am a PhD student in the
+            <a href="https://ece.northeastern.edu/" target="_blank"
+              >Electrical & Computer Engineering</a
+            >
+            Department at
+            <a href="https://www.northeastern.edu/" target="_blank"
+              >Northeastern University</a
+            >
+            working with
+            <a href="https://david-m-rosen.github.io/" target="_blank"
+              >David M. Rosen</a
+            >, and a
+            <a href="https://www.draper.com/" target="_blank">Draper</a>
+            Scholar. My research interests are mainly in Optimization and
+            Robotics, in particular developing scalable certifiable solvers for
+            real-world applications.
+          </p>
+        </div>
       </div>
     </section>
 
     <!-- 02 — PORTFOLIO -->
-    <section id="portfolio" class="section">
+    <section id="portfolio" class="section section--full">
       <div class="wrap">
         <header class="section-head">
           <span class="section-label">02 — Portfolio</span>
@@ -104,7 +119,7 @@
     </section>
 
     <!-- 03 — BLOG -->
-    <section id="blog" class="section">
+    <section id="blog" class="section section--full">
       <div class="wrap">
         <header class="section-head">
           <span class="section-label">03 — Blog</span>
@@ -226,386 +241,11 @@
       <img id="lbImg" alt="" />
     </div>
 
-    <!-- turbulence filter: warps the gallery cursor-filter into an organic liquid shape -->
-    <svg width="0" height="0" aria-hidden="true" style="position: absolute">
-      <filter id="liquid" x="-40%" y="-40%" width="180%" height="180%">
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.02"
-          numOctaves="3"
-          seed="7"
-          result="n"
-        />
-        <feDisplacementMap
-          in="SourceGraphic"
-          in2="n"
-          scale="50"
-          xChannelSelector="R"
-          yChannelSelector="G"
-        />
-      </filter>
-    </svg>
-
     <script src="js/main.js"></script>
+    <script src="js/home.js"></script>
     <script src="js/research.js"></script>
     <script src="js/blog.js"></script>
     <script src="js/photos.js"></script>
     <script src="js/portfolio.js"></script>
-    <script src="js/bunny.js"></script>
-    <script src="js/m3500.js"></script>
-    <script>
-      // ============================================================
-      // Home hero — a point cloud as a diffusion model, cycling
-      //   sphere → bunny → M3500 (Manhattan pose graph) → …
-      // Formed shape = "Bang-Shien" (data x0)  <->  Gaussian noise = "Ian" (x_T).
-      // Sphere & M3500 are pose-graph-optimization motifs (research nod);
-      // edges crossfade through the noise so the graph never "jumps".
-      // Cursor adds a lagged spotlight in the --contrast blue.
-      // ============================================================
-      const cv = document.getElementById("sigCanvas");
-      const ctx = cv.getContext("2d");
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const reduce = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-      let W = 1,
-        H = 1,
-        mx = 0,
-        my = 0,
-        cuX = -1e5,
-        cuY = -1e5,
-        lcuX = -1e5,
-        lcuY = -1e5;
-      const ACCENT = "176,122,100"; // --accent (rose)
-      const MUTED = "140,131,116"; // --muted
-      const HI = [60, 120, 210]; // --contrast (blue)
-      function size() {
-        const r = cv.getBoundingClientRect();
-        const nw = Math.max(1, Math.round(r.width * dpr));
-        const nh = Math.max(1, Math.round(r.height * dpr));
-        if (nw !== W || nh !== H) {
-          W = cv.width = nw;
-          H = cv.height = nh;
-        }
-      }
-
-      // Gaussian noise (diffusion ε), regenerated per cycle
-      function gauss() {
-        let u = 0,
-          v = 0;
-        while (u === 0) u = Math.random();
-        while (v === 0) v = Math.random();
-        return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
-      }
-      const CRAD = 1.3; // radius for bunny, M3500 and the noise ball (sphere stays 1.0)
-      const SIGMA = 0.55; // spread → noise fills toward radius 1.2
-      const N = BUNNY.length; // 600 — every cloud shares this point count
-      function genNoise() {
-        const a = [];
-        for (let i = 0; i < N; i++) {
-          let x, y, z;
-          do {
-            x = gauss() * SIGMA;
-            y = gauss() * SIGMA;
-            z = gauss() * SIGMA;
-          } while (x * x + y * y + z * z > CRAD * CRAD); // noise stays inside radius 1.2
-          a.push([x, y, z]);
-        }
-        return a;
-      }
-      let eps = genNoise();
-      const easeInOut = (p) =>
-        p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
-
-      // ---- the clouds: sphere (procedural) · bunny · M3500 (loaded) ----
-      const rotY = (P, a) => {
-        const c = Math.cos(a),
-          s = Math.sin(a);
-        return P.map((p) => [p[0] * c - p[2] * s, p[1], p[0] * s + p[2] * c]);
-      };
-      // scale a cloud so its farthest point sits at `target` radius
-      const normTo = (P, target) => {
-        let mr = 0;
-        for (const p of P) {
-          const r = Math.hypot(p[0], p[1], p[2]);
-          if (r > mr) mr = r;
-        }
-        const s = target / mr;
-        return P.map((p) => [p[0] * s, p[1] * s, p[2] * s]);
-      };
-      function genSphere(n) {
-        const a = [],
-          gold = Math.PI * (3 - Math.sqrt(5)); // fibonacci sphere
-        for (let i = 0; i < n; i++) {
-          const y = 1 - (i / (n - 1)) * 2,
-            r = Math.sqrt(Math.max(0, 1 - y * y)),
-            th = gold * i;
-          a.push([Math.cos(th) * r, y, Math.sin(th) * r]);
-        }
-        return a;
-      }
-      const CLOUDS = {
-        // sphere is a full shell (every point at max radius), so it reads larger than
-        // the others at the same radius → keep it at 1.0 while the rest sit at 1.2
-        Sphere: genSphere(N),
-        Bunny: normTo(BUNNY, CRAD), // native 3/4 view
-        M3500: rotY(normTo(M3500, CRAD), 0.5), // flat map, face-on at rest
-      };
-      const GAINV = { Sphere: 1, Bunny: 1, M3500: 1.8 }; // flat M3500 needs a little more tilt
-      // nearest-2-neighbour edges for the surfaces; M3500 uses its real street graph
-      function nnEdges(P) {
-        const E = [];
-        for (let i = 0; i < N; i++) {
-          let a = -1,
-            b = -1,
-            da = 1e9,
-            db = 1e9;
-          const p = P[i];
-          for (let j = 0; j < N; j++) {
-            if (j === i) continue;
-            const q = P[j],
-              dx = p[0] - q[0],
-              dy = p[1] - q[1],
-              dz = p[2] - q[2],
-              d = dx * dx + dy * dy + dz * dz;
-            if (d < da) {
-              db = da;
-              b = a;
-              da = d;
-              a = j;
-            } else if (d < db) {
-              db = d;
-              b = j;
-            }
-          }
-          if (a > i) E.push([i, a]);
-          if (b > i) E.push([i, b]);
-        }
-        return E;
-      }
-      const EDGES = {
-        Sphere: nnEdges(CLOUDS.Sphere),
-        Bunny: nnEdges(CLOUDS.Bunny),
-        M3500: M3500_EDGES,
-      };
-      const LOOP = ["Bunny", "Sphere", "M3500"];
-      const seq = LOOP.map((k) => CLOUDS[k]),
-        seqE = LOOP.map((k) => EDGES[k]),
-        seqG = LOOP.map((k) => GAINV[k]);
-      let si = 0,
-        SHAPE = seq[0],
-        EDG = seqE[0],
-        prevE = seqE[0], // web crossfading away during the noise
-        cross = 1, // 1 = fully on EDG
-        curGain = seqG[0];
-
-      // shared timeline: name swap + shape morph
-      const nameEl = document.getElementById("nameType");
-      let phase = "form",
-        pStart = performance.now(),
-        morph = 0; // 0 = formed shape, 1 = noise
-      const DUR = { form: 2600, diffuse: 1600, noise: 2400, denoise: 1600 };
-      function nameMorph(p, from, to) {
-        if (p < 0.5)
-          nameEl.textContent = from.slice(
-            0,
-            Math.round(from.length * (1 - p * 2)),
-          );
-        else
-          nameEl.textContent = to.slice(0, Math.round(to.length * (p * 2 - 1)));
-      }
-      function routine(now) {
-        if (reduce) {
-          morph = 0;
-          nameEl.textContent = "Bang-Shien";
-          SHAPE = BUNNY;
-          EDG = EDGES.Bunny;
-          curGain = 1;
-          return;
-        }
-        const el = now - pStart;
-        if (phase === "form") {
-          morph = 0;
-          cross = 1;
-          nameEl.textContent = "Bang-Shien";
-          if (el >= DUR.form) {
-            phase = "diffuse";
-            pStart = now;
-            eps = genNoise();
-          }
-        } else if (phase === "diffuse") {
-          const p = Math.min(1, el / DUR.diffuse);
-          morph = easeInOut(p);
-          nameMorph(p, "Bang-Shien", "Ian");
-          if (el >= DUR.diffuse) {
-            phase = "noise";
-            pStart = now;
-            prevE = EDG; // crossfade the web old → new through the noise
-            si = (si + 1) % seq.length;
-            SHAPE = seq[si];
-            EDG = seqE[si];
-            cross = 0;
-          }
-        } else if (phase === "noise") {
-          morph = 1;
-          cross = Math.min(1, el / DUR.noise);
-          nameEl.textContent = "Ian";
-          if (el >= DUR.noise) {
-            phase = "denoise";
-            pStart = now;
-            cross = 1;
-          }
-        } else {
-          const p = Math.min(1, el / DUR.denoise);
-          morph = 1 - easeInOut(p);
-          cross = 1;
-          nameMorph(p, "Ian", "Bang-Shien");
-          if (el >= DUR.denoise) {
-            phase = "form";
-            pStart = now;
-          }
-        }
-      }
-
-      const sx = new Float32Array(N),
-        sy = new Float32Array(N),
-        dep = new Float32Array(N),
-        hl = new Float32Array(N);
-      function drawCloud() {
-        curGain += (seqG[si] - curGain) * 0.06; // ease between shapes' tilt gains
-        // boost applies only to the formed shape; the noise blob always tilts at gain 1
-        const g = 1 + (curGain - 1) * (1 - morph);
-        const ax = my * 0.4 * g;
-        const ay = -0.5 + mx * 0.5 * g; // 3/4 view + cursor parallax
-        const cx = W * 0.72,
-          cy = H * 0.52,
-          R = Math.min(W, H) * 0.24;
-        const ca = Math.cos(ay),
-          sa = Math.sin(ay),
-          cb = Math.cos(ax),
-          sb = Math.sin(ax);
-        const ka = Math.sqrt(1 - morph),
-          kb = Math.sqrt(morph);
-        for (let i = 0; i < N; i++) {
-          const h = SHAPE[i],
-            s = eps[i];
-          const X = h[0] * ka + s[0] * kb;
-          const Y = h[1] * ka + s[1] * kb;
-          const Z = h[2] * ka + s[2] * kb;
-          const x1 = X * ca - Z * sa;
-          const z1 = X * sa + Z * ca;
-          const y1 = Y * cb - z1 * sb;
-          const z2 = Y * sb + z1 * cb;
-          dep[i] = (z2 + 1) / 2;
-          sx[i] = cx + x1 * R + mx * 26 * dpr;
-          sy[i] = cy - y1 * R;
-        }
-        // lagged cursor + eased glow (afterglow)
-        lcuX += (cuX - lcuX) * 0.3;
-        lcuY += (cuY - lcuY) * 0.3;
-        const RAD = 90 * dpr,
-          RAD2 = RAD * RAD;
-        for (let i = 0; i < N; i++) {
-          const dx = sx[i] - lcuX,
-            dy = sy[i] - lcuY,
-            dd = dx * dx + dy * dy;
-          const t0 = dd < RAD2 ? 1 - Math.sqrt(dd) / RAD : 0;
-          hl[i] += (t0 - hl[i]) * 0.2;
-        }
-        // edges — crossfade old → new web through the noise so it never jumps
-        ctx.lineWidth = dpr;
-        const edgeVis = 1 - morph * 0.25;
-        const drawEdges = (list, w) => {
-          if (w <= 0.001) return;
-          for (let e = 0; e < list.length; e++) {
-            const i = list[e][0],
-              j = list[e][1];
-            let a = (0.05 + ((dep[i] + dep[j]) / 2) * 0.2) * edgeVis * w;
-            a += Math.max(hl[i], hl[j]) * 0.4 * w;
-            ctx.strokeStyle = `rgba(${MUTED},${a})`;
-            ctx.beginPath();
-            ctx.moveTo(sx[i], sy[i]);
-            ctx.lineTo(sx[j], sy[j]);
-            ctx.stroke();
-          }
-        };
-        drawEdges(EDG, cross);
-        if (cross < 0.999) drawEdges(prevE, 1 - cross);
-        // nodes (rose → contrast-blue within the cursor spotlight)
-        for (let i = 0; i < N; i++) {
-          const t = hl[i];
-          let alpha = 0.16 + dep[i] * 0.6;
-          let rad = (0.4 + dep[i] * 1.4) * dpr;
-          let col = ACCENT;
-          if (t > 0) {
-            const r = (176 + (HI[0] - 176) * t) | 0;
-            const g = (122 + (HI[1] - 122) * t) | 0;
-            const b = (100 + (HI[2] - 100) * t) | 0;
-            col = `${r},${g},${b}`;
-            alpha = alpha + (1 - alpha) * t;
-            rad *= 1 + t * 1.8;
-          }
-          ctx.beginPath();
-          ctx.arc(sx[i], sy[i], rad, 0, 7);
-          ctx.fillStyle = `rgba(${col},${alpha})`;
-          ctx.fill();
-        }
-      }
-
-      function loop(now) {
-        routine(now || performance.now()); // name always animates
-        if (cv.offsetParent !== null) {
-          // canvas visible (wide screens) → draw the cloud
-          try {
-            size();
-            ctx.clearRect(0, 0, W, H);
-            drawCloud();
-          } catch (e) {
-            /* keep loop alive */
-          }
-        }
-        requestAnimationFrame(loop);
-      }
-      window.addEventListener("resize", size);
-      window.addEventListener("mousemove", (e) => {
-        mx = e.clientX / window.innerWidth - 0.5;
-        my = e.clientY / window.innerHeight - 0.5;
-        const r = cv.getBoundingClientRect();
-        cuX = (e.clientX - r.left) * dpr;
-        cuY = (e.clientY - r.top) * dpr;
-      });
-
-      // cursor spotlight on the "Chen" name → turns --contrast blue near the cursor
-      const chen = document.querySelector(".hero-name em");
-      if (chen) {
-        let tx = 50,
-          ty = -200,
-          cx = 50,
-          cy = -200,
-          craf = 0;
-        const chrun = () => {
-          cx += (tx - cx) * 0.3; // eased follow (matches the cloud cursor lag)
-          cy += (ty - cy) * 0.3;
-          chen.style.setProperty("--mx", cx.toFixed(1) + "%");
-          chen.style.setProperty("--my", cy.toFixed(1) + "%");
-          craf =
-            Math.abs(tx - cx) > 0.5 || Math.abs(ty - cy) > 0.5
-              ? requestAnimationFrame(chrun)
-              : 0;
-        };
-        chen.addEventListener("pointermove", (e) => {
-          const r = chen.getBoundingClientRect();
-          tx = ((e.clientX - r.left) / r.width) * 100;
-          ty = ((e.clientY - r.top) / r.height) * 100;
-          if (!craf) craf = requestAnimationFrame(chrun);
-        });
-        chen.addEventListener("pointerleave", () => {
-          tx = 50;
-          ty = -200; // glide back off the text
-          if (!craf) craf = requestAnimationFrame(chrun);
-        });
-      }
-      requestAnimationFrame(loop);
-    </script>
   </body>
 </html>
