@@ -141,12 +141,15 @@
     if (paged() && i >= 0) goPage(i);
   });
 
-  // keep the same page in view when the window resizes
+  // on resize, land on the page we were at or gliding to (target is in old px)
+  let lastW = 0;
   window.addEventListener("resize", () => {
     if (!paged()) return;
+    const i = lastW ? Math.round(target / lastW) : Math.max(0, cur);
+    lastW = width();
     cancelAnimationFrame(raf);
     raf = 0;
-    target = Math.max(0, cur) * width();
+    target = Math.max(0, Math.min(N - 1, i)) * lastW;
     setX(target);
   });
 
@@ -155,7 +158,8 @@
     root.classList.add("paged");
     window.scrollTo(0, 0);
     const i = Math.max(0, hashIndex());
-    target = i * width();
+    lastW = width();
+    target = i * lastW;
     setX(target);
     cur = -1;
     onScroll();

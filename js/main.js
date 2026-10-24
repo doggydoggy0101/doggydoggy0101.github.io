@@ -1,29 +1,6 @@
-// reveal-on-load for the hero, scroll-reveal for the rest, active-nav tracking
+// active-nav tracking (+ the sliding underline) and the name typewriter
 
 document.addEventListener("DOMContentLoaded", () => {
-  // hero reveals shortly after load (no artificial long delay)
-  requestAnimationFrame(() => {
-    document
-      .querySelectorAll(".hero .reveal, .hero .stagger")
-      .forEach((el) => el.classList.add("in"));
-  });
-
-  // scroll-reveal for everything below the fold
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("in");
-          io.unobserve(e.target);
-        }
-      });
-    },
-    { threshold: 0.15 },
-  );
-  document
-    .querySelectorAll(".reveal:not(.in), .stagger:not(.in)")
-    .forEach((el) => io.observe(el));
-
   // active-section highlight in the nav, plus a single underline.
   // wide screens: js/pager.js reports the nearest page ("pagechange") and the
   // exact scroll position ("pagescroll"), so the underline tracks the scroll;
@@ -39,19 +16,15 @@ document.addEventListener("DOMContentLoaded", () => {
   let current = null;
   let live = null; // {from, to, t} from the pager while it's active
   let clickLock = false; // while a nav click scrolls, don't hop through sections
+  const centre = (a) => a.offsetLeft + a.offsetWidth / 2;
   const placeUnderline = () => {
-    let x, w;
+    let x;
     if (live) {
-      const a = linkFor(live.from);
-      const b = linkFor(live.to);
-      x = a.offsetLeft + (b.offsetLeft - a.offsetLeft) * live.t;
-      w = a.offsetWidth + (b.offsetWidth - a.offsetWidth) * live.t;
-    } else if (current) {
-      x = current.offsetLeft;
-      w = current.offsetWidth;
-    } else return;
+      const a = centre(linkFor(live.from));
+      x = a + (centre(linkFor(live.to)) - a) * live.t;
+    } else if (current) x = centre(current);
+    else return;
     navList.style.setProperty("--ind-x", `${x}px`);
-    navList.style.setProperty("--ind-w", `${w}px`);
   };
   const setActive = (a) => {
     if (a === current) return;

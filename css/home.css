@@ -4,8 +4,9 @@
    ============================================================ */
 
 /* ---- background dot grid ----
-   a fixed layer that js/home.js drifts at a fraction of the scroll speed;
-   masked clear in the middle so it never sits behind the photo/text */
+   a fixed layer that drifts at a fraction of the scroll speed (js/home.js
+   vertically, js/pager.js sideways); masked clear across a centre band, the
+   row the pages' content scrolls through, so dots stay top and bottom */
 .dots {
   position: fixed;
   left: 0;
@@ -16,15 +17,19 @@
   pointer-events: none;
   background-image: radial-gradient(var(--dot) 1px, transparent 1.3px);
   background-size: 24px 24px;
-  -webkit-mask-image: radial-gradient(
-    ellipse 55% 60% at 50% 50%,
-    transparent 35%,
-    #000 100%
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 16%,
+    transparent 32%,
+    transparent 68%,
+    #000 84%
   );
-  mask-image: radial-gradient(
-    ellipse 55% 60% at 50% 50%,
-    transparent 35%,
-    #000 100%
+  mask-image: linear-gradient(
+    to bottom,
+    #000 16%,
+    transparent 32%,
+    transparent 68%,
+    #000 84%
   );
   will-change: transform;
 }
@@ -63,23 +68,22 @@
 .nav-links a[data-active="true"] {
   color: var(--text);
 }
-/* one underline marking where you are; main.js sets --ind-x / --ind-w.
-   Side-by-side pages drive it straight from the scroll position (.ind-live,
-   no transition); the vertical layout slides it between links instead */
+/* one fixed-length underline marking where you are, centred under a link;
+   main.js sets --ind-x (the centre). Side-by-side pages drive it straight
+   from the scroll position (.ind-live, no transition); the vertical layout
+   slides it between links instead */
 .nav-links::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: 0;
+  width: 2.45rem; /* about the width of "About" */
   height: 1px;
-  width: var(--ind-w, 0);
   background: var(--text);
-  transform: translateX(var(--ind-x, 0));
+  transform: translateX(calc(var(--ind-x, -100vw) - 50%));
 }
 .nav-links.ind-ready:not(.ind-live)::after {
-  transition:
-    transform 0.45s var(--ease),
-    width 0.45s var(--ease);
+  transition: transform 0.45s var(--ease);
 }
 @media (prefers-reduced-motion: reduce) {
   .nav-links.ind-ready::after {
