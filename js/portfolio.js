@@ -124,6 +124,64 @@
     subTripList.appendChild(li);
   });
 
+  // gallery: photos go in order, each into whichever column is shortest
+  // (left, right, left, right … as heights allow), so the columns grow
+  // together instead of the left filling before the right. All thumbs load
+  // at once; each is placed as soon as it and the ones before it are ready.
+  let galleryRun = 0; // bumped per trip, so a stale fill stops
+  let galleryCols = []; // column elements
+  let placedFigs = []; // figures placed so far, in order
+  // columns: as many as fit at --col-min wide, up to --cols-max
+  const colCount = () => {
+    const cs = getComputedStyle(subGrid);
+    const max = parseInt(cs.getPropertyValue("--cols-max")) || 3;
+    const px = parseFloat(getComputedStyle(root).fontSize);
+    const min = parseFloat(cs.getPropertyValue("--col-min")) * px || 256;
+    const g = parseFloat(cs.columnGap) || 0;
+    const fit = Math.floor((subGrid.clientWidth + g) / (min + g));
+    return Math.max(1, Math.min(max, fit));
+  };
+  const makeCols = () => {
+    galleryCols = Array.from({ length: colCount() }, () => {
+      const c = document.createElement("div");
+      c.className = "sub-col";
+      return c;
+    });
+    subGrid.replaceChildren(...galleryCols);
+  };
+  const shortest = () =>
+    galleryCols.reduce((a, b) => (b.offsetHeight < a.offsetHeight ? b : a));
+  async function fillGallery(t, ti) {
+    const run = ++galleryRun;
+    placedFigs = [];
+    makeCols();
+    const figs = t.photos.map((f, pi) => {
+      const fig = document.createElement("figure");
+      fig.className = "ph";
+      const img = new Image();
+      img.alt = "";
+      const ready = new Promise((ok) => {
+        img.onload = img.onerror = ok;
+      });
+      img.src = thumb(t.id, f);
+      fig.appendChild(img);
+      fig.addEventListener("click", () => openLB(ti, pi));
+      return { fig, ready };
+    });
+    for (const { fig, ready } of figs) {
+      await ready;
+      if (run !== galleryRun) return; // another trip was opened meanwhile
+      shortest().appendChild(fig);
+      placedFigs.push(fig);
+    }
+  }
+  // re-deal the placed photos if the column count changes (phone ↔ desktop)
+  window.addEventListener("resize", () => {
+    if (!galleryCols.length || colCount() === galleryCols.length) return;
+    makeCols();
+    placedFigs.forEach((fig) => shortest().appendChild(fig));
+  });
+
   function showTrip(id) {
     const ti = TRIPS.findIndex((x) => x.id === id);
     if (ti < 0) return showGrid();
@@ -133,18 +191,7 @@
     subTripList
       .querySelectorAll("li")
       .forEach((li) => li.classList.toggle("active", li.dataset.id === id));
-    subGrid.innerHTML = "";
-    t.photos.forEach((f, pi) => {
-      const fig = document.createElement("figure");
-      fig.className = "ph";
-      const img = new Image();
-      img.src = thumb(t.id, f);
-      img.loading = "lazy";
-      img.alt = "";
-      fig.appendChild(img);
-      fig.addEventListener("click", () => openLB(ti, pi));
-      subGrid.appendChild(fig);
-    });
+    fillGallery(t, ti);
     root.dataset.view = "trip";
     document.body.style.overflow = "hidden";
     if (subMain) {
@@ -158,9 +205,8 @@
     root.dataset.view = "grid";
     document.body.style.overflow = "";
   }
-  // close the sheet: ← back, or a click on the dimmed page above it
+  // close the sheet: a click on the dimmed page above it (or Esc, below)
   const close = () => (location.hash = "portfolio");
-  document.getElementById("subBack").addEventListener("click", close);
   document.getElementById("subBackdrop").addEventListener("click", close);
   function route() {
     const m = location.hash.match(/^#t\/(.+)$/);

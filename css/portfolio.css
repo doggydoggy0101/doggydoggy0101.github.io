@@ -5,7 +5,7 @@
 
 /* the trip page is a sheet over the portfolio: it stops short of the top so
    the page behind stays visible (dimmed) — a page within the page. Clicking
-   that dimmed strip (the backdrop) closes it, as do ← back and Esc */
+   that dimmed strip (the backdrop) closes it, as does Esc */
 .sub-backdrop {
   position: fixed;
   inset: 0;
@@ -72,7 +72,6 @@
 }
 .sub-tlist {
   list-style: none;
-  margin-top: 1.6rem;
 }
 .sub-tlist li {
   padding: 0.5rem 0;
@@ -232,24 +231,12 @@
   }
 }
 /* ---------------- SUBPAGE (trip gallery) ---------------- */
-.sub-back {
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
-  color: var(--muted);
-  cursor: pointer;
-  display: inline-block;
-  margin-bottom: 1.4rem;
-  transition: color 0.3s var(--ease);
-}
-.sub-back:hover {
-  color: var(--contrast);
-}
 .sub-head {
   display: flex;
   align-items: baseline;
   gap: 1rem;
-  margin-bottom: 1.8rem;
-  max-width: 48rem;
+  margin: 0 auto 1.8rem; /* lines up with the centred grid's left edge */
+  max-width: 74rem;
 }
 .sub-loc {
   font-family: var(--font-display);
@@ -263,18 +250,37 @@
   font-size: var(--step--1);
   color: var(--muted);
 }
+/* as many columns as fit at --col-min wide, up to --cols-max (portfolio.js
+   counts them and deals each photo into the shortest one); centred in the
+   sheet, and capped so columns stay a sensible size on wide screens */
 .sub-grid {
-  columns: 2;
-  column-gap: 1.1rem;
-  max-width: 48rem; /* keep columns a sensible size on wide screens */
+  --cols-max: 3;
+  --col-min: 16rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+  max-width: 74rem;
+  margin-inline: auto;
+}
+.sub-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
 }
 .ph {
   position: relative;
-  margin-bottom: 1.1rem;
-  break-inside: avoid; /* keep each figure whole within its column */
+  margin: 0;
   border-radius: 2px;
   overflow: hidden;
   cursor: pointer;
+  transition: transform 0.35s var(--ease);
+}
+/* hover: the photo grows a little, like the main grid */
+.ph:hover {
+  z-index: 1;
+  transform: scale(1.025);
 }
 .ph img {
   display: block;
@@ -297,7 +303,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.3rem 1.2rem;
-    margin-top: 1rem;
   }
   .sub-tlist .d {
     display: none;
@@ -306,12 +311,7 @@
     padding: 1.5rem var(--space) 3rem;
   }
   .sub-grid {
-    columns: 1;
-  }
-}
-@media (max-width: 620px) {
-  .sub-grid {
-    columns: 1;
+    --cols-max: 1;
   }
 }
 

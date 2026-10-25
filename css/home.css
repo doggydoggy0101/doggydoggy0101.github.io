@@ -130,6 +130,8 @@
   line-height: 0.98;
   white-space: nowrap;
   color: var(--text);
+  user-select: none; /* the typewriter name isn't meant to be selected */
+  -webkit-user-select: none;
 }
 /* plain text, not a link; one click selects the whole address */
 .hero-email {

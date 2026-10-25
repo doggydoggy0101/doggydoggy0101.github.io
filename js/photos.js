@@ -90,7 +90,6 @@ const TRIPS = [
       "016.webp",
       "017.webp",
       "018.webp",
-      "019.webp",
       "020.webp",
       "021.webp",
       "022.webp",

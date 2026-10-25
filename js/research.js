@@ -6,6 +6,17 @@
 const ME = "B.S. Chen";
 const publications = [
   {
+    title: "PnP*: A certifiable solver for Perspective-n-Point",
+    authors: "B.S. Chen, C.E. Eaton, and D.M. Rosen",
+    venue: "arXiv",
+    short: "arXiv",
+    year: 2026,
+    links: [
+      { label: "preprint", href: "https://arxiv.org/" },
+      { label: "code", href: "https://github.com/doggydoggy0101/pnp-star" },
+    ],
+  },
+  {
     title:
       "A QCQP-Representable IMU Pre-Integration Factor for Certifiable State Estimation",
     authors: "U. Rai, Z. Xu, B.S. Chen, and D.M. Rosen",
@@ -42,7 +53,7 @@ const publications = [
     links: [
       { label: "paper", href: "https://ieeexplore.ieee.org/document/10749993" },
       { label: "preprint", href: "https://arxiv.org/pdf/2409.13978" },
-      { label: "code", href: "https://github.com/StephLin/FracGM" },
+      { label: "code", href: "https://github.com/NTNU-Math-Chern/FracGM" },
     ],
   },
 ];
