@@ -94,8 +94,16 @@
 
   // ---- input ----
   // a vertical scroll inside an element that can still scroll (a long page,
-  // the blog editor) belongs to that element, not to the pager
+  // the blog editor) belongs to that element, not to the pager — but only
+  // once its page has fully arrived and isn't gliding away, so the pages
+  // slide into place first and then the scroll carries on down (or back up)
+  // the page
+  const settled = (page) =>
+    Math.abs(stage.scrollLeft - page.offsetLeft) < 2 &&
+    Math.abs(target - page.offsetLeft) < 2;
   const scrollsInside = (el, dy) => {
+    const page = pages.find((p) => p.contains(el));
+    if (!page || !settled(page)) return false;
     for (; el && el !== stage; el = el.parentElement) {
       const oy = getComputedStyle(el).overflowY;
       if (!/(auto|scroll)/.test(oy) || el.scrollHeight <= el.clientHeight + 1)
