@@ -163,7 +163,8 @@
   color: var(--muted);
 }
 .cv:hover {
-  background: var(--text);
+  background: var(--accent);
+  border-color: var(--accent);
   color: var(--bg);
 }
 .cv:hover .cv-date {

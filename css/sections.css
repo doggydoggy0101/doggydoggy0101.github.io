@@ -10,6 +10,7 @@
 /* one-screen sections (Portfolio, Blog): fill the viewport like About and
    centre their content in the space below the fixed nav (3.5rem) */
 .section--full {
+  position: relative;
   min-height: 100svh;
   scroll-margin-top: 0;
   display: flex;
@@ -35,14 +36,8 @@
   margin-top: 1.6rem;
 }
 
-/* ---- Research (publications) ---- */
-.res-group {
-  margin-top: 2.4rem;
-}
-.res-group:first-child {
-  margin-top: 0;
-}
-.res-sub {
+/* page heading (Publications) */
+.page-title {
   font-family: var(--font-display);
   font-weight: 500;
   font-size: var(--step-2);
@@ -51,6 +46,13 @@
   margin-bottom: 0.6rem;
   padding-bottom: 0.8rem;
   border-bottom: 1px solid var(--line);
+}
+/* ---- Research (publications) ---- */
+.res-group {
+  margin-top: 2.4rem;
+}
+.res-group:first-child {
+  margin-top: 0;
 }
 /* ---- publications (ledger): venue label · entry · links ---- */
 .pubs {

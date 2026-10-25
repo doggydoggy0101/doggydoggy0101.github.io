@@ -1,7 +1,7 @@
 /* ============================================================
    FOUNDATION — locked design tokens
    Type:    IBM Plex Sans (display + body) · IBM Plex Mono (accent)
-   Palette: neutral white / graphite with a single IBM-blue accent
+   Palette: neutral white / graphite with a single cerulean-blue accent (#2c92b8)
             (kept to a few tokens so a dark mode can swap them later)
    ============================================================ */
 
@@ -23,13 +23,13 @@
   --step-3: clamp(3rem, 2rem + 5vw, 6rem);
   --step-4: clamp(4.5rem, 3rem + 9vw, 11rem);
 
-  /* palette — neutral + IBM blue */
+  /* palette — neutral + cerulean blue */
   --bg: #ffffff;
   --surface: #f4f4f4;
   --text: #161616;
   --muted: #6f6f6f;
-  --accent: #0f62fe; /* IBM blue — the one accent */
-  --contrast: #0f62fe; /* emphasis/interaction (same blue for now) */
+  --accent: #2c92b8; /* cerulean blue — the one accent */
+  --contrast: #2c92b8; /* emphasis/interaction (same blue for now) */
   --line: rgba(22, 22, 22, 0.14);
   --dot: rgba(22, 22, 22, 0.22); /* background dot grid */
 

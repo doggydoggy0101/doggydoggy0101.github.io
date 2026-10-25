@@ -1,90 +1,114 @@
-// Portfolio — hover-expand timeline → slide-up trip gallery → single-photo lightbox
+// Portfolio — photo grid → slide-up trip gallery → single-photo lightbox
 (function () {
   if (typeof TRIPS === "undefined") return;
   const root = document.documentElement;
-  const thumb = (id, f) => `assets/photos/${id}/thumb/${f}`; // small: grid + preview
+  const thumb = (id, f) => `assets/photos/${id}/thumb/${f}`; // small: grid + gallery
   const full = (id, f) => `assets/photos/${id}/${f}`; // full-res: lightbox only
 
-  // ---- timeline (left: hover to expand · right: synced preview) ----
-  const tlList = document.getElementById("tlList");
-  const tlPreview = document.getElementById("tlPreview");
-  const items = [];
-  let activeT = -1;
-  // size the preview so (width + height) stays ~constant → consistent visual size
-  // across portrait/landscape, instead of capping width or height independently.
-  let curNat = null; // natural {w,h} of the current preview (for re-fit on resize)
-  function fitPreview() {
-    if (!curNat) return;
-    const r = curNat.w / curNat.h;
-    const px = parseFloat(getComputedStyle(document.documentElement).fontSize);
-    const box = tlPreview.parentElement;
-    const tl2 = box.closest(".tl2");
-    // region the preview lives in: section's left edge → just before the timeline
-    const regionLeft = tl2.getBoundingClientRect().left;
-    const regionRight = tlList.getBoundingClientRect().left - 2 * px;
-    const regionW = Math.max(8 * px, regionRight - regionLeft);
-    const K = 40 * px; // target width + height
-    let h = K / (1 + r),
-      w = r * h;
-    const capSc = Math.min(1, (40 * px) / w, (30 * px) / h); // full size (caps only)
-    const sc = Math.min(capSc, regionW / w); // also fit within the region
-    const fw = w * sc,
-      fh = h * sc;
-    box.style.width = fw + "px";
-    box.style.height = fh + "px";
-    box.style.marginLeft = Math.max(0, (regionW - fw) * 0.3) + "px"; // biased left of center
-    // hide (rather than show shrunk) once the region can't fit the full size;
-    // visibility (not display) keeps the grid slot so the timeline stays put
-    box.classList.toggle("tl-preview--off", regionW < w * capSc - 1);
-  }
-  window.addEventListener("resize", fitPreview);
-  function setActive(i) {
-    if (i === activeT) return;
-    activeT = i;
-    items.forEach((el, k) => el.classList.toggle("active", k === i));
-    const t = TRIPS[i];
-    const s = thumb(t.id, t.cover || t.photos[0]);
-    const pre = new Image();
-    pre.onload = () => {
-      tlPreview.src = s; // old stays until new is ready → no blank gap
-      curNat = { w: pre.naturalWidth, h: pre.naturalHeight };
-      fitPreview();
-      tlPreview.classList.remove("in");
-      void tlPreview.offsetWidth; // restart the animation
-      tlPreview.classList.add("in");
-    };
-    pre.src = s;
-  }
-  TRIPS.forEach((t, i) => {
-    const detail =
-      (t.month ? `<span class="d">${t.month}</span> · ` : "") +
-      `${t.photos.length} photos`;
-    const el = document.createElement("div");
-    el.className = "tl-item";
-    el.innerHTML = `
-      <div class="tl-body">
-        <div class="tl-loc">${t.location}</div>
-        <div class="tl-detail">${detail}</div>
-      </div>`;
-    el.addEventListener("mouseenter", () => setActive(i));
-    el.addEventListener("click", () => (location.hash = "t/" + t.id));
-    items.push(el);
-    tlList.appendChild(el);
-    // year divider on the left when the next trip is an earlier year
-    const next = TRIPS[i + 1];
-    if (next && next.year !== t.year) {
-      const div = document.createElement("div");
-      div.className = "tl-div";
-      div.innerHTML = `<span class="y">${t.year}</span><span class="ln"></span>`;
-      tlList.appendChild(div);
-    }
-  });
-  setActive(0);
-  tlPreview.parentElement.addEventListener("click", () => {
-    if (activeT >= 0) location.hash = "t/" + TRIPS[activeT].id;
-  });
+  // ---- photo grid (the Portfolio page): a grid that fills the page — 3
+  // rows splitting the height evenly, and as many columns as fit across at
+  // about-square cells. Each photo is whole (never cropped), as big as fits
+  // in its cell, but with width + height capped (SUM) so squares don't loom
+  // over wide shots. Narrow screens: 2 square cells across, scrolling. Uses
+  // the first (columns × 3) PICKS. The "Photography" title takes the dead
+  // centre: the middle cell of the middle row (two cells with an even column
+  // count), and opens the trip gallery; on narrow screens it heads the
+  // grid. ----
+  const pfGrid = document.getElementById("pfGrid");
+  if (pfGrid && typeof PICKS !== "undefined") {
+    const byId = Object.fromEntries(TRIPS.map((t) => [t.id, t]));
+    // "202601-Tokyo/011.webp" (or ".../011") → trip + file; unknown trips
+    // are skipped
+    const picks = PICKS.map((p) => p.split("/"))
+      .filter(([id, f]) => byId[id] && f)
+      .map(([id, f]) => ({
+        t: byId[id],
+        src: thumb(id, /\.\w+$/.test(f) ? f : f + ".webp"),
+        ratio: 1.5, // width / height, replaced once the image loads
+      }));
+    const ROWS = 3;
+    // width + height cap, in units of the cell's shorter side: a 3:2 photo
+    // (1 + 2/3) just fills its cell; a square is held to 0.85 of it
+    const SUM = 1.7;
+    const narrow = matchMedia("(max-width: 860px)");
 
-  // ---- subpage (full trip gallery, slides in from the right) ----
+    // the title opens the gallery at the newest trip (its list has the rest)
+    const title = document.createElement("a");
+    title.className = "pf-title";
+    title.href = "#t/" + TRIPS[0].id;
+    title.textContent = "Photography";
+    let relayout = 0;
+    // one cell > tile (hover) > img per pick, built once and placed in the
+    // grid by layout(); a pick that doesn't fit stays out of the page
+    const cells = picks.map((p, i) => {
+      const cell = document.createElement("div");
+      cell.className = "pf-cell";
+      cell.innerHTML = `<button class="pf-tile" data-i="${i}">
+        <img src="${p.src}" alt="${p.t.location}, ${p.t.date}" />
+        <span class="pf-cap">${p.t.location} · ${p.t.date}</span>
+      </button>`;
+      const im = cell.querySelector("img");
+      const set = () => {
+        const r = im.naturalWidth / im.naturalHeight;
+        if (!r || r === p.ratio) return;
+        p.ratio = r; // real shape known → redo the layout (once/frame)
+        if (!relayout)
+          relayout = requestAnimationFrame(() => {
+            relayout = 0;
+            layout();
+          });
+      };
+      if (im.complete) set();
+      else im.addEventListener("load", set);
+      return cell;
+    });
+
+    function layout() {
+      const W = pfGrid.clientWidth;
+      const g = parseFloat(getComputedStyle(pfGrid).columnGap) || 0;
+      let ch, n, cols;
+      if (narrow.matches) {
+        cols = 2;
+        ch = (W - g) / 2;
+        n = picks.length;
+      } else {
+        ch = (pfGrid.clientHeight - g * (ROWS - 1)) / ROWS;
+        // the column count whose cells come closest to square
+        const lo = Math.max(1, Math.floor((W + g) / (ch + g)));
+        const off = (c) => Math.abs(Math.log((W - g * (c - 1)) / c / ch));
+        cols = off(lo) <= off(lo + 1) ? lo : lo + 1;
+        n = cols * ROWS - (cols % 2 ? 1 : 2); // less the title's cells
+      }
+      const cw = (W - g * (cols - 1)) / cols;
+      if (!(cw > 0 && ch > 0)) return;
+      pfGrid.style.gridTemplateColumns = `repeat(${cols}, ${cw}px)`;
+      pfGrid.style.gridAutoRows = `${ch}px`;
+      // title: centred cell(s) of row 2; photos auto-flow around it
+      const span = narrow.matches ? cols : cols % 2 ? 1 : 2;
+      pfGrid.style.gridTemplateRows = narrow.matches ? "auto" : "";
+      title.style.gridRow = narrow.matches ? "1" : "2";
+      title.style.gridColumn = `${(cols - span) / 2 + 1} / span ${span}`;
+      const placed = cells.slice(0, n);
+      placed.forEach((cell, i) => {
+        // the photo whole, as big as fits in a cw × ch cell and the SUM cap
+        const r = picks[i].ratio;
+        const cap = (SUM * Math.min(cw, ch) * r) / (1 + r); // w where w + h = cap
+        const w = Math.min(cw, ch * r, cap);
+        cell.firstElementChild.style.width = `${w}px`;
+        cell.firstElementChild.style.height = `${w / r}px`;
+      });
+      pfGrid.replaceChildren(title, ...placed);
+    }
+    pfGrid.addEventListener("click", (e) => {
+      const b = e.target.closest(".pf-tile");
+      if (b) location.hash = "t/" + picks[+b.dataset.i].t.id;
+    });
+    window.addEventListener("resize", layout);
+    narrow.addEventListener("change", layout);
+    layout();
+  }
+
+  // ---- subpage (full trip gallery, a sheet that slides up) ----
   const subMain = document.querySelector(".sub-main");
   const subLoc = document.getElementById("subLoc");
   const subMeta = document.getElementById("subMeta");
@@ -102,7 +126,7 @@
 
   function showTrip(id) {
     const ti = TRIPS.findIndex((x) => x.id === id);
-    if (ti < 0) return showTimeline();
+    if (ti < 0) return showGrid();
     const t = TRIPS[ti];
     subLoc.textContent = t.location;
     subMeta.textContent = `${t.date} · ${t.photos.length} photos`;
@@ -130,17 +154,18 @@
       subMain.classList.add("swap");
     }
   }
-  function showTimeline() {
-    root.dataset.view = "timeline";
+  function showGrid() {
+    root.dataset.view = "grid";
     document.body.style.overflow = "";
   }
-  document
-    .getElementById("subBack")
-    .addEventListener("click", () => (location.hash = "portfolio"));
+  // close the sheet: ← back, or a click on the dimmed page above it
+  const close = () => (location.hash = "portfolio");
+  document.getElementById("subBack").addEventListener("click", close);
+  document.getElementById("subBackdrop").addEventListener("click", close);
   function route() {
     const m = location.hash.match(/^#t\/(.+)$/);
     if (m) showTrip(decodeURIComponent(m[1]));
-    else showTimeline();
+    else showGrid();
   }
   window.addEventListener("hashchange", route);
   route();

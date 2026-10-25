@@ -76,7 +76,7 @@
 
           <figure class="portrait">
             <img
-              src="assets/profile/001.jpg"
+              src="assets/profile/001.webp"
               alt="Bang-Shien Chen"
               width="1200"
               height="1800"
@@ -111,10 +111,7 @@
       <!-- 02 — PORTFOLIO -->
       <section id="portfolio" class="section section--full">
         <div class="wrap">
-          <div class="tl2">
-            <div class="tl-preview"><img id="tlPreview" alt="" /></div>
-            <div class="tl-list" id="tlList"></div>
-          </div>
+          <div class="pf-grid" id="pfGrid"></div>
         </div>
       </section>
 
@@ -203,14 +200,15 @@
       <section id="research" class="section section--full">
         <div class="wrap">
           <div class="res-group">
-            <h3 class="res-sub">Publications</h3>
+            <h3 class="page-title">Publications</h3>
             <ul class="pubs" id="pubs"></ul>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- portfolio: trip gallery (slides up) + single-photo lightbox -->
+    <!-- portfolio: trip gallery (a sheet that slides up) + single-photo lightbox -->
+    <div class="sub-backdrop" id="subBackdrop"></div>
     <div class="subpage" id="subpage">
       <aside class="sub-menu">
         <span class="sub-back" id="subBack">← back</span>
