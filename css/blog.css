@@ -131,11 +131,11 @@
   pointer-events: none; /* a click on the window restores instead of hitting files */
 }
 /* the dog reveal is a wide-screen treat — disable it (and the minimize) when narrow */
-@media (max-width: 860px) {
+@media (max-width: 1099px) {
   .win-dots .r,
   .win-dots .y,
   .win-dots .g {
-    cursor: default; /* all window controls are inert below 860 */
+    cursor: default; /* all window controls are inert below 1100 */
   }
   .blog-reveal {
     display: none;

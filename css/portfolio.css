@@ -220,13 +220,10 @@
   opacity: 1;
 }
 /* narrow screens scroll vertically: the grid grows with its rows */
-@media (max-width: 860px) {
+@media (max-width: 1099px) {
   .pf-grid {
     flex: none;
     width: 100%;
-  }
-  .pf-title {
-    margin-block: 0.5rem 1rem;
   }
 }
 /* ---------------- SUBPAGE (trip gallery) ---------------- */

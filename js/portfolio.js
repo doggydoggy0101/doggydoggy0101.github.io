@@ -9,11 +9,12 @@
   // rows splitting the height evenly, and as many columns as fit across at
   // about-square cells. Each photo is whole (never cropped), as big as fits
   // in its cell, but with width + height capped (SUM) so squares don't loom
-  // over wide shots. Narrow screens: 2 square cells across, scrolling. Uses
-  // the first (columns × 3) PICKS. The title — a camera-aperture icon —
-  // takes the dead centre: the middle cell of the middle row (two cells with
-  // an even column count), and opens the trip gallery; on narrow screens it
-  // heads the grid. ----
+  // over wide shots. Uses the first (columns × 3) PICKS. The title — a
+  // camera-aperture icon — takes the dead centre: the middle cell of the
+  // middle row (two cells with an even column count), and opens the trip
+  // gallery. When the site scrolls vertically (below 1100px): square cells,
+  // no title, and only the first 8 picks in two columns (4 in one on a
+  // phone). ----
   const pfGrid = document.getElementById("pfGrid");
   if (pfGrid && typeof PICKS !== "undefined") {
     const byId = Object.fromEntries(TRIPS.map((t) => [t.id, t]));
@@ -30,7 +31,7 @@
     // width + height cap, in units of the cell's shorter side: a 3:2 photo
     // (1 + 2/3) just fills its cell; a square is held to 0.85 of it
     const SUM = 1.7;
-    const narrow = matchMedia("(max-width: 860px)");
+    const narrow = matchMedia("(max-width: 1099px)"); // = not side-by-side pages
 
     // the title: a line-drawn lens aperture that opens the gallery at the
     // newest trip (its list has the rest). Six blades, each a line tangent to
@@ -113,9 +114,11 @@
       const g = parseFloat(getComputedStyle(pfGrid).columnGap) || 0;
       let ch, n, cols;
       if (narrow.matches) {
-        cols = 2;
-        ch = (W - g) / 2;
-        n = picks.length;
+        // vertical scrolling: square cells, no title, and just a taste of the
+        // picks — 8 in two columns, 4 in one on a phone
+        cols = W >= 440 ? 2 : 1;
+        ch = (W - g * (cols - 1)) / cols;
+        n = cols === 2 ? 8 : 4;
       } else {
         ch = (pfGrid.clientHeight - g * (ROWS - 1)) / ROWS;
         // the column count whose cells come closest to square
@@ -129,9 +132,8 @@
       pfGrid.style.gridTemplateColumns = `repeat(${cols}, ${cw}px)`;
       pfGrid.style.gridAutoRows = `${ch}px`;
       // title: centred cell(s) of row 2; photos auto-flow around it
-      const span = narrow.matches ? cols : cols % 2 ? 1 : 2;
-      pfGrid.style.gridTemplateRows = narrow.matches ? "auto" : "";
-      title.style.gridRow = narrow.matches ? "1" : "2";
+      const span = cols % 2 ? 1 : 2;
+      title.style.gridRow = "2";
       title.style.gridColumn = `${(cols - span) / 2 + 1} / span ${span}`;
       placed = cells.slice(0, n);
       placed.forEach((cell, i) => {
@@ -142,7 +144,7 @@
         cell.firstElementChild.style.width = `${w}px`;
         cell.firstElementChild.style.height = `${w / r}px`;
       });
-      pfGrid.replaceChildren(title, ...placed);
+      pfGrid.replaceChildren(...(narrow.matches ? [] : [title]), ...placed);
       unveil();
     }
 

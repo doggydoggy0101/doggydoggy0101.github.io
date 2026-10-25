@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const align = () => {
     hero.style.setProperty("--left-y", "0px");
     hero.style.setProperty("--about-y", "0px");
-    if (window.matchMedia("(max-width: 960px)").matches) return;
+    if (window.matchMedia("(max-width: 1099px)").matches) return;
     const l = midY(photo) - midY(cv);
     hero.style.setProperty("--left-y", `${l.toFixed(1)}px`);
     const d = firstLineBottom(cvLabel) - firstLineBottom(about);

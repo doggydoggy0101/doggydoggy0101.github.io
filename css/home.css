@@ -240,8 +240,10 @@
   text-decoration-color: currentColor;
 }
 
-/* ---- narrow: stack name → photo → paragraph ---- */
-@media (max-width: 960px) {
+/* ---- narrow (the pages scroll vertically here too): name → paragraph,
+   no portrait. Below ~1100px the three columns leave the paragraph too
+   narrow to fit the screen ---- */
+@media (max-width: 1099px) {
   .hero-grid {
     grid-template-columns: 1fr;
     max-width: 34rem;
@@ -252,11 +254,7 @@
     transform: none;
   }
   .portrait {
-    order: -1;
-  }
-  .portrait img {
-    width: 100%;
-    height: auto;
+    display: none;
   }
   .hero-about {
     max-width: none;

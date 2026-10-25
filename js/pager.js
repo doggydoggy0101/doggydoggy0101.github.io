@@ -2,7 +2,8 @@
 // scroller (About … Research). The mouse wheel scrolls it sideways with an
 // eased glide, trackpad swipes scroll it natively, and the nav, arrow / Page
 // / Home / End keys glide to a page. No snapping: it rests wherever you stop.
-// Below 861px (or without JS) the site scrolls vertically as before.
+// Below 1100px — where the About page stacks into one column — (or without
+// JS) the site scrolls vertically as before.
 // Fires "pagechange" ({detail: {id}}, the nearest page) and "pagescroll"
 // ({detail: {from, to, t}}, the exact position) that main.js uses for the nav.
 (function () {
@@ -12,7 +13,7 @@
   const pages = [...stage.children].filter((el) => el.tagName === "SECTION");
   const N = pages.length;
   const dots = document.getElementById("dots");
-  const wide = window.matchMedia("(min-width: 861px)");
+  const wide = window.matchMedia("(min-width: 1100px)");
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
   const DOT_DRIFT = 0.035; // dots slide 3.5% of the distance scrolled
   const EASE = 0.14; // share of the remaining distance covered each frame

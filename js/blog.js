@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const win = stage && stage.querySelector(".code-window");
   const dots = document.querySelector(".win-dots");
   if (stage && win && dots) {
-    const wide = () => window.innerWidth > 860; // window controls are a wide-screen treat
+    const wide = () => window.innerWidth >= 1100; // window controls are a wide-screen treat
     // yellow: minimize → reveal the photo; click the small window to restore
     dots.querySelector(".y").addEventListener("click", (e) => {
       if (!wide()) return;
