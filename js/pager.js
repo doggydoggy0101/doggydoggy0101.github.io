@@ -46,11 +46,30 @@
   }
   const goPage = (i) => glideTo(Math.max(0, Math.min(N - 1, i)) * width());
 
+  // ---- parallax: while the pages slide, a page's content is drawn toward
+  // the middle of the screen by up to data-parallax (in page widths, set per
+  // page in index.html; none = no parallax), so it closes up on its
+  // neighbours; css/pager.css clips it to its own page. A page at rest is
+  // left untransformed (the blog's position:fixed maximize needs that). ----
+  function parallax() {
+    const W = width();
+    pages.forEach((p, i) => {
+      const k = parseFloat(p.dataset.parallax);
+      if (!k) return;
+      const d = Math.max(-1, Math.min(1, (i * W - stage.scrollLeft) / W));
+      p.firstElementChild.style.transform =
+        reduce.matches || Math.abs(d) < 0.001
+          ? ""
+          : `translateX(${(-d * W * k).toFixed(1)}px)`;
+    });
+  }
+
   // ---- scroll position → nav underline, dots; nearest page → hash, nav ----
   let cur = -1;
   function onScroll() {
     if (!raf) target = stage.scrollLeft; // a native (trackpad) scroll moved it
     dots.style.backgroundPositionX = `${-stage.scrollLeft * DOT_DRIFT}px`;
+    parallax();
     // where we are between two pages (t = 0…1), for the underline to follow
     const at = Math.max(0, Math.min(N - 1, stage.scrollLeft / width()));
     const a = Math.floor(at);
@@ -170,6 +189,7 @@
     cancelAnimationFrame(raf);
     raf = 0;
     dots.style.backgroundPositionX = "";
+    pages.forEach((p) => (p.firstElementChild.style.transform = ""));
     pages[i].scrollIntoView();
   }
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";

@@ -10,10 +10,10 @@
   // about-square cells. Each photo is whole (never cropped), as big as fits
   // in its cell, but with width + height capped (SUM) so squares don't loom
   // over wide shots. Narrow screens: 2 square cells across, scrolling. Uses
-  // the first (columns × 3) PICKS. The "Photography" title takes the dead
-  // centre: the middle cell of the middle row (two cells with an even column
-  // count), and opens the trip gallery; on narrow screens it heads the
-  // grid. ----
+  // the first (columns × 3) PICKS. The title — a camera-aperture icon —
+  // takes the dead centre: the middle cell of the middle row (two cells with
+  // an even column count), and opens the trip gallery; on narrow screens it
+  // heads the grid. ----
   const pfGrid = document.getElementById("pfGrid");
   if (pfGrid && typeof PICKS !== "undefined") {
     const byId = Object.fromEntries(TRIPS.map((t) => [t.id, t]));
@@ -32,12 +32,57 @@
     const SUM = 1.7;
     const narrow = matchMedia("(max-width: 860px)");
 
-    // the title opens the gallery at the newest trip (its list has the rest)
+    // the title: a line-drawn lens aperture that opens the gallery at the
+    // newest trip (its list has the rest). Six blades, each a line tangent to
+    // the opening (radius r) from its hexagon corner out to the rim (R = 10):
+    // small r nearly shut, large r wide open. Hover (or keyboard focus) opens
+    // it — the opening is tweened here, the blades' turn is CSS.
+    const IRIS = { shut: 3, open: 7.4, ms: 450 };
+    const irisPath = (r) => {
+      const R = 10;
+      const t0 = -r * Math.tan(Math.PI / 6); // back to the hexagon corner
+      const t1 = Math.sqrt(R * R - r * r); // out to the rim
+      let d = "";
+      for (let k = 0; k < 6; k++) {
+        const a = (k * Math.PI) / 3 - Math.PI / 2;
+        const [px, py] = [12 + r * Math.cos(a), 12 + r * Math.sin(a)];
+        const [dx, dy] = [-Math.sin(a), Math.cos(a)];
+        const pt = (t) =>
+          `${(px + t * dx).toFixed(2)} ${(py + t * dy).toFixed(2)}`;
+        d += `M${pt(t0)}L${pt(t1)}`;
+      }
+      return d;
+    };
     const title = document.createElement("a");
     title.className = "pf-title";
     title.href = "#t/" + TRIPS[0].id;
-    title.textContent = "Photography";
+    title.setAttribute("aria-label", "Photography");
+    title.innerHTML = `<svg class="pf-iris" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"/><g><path d="${irisPath(IRIS.shut)}"/></g></svg>`;
+    const blades = title.querySelector("path");
+    let irisR = IRIS.shut;
+    let irisRaf = 0;
+    const irisTo = (target) => {
+      cancelAnimationFrame(irisRaf);
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const from = irisR;
+      const t0 = performance.now();
+      const step = (now) => {
+        const k = reduce ? 1 : Math.min(1, (now - t0) / IRIS.ms);
+        irisR = from + (target - from) * (1 - (1 - k) ** 3); // ease-out
+        blades.setAttribute("d", irisPath(irisR));
+        if (k < 1) irisRaf = requestAnimationFrame(step);
+      };
+      irisRaf = requestAnimationFrame(step);
+    };
+    const open = () => irisTo(IRIS.open);
+    const shut = () => irisTo(IRIS.shut);
+    title.addEventListener("mouseenter", open);
+    title.addEventListener("focus", open);
+    title.addEventListener("mouseleave", shut);
+    title.addEventListener("blur", shut);
     let relayout = 0;
+    let placed = []; // the cells on the page now (layout())
     // one cell > tile (hover) > img per pick, built once and placed in the
     // grid by layout(); a pick that doesn't fit stays out of the page
     const cells = picks.map((p, i) => {
@@ -88,7 +133,7 @@
       pfGrid.style.gridTemplateRows = narrow.matches ? "auto" : "";
       title.style.gridRow = narrow.matches ? "1" : "2";
       title.style.gridColumn = `${(cols - span) / 2 + 1} / span ${span}`;
-      const placed = cells.slice(0, n);
+      placed = cells.slice(0, n);
       placed.forEach((cell, i) => {
         // the photo whole, as big as fits in a cw × ch cell and the SUM cap
         const r = picks[i].ratio;
@@ -98,7 +143,45 @@
         cell.firstElementChild.style.height = `${w / r}px`;
       });
       pfGrid.replaceChildren(title, ...placed);
+      unveil();
     }
+
+    // photo unveil: as the Portfolio page slides in, each photo opens top →
+    // bottom and settles from a slight zoom; as it slides out, they close
+    // again — tied to the scroll position, so it plays both ways. The
+    // columns on the side the page comes in from open first (left ones when
+    // arriving from About, right ones when coming back from Blog). Only with
+    // the side-by-side pages, and off for reduced motion.
+    const stage = document.getElementById("pages");
+    const section = document.getElementById("portfolio");
+    const STAGGER = 0.45; // share of the approach between first and last column
+    const smooth = (t) => t * t * (3 - 2 * t);
+    function unveil() {
+      const on =
+        root.classList.contains("paged") &&
+        !matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const d = on
+        ? (section.offsetLeft - stage.scrollLeft) / stage.clientWidth
+        : 0; // 0 centred, ±1 a page away
+      const near = 1 - Math.min(1, Math.abs(d));
+      const xs = placed.map((c) => c.offsetLeft);
+      const lo = Math.min(...xs);
+      const hi = Math.max(...xs);
+      placed.forEach((c, k) => {
+        const tile = c.firstElementChild;
+        let o = 1; // 0 shut … 1 open
+        if (on) {
+          const u = hi > lo ? (xs[k] - lo) / (hi - lo) : 0.5; // 0 left … 1 right
+          const lead = (d >= 0 ? u : 1 - u) * STAGGER; // leading side first
+          o = smooth(Math.max(0, Math.min(1, (near - lead) / (1 - STAGGER))));
+        }
+        tile.style.clipPath =
+          o >= 1 ? "" : `inset(0 0 ${((1 - o) * 100).toFixed(2)}% 0)`;
+        tile.firstElementChild.style.transform =
+          o >= 1 ? "" : `scale(${(1 + 0.08 * (1 - o)).toFixed(4)})`;
+      });
+    }
+    document.addEventListener("pagescroll", unveil);
     pfGrid.addEventListener("click", (e) => {
       const b = e.target.closest(".pf-tile");
       if (b) location.hash = "t/" + picks[+b.dataset.i].t.id;

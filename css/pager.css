@@ -34,10 +34,16 @@ html.paged .pages > section {
   height: 100%;
   min-height: 0;
   border-top: none;
+  overflow-x: clip; /* the parallax shift never peeks into the next page */
 }
 
 /* a page whose content runs taller than the screen scrolls inside itself */
 html.paged .section--full {
   overflow-y: auto;
   justify-content: safe center;
+}
+/* the photo grid is sized to fit the page exactly, so Portfolio never needs
+   to scroll — and a pixel of overflow mid-animation can't flash a scrollbar */
+html.paged #portfolio {
+  overflow-y: hidden;
 }
