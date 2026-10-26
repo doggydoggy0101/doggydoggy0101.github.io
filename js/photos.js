@@ -5,10 +5,7 @@ const TRIPS = [
   {
     id: "202608-Guangzhou",
     location: "Guangzhou",
-    month: "Aug",
-    year: "2026",
     date: "Aug 2026",
-    label: "Guangzhou \u00b7 Aug 2026",
     photos: [
       "001.webp",
       "002.webp",
@@ -26,10 +23,7 @@ const TRIPS = [
   {
     id: "202601-Tokyo",
     location: "Tokyo",
-    month: "Jan",
-    year: "2026",
     date: "Jan 2026",
-    label: "Tokyo \u00b7 Jan 2026",
     photos: [
       "001.webp",
       "002.webp",
@@ -67,10 +61,7 @@ const TRIPS = [
   {
     id: "2026-Boston",
     location: "Boston",
-    month: "",
-    year: "2026",
     date: "2026",
-    label: "Boston \u00b7 2026",
     photos: [
       "001.webp",
       "002.webp",
@@ -100,10 +91,7 @@ const TRIPS = [
   {
     id: "2026-Taiwan",
     location: "Taiwan",
-    month: "",
-    year: "2026",
     date: "2026",
-    label: "Taiwan \u00b7 2026",
     photos: [
       "001.webp",
       "002.webp",
@@ -119,10 +107,7 @@ const TRIPS = [
   {
     id: "202505-Atlanta",
     location: "Atlanta",
-    month: "May",
-    year: "2025",
     date: "May 2025",
-    label: "Atlanta \u00b7 May 2025",
     photos: [
       "001.webp",
       "002.webp",
@@ -138,10 +123,7 @@ const TRIPS = [
   {
     id: "2025-Taiwan",
     location: "Taiwan",
-    month: "",
-    year: "2025",
     date: "2025",
-    label: "Taiwan \u00b7 2025",
     photos: [
       "001.webp",
       "002.webp",
@@ -175,10 +157,7 @@ const TRIPS = [
   {
     id: "202411-Tokyo",
     location: "Tokyo",
-    month: "Nov",
-    year: "2024",
     date: "Nov 2024",
-    label: "Tokyo \u00b7 Nov 2024",
     photos: [
       "001.webp",
       "002.webp",
@@ -213,10 +192,7 @@ const TRIPS = [
   {
     id: "202406-Minneapolis",
     location: "Minneapolis",
-    month: "Jun",
-    year: "2024",
     date: "Jun 2024",
-    label: "Minneapolis \u00b7 Jun 2024",
     photos: [
       "001.webp",
       "002.webp",
@@ -258,10 +234,7 @@ const TRIPS = [
   {
     id: "202402-Tokyo",
     location: "Tokyo",
-    month: "Feb",
-    year: "2024",
     date: "Feb 2024",
-    label: "Tokyo \u00b7 Feb 2024",
     photos: [
       "001.webp",
       "002.webp",
@@ -286,10 +259,7 @@ const TRIPS = [
   {
     id: "2024-Taiwan",
     location: "Taiwan",
-    month: "",
-    year: "2024",
     date: "2024",
-    label: "Taiwan \u00b7 2024",
     photos: [
       "001.webp",
       "002.webp",
