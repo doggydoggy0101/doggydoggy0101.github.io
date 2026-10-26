@@ -1,0 +1,30 @@
+name: prune-deployments
+
+# Keep only the newest GitHub Pages deployment, so the repo's "Deployments"
+# count stays at 1. Runs after each successful Pages deploy, and can be run
+# by hand from the Actions tab. Only the deployment records are removed —
+# the live site is untouched.
+on:
+  deployment_status:
+  workflow_dispatch:
+
+permissions:
+  deployments: write
+
+jobs:
+  prune:
+    if: github.event_name == 'workflow_dispatch' || github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete all but the newest github-pages deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          # newest first; a deployment must be marked inactive before it can be deleted
+          ids=$(gh api --paginate "repos/$REPO/deployments?environment=github-pages&per_page=100" --jq '.[].id' | tail -n +2)
+          for id in $ids; do
+            gh api -X POST "repos/$REPO/deployments/$id/statuses" -f state=inactive > /dev/null
+            gh api -X DELETE "repos/$REPO/deployments/$id"
+            echo "deleted deployment $id"
+          done

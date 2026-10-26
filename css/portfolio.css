@@ -1,39 +1,77 @@
 /* ============================================================
-   PORTFOLIO — hover-expand timeline (left) + synced preview (right)
-   click a trip → per-trip gallery subpage
+   PORTFOLIO — full-page grid of picks around a centred title
+   click a photo → its trip's gallery in a sheet that slides up from the bottom
    ============================================================ */
 
-/* subpage = full-screen panel that slides in from the right */
-.subpage {
+/* the trip page is a sheet over the portfolio: it stops short of the top so
+   the page behind stays visible (dimmed) — a page within the page. Clicking
+   that dimmed strip (the backdrop) closes it, as does Esc */
+.sub-backdrop {
   position: fixed;
   inset: 0;
+  z-index: 199;
+  background: rgba(22, 22, 22, 0.28);
+  opacity: 0;
+  visibility: hidden;
+  cursor: pointer;
+  transition:
+    opacity 0.45s var(--ease),
+    visibility 0.45s;
+}
+[data-view="trip"] .sub-backdrop {
+  opacity: 1;
+  visibility: visible;
+}
+.subpage {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: calc(3.5rem + clamp(2rem, 7svh, 4.5rem)); /* nav + a strip of page */
   z-index: 200;
   background: var(--bg);
   display: flex;
-  transform: translateX(100%);
-  opacity: 0;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 -20px 60px -24px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  transform: translateY(100%);
   visibility: hidden;
   transition:
-    transform 0.55s var(--ease),
-    opacity 0.4s var(--ease),
-    visibility 0.55s;
+    transform 0.6s var(--ease),
+    visibility 0.6s;
 }
 [data-view="trip"] .subpage {
   transform: none;
-  opacity: 1;
   visibility: visible;
+}
+/* small grab bar so it reads as a sheet */
+.subpage::before {
+  content: "";
+  position: absolute;
+  top: 0.6rem;
+  left: 50%;
+  width: 2.5rem;
+  height: 4px;
+  margin-left: -1.25rem;
+  border-radius: 2px;
+  background: var(--line);
+}
+@media (prefers-reduced-motion: reduce) {
+  .sub-backdrop,
+  .subpage {
+    transition: none;
+  }
 }
 /* left: trip menu */
 .sub-menu {
   width: 16rem;
   flex-shrink: 0;
-  padding: 6.5rem 1.5rem 2rem var(--space);
+  padding: 2.5rem 1.5rem 2rem var(--space);
   border-right: 1px solid var(--line);
   overflow-y: auto;
 }
 .sub-tlist {
   list-style: none;
-  margin-top: 1.6rem;
 }
 .sub-tlist li {
   padding: 0.5rem 0;
@@ -42,7 +80,7 @@
 .sub-tlist .l {
   display: block;
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 400;
   font-size: var(--step-0);
   color: var(--muted);
   transition: color 0.25s var(--ease);
@@ -63,7 +101,7 @@
 .sub-main {
   flex: 1;
   overflow-y: auto;
-  padding: 6.5rem var(--space) 4rem;
+  padding: 2.5rem var(--space) 4rem;
 }
 /* fade-up the content when switching between trips */
 @keyframes subIn {
@@ -87,197 +125,120 @@
   }
 }
 
-/* ---------------- TIMELINE (two-pane) ---------------- */
-.tl2 {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr; /* preview (left) · timeline (right) */
-  gap: var(--space);
-  align-items: center;
-  min-height: 31rem; /* > tallest possible list content so the rail never reflows */
+/* ---------------- PHOTO GRID (the picks, full page) ---------------- */
+/* the page is the grid: 3 equal rows filling the space under the nav, and
+   as many about-square columns as fit across. portfolio.js sizes the cells
+   and each photo whole (no cropping) inside its cell */
+#portfolio {
+  padding: calc(3.5rem + 0.6rem) 0 0.6rem; /* just clear of the nav */
 }
-
-/* left: collapsible list with a vertical rail */
-.tl-list {
-  position: relative;
-  align-self: stretch; /* rail spans the fixed row height */
-  justify-self: end; /* sit on the right, nudged in from the edge */
-  margin-right: clamp(1rem, 10vw, 10rem);
-  width: min(
-    26rem,
-    100%
-  ); /* fixed-ish width so the rail doesn't reflow on hover */
+#portfolio .wrap {
+  flex: 1;
   display: flex;
-  flex-direction: column;
+  max-width: none;
+  min-height: 0;
+}
+.pf-grid {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: grid;
   justify-content: center;
-  align-items: flex-start; /* rows shrink to content, so hover only fires over the rail + names */
+  align-content: center;
+  gap: clamp(0.25rem, 0.6vw, 0.6rem);
 }
-/* the rail sits after the year gutter — fixed length, doesn't react to hover */
-.tl-list::before {
-  content: "";
-  position: absolute;
-  left: 4rem;
-  top: 0.6rem;
-  bottom: 0.6rem;
-  width: 1px;
-  background: var(--line);
-}
-.tl-item {
-  position: relative;
-  display: grid;
-  grid-template-columns: 4rem 1fr;
-  align-items: start;
-  padding: 0.5rem 0;
-  cursor: pointer;
-}
-.tl-body {
-  grid-column: 2;
-  padding-left: 1.2rem;
-}
-/* year divider, sits in the left gutter at each year transition */
-.tl-div {
-  position: relative;
-  display: grid;
-  grid-template-columns: 4rem 1fr;
+.pf-cell {
+  display: flex;
   align-items: center;
-  padding: 0.35rem 0;
+  justify-content: center;
 }
-.tl-div .y {
-  text-align: right;
-  padding-right: 0.85rem;
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
-  letter-spacing: 0.04em;
-  color: var(--accent);
-}
-/* short tick on the rail (like the city dots) */
-.tl-div .ln {
-  position: absolute;
-  left: calc(4rem - 7px);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 14px;
-  height: 2px;
-  border-radius: 1px;
-  background: var(--accent);
-}
-.tl-item::before {
-  content: "";
-  position: absolute;
-  left: calc(4rem - 4px);
-  top: 1rem;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--bg);
-  border: 2px solid var(--line);
-  transition:
-    border-color 0.3s var(--ease),
-    background 0.3s var(--ease);
-}
-.tl-item.active::before {
-  border-color: var(--accent);
-  background: var(--accent);
-}
-.tl-loc {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: var(--step-0);
-  line-height: 1.05;
-  color: var(--muted);
-  transition:
-    font-size 0.35s var(--ease),
-    color 0.35s var(--ease);
-}
-.tl-item.active .tl-loc {
-  font-size: var(--step-3);
+/* the title in the grid's centre cell(s): a line-drawn lens aperture
+   (portfolio.js) that opens the newest trip; on hover the iris opens and
+   its blades turn a little */
+.pf-title {
+  align-self: center;
+  justify-self: center;
+  display: flex;
   color: var(--text);
 }
-.tl-detail {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
-  color: var(--muted);
-  transition:
-    max-height 0.35s var(--ease),
-    opacity 0.35s var(--ease),
-    margin-top 0.35s var(--ease);
-}
-.tl-item.active .tl-detail {
-  max-height: 2rem;
-  opacity: 1;
-  margin-top: 0.45rem;
-}
-.tl-detail .d {
-  color: var(--accent);
-}
-
-/* right: single synced preview */
-.tl-preview {
-  position: relative;
-  max-width: 40rem;
-  justify-self: start; /* JS margin-left centers it within the available region */
-  cursor: pointer;
-  overflow: hidden;
-  isolation: isolate; /* contain the color blend to the photo */
-  border-radius: 3px;
-  --brush: 150px; /* smaller filter blob on the (large) preview */
-}
-.tl-preview img {
+.pf-iris {
   display: block;
-  width: 100%; /* fill the JS-sized box (box keeps width + height ~constant) */
-  height: 100%;
-  object-fit: cover;
-  border-radius: 3px;
+  height: 3.4rem;
+  width: auto;
 }
-.tl-preview--off {
-  visibility: hidden; /* hide but keep the grid slot so the timeline doesn't shift */
+.pf-iris * {
+  vector-effect: non-scaling-stroke; /* 1.5px lines at any size */
 }
-@keyframes previewIn {
-  from {
-    opacity: 0;
-    transform: scale(1.04);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+.pf-iris g {
+  transform-box: view-box;
+  transform-origin: 12px 12px;
+  transition: transform 0.45s var(--ease);
 }
-.tl-preview img.in {
-  animation: previewIn 0.5s var(--ease-out);
+.pf-title:hover .pf-iris g,
+.pf-title:focus-visible .pf-iris g {
+  transform: rotate(-30deg);
 }
 @media (prefers-reduced-motion: reduce) {
-  .tl-preview img.in {
-    animation: none;
+  .pf-iris g {
+    transition: none;
   }
 }
-
-/* ---------------- SUBPAGE (trip gallery) ---------------- */
-.sub-back {
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
-  color: var(--muted);
+.pf-tile {
+  position: relative;
+  flex: none;
+  padding: 0;
+  border: 0;
+  overflow: hidden; /* the unveil's settling zoom stays inside the frame */
+  background: var(--surface);
   cursor: pointer;
-  display: inline-block;
-  margin-bottom: 1.4rem;
-  transition: color 0.3s var(--ease);
+  transition: transform 0.35s var(--ease);
 }
-.sub-back:hover {
-  color: var(--contrast);
+/* hover: the photo grows a little (and shows its label) */
+.pf-cell:hover {
+  z-index: 1;
 }
+.pf-tile:hover {
+  transform: scale(1.025);
+}
+.pf-tile img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.pf-cap {
+  position: absolute;
+  left: 0.6rem;
+  bottom: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.pf-tile:hover .pf-cap {
+  opacity: 1;
+}
+/* narrow screens scroll vertically: the grid grows with its rows */
+@media (max-width: 1099px) {
+  .pf-grid {
+    flex: none;
+    width: 100%;
+  }
+}
+/* ---------------- SUBPAGE (trip gallery) ---------------- */
 .sub-head {
   display: flex;
   align-items: baseline;
   gap: 1rem;
-  margin-bottom: 1.8rem;
-  max-width: 48rem;
+  margin: 0 auto 1.8rem; /* lines up with the centred grid's left edge */
+  max-width: 74rem;
 }
 .sub-loc {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: var(--step-2);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   color: var(--text);
 }
 .sub-meta {
@@ -285,90 +246,41 @@
   font-size: var(--step--1);
   color: var(--muted);
 }
+/* as many columns as fit at --col-min wide, up to --cols-max (portfolio.js
+   counts them and deals each photo into the shortest one); centred in the
+   sheet, and capped so columns stay a sensible size on wide screens */
 .sub-grid {
-  columns: 2;
-  column-gap: 1.1rem;
-  max-width: 48rem; /* keep columns a sensible size on wide screens */
+  --cols-max: 3;
+  --col-min: 16rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+  max-width: 74rem;
+  margin-inline: auto;
+}
+.sub-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
 }
 .ph {
   position: relative;
-  margin-bottom: 1.1rem;
-  break-inside: avoid; /* keep each figure whole within its column */
+  margin: 0;
   border-radius: 2px;
   overflow: hidden;
-  isolation: isolate; /* contain the color blend to the photo */
   cursor: pointer;
-  --brush: 190px; /* base filter-blob size */
+  transition: transform 0.35s var(--ease);
+}
+/* hover: the photo grows a little, like the main grid */
+.ph:hover {
+  z-index: 1;
+  transform: scale(1.025);
 }
 .ph img {
   display: block;
   width: 100%;
-}
-/* soft spotlight that trails the cursor (position driven by --mx/--my from JS) */
-.ph::after,
-.tl-preview::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  --c: 60, 120, 210; /* --contrast blue */
-  /* trail of varied-size dabs, warped together → an organic, liquid blue filter
-     (--brush base size is inherited from .ph / .tl-preview) */
-  background:
-    radial-gradient(
-      circle calc(var(--brush) * 1) at var(--mx0, -100%) var(--my0, -100%),
-      rgba(var(--c), 0.6),
-      transparent 72%
-    ),
-    radial-gradient(
-      circle calc(var(--brush) * 0.92) at var(--mx1, -100%) var(--my1, -100%),
-      rgba(var(--c), 0.5),
-      transparent 72%
-    ),
-    radial-gradient(
-      circle calc(var(--brush) * 0.86) at var(--mx2, -100%) var(--my2, -100%),
-      rgba(var(--c), 0.42),
-      transparent 72%
-    ),
-    radial-gradient(
-      circle calc(var(--brush) * 0.79) at var(--mx3, -100%) var(--my3, -100%),
-      rgba(var(--c), 0.34),
-      transparent 72%
-    ),
-    radial-gradient(
-      circle calc(var(--brush) * 0.73) at var(--mx4, -100%) var(--my4, -100%),
-      rgba(var(--c), 0.26),
-      transparent 72%
-    ),
-    radial-gradient(
-      circle calc(var(--brush) * 0.66) at var(--mx5, -100%) var(--my5, -100%),
-      rgba(var(--c), 0.19),
-      transparent 72%
-    ),
-    radial-gradient(
-      circle calc(var(--brush) * 0.59) at var(--mx6, -100%) var(--my6, -100%),
-      rgba(var(--c), 0.13),
-      transparent 72%
-    ),
-    radial-gradient(
-      circle calc(var(--brush) * 0.52) at var(--mx7, -100%) var(--my7, -100%),
-      rgba(var(--c), 0.07),
-      transparent 72%
-    );
-  filter: url(#liquid) blur(4px); /* warp into an organic liquid shape (light blur) */
-  mix-blend-mode: overlay; /* blue tint that keeps the photo's depth (film-like, not dark) */
-  opacity: 0;
-  transition: opacity 0.35s var(--ease);
-}
-.ph.lit::after,
-.tl-preview.lit::after {
-  opacity: 1;
-}
-@media (prefers-reduced-motion: reduce) {
-  .ph::after,
-  .tl-preview::after {
-    transition: none;
-  }
 }
 
 /* mobile: trip menu stacks on top, single column */
@@ -380,14 +292,13 @@
     width: auto;
     border-right: none;
     border-bottom: 1px solid var(--line);
-    padding: 5rem var(--space) 1rem;
+    padding: 2rem var(--space) 1rem;
     overflow: visible;
   }
   .sub-tlist {
     display: flex;
     flex-wrap: wrap;
     gap: 0.3rem 1.2rem;
-    margin-top: 1rem;
   }
   .sub-tlist .d {
     display: none;
@@ -396,21 +307,7 @@
     padding: 1.5rem var(--space) 3rem;
   }
   .sub-grid {
-    columns: 1;
-  }
-}
-@media (max-width: 620px) {
-  /* same hover-enlarge behavior as desktop, just full-width with no preview.
-     keep the reserved min-height (from .tl2 above) so the rail stays a fixed
-     length and the section below never gets pushed. */
-  .tl2 {
-    grid-template-columns: 1fr;
-  }
-  .tl-preview {
-    display: none;
-  }
-  .sub-grid {
-    columns: 1;
+    --cols-max: 1;
   }
 }
 
@@ -471,24 +368,4 @@
 .lb-close {
   top: 1.2rem;
   right: 1.4rem;
-}
-.lb-prev {
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.lb-next {
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.lb-cap {
-  position: absolute;
-  bottom: 1.3rem;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
-  color: #c9c2b4;
 }

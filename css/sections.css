@@ -7,114 +7,115 @@
   border-top: 1px solid var(--line);
   scroll-margin-top: 4rem;
 }
-
-/* section header: small mono label + big serif title */
-.section-head {
-  margin-bottom: 1rem;
-}
-.section-label {
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--accent);
+/* one-screen sections (Portfolio, Blog): fill the viewport like About and
+   centre their content in the space below the fixed nav (3.5rem) */
+.section--full {
+  position: relative;
+  min-height: 100svh;
+  scroll-margin-top: 0;
   display: flex;
-  align-items: center;
-  gap: 0.7rem;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(3.5rem + clamp(2rem, 6vh, 4rem)) 0 clamp(2rem, 6vh, 4rem);
 }
-.section-label::before {
-  content: "";
-  width: 26px;
-  height: 1px;
-  background: var(--accent);
-}
-.section-title {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: var(--step-2);
-  letter-spacing: -0.02em;
-  margin-top: 0.6rem;
-  color: var(--text);
+.section--full > .wrap {
+  width: 100%; /* auto margins would otherwise shrink it to fit in the flex column */
 }
 
-/* ---- placeholder sections (Portfolio / Blog) ---- */
-.section--ph {
-  min-height: 78vh;
-  display: flex;
-  align-items: center;
-}
-.ph-note {
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
-  letter-spacing: 0.04em;
-  color: var(--muted);
-  margin-top: 1.6rem;
-}
-
-/* ---- Research ---- */
-.res-group {
-  margin-top: 2.4rem;
-}
-.section-head + .res-group {
-  margin-top: 2rem;
-}
-.res-sub {
+/* page heading (Publications) */
+.page-title {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   font-size: var(--step-2);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   color: var(--text);
   margin-bottom: 0.6rem;
   padding-bottom: 0.8rem;
   border-bottom: 1px solid var(--line);
 }
-.res-list {
+/* ---- Research (publications) ---- */
+.res-group {
+  margin-top: 2.4rem;
+}
+.res-group:first-child {
+  margin-top: 0;
+}
+/* ---- publications (ledger): venue label · entry · links ---- */
+.pubs {
   list-style: none;
 }
-
-.res-item {
+.pubs li {
   display: grid;
-  grid-template-columns: 2.6rem 1fr;
-  gap: 1rem;
-  padding: 0.4rem 0;
-  align-items: baseline;
+  grid-template-columns: 6.5rem 1fr auto;
+  gap: 1.5rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--line);
+  align-items: center; /* venue label and links sit at the entry's mid-height */
 }
-.res-index {
+.pubs p {
+  margin: 0;
+}
+.pv-tag,
+.pv-links a {
   font-family: var(--font-mono);
-  font-size: var(--step--1);
-  color: var(--accent);
-  transition: color 0.25s var(--ease);
+  font-size: 0.78rem;
 }
-.res-item:hover .res-index {
-  color: var(--contrast); /* subtle blue accent on hover */
+/* venue label: a small grey box (a label, not a link); it fills with the
+   accent blue while its publication is hovered */
+.pv-tag {
+  justify-self: start;
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--text) 7%, var(--bg));
+  color: var(--text);
+  line-height: 1.3;
+  user-select: none;
+  -webkit-user-select: none;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
-.res-text {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: var(--step-0);
-  line-height: 1.6;
+.pubs li:hover .pv-tag {
+  background: var(--accent);
+  color: var(--bg);
+}
+.pv-title {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.pv-authors,
+.pv-venue {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+.pv-authors {
+  margin-top: 0.15rem;
+}
+.pv-authors b {
+  font-weight: 600;
   color: var(--text);
 }
-.res-text b {
-  font-weight: 600;
+.pv-links {
+  display: flex;
+  gap: 1rem;
+  white-space: nowrap;
 }
-.res-text i {
-  font-style: italic;
-  color: var(--muted);
+.pv-links a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 0.2s;
 }
-.res-link {
-  color: var(--contrast);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.3s var(--ease);
-}
-.res-link:hover {
-  border-bottom-color: var(--contrast);
+.pv-links a:hover {
+  text-decoration-color: currentColor;
 }
 
-@media (max-width: 600px) {
-  .res-item {
-    grid-template-columns: 2rem 1fr;
-    gap: 0.6rem;
+@media (max-width: 700px) {
+  .pubs li {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
   }
 }
